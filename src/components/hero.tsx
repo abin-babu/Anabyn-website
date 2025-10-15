@@ -1,9 +1,8 @@
+
 'use client';
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { AnabynLogo } from './anabyn-logo';
 
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
@@ -12,12 +11,6 @@ export function Hero() {
     <section className="relative h-screen w-full">
       <Carousel
         className="h-full w-full"
-        plugins={[
-          Autoplay({
-            delay: 5000,
-            stopOnInteraction: false,
-          }),
-        ]}
         opts={{
           loop: true,
         }}
@@ -40,12 +33,17 @@ export function Hero() {
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <div 
           className="text-center text-white animate-fade-in-up"
           style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
         >
-          <AnabynLogo width={600} height={188} className="drop-shadow-lg" />
+          <h1 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight drop-shadow-lg">
+            Anabyn Global Ventures LLP
+          </h1>
+          <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md">
+            A Trusted Partner in Premium Textiles and Materials
+          </p>
         </div>
       </div>
     </section>
