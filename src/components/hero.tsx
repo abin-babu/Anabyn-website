@@ -2,6 +2,15 @@
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { FaLinkedin, FaFacebook, FaInstagram, FaTwitter, FaGoogle } from 'react-icons/fa';
+
+const socialLinks = [
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/anabyn-global-ventures/', icon: FaLinkedin },
+    { name: 'Facebook', href: '#', icon: FaFacebook },
+    { name: 'Instagram', href: '#', icon: FaInstagram },
+    { name: 'Twitter', href: '#', icon: FaTwitter },
+    { name: 'Google Business', href: '#', icon: FaGoogle },
+]
 
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
@@ -43,6 +52,13 @@ export function Hero() {
           <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md">
             Your trusted partner in hospitality supplies worldwide from India
           </p>
+          <div className="pointer-events-auto mt-8 flex items-center justify-center gap-6">
+            {socialLinks.map(social => (
+                <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.name} className="text-gray-300 hover:text-white transition-colors">
+                    <social.icon className="h-7 w-7" />
+                </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
