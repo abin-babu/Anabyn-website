@@ -10,7 +10,12 @@ export function Header() {
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/#products' },
     { label: 'About Us', href: '/about-us' },
-    { label: 'Admin', href: '/admin' },
+    { label: 'Customization', href: '/customization' },
+    { label: 'Quality', href: '/quality' },
+    { label: 'Sustainability', href: '/sustainability' },
+    { label: 'Downloads', href: '/downloads' },
+    { label: 'FAQ', href: '/faq' },
+    { label: 'Careers', href: '/careers' },
   ];
 
   return (
@@ -20,7 +25,7 @@ export function Header() {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <AnabynLogo width={160} height={50} />
           </Link>
-          <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
+          <nav className="hidden items-center space-x-4 text-sm font-medium lg:flex">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -38,7 +43,7 @@ export function Header() {
           </Button>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="lg:hidden">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle Menu</span>
               </Button>
@@ -54,6 +59,12 @@ export function Header() {
                     {item.label}
                   </Link>
                 ))}
+                 <Link
+                    href={'/admin'}
+                    className="text-lg font-medium transition-colors hover:text-primary"
+                  >
+                    Admin
+                  </Link>
                 <Button asChild className="mt-4">
                     <Link href="/inquiry">Inquire Now</Link>
                 </Button>
