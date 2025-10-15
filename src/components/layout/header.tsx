@@ -2,11 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import Image from 'next/image';
-
-const AnabynLogo = () => (
-    <Image src="https://i.ibb.co/6gZ3sZn/logo.png" alt="Anabyn Global Ventures LLP Logo" width={160} height={50} />
-);
+import { AnabynLogo } from '../anabyn-logo';
 
 export function Header() {
   const navItems = [
@@ -20,7 +16,7 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo />
+            <AnabynLogo width={160} height={50} />
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium md:flex">
             {navItems.map((item) => (

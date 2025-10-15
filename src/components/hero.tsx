@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { AnabynLogo } from './anabyn-logo';
 
 export function Hero() {
   const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
@@ -44,7 +45,7 @@ export function Hero() {
           className="text-center text-white animate-fade-in-up"
           style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
         >
-          <Image src="https://i.ibb.co/6gZ3sZn/logo.png" alt="Anabyn Global Ventures LLP Logo" width={600} height={188} priority className="drop-shadow-lg" />
+          <AnabynLogo width={600} height={188} className="drop-shadow-lg" />
         </div>
       </div>
     </section>
