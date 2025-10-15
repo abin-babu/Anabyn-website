@@ -36,12 +36,14 @@ export default function AdminPage() {
             <div className="flex min-h-screen flex-col items-center justify-center">
                 <p>Loading...</p>
             </div>
-        )
+        );
     }
 
     const handleLogout = async () => {
-        await signOut(auth);
-        router.push('/admin/login');
+        if (auth) {
+            await signOut(auth);
+            router.push('/admin/login');
+        }
     }
 
     return (
@@ -75,7 +77,7 @@ export default function AdminPage() {
                                             <TableCell colSpan={6} className="text-center">Loading inquiries...</TableCell>
                                         </TableRow>
                                     )}
-                                    {inquiries && inquiries.map((inquiry) => (
+                                    {inquiries && inquiries.map((inquiry : any) => (
                                         <TableRow key={inquiry.id}>
                                             <TableCell>{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
                                             <TableCell>{inquiry.name}</TableCell>
