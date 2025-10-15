@@ -40,19 +40,11 @@ export function Hero() {
         </CarouselContent>
       </Carousel>
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <div className="text-center text-white">
-          <h1 
-            className="text-4xl md:text-6xl font-headline font-bold drop-shadow-lg animate-fade-in-up"
-            style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
-          >
-            Anabyn Premium Gallery
-          </h1>
-          <p 
-            className="mt-4 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md animate-fade-in-up"
-            style={{ animationDelay: '0.4s', animationFillMode: 'backwards' }}
-          >
-            A Trusted Partner in Premium Textiles and Materials
-          </p>
+        <div 
+          className="text-center text-white animate-fade-in-up"
+          style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
+        >
+          <Image src="https://i.ibb.co/6gZ3sZn/logo.png" alt="Anabyn Global Ventures LLP Logo" width={600} height={188} priority className="drop-shadow-lg" />
         </div>
       </div>
     </section>

@@ -1,12 +1,9 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const AnabynLogo = () => (
-    <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="0" y="28" fontFamily="Inter, sans-serif" fontSize="20" fontWeight="bold" fill="hsl(var(--primary))">
-        ANABYN
-      </text>
-    </svg>
-  );
+  <Image src="https://i.ibb.co/6gZ3sZn/logo.png" alt="Anabyn Global Ventures LLP Logo" width={200} height={62} />
+);
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,9 +11,11 @@ export function Footer() {
     <footer className="border-t bg-secondary/50">
       <div className="container flex flex-col items-center justify-between gap-4 py-10 md:h-24 md:flex-row md:py-0">
         <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-          <AnabynLogo />
+          <div className='mb-4 md:mb-0'>
+            <AnabynLogo />
+          </div>
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            © {currentYear} Anabyn. All rights reserved.
+            © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
           </p>
         </div>
         <div className="flex items-center gap-4 text-sm text-muted-foreground">

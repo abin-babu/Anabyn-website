@@ -2,13 +2,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Image from 'next/image';
 
 const AnabynLogo = () => (
-  <svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="10" y="28" fontFamily="Inter, sans-serif" fontSize="20" fontWeight="bold" fill="hsl(var(--primary))">
-      ANABYN
-    </text>
-  </svg>
+    <Image src="https://i.ibb.co/6gZ3sZn/logo.png" alt="Anabyn Global Ventures LLP Logo" width={160} height={50} />
 );
 
 export function Header() {
