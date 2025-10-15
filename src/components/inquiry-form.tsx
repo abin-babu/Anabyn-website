@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -11,9 +12,11 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { handleInquiry } from '@/app/actions/inquiry';
 import { products } from '@/lib/products';
+import { Label } from './ui/label';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -23,6 +26,7 @@ const formSchema = z.object({
   inquiryType: z.enum(['General Inquiry', 'Sample Request', 'Bulk Order']),
   productId: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000),
+  whatsappOptIn: z.boolean().optional(),
 });
 
 export function InquiryForm() {
@@ -41,6 +45,7 @@ export function InquiryForm() {
       inquiryType: 'General Inquiry',
       productId: productIdParam || '',
       message: productName ? `I'm interested in the product: ${productName}. ` : '',
+      whatsappOptIn: false,
     },
   });
 
@@ -70,6 +75,7 @@ export function InquiryForm() {
         inquiryType: 'General Inquiry',
         productId: '',
         message: '',
+        whatsappOptIn: false,
       });
     } else {
       toast({
@@ -170,6 +176,28 @@ export function InquiryForm() {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="whatsappOptIn"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <Label htmlFor="whatsappOptIn">Opt-in for WhatsApp communication</Label>
+                <p className="text-sm text-muted-foreground">
+                  Allow us to contact you via WhatsApp for faster communication.
+                </p>
+              </div>
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" size="lg" disabled={form.formState.isSubmitting}>
           {form.formState.isSubmitting ? 'Sending...' : 'Send Inquiry'}
         </Button>

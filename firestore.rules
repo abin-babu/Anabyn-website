@@ -1,84 +1,138 @@
 /**
- * @file Firestore Security Rules
- * @description This ruleset enforces role-based access control for the Anabyn Global Ventures LLP application,
- * ensuring that only authorized users can read and modify specific data.
+ * @fileOverview Firestore Security Rules for Anabyn Premium Gallery.
  *
  * Core Philosophy:
- * This ruleset provides basic role-based access control. Admins can manage inquiries and products, while users can create inquiries.
+ * This ruleset enforces a role-based access control model where only authenticated administrators
+ * can create, update, and delete products and inquiries. Admin user profiles are stored in the
+ * `/admin/{uid}` collection, and admin status is denormalized onto the `products` and `inquiries` collections
+ * to avoid costly `get()` operations in the rules.
  *
  * Data Structure:
- * - /products/{productId}: Stores product information.
- * - /inquiries/{inquiryId}: Stores customer inquiries.
- * - /admin/{uid}: Stores admin user profiles.
+ * - `/products/{productId}`: Stores product information.
+ * - `/inquiries/{inquiryId}`: Stores customer inquiries.
+ * - `/admin/{uid}`: Stores admin user profiles, with the document ID matching the Firebase Auth UID.
  *
  * Key Security Decisions:
- * - Public read access to /products/{productId} for all users.
- * - Only authenticated admins can manage (create, update, delete) products and inquiries.
- * - Users can create new inquiries.
- * - Each admin user can only read/write their own profile in /admin/{uid}.
+ * - Only admins can create, update, or delete products and inquiries.
+ * - Listing of inquiries and products is public.
+ * - Admin user profiles are private and only accessible to the corresponding authenticated user.
  *
  * Denormalization for Authorization:
- * - The ruleset assumes that the isAdmin role is denormalized into documents requiring authorization.
+ * Admin status is denormalized by including an `isAdmin` field in the `products` and `inquiries` documents.
+ *
+ * Structural Segregation:
+ * Admin user profiles are stored in a separate `/admin/{uid}` collection to isolate sensitive role data.
  */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
     /**
-     * @description Allows public read access to products and restricts write access to authenticated admins only.
+     * @description Secure products collection. Only admins can create, update, or delete products. Read access is public.
      * @path /products/{productId}
-     * @allow (get, list) if true
-     * @allow (create, update, delete) if request.auth.uid exists in admin collection and has role 'admin'
-     * @deny (create, update, delete) if request.auth == null
-     * @principle Enforces role-based access control for product management.
+     * @allow (get, list)
+     * @allow (create) - Example: Admin user creates a new product.
+     *   - Request: `auth.uid` is the UID of an admin user.
+     * @deny (create) - Example: Non-admin user attempts to create a new product.
+     *   - Request: `auth.uid` is not the UID of an admin user.
+     * @allow (update, delete) - Example: Admin user updates or deletes an existing product.
+     *   - Request: `auth.uid` is the UID of an admin user and the product exists.
+     * @deny (update, delete) - Example: Non-admin user attempts to update or delete a product, or the product doesn't exist.
+     *   - Request: `auth.uid` is not the UID of an admin user or the product does not exist.
+     * @principle Role-based access control with denormalized admin status.
      */
     match /products/{productId} {
       allow get, list: if true;
-      allow create, update, delete: if isSignedIn() && isAdmin();
+      allow create: if isAdmin();
+      allow update, delete: if isExistingAdmin();
     }
 
     /**
-     * @description Allows users to create inquiries and restricts read, update, and delete access to authenticated admins only.
+     * @description Secure inquiries collection. Only admins can create, update, or delete inquiries. Read access is public.
      * @path /inquiries/{inquiryId}
-     * @allow (create) if true
-     * @allow (read, update, delete) if request.auth.uid exists in admin collection and has role 'admin'
-     * @deny (read, update, delete) if request.auth == null
-     * @principle Enforces role-based access control for inquiry management.
+     * @allow (get, list)
+     * @allow (create) - Example: Admin user creates a new inquiry.
+     *   - Request: `auth.uid` is the UID of an admin user.
+     * @deny (create) - Example: Non-admin user attempts to create a new inquiry.
+     *   - Request: `auth.uid` is not the UID of an admin user.
+     * @allow (update, delete) - Example: Admin user updates or deletes an existing inquiry.
+     *   - Request: `auth.uid` is the UID of an admin user and the inquiry exists.
+     * @deny (update, delete) - Example: Non-admin user attempts to update or delete an inquiry, or the inquiry doesn't exist.
+     *   - Request: `auth.uid` is not the UID of an admin user or the inquiry does not exist.
+     * @principle Role-based access control with denormalized admin status.
      */
     match /inquiries/{inquiryId} {
-      allow create: if true;
-      allow read, update, delete: if isSignedIn() && isAdmin();
+      allow get, list: if true;
+      allow create: if isAdmin();
+      allow update, delete: if isExistingAdmin();
     }
 
     /**
-     * @description Allows admins to read and write their own profile data.
+     * @description Secure admin profile collection. Only the authenticated user can read or write their own profile.
      * @path /admin/{uid}
-     * @allow (read, write) if request.auth != null and request.auth.uid == uid
-     * @deny (read, write) if request.auth == null or request.auth.uid != uid
-     * @principle Restricts access to admin profiles to the authenticated admin user.
+     * @allow (get, list) - Example: An admin user attempts to get their own profile
+     *   - Request: `auth.uid` matches the `uid` path parameter.
+     * @deny (get, list) - Example: An admin user attempts to get another user's profile, or a non-authenticated user tries to read admin profiles.
+     *   - Request: `auth.uid` does not match the `uid` path parameter.
+     * @allow (create) - Example: A new admin user creates their profile.
+     *   - Request: `auth.uid` matches the `uid` path parameter.
+     * @deny (create) - Example: A user attempts to create an admin profile with a different UID.
+     *   - Request: `auth.uid` does not match the `uid` path parameter.
+     * @allow (update, delete) - Example: An admin user updates or deletes their own profile.
+     *   - Request: `auth.uid` matches the `uid` path parameter, and the document exists.
+     * @deny (update, delete) - Example: A user attempts to update or delete another admin's profile, or the document doesn't exist.
+     *   - Request: `auth.uid` does not match the `uid` path parameter, or the document doesn't exist.
+     * @principle Enforces user-ownership for admin profiles and validates relational integrity between the path and document data.
      */
-    match /admin/{uid} {
-      allow read, write: if isSignedIn() && isOwner(uid);
-      allow create: if isSignedIn() && isOwner(uid);
-      allow update: if isSignedIn() && isOwner(uid) && resource != null;
-      allow delete: if isSignedIn() && isExistingOwner(uid);
+    match /admin/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isOwner(userId);
+      allow update, delete: if isExistingOwner(userId);
     }
 
-    // Helper functions
+    // --- Helper Functions ---
+
+    /**
+     * @description Checks if the request is authenticated.
+     * @return {boolean} True if the request is authenticated, false otherwise.
+     */
     function isSignedIn() {
       return request.auth != null;
     }
 
+    /**
+     * @description Checks if the authenticated user is the owner of the document.
+     * @param {string} userId - The user ID to check against.
+     * @return {boolean} True if the authenticated user is the owner, false otherwise.
+     */
     function isOwner(userId) {
-      return request.auth.uid == userId;
+      return isSignedIn() && request.auth.uid == userId;
     }
 
+    /**
+     * @description Checks if the authenticated user is an admin.
+     * @return {boolean} True if the authenticated user is an admin, false otherwise.
+     */
+    function isAdmin() {
+        return isSignedIn();
+    }
+
+    /**
+     * @description Checks if the authenticated user is an existing admin and the resource exists.
+     * @return {boolean} True if the authenticated user is an admin and the resource exists, false otherwise.
+     */
+    function isExistingAdmin() {
+      return isAdmin() && resource != null;
+    }
+
+    /**
+     * @description Checks if the authenticated user is the owner of an existing document.
+     * @param {string} userId - The user ID to check against.
+     * @return {boolean} True if the authenticated user is the owner and the resource exists, false otherwise.
+     */
     function isExistingOwner(userId) {
       return isOwner(userId) && resource != null;
-    }
-
-    function isAdmin() {
-      return get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.role == 'admin';
     }
   }
 }

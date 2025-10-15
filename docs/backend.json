@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "Product": {
@@ -38,11 +39,21 @@
           }
         },
         "specs": {
-          "type": "string",
-          "description": "Specifications object as JSON string"
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "string"
+            },
+            "GSM": {
+              "type": "string"
+            },
+            "materials": {
+              "type": "string"
+            }
+          }
         },
         "moq": {
-          "type": "number",
+          "type": "string",
           "description": "Minimum Order Quantity for the product."
         },
         "leadTime": {
@@ -67,7 +78,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "slug",
         "category",
@@ -86,10 +96,6 @@
       "type": "object",
       "description": "Represents an inquiry made by a customer.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the Inquiry entity."
-        },
         "name": {
           "type": "string",
           "description": "The name of the person making the inquiry."
@@ -119,7 +125,11 @@
           "type": "array",
           "description": "An array of product IDs and quantities included in the inquiry.",
           "items": {
-            "type": "string"
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "qty": { "type": "number" }
+            }
           }
         },
         "type": {
@@ -141,7 +151,6 @@
         }
       },
       "required": [
-        "id",
         "name",
         "email",
         "message",
@@ -187,7 +196,7 @@
   "auth": {
     "providers": [
       "password",
-      "anonymous"
+      "google.com"
     ]
   },
   "firestore": {
@@ -197,15 +206,9 @@
         "definition": {
           "entityName": "Product",
           "schema": {
-            "$ref": "#/backend/entities/Product"
+            "$ref": "#/entities/Product"
           },
-          "description": "Stores product information. Each document represents a single product. Includes denormalized 'isAdmin' field for authorization independence.",
-          "params": [
-            {
-              "name": "productId",
-              "description": "The unique identifier for the product."
-            }
-          ]
+          "description": "Stores product information. Each document represents a single product."
         }
       },
       {
@@ -213,15 +216,9 @@
         "definition": {
           "entityName": "Inquiry",
           "schema": {
-            "$ref": "#/backend/entities/Inquiry"
+            "$ref": "#/entities/Inquiry"
           },
-          "description": "Stores customer inquiries. Each document represents a single inquiry. Includes denormalized 'isAdmin' field for authorization independence.",
-          "params": [
-            {
-              "name": "inquiryId",
-              "description": "The unique identifier for the inquiry."
-            }
-          ]
+          "description": "Stores customer inquiries. Each document represents a single inquiry."
         }
       },
       {
@@ -229,18 +226,11 @@
         "definition": {
           "entityName": "Admin",
           "schema": {
-            "$ref": "#/backend/entities/Admin"
+            "$ref": "#/entities/Admin"
           },
-          "description": "Stores admin user profiles.  The document ID is the Firebase Auth UID.",
-          "params": [
-            {
-              "name": "uid",
-              "description": "The Firebase Auth UID of the admin user."
-            }
-          ]
+          "description": "Stores admin user profiles. The document ID is the Firebase Auth UID."
         }
       }
-    ],
-    "reasoning": "This Firestore structure prioritizes security and scalability by adhering to the principles of Authorization Independence, Structural Segregation, and Access Modeling.  Authorization Independence is achieved through denormalization of admin roles into the `inquiries` and `products` collections. This eliminates the need for `get()` calls in security rules, enabling atomic operations and simplifying debugging. Structural Segregation is implemented by separating the `admin` collection, which stores sensitive role data, from other data collections. This ensures that only authenticated admins can access and modify inquiries and products. The data structure also facilitates QAPs by segregating data based on access control requirements, and by incorporating the denormalized `isAdmin` field into the documents requiring authorization."
+    ]
   }
 }

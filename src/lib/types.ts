@@ -1,3 +1,6 @@
+
+import { Timestamp } from 'firebase/firestore';
+
 export type Product = {
   id: string;
   name: string;
@@ -21,10 +24,11 @@ export type Inquiry = {
   email: string;
   company?: string;
   phone?: string;
-  type: 'Sample Request' | 'General Inquiry' | 'Bulk Order';
+  type: 'general-inquiry' | 'sample-request' | 'bulk-order';
   message: string;
-  productId?: string;
-  productName?: string;
-  status: 'New' | 'Contacted' | 'Quoted';
-  createdAt: Date;
+  products: { id: string, qty: number }[];
+  status: 'new' | 'contacted' | 'quoted' | 'done';
+  source: 'site' | 'whatsapp';
+  whatsappOptIn?: boolean;
+  createdAt: Timestamp;
 };

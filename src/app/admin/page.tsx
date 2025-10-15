@@ -1,26 +1,94 @@
+
+'use client';
+import { useUser, useFirebase, useCollection, useMemoFirebase } from '@/firebase';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { collection } from 'firebase/firestore';
+
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { signOut } from 'firebase/auth';
 
 export default function AdminPage() {
+    const { user, isUserLoading } = useUser();
+    const { firestore, auth } = useFirebase();
+    const router = useRouter();
+
+    const inquiriesQuery = useMemoFirebase(() => {
+        if (!firestore) return null;
+        return collection(firestore, 'inquiries');
+    }, [firestore]);
+
+    const { data: inquiries, isLoading: inquiriesLoading } = useCollection(inquiriesQuery);
+
+    useEffect(() => {
+        if (!isUserLoading && !user) {
+            router.push('/admin/login');
+        }
+    }, [user, isUserLoading, router]);
+
+    if (isUserLoading || !user) {
+        return (
+            <div className="flex min-h-screen flex-col items-center justify-center">
+                <p>Loading...</p>
+            </div>
+        )
+    }
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        router.push('/admin/login');
+    }
+
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1 py-12 md:py-20 bg-secondary/50">
-                <div className="container max-w-4xl mx-auto">
+                <div className="container max-w-6xl mx-auto">
                     <Card>
-                        <CardHeader>
-                            <CardTitle className="text-2xl font-headline">Admin Dashboard</CardTitle>
-                            <CardDescription>This is a placeholder for the admin dashboard. A real implementation would include inquiry management, product CRUD, and user authentication.</CardDescription>
+                        <CardHeader className="flex flex-row items-center justify-between">
+                            <div>
+                                <CardTitle className="text-2xl font-headline">Inquiry Management</CardTitle>
+                                <CardDescription>Review and manage customer inquiries.</CardDescription>
+                            </div>
+                            <Button onClick={handleLogout} variant="outline">Logout</Button>
                         </CardHeader>
                         <CardContent>
-                           <p>Features to be built:</p>
-                           <ul className="list-disc list-inside mt-4 space-y-2 text-muted-foreground">
-                            <li>Protected routes for admin access only.</li>
-                            <li>Inquiry management table with search, sort, and status updates.</li>
-                            <li>CSV export for inquiries.</li>
-                            <li>Full CRUD (Create, Read, Update, Delete) operations for products.</li>
-                           </ul>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Date</TableHead>
+                                        <TableHead>Name</TableHead>
+                                        <TableHead>Email</TableHead>
+                                        <TableHead>Type</TableHead>
+                                        <TableHead>Status</Table.Head>
+                                        <TableHead>Actions</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {inquiriesLoading && (
+                                        <TableRow>
+                                            <TableCell colSpan={6} className="text-center">Loading inquiries...</TableCell>
+                                        </TableRow>
+                                    )}
+                                    {inquiries && inquiries.map((inquiry) => (
+                                        <TableRow key={inquiry.id}>
+                                            <TableCell>{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
+                                            <TableCell>{inquiry.name}</TableCell>
+                                            <TableCell>{inquiry.email}</TableCell>
+                                            <TableCell className="capitalize">{inquiry.type.replace('-', ' ')}</TableCell>
+                                            <TableCell><Badge>{inquiry.status}</Badge></TableCell>
+                                            <TableCell>
+                                                <Button variant="outline" size="sm">View</Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </CardContent>
                     </Card>
                 </div>

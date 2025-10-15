@@ -1,3 +1,4 @@
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/lib/products';
@@ -51,8 +52,8 @@ export default function ProductDetailPage({ params }: Props) {
     notFound();
   }
   
-  const whatsappNumber = "1234567890"; // Placeholder number
-  const whatsappMessage = `Hello Anabyn, I'm interested in the product: ${product.name} (ID: ${product.id}).`;
+  const whatsappNumber = "919495613121";
+  const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
@@ -108,7 +109,7 @@ export default function ProductDetailPage({ params }: Props) {
                 </Button>
                 <Button asChild size="lg" variant="secondary">
                     <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                        <Phone className="mr-2 h-4 w-4"/> Inquire on WhatsApp
+                        <Phone className="mr-2 h-4 w-4"/> Chat on WhatsApp
                     </a>
                 </Button>
                 {product.specSheetUrl && (
