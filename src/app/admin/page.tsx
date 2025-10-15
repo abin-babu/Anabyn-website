@@ -67,7 +67,7 @@ export default function AdminPage() {
                                         <TableHead>Name</TableHead>
                                         <TableHead>Email</TableHead>
                                         <TableHead>Type</TableHead>
-                                        <TableHead>Status</Table.Head>
+                                        <TableHead>Status</TableHead>
                                         <TableHead>Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
