@@ -7,9 +7,9 @@ export type Product = {
   description: string;
   shortSpecs: string;
   category: {
-    type: 'rug' | 'textile' | 'material';
+    type: 'rug' | 'textile' | 'material' | 'towel' | 'robe';
     material: string;
-    usage: 'indoor' | 'outdoor' | 'commercial';
+    usage: 'indoor' | 'outdoor' | 'commercial' | 'bath' | 'spa' | 'hand-face' | 'specialty';
   };
   images: string[];
   moq: string;

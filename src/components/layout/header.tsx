@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';
@@ -8,6 +9,7 @@ export function Header() {
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/#products' },
+    { label: 'About Us', href: '/about-us' },
     { label: 'Admin', href: '/admin' },
   ];
 
