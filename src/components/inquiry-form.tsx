@@ -22,7 +22,7 @@ const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   company: z.string().optional(),
-  phone: z.string().optional(),
+  phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
   inquiryType: z.enum(['General Inquiry', 'Sample Request', 'Bulk Order']),
   productId: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000),
@@ -128,7 +128,7 @@ export function InquiryForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone (Optional)</FormLabel>
+                <FormLabel>Phone</FormLabel>
                 <FormControl><Input placeholder="+1 (555) 123-4567" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
