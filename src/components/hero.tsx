@@ -1,4 +1,3 @@
-
 'use client';
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
@@ -42,7 +41,7 @@ export function Hero() {
             Anabyn Global Ventures LLP
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md">
-            A Trusted Partner in Premium Textiles and Materials
+            Your trusted partner in hospitality supplies worldwide from India
           </p>
         </div>
       </div>
