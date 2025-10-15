@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "Abstract blue and gold textile",
+      "imageUrl": "https://picsum.photos/seed/hero1/1920/1080",
+      "imageHint": "abstract textile"
+    },
+    {
+      "id": "hero-2",
+      "description": "Woven fabric texture",
+      "imageUrl": "https://picsum.photos/seed/hero2/1920/1080",
+      "imageHint": "fabric texture"
+    },
+    {
+      "id": "hero-3",
+      "description": "Luxurious rug detail",
+      "imageUrl": "https://picsum.photos/seed/hero3/1920/1080",
+      "imageHint": "luxury rug"
+    },
+    {
+      "id": "product-1-1",
+      "description": "Azure Weave Rug front view",
+      "imageUrl": "https://picsum.photos/seed/prod11/800/600",
+      "imageHint": "blue rug"
+    },
+    {
+      "id": "product-1-2",
+      "description": "Azure Weave Rug texture detail",
+      "imageUrl": "https://picsum.photos/seed/prod12/800/600",
+      "imageHint": "rug texture"
+    },
+    {
+      "id": "product-2-1",
+      "description": "Golden Thread Textile roll",
+      "imageUrl": "https://picsum.photos/seed/prod21/800/600",
+      "imageHint": "gold fabric"
+    },
+    {
+      "id": "product-2-2",
+      "description": "Golden Thread Textile closeup",
+      "imageUrl": "https://picsum.photos/seed/prod22/800/600",
+      "imageHint": "fabric weave"
+    },
+    {
+      "id": "product-3-1",
+      "description": "Royal Blue Velvet",
+      "imageUrl": "https://picsum.photos/seed/prod31/800/600",
+      "imageHint": "blue velvet"
+    },
+    {
+      "id": "product-4-1",
+      "description": "Commercial Grade Carpet Tile",
+      "imageUrl": "https://picsum.photos/seed/prod41/800/600",
+      "imageHint": "carpet tile"
+    }
+  ]
 }
