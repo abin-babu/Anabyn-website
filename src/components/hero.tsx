@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
@@ -6,8 +7,8 @@ import { FaLinkedin, FaFacebook, FaInstagram, FaTwitter, FaGoogle } from 'react-
 
 const socialLinks = [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/company/anabyn-global-ventures/', icon: FaLinkedin },
-    { name: 'Facebook', href: '#', icon: FaFacebook },
-    { name: 'Instagram', href: '#', icon: FaInstagram },
+    { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61581460358902', icon: FaFacebook },
+    { name: 'Instagram', href: 'https://www.instagram.com/anabyn_global_ventures/', icon: FaInstagram },
     { name: 'Twitter', href: '#', icon: FaTwitter },
     { name: 'Google Business', href: '#', icon: FaGoogle },
 ]
