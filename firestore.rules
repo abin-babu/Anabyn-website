@@ -1,0 +1,84 @@
+/**
+ * @file Firestore Security Rules
+ * @description This ruleset enforces role-based access control for the Anabyn Global Ventures LLP application,
+ * ensuring that only authorized users can read and modify specific data.
+ *
+ * Core Philosophy:
+ * This ruleset provides basic role-based access control. Admins can manage inquiries and products, while users can create inquiries.
+ *
+ * Data Structure:
+ * - /products/{productId}: Stores product information.
+ * - /inquiries/{inquiryId}: Stores customer inquiries.
+ * - /admin/{uid}: Stores admin user profiles.
+ *
+ * Key Security Decisions:
+ * - Public read access to /products/{productId} for all users.
+ * - Only authenticated admins can manage (create, update, delete) products and inquiries.
+ * - Users can create new inquiries.
+ * - Each admin user can only read/write their own profile in /admin/{uid}.
+ *
+ * Denormalization for Authorization:
+ * - The ruleset assumes that the isAdmin role is denormalized into documents requiring authorization.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Allows public read access to products and restricts write access to authenticated admins only.
+     * @path /products/{productId}
+     * @allow (get, list) if true
+     * @allow (create, update, delete) if request.auth.uid exists in admin collection and has role 'admin'
+     * @deny (create, update, delete) if request.auth == null
+     * @principle Enforces role-based access control for product management.
+     */
+    match /products/{productId} {
+      allow get, list: if true;
+      allow create, update, delete: if isSignedIn() && isAdmin();
+    }
+
+    /**
+     * @description Allows users to create inquiries and restricts read, update, and delete access to authenticated admins only.
+     * @path /inquiries/{inquiryId}
+     * @allow (create) if true
+     * @allow (read, update, delete) if request.auth.uid exists in admin collection and has role 'admin'
+     * @deny (read, update, delete) if request.auth == null
+     * @principle Enforces role-based access control for inquiry management.
+     */
+    match /inquiries/{inquiryId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn() && isAdmin();
+    }
+
+    /**
+     * @description Allows admins to read and write their own profile data.
+     * @path /admin/{uid}
+     * @allow (read, write) if request.auth != null and request.auth.uid == uid
+     * @deny (read, write) if request.auth == null or request.auth.uid != uid
+     * @principle Restricts access to admin profiles to the authenticated admin user.
+     */
+    match /admin/{uid} {
+      allow read, write: if isSignedIn() && isOwner(uid);
+      allow create: if isSignedIn() && isOwner(uid);
+      allow update: if isSignedIn() && isOwner(uid) && resource != null;
+      allow delete: if isSignedIn() && isExistingOwner(uid);
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isExistingOwner(userId) {
+      return isOwner(userId) && resource != null;
+    }
+
+    function isAdmin() {
+      return get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.role == 'admin';
+    }
+  }
+}
