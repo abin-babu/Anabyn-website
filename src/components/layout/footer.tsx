@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center md:items-start gap-4">
-            <AnabynLogo width={200} height={62} />
+            <AnabynLogo width={160} height={50} />
             <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
               © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
             </p>
