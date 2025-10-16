@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 
 export function AnabynLogo({
@@ -17,6 +18,7 @@ export function AnabynLogo({
       height={height}
       className={className}
       priority
+      unoptimized
     />
   );
 }
