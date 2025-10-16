@@ -3,12 +3,17 @@
 import Image from 'next/image';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { FaLinkedin, FaFacebook, FaInstagram, FaTwitter, FaGoogle } from 'react-icons/fa';
+import { FaLinkedin, FaFacebook, FaInstagram, FaTwitter, FaGoogle, FaWhatsapp } from 'react-icons/fa';
+
+const whatsappNumber = "919495613121";
+const whatsappMessage = `Hi Anabyn — I’d like to inquire about your products.`;
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
 const socialLinks = [
     { name: 'LinkedIn', href: 'https://www.linkedin.com/company/anabyn-global-ventures/', icon: FaLinkedin },
     { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61581460358902', icon: FaFacebook },
     { name: 'Instagram', href: 'https://www.instagram.com/anabyn_global_ventures/', icon: FaInstagram },
+    { name: 'WhatsApp', href: whatsappUrl, icon: FaWhatsapp },
     { name: 'Twitter', href: '#', icon: FaTwitter },
     { name: 'Google Business', href: '#', icon: FaGoogle },
 ]
