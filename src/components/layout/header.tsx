@@ -23,7 +23,7 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo width={128} height={40} />
+            <AnabynLogo width={64} height={20} />
           </Link>
           <nav className="hidden items-center space-x-4 text-sm font-medium lg:flex">
             {navItems.map((item) => (
