@@ -2,6 +2,15 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { InquiryForm } from '@/components/inquiry-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Suspense } from 'react';
+
+function InquiryFormLoading() {
+    return (
+        <div className="flex justify-center items-center p-8">
+            <p>Loading form...</p>
+        </div>
+    )
+}
 
 export default function InquiryPage() {
     return (
@@ -17,7 +26,9 @@ export default function InquiryPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <InquiryForm />
+                            <Suspense fallback={<InquiryFormLoading />}>
+                                <InquiryForm />
+                            </Suspense>
                         </CardContent>
                     </Card>
                 </div>
