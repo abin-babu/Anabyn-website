@@ -4,6 +4,9 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { DownloadCloud } from 'lucide-react';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+
 
 const brochures = [
     {
@@ -19,6 +22,7 @@ const brochures = [
 ];
 
 export default function DownloadsPage() {
+    const bannerImage = PlaceHolderImages.find(img => img.id === 'downloads-banner');
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -26,6 +30,12 @@ export default function DownloadsPage() {
                 <div className="container max-w-4xl mx-auto">
                     <Card>
                         <CardHeader className="text-center">
+                            {bannerImage && (
+                                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                                     <Image src={bannerImage.imageUrl} alt={bannerImage.description} fill className="object-cover" data-ai-hint={bannerImage.imageHint}/>
+                                     <div className="absolute inset-0 bg-black/40"></div>
+                                </div>
+                            )}
                             <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Downloads</CardTitle>
                             <CardDescription className="mt-2 text-lg max-w-2xl mx-auto">
                                 Access our latest product catalogs and brochures to learn more about our offerings.

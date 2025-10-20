@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Leaf, Recycle, Heart } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const sustainabilityPoints = [
     {
@@ -24,6 +25,7 @@ const sustainabilityPoints = [
 ];
 
 export default function SustainabilityPage() {
+    const bannerImage = PlaceHolderImages.find(img => img.id === 'sustainability-banner');
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -55,7 +57,13 @@ export default function SustainabilityPage() {
                                     ))}
                                 </div>
                                 <div className="relative aspect-square rounded-lg overflow-hidden border">
-                                    <Image src="https://picsum.photos/seed/sustainability/600/600" alt="Lush green landscape" layout="fill" objectFit="cover" data-ai-hint="green landscape" />
+                                    <Image 
+                                        src={bannerImage?.imageUrl || 'https://picsum.photos/600'} 
+                                        alt={bannerImage?.description || 'Lush green landscape'} 
+                                        fill 
+                                        className="object-cover" 
+                                        data-ai-hint={bannerImage?.imageHint} 
+                                    />
                                 </div>
                             </div>
                         </CardContent>

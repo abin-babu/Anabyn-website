@@ -19,100 +19,124 @@
       "imageHint": "luxury rug"
     },
     {
-      "id": "product-1-1",
-      "description": "Azure Weave Rug front view",
-      "imageUrl": "https://images.unsplash.com/photo-1561302814-559d37659429?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxibHVlJTIwcnVnfGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue rug"
+      "id": "towel-terry",
+      "description": "Plush terry bath towel",
+      "imageUrl": "https://images.unsplash.com/photo-1590737152062-72856a29792e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "terry towel"
     },
     {
-      "id": "product-1-2",
-      "description": "Azure Weave Rug texture detail",
-      "imageUrl": "https://images.unsplash.com/photo-1628006025173-7c5558fa97c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxydWclMjB0ZXh0dXJlfGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "rug texture"
+      "id": "towel-velour",
+      "description": "Smooth velour bath towel",
+      "imageUrl": "https://images.unsplash.com/photo-1616627561839-074385245ff6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "velour towel"
     },
     {
-      "id": "product-2-1",
-      "description": "Golden Thread Textile roll",
-      "imageUrl": "https://images.unsplash.com/photo-1707177197953-83e92e2fef1b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxnb2xkJTIwZmFicmljfGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "gold fabric"
-    },
-    {
-      "id": "product-2-2",
-      "description": "Golden Thread Textile closeup",
-      "imageUrl": "https://images.unsplash.com/photo-1636716018019-569382b46111?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZmFicmljJTIwd2VhdmV8ZW58MHx8fHwxNzYwOTY1NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "fabric weave"
-    },
-    {
-      "id": "product-3-1",
-      "description": "Royal Blue Velvet",
-      "imageUrl": "https://images.unsplash.com/photo-1575226474917-911c06775173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxibHVlJTIwdmVsdmV0fGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "blue velvet"
-    },
-    {
-      "id": "product-4-1",
-      "description": "Commercial Grade Carpet Tile",
-      "imageUrl": "https://images.unsplash.com/photo-1570738160822-c3f68bc5c7a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjYXJwZXQlMjB0aWxlfGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "carpet tile"
+      "id": "towel-waffle",
+      "description": "Waffle weave towel texture",
+      "imageUrl": "https://images.unsplash.com/photo-1600361596503-433550a1a89a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "waffle towel"
     },
     {
       "id": "uniform-corporate",
-      "description": "Corporate uniforms on display",
-      "imageUrl": "https://images.unsplash.com/photo-1598850252257-99801557eecb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjb3Jwb3JhdGUlMjB1bmlmb3JtfGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Professional corporate uniforms",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "corporate uniform"
     },
     {
       "id": "uniform-industrial",
-      "description": "Industrial workwear",
-      "imageUrl": "https://images.unsplash.com/photo-1760577280441-ba2ac2e105f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwdW5pZm9ybXxlbnwwfHx8fDE3NjA5NjU1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Durable industrial workwear",
+      "imageUrl": "https://images.unsplash.com/photo-1593106578502-27fa84f9d453?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "industrial uniform"
     },
     {
       "id": "uniform-tshirt",
-      "description": "Custom printed T-shirts",
-      "imageUrl": "https://images.unsplash.com/photo-1706550631708-27d0ff63e9f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjdXN0b20lMjB0LXNoaXJ0fGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Custom branded t-shirts",
+      "imageUrl": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "custom t-shirt"
     },
     {
       "id": "uniform-jersey",
-      "description": "Sportswear and jerseys",
-      "imageUrl": "https://images.unsplash.com/photo-1713746965400-cd49a8996875?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzcG9ydHMlMjBqZXJzZXl8ZW58MHx8fHwxNzYwODgzODIzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Custom sports jerseys",
+      "imageUrl": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "sports jersey"
     },
     {
       "id": "mattress-foam",
-      "description": "Foam mattress cross-section",
-      "imageUrl": "https://images.unsplash.com/photo-1722356541555-eeabc38f80a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxmb2FtJTIwbWF0dHJlc3N8ZW58MHx8fHwxNzYwOTY1NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "High-density foam mattress",
+      "imageUrl": "https://images.unsplash.com/photo-1576426863848-c21f68c6aa98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "foam mattress"
     },
     {
       "id": "mattress-spring",
-      "description": "Spring mattress internals",
-      "imageUrl": "https://images.unsplash.com/photo-1527907703018-cd3d3b4b7918?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcHJpbmclMjBtYXR0cmVzc3xlbnwwfHx8fDE3NjA5NjU1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Pocket spring mattress",
+      "imageUrl": "https://images.unsplash.com/photo-1618220252344-88bde21040b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "spring mattress"
     },
     {
       "id": "bedding-sheets",
-      "description": "Folded bed sheets",
-      "imageUrl": "https://images.unsplash.com/photo-1586318018858-4df3297d11d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxiZWQlMjBzaGVldHN8ZW58MHx8fHwxNzYwOTY1NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "description": "Crisp white bed sheets",
+      "imageUrl": "https://images.unsplash.com/photo-1603201664162-acb839f375c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "bed sheets"
     },
     {
       "id": "bedding-pillows",
-      "description": "Pillow covers",
-      "imageUrl": "https://images.unsplash.com/photo-1629449594319-b7197c481a63?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwaWxsb3clMjBjb3ZlcnxlbnwwfHx8fDE3NjA5NjU1MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "pillow cover"
+      "description": "Plush hotel pillows",
+      "imageUrl": "https://images.unsplash.com/photo-1582299246379-3c7a65f70f63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "hotel pillows"
     },
     {
       "id": "chemical-laundry",
-      "description": "Laundry chemical containers",
-      "imageUrl": "https://images.unsplash.com/photo-1635369306367-9d891c6c1a7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxsYXVuZHJ5JTIwZGV0ZXJnZW50fGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "laundry detergent"
+      "description": "Professional laundry chemicals",
+      "imageUrl": "https://images.unsplash.com/photo-1628135514298-5374b4a11f81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "laundry chemicals"
     },
     {
       "id": "chemical-cleaning",
-      "description": "Cleaning solution spray bottle",
-      "imageUrl": "https://images.unsplash.com/photo-1757478558403-10ed14cfb536?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjbGVhbmluZyUyMHNvbHV0aW9ufGVufDB8fHx8MTc2MDk2NTUwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "cleaning solution"
+      "description": "Industrial cleaning supplies",
+      "imageUrl": "https://images.unsplash.com/photo-1584473456380-0487443198ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "cleaning supplies"
+    },
+    {
+      "id": "founder-abin",
+      "description": "Portrait of Dr. Abin Babu",
+      "imageUrl": "https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjA4NTQ0NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional headshot"
+    },
+    {
+      "id": "founder-anoop",
+      "description": "Portrait of Anoop Ashraf",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjA4NTQ0NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional headshot"
+    },
+    {
+      "id": "customization-cta",
+      "description": "Custom textile design process",
+      "imageUrl": "https://images.unsplash.com/photo-1524255079233-14c10753541a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "textile design"
+    },
+    {
+      "id": "quality-banner",
+      "description": "Textile factory quality inspection",
+      "imageUrl": "https://images.unsplash.com/photo-1555627289-53f4d85215e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+      "imageHint": "textile factory"
+    },
+    {
+      "id": "sustainability-banner",
+      "description": "Hands holding a green sprout",
+      "imageUrl": "https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "green sprout"
+    },
+    {
+      "id": "careers-banner",
+      "description": "Diverse team collaborating in a modern office",
+      "imageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+      "imageHint": "diverse team"
+    },
+    {
+      "id": "downloads-banner",
+      "description": "Person downloading a file on a laptop",
+      "imageUrl": "https://images.unsplash.com/photo-1588665809513-5a022b72458e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+      "imageHint": "download file"
     }
   ]
 }

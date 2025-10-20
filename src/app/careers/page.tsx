@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const jobOpenings = [
     {
@@ -19,6 +21,7 @@ const jobOpenings = [
 ];
 
 export default function CareersPage() {
+    const bannerImage = PlaceHolderImages.find(img => img.id === 'careers-banner');
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -26,8 +29,14 @@ export default function CareersPage() {
                 <div className="container max-w-4xl mx-auto">
                     <Card>
                         <CardHeader className="text-center">
-                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Join Our Team</CardTitle>
-                            <CardDescription className="mt-2 text-lg max-w-2xl mx-auto">
+                            {bannerImage && (
+                                <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
+                                     <Image src={bannerImage.imageUrl} alt={bannerImage.description} fill className="object-cover" data-ai-hint={bannerImage.imageHint}/>
+                                     <div className="absolute inset-0 bg-black/40"></div>
+                                </div>
+                            )}
+                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline relative">Join Our Team</CardTitle>
+                            <CardDescription className="mt-2 text-lg max-w-2xl mx-auto relative">
                                 We are always looking for passionate and talented individuals to join our growing team. Explore our current openings below.
                             </CardDescription>
                         </CardHeader>

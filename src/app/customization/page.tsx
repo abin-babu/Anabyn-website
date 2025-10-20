@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Palette, Ruler, Scan, Weight } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const customizationOptions = [
     {
@@ -34,6 +35,7 @@ const customizationOptions = [
 ];
 
 export default function CustomizationPage() {
+    const ctaImage = PlaceHolderImages.find(img => img.id === 'customization-cta');
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -57,7 +59,7 @@ export default function CustomizationPage() {
                                 ))}
                                 <div className="p-6 border rounded-lg bg-primary text-primary-foreground shadow-lg lg:col-span-3 flex flex-col md:flex-row items-center gap-6">
                                      <div className="flex-shrink-0 relative h-48 w-48 hidden md:block">
-                                        <Image src="https://picsum.photos/seed/custom-cta/400/400" alt="Custom textile design" fill className="object-cover rounded-md" data-ai-hint="textile design" sizes="192px"/>
+                                        <Image src={ctaImage?.imageUrl || 'https://picsum.photos/400'} alt={ctaImage?.description || 'Custom textile design'} fill className="object-cover rounded-md" data-ai-hint={ctaImage?.imageHint} sizes="192px"/>
                                      </div>
                                      <div className="flex-grow text-center md:text-left">
                                         <h3 className="text-2xl font-bold mb-2">Have a Unique Requirement?</h3>

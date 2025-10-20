@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BadgeCheck, BarChart, FileText } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const qualityPoints = [
     {
@@ -24,6 +25,8 @@ const qualityPoints = [
 ];
 
 export default function QualityPage() {
+    const bannerImage = PlaceHolderImages.find(img => img.id === 'quality-banner');
+
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -52,7 +55,13 @@ export default function QualityPage() {
                                 ))}
                             </div>
                             <div className="relative aspect-[16/6] rounded-lg overflow-hidden border">
-                                <Image src="https://picsum.photos/seed/quality-banner/1200/400" alt="Textile factory" layout="fill" objectFit="cover" data-ai-hint="textile factory" />
+                                <Image 
+                                    src={bannerImage?.imageUrl || 'https://picsum.photos/1200/400'} 
+                                    alt={bannerImage?.description || 'Textile factory'} 
+                                    fill 
+                                    className="object-cover" 
+                                    data-ai-hint={bannerImage?.imageHint} 
+                                />
                                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                                     <h2 className="text-3xl font-bold text-white text-center drop-shadow-lg">Certified Excellence, Delivered Globally.</h2>
                                 </div>
