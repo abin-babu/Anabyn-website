@@ -1,22 +1,27 @@
 
 import { Timestamp } from 'firebase/firestore';
 
+export type ProductCategory = {
+  type: 'towel' | 'robe' | 'uniform' | 'apparel' | 'mattress' | 'bedding' | 'chemical';
+  material: string; // E.g., Terry, Cotton, Poly-Cotton, Foam
+  usage: string; // E.g., bath, spa, corporate, industrial, hospitality
+};
+
 export type Product = {
   id: string;
   name: string;
   description: string;
   shortSpecs: string;
-  category: {
-    type: 'rug' | 'textile' | 'material' | 'towel' | 'robe';
-    material: string;
-    usage: 'indoor' | 'outdoor' | 'commercial' | 'bath' | 'spa' | 'hand-face' | 'specialty';
-  };
+  category: ProductCategory;
   images: string[];
   moq: string;
   leadTime: string;
   specSheetUrl?: string;
   keyFeatures: string;
+  customizationOptions?: string[];
+  safetyInfo?: string;
 };
+
 
 export type Inquiry = {
   id: string;

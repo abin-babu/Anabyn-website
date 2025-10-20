@@ -10,7 +10,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { Download, MessageSquare, Phone } from 'lucide-react';
+import { Download, MessageSquare, Phone, ShieldCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 type Props = {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const seoData = await generateSeoMetadata({
       productName: product.name,
       productDescription: product.description,
-      productCategory: product.category.type,
+      productCategory: product.category.usage,
       keyFeatures: product.keyFeatures,
     });
     return {
@@ -80,9 +80,8 @@ export default function ProductDetailPage({ params }: Props) {
             <div className="flex flex-col gap-6">
               <div>
                 <div className="flex gap-2 mb-2">
-                    <Badge variant="secondary" className="capitalize">{product.category.type}</Badge>
-                    <Badge variant="secondary" className="capitalize">{product.category.material}</Badge>
                     <Badge variant="secondary" className="capitalize">{product.category.usage}</Badge>
+                    <Badge variant="outline" className="capitalize">{product.category.material}</Badge>
                 </div>
                 <h1 className="text-3xl lg:text-4xl font-bold font-headline">{product.name}</h1>
               </div>
@@ -94,10 +93,22 @@ export default function ProductDetailPage({ params }: Props) {
                 </CardHeader>
                 <CardContent>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li className="flex justify-between"><strong>Key Features:</strong> <span>{product.keyFeatures}</span></li>
+                        <li className="flex justify-between items-start"><strong>Key Features:</strong> <span className="text-right">{product.keyFeatures}</span></li>
+                        {product.customizationOptions && (
+                          <li className="flex justify-between items-start"><strong>Customization:</strong> <span className="text-right">{product.customizationOptions.join(', ')}</span></li>
+                        )}
                         <li className="flex justify-between"><strong>Minimum Order (MOQ):</strong> <span>{product.moq}</span></li>
                         <li className="flex justify-between"><strong>Lead Time:</strong> <span>{product.leadTime}</span></li>
                     </ul>
+                     {product.safetyInfo && (
+                        <div className="mt-4 p-3 bg-yellow-100/50 border-l-4 border-yellow-400 text-yellow-800 text-sm flex gap-2">
+                           <ShieldCheck className="h-5 w-5 flex-shrink-0 mt-0.5" />
+                           <div>
+                            <h4 className="font-semibold">Safety Information</h4>
+                            <p>{product.safetyInfo}</p>
+                           </div>
+                        </div>
+                    )}
                 </CardContent>
               </Card>
 

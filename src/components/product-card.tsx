@@ -1,13 +1,15 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import { ArrowRight, Search } from 'lucide-react';
+import { Badge } from './ui/badge';
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300">
+    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
       <Link href={`/products/${product.id}`} className="block">
         <div className="aspect-[4/3] relative">
           <Image
@@ -20,9 +22,12 @@ export function ProductCard({ product }: { product: Product }) {
           />
         </div>
       </Link>
-      <CardContent className="p-4 bg-card">
+      <CardContent className="p-4 bg-card flex-grow flex flex-col">
         <h3 className="font-bold font-headline text-lg truncate">{product.name}</h3>
-        <p className="text-sm text-muted-foreground h-10">{product.shortSpecs}</p>
+        <p className="text-sm text-muted-foreground flex-grow">{product.shortSpecs}</p>
+        <div className="mt-2">
+            <Badge variant="secondary">{product.category.usage}</Badge>
+        </div>
       </CardContent>
 
       <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">

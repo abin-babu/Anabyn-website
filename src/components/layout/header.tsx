@@ -1,14 +1,43 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu, ChevronDown } from 'lucide-react';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose
+} from '@/components/ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import { AnabynLogo } from '../anabyn-logo';
+import { mainCategories, subCategories, products } from '@/lib/products';
+import type { Product } from '@/lib/types';
 
-export function Header() {
-  const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/#products' },
+const productNav = Object.entries(mainCategories).map(([key, name]) => {
+    const categoryProducts = products.filter(p => p.category.usage === name);
+    const categorySubCategories = [...new Set(categoryProducts.map(p => p.category.material))];
+    return {
+        name,
+        href: `/products/category/${encodeURIComponent(name)}`,
+        subCategories: categorySubCategories.map(sub => ({
+            name: sub,
+            href: `/products/subcategory/${encodeURIComponent(sub)}`
+        }))
+    };
+});
+
+const staticNavItems = [
     { label: 'About Us', href: '/about-us' },
     { label: 'Customization', href: '/customization' },
     { label: 'Quality', href: '/quality' },
@@ -16,17 +45,37 @@ export function Header() {
     { label: 'Downloads', href: '/downloads' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Careers', href: '/careers' },
-  ];
+];
 
+export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo width={64} height={20} />
+            <AnabynLogo width={32} height={32} />
           </Link>
-          <nav className="hidden items-center space-x-4 text-sm font-medium lg:flex">
-            {navItems.map((item) => (
+          <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
+             <Link
+                href={'/'}
+                className="transition-colors hover:text-foreground/80 text-foreground/60"
+              >
+                Home
+              </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60 outline-none">
+                Products <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {productNav.map((cat) => (
+                    <DropdownMenuItem key={cat.name} asChild>
+                        <Link href={cat.href}>{cat.name}</Link>
+                    </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {staticNavItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
@@ -49,19 +98,49 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col space-y-4 mt-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="text-lg font-medium transition-colors hover:text-primary"
-                  >
-                    {item.label}
-                  </Link>
+              <nav className="flex flex-col space-y-2 mt-8">
+                 <SheetClose asChild>
+                    <Link href="/" className="text-lg font-medium transition-colors hover:text-primary">Home</Link>
+                 </SheetClose>
+                <Accordion type="single" collapsible className="w-full">
+                  <AccordionItem value="products">
+                    <AccordionTrigger className="text-lg font-medium">Products</AccordionTrigger>
+                    <AccordionContent className="pl-4">
+                        {productNav.map((cat) => (
+                             <Accordion key={cat.name} type="single" collapsible className="w-full">
+                                <AccordionItem value={cat.name}>
+                                    <AccordionTrigger>
+                                        <SheetClose asChild>
+                                            <Link href={cat.href} className="hover:underline">{cat.name}</Link>
+                                        </SheetClose>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pl-4">
+                                        {cat.subCategories.map(sub => (
+                                            <SheetClose asChild key={sub.name}>
+                                                <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary">{sub.name}</Link>
+                                            </SheetClose>
+                                        ))}
+                                    </AccordionContent>
+                                </AccordionItem>
+                             </Accordion>
+                        ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                
+                {staticNavItems.map((item) => (
+                    <SheetClose asChild key={item.label}>
+                        <Link
+                            href={item.href}
+                            className="text-lg font-medium transition-colors hover:text-primary py-2"
+                        >
+                            {item.label}
+                        </Link>
+                    </SheetClose>
                 ))}
                  <Link
                     href={'/admin'}
-                    className="text-lg font-medium transition-colors hover:text-primary"
+                    className="text-lg font-medium transition-colors hover:text-primary py-2"
                   >
                     Admin
                   </Link>
