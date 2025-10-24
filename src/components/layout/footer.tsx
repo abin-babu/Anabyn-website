@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { AnabynLogo } from '../anabyn-logo';
 import { Mail, Phone } from 'lucide-react';
+import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,10 +11,24 @@ export function Footer() {
       <div className="container py-8">
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start gap-4">
-            <AnabynLogo width={20} height={20} />
+            <AnabynLogo width={16} height={16} />
             <p className="text-sm leading-loose text-muted-foreground">
               © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
             </p>
+             <div className="flex items-center gap-4">
+                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <FaInstagram className="h-5 w-5" />
+                    <span className="sr-only">Instagram</span>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <FaLinkedin className="h-5 w-5" />
+                    <span className="sr-only">LinkedIn</span>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <FaFacebook className="h-5 w-5" />
+                    <span className="sr-only">Facebook</span>
+                </a>
+            </div>
           </div>
            <div className="flex flex-col items-center gap-2">
                 <h3 className="font-semibold">Quick Links</h3>
