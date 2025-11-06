@@ -19,13 +19,9 @@
           "type": "string",
           "description": "The URL-friendly slug for the product."
         },
-        "category": {
-          "type": "string",
-          "description": "The category of the product."
-        },
-        "subcategory": {
-          "type": "string",
-          "description": "The subcategory of the product."
+        "categoryId": {
+            "type": "string",
+            "description": "The ID of the category this product belongs to."
         },
         "description": {
           "type": "string",
@@ -38,57 +34,51 @@
             "type": "string"
           }
         },
-        "specs": {
-          "type": "object",
-          "properties": {
-            "size": {
-              "type": "string"
-            },
-            "GSM": {
-              "type": "string"
-            },
-            "materials": {
-              "type": "string"
+        "specifications": {
+            "type": "object",
+            "properties": {
+                "size": { "type": "string" },
+                "material": { "type": "string" },
+                "gsm": { "type": "string" },
+                "tc": { "type": "string" },
+                "color": { "type": "string" }
             }
-          }
+        },
+        "customizationOptions": {
+            "type": "array",
+            "items": { "type": "string" }
         },
         "moq": {
           "type": "string",
           "description": "Minimum Order Quantity for the product."
         },
-        "leadTime": {
-          "type": "string",
-          "description": "The lead time for the product."
-        },
-        "tags": {
-          "type": "array",
-          "description": "An array of tags associated with the product.",
-          "items": {
-            "type": "string"
-          }
-        },
         "published": {
           "type": "boolean",
           "description": "Indicates whether the product is published or not."
-        },
-        "createdAt": {
-          "type": "string",
-          "description": "The date and time the product was created.",
-          "format": "date-time"
         }
       },
       "required": [
         "name",
         "slug",
-        "category",
+        "categoryId",
         "description",
-        "images",
-        "specs",
-        "moq",
-        "leadTime",
-        "published",
-        "createdAt"
+        "images"
       ]
+    },
+    "Category": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "Category",
+        "type": "object",
+        "description": "Represents a product category or subcategory.",
+        "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" },
+            "slug": { "type": "string" },
+            "parentId": { "type": ["string", "null"] },
+            "description": { "type": "string" },
+            "imageUrl": { "type": "string" }
+        },
+        "required": ["id", "name", "slug"]
     },
     "Inquiry": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -113,10 +103,6 @@
           "type": "string",
           "description": "The phone number of the person making the inquiry."
         },
-        "whatsappOptIn": {
-          "type": "boolean",
-          "description": "Indicates whether the person opted in to WhatsApp communication."
-        },
         "message": {
           "type": "string",
           "description": "The message included in the inquiry."
@@ -132,17 +118,9 @@
             }
           }
         },
-        "type": {
-          "type": "string",
-          "description": "The type of inquiry (sample, general, bulk)."
-        },
         "status": {
           "type": "string",
-          "description": "The status of the inquiry (new, contacted, quoted, done)."
-        },
-        "source": {
-          "type": "string",
-          "description": "The source of the inquiry (site, whatsapp)."
+          "description": "The status of the inquiry (Enquired, Under Discussion, Order Confirmed, Shipped, Completed)."
         },
         "createdAt": {
           "type": "string",
@@ -154,10 +132,7 @@
         "name",
         "email",
         "message",
-        "products",
-        "type",
         "status",
-        "source",
         "createdAt"
       ]
     },
@@ -208,7 +183,17 @@
           "schema": {
             "$ref": "#/entities/Product"
           },
-          "description": "Stores product information. Each document represents a single product."
+          "description": "Stores individual product details."
+        }
+      },
+      {
+        "path": "/categories/{categoryId}",
+        "definition": {
+            "entityName": "Category",
+            "schema": {
+                "$ref": "#/entities/Category"
+            },
+            "description": "Stores product categories and subcategories."
         }
       },
       {
@@ -218,7 +203,7 @@
           "schema": {
             "$ref": "#/entities/Inquiry"
           },
-          "description": "Stores customer inquiries. Each document represents a single inquiry."
+          "description": "Stores customer inquiries and quote requests."
         }
       },
       {

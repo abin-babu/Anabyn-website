@@ -1,27 +1,39 @@
 
 import { Timestamp } from 'firebase/firestore';
 
-export type ProductCategory = {
-  type: 'towel' | 'robe' | 'uniform' | 'apparel' | 'mattress' | 'bedding' | 'chemical';
-  material: string; // E.g., Terry, Cotton, Poly-Cotton, Foam
-  usage: string; // E.g., bath, spa, corporate, industrial, hospitality
+export type Category = {
+  id: string;
+  name: string;
+  slug: string;
+  parentId: string | null;
+  description?: string;
+  imageUrl?: string;
 };
 
 export type Product = {
   id: string;
   name: string;
+  slug: string;
+  categoryId: string;
   description: string;
-  shortSpecs: string;
-  category: ProductCategory;
   images: string[];
-  moq: string;
-  leadTime: string;
-  specSheetUrl?: string;
-  keyFeatures: string;
+  specifications: {
+    size?: string;
+    material?: string;
+    gsm?: string;
+    tc?: string;
+    color?: string;
+    features?: string;
+    firmness?: string;
+    height?: string;
+    top?: string;
+  };
   customizationOptions?: string[];
+  moq: string;
   safetyInfo?: string;
+  specSheetUrl?: string;
+  published?: boolean;
 };
-
 
 export type Inquiry = {
   id: string;
@@ -29,11 +41,8 @@ export type Inquiry = {
   email: string;
   company?: string;
   phone?: string;
-  type: 'general-inquiry' | 'sample-request' | 'bulk-order';
   message: string;
-  products: { id: string, qty: number }[];
-  status: 'new' | 'contacted' | 'quoted' | 'done';
-  source: 'site' | 'whatsapp';
-  whatsappOptIn?: boolean;
+  products?: { id: string, qty: number }[];
+  status: 'Enquired' | 'Under Discussion' | 'Order Confirmed' | 'Shipped' | 'Completed';
   createdAt: Timestamp;
 };

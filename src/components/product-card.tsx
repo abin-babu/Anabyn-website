@@ -6,11 +6,15 @@ import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
 import { ArrowRight, Search } from 'lucide-react';
 import { Badge } from './ui/badge';
+import { categories } from '@/lib/products';
 
 export function ProductCard({ product }: { product: Product }) {
+  const category = categories.find(c => c.id === product.categoryId);
+  const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
+
   return (
     <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-      <Link href={`/products/${product.id}`} className="block">
+      <Link href={`/products/${product.slug}`} className="block">
         <div className="aspect-[4/3] relative">
           <Image
             src={product.images[0]}
@@ -26,7 +30,7 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="font-bold font-headline text-lg truncate">{product.name}</h3>
         <p className="text-sm text-muted-foreground flex-grow">{product.shortSpecs}</p>
         <div className="mt-2">
-            <Badge variant="secondary">{product.category.usage}</Badge>
+            {parentCategory && <Badge variant="secondary">{parentCategory.name}</Badge>}
         </div>
       </CardContent>
 
@@ -36,7 +40,7 @@ export function ProductCard({ product }: { product: Product }) {
         <p className="text-sm text-gray-300 mb-6">{product.shortSpecs}</p>
         <div className="flex flex-col gap-2 w-full max-w-xs">
           <Button asChild>
-            <Link href={`/products/${product.id}`}>
+            <Link href={`/products/${product.slug}`}>
               View Details <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

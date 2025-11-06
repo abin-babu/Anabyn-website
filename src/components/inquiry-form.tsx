@@ -10,23 +10,18 @@ import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { handleInquiry } from '@/app/actions/inquiry';
 import { products } from '@/lib/products';
-import { Label } from './ui/label';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   company: z.string().optional(),
   phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
-  inquiryType: z.enum(['General Inquiry', 'Sample Request', 'Bulk Order']),
   productId: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000),
-  whatsappOptIn: z.boolean().optional(),
 });
 
 export function InquiryForm() {
@@ -42,10 +37,8 @@ export function InquiryForm() {
       email: '',
       company: '',
       phone: '',
-      inquiryType: 'General Inquiry',
       productId: productIdParam || '',
       message: productName ? `I'm interested in the product: ${productName}. ` : '',
-      whatsappOptIn: false,
     },
   });
 
@@ -72,10 +65,8 @@ export function InquiryForm() {
         email: '',
         company: '',
         phone: '',
-        inquiryType: 'General Inquiry',
         productId: '',
         message: '',
-        whatsappOptIn: false,
       });
     } else {
       toast({
@@ -135,29 +126,6 @@ export function InquiryForm() {
             )}
           />
         </div>
-
-        <FormField
-            control={form.control}
-            name="inquiryType"
-            render={({ field }) => (
-                <FormItem>
-                <FormLabel>Type of Inquiry</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select an inquiry type" />
-                    </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                    <SelectItem value="General Inquiry">General Inquiry</SelectItem>
-                    <SelectItem value="Sample Request">Sample Request</SelectItem>
-                    <SelectItem value="Bulk Order">Bulk Order</SelectItem>
-                    </SelectContent>
-                </Select>
-                <FormMessage />
-                </FormItem>
-            )}
-        />
         
         {productName && (
           <div className="rounded-md bg-secondary p-4">
@@ -173,27 +141,6 @@ export function InquiryForm() {
               <FormLabel>Message</FormLabel>
               <FormControl><Textarea placeholder="Please tell us more about your needs..." className="min-h-[120px]" {...field} /></FormControl>
               <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="whatsappOptIn"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <Label htmlFor="whatsappOptIn">Opt-in for WhatsApp communication</Label>
-                <p className="text-sm text-muted-foreground">
-                  Allow us to contact you via WhatsApp for faster communication.
-                </p>
-              </div>
             </FormItem>
           )}
         />

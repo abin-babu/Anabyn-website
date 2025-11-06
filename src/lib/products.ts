@@ -1,231 +1,145 @@
 
-import type { Product } from './types';
+import type { Product, Category } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const getImageUrl = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://picsum.photos/seed/placeholder/800/600';
 
-export const mainCategories = {
-  textiles: 'Textiles & Towels',
-  uniforms: 'Custom Uniforms & Apparel',
-  bedding: 'Mattresses & Bedding',
-  chemicals: 'Chemicals & Supplies',
-};
+export const categories: Category[] = [
+    // Bed Linen
+    { id: 'bed-linen', name: 'Bed Linen', slug: 'bed-linen', parentId: null, imageUrl: getImageUrl('bedding-sheets') },
+    { id: 'bed-sheets', name: 'Bed Sheets', slug: 'bed-sheets', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-sheets') },
+    { id: 'duvet-covers', name: 'Duvet Covers', slug: 'duvet-covers', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-sheets') },
+    { id: 'pillowcases', name: 'Pillowcases', slug: 'pillowcases', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-pillows') },
+
+    // Bath Linen
+    { id: 'bath-linen', name: 'Bath Linen', slug: 'bath-linen', parentId: null, imageUrl: getImageUrl('towel-terry') },
+    { id: 'bath-towels', name: 'Bath Towels', slug: 'bath-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
+    { id: 'hand-towels', name: 'Hand Towels', slug: 'hand-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
+    { id: 'face-towels', name: 'Face Towels', slug: 'face-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
+    { id: 'bath-robes', name: 'Bath Robes', slug: 'bath-robes', parentId: 'bath-linen', imageUrl: getImageUrl('towel-velour') },
+
+    // F&B / Dining Linen
+    { id: 'dining-linen', name: 'F&B / Dining Linen', slug: 'dining-linen', parentId: null, imageUrl: getImageUrl('hero-1') },
+    { id: 'tablecloths', name: 'Tablecloths', slug: 'tablecloths', parentId: 'dining-linen' },
+    { id: 'napkins', name: 'Napkins', slug: 'napkins', parentId: 'dining-linen' },
+
+    // Uniforms
+    { id: 'uniforms', name: 'Uniforms', slug: 'uniforms', parentId: null, imageUrl: getImageUrl('uniform-corporate') },
+    { id: 'corporate-uniforms', name: 'Corporate Uniforms', slug: 'corporate-uniforms', parentId: 'uniforms', imageUrl: getImageUrl('uniform-corporate') },
+    { id: 'industrial-uniforms', name: 'Industrial Uniforms', slug: 'industrial-uniforms', parentId: 'uniforms', imageUrl: getImageUrl('uniform-industrial') },
+    { id: 'custom-t-shirts', name: 'Custom T-Shirts', slug: 'custom-t-shirts', parentId: 'uniforms', imageUrl: getImageUrl('uniform-tshirt') },
+    { id: 'jerseys-sportswear', name: 'Jerseys & Sportswear', slug: 'jerseys-sportswear', parentId: 'uniforms', imageUrl: getImageUrl('uniform-jersey') },
+
+    // Mattresses & Bedding
+    { id: 'mattresses-bedding', name: 'Mattresses & Bedding', slug: 'mattresses-bedding', parentId: null, imageUrl: getImageUrl('mattress-foam') },
+    { id: 'foam-mattress', name: 'Foam Mattress', slug: 'foam-mattress', parentId: 'mattresses-bedding', imageUrl: getImageUrl('mattress-foam') },
+    { id: 'spring-mattress', name: 'Spring Mattress', slug: 'spring-mattress', parentId: 'mattresses-bedding', imageUrl: getImageUrl('mattress-spring') },
+];
+
 
 export const products: Product[] = [
-  // Textiles & Towels
+  // Bath Linen Products
   {
-    id: 'terry-bath-towel',
-    name: 'Terry Bath Towel',
-    description: 'Soft and highly absorbent terry towels, perfect for daily bath use. Made from 100% cotton, offering durability and comfort for hotel guests.',
-    shortSpecs: '100% Cotton, Soft & Absorbent',
-    category: {
-      type: 'towel',
-      material: 'Terry',
-      usage: 'Textiles & Towels',
-    },
+    id: 'terry-bath-towel-premium',
+    name: 'Premium Terry Bath Towel',
+    slug: 'premium-terry-bath-towel',
+    categoryId: 'bath-towels',
+    description: 'Ultra-soft and absorbent 100% cotton terry bath towel, perfect for luxury hotels and spas.',
     images: [getImageUrl('towel-terry'), getImageUrl('hero-2')],
-    moq: '100 units',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Soft, highly absorbent, perfect for daily bath use',
+    specifications: { material: '100% Terry Cotton', gsm: '600 GSM', size: '30x60 inches' },
+    customizationOptions: ['Color', 'GSM', 'Size', 'Embroidery'],
+    moq: '100 units'
   },
   {
-    id: 'velour-bath-towel',
-    name: 'Velour Bath Towel',
-    description: 'Plush and luxurious velour towels with a smooth, sheared finish that provides a premium feel. Ideal for high-end hotels and suites.',
-    shortSpecs: '100% Cotton, Plush & Luxurious',
-    category: {
-      type: 'towel',
-      material: 'Velour',
-      usage: 'Textiles & Towels',
-    },
-    images: [getImageUrl('towel-velour'), getImageUrl('hero-2')],
-    moq: '100 units',
-    leadTime: '5-7 Weeks',
-    keyFeatures: 'Plush, luxurious, smooth finish for a premium feel',
-  },
-  {
-    id: 'waffle-weave-towel',
-    name: 'Waffle Weave Towel',
-    description: 'Lightweight and quick-drying waffle weave towels. The distinctive texture is not only stylish but also highly functional for spa and wellness areas.',
-    shortSpecs: '100% Cotton, Lightweight & Quick-Drying',
-    category: {
-      type: 'towel',
-      material: 'Waffle',
-      usage: 'Textiles & Towels',
-    },
+    id: 'waffle-robe-spa',
+    name: 'Spa Waffle Weave Robe',
+    slug: 'spa-waffle-weave-robe',
+    categoryId: 'bath-robes',
+    description: 'Lightweight and breathable waffle weave bathrobe, designed for comfort and quick drying.',
     images: [getImageUrl('towel-waffle'), getImageUrl('hero-2')],
-    moq: '150 units',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Lightweight, quick-drying, ideal for spa and wellness areas',
+    specifications: { material: '100% Cotton Waffle Weave', gsm: '300 GSM', size: 'One Size Fits Most' },
+    customizationOptions: ['Color', 'Logo Embroidery', 'Piping'],
+    moq: '50 units'
+  },
+   {
+    id: 'velour-hand-towel',
+    name: 'Velour Hand Towel',
+    slug: 'velour-hand-towel',
+    categoryId: 'hand-towels',
+    description: 'Plush velour hand towel with a smooth finish for a touch of elegance in any guest bathroom.',
+    images: [getImageUrl('towel-velour'), getImageUrl('hero-2')],
+    specifications: { material: '100% Cotton Velour', gsm: '550 GSM', size: '16x30 inches' },
+    customizationOptions: ['Color', 'Embroidery'],
+    moq: '200 units'
   },
 
-  // Custom Uniforms & Apparel
+  // Uniforms Products
   {
-    id: 'corporate-uniforms',
-    name: 'Corporate Uniforms',
-    description: 'Professional and stylish corporate uniforms, including shirts, blouses, trousers, and skirts. Customizable with your brand logo and colors.',
-    shortSpecs: 'Cotton/Poly-Cotton, Logo Embroidery',
-    category: {
-      type: 'uniform',
-      material: 'Corporate Uniforms',
-      usage: 'Custom Uniforms & Apparel',
-    },
+    id: 'exec-corporate-shirt',
+    name: 'Executive Corporate Shirt',
+    slug: 'exec-corporate-shirt',
+    categoryId: 'corporate-uniforms',
+    description: 'Professional long-sleeve corporate shirt in a comfortable poly-cotton blend. Wrinkle-resistant and perfect for daily wear.',
     images: [getImageUrl('uniform-corporate')],
-    moq: '50 sets',
-    leadTime: '6-8 Weeks',
-    keyFeatures: 'Professional look, fabric options, custom branding',
-    customizationOptions: ['Size (XS-XXXL)', 'Fabric (cotton, poly-cotton)', 'Logo embroidery or print', 'Color selection'],
+    specifications: { material: 'Poly-Cotton Blend', color: 'White, Blue, Grey' },
+    customizationOptions: ['Logo Embroidery', 'Custom Colors', 'Fit (Slim/Regular)'],
+    moq: '50 units'
   },
   {
-    id: 'industrial-uniforms',
-    name: 'Industrial Uniforms',
-    description: 'Durable and functional industrial uniforms designed for safety and comfort in demanding work environments. Options for high-visibility and specialized fabrics.',
-    shortSpecs: 'Durable fabrics, Safety compliant',
-    category: {
-      type: 'uniform',
-      material: 'Industrial Uniforms',
-      usage: 'Custom Uniforms & Apparel',
-    },
+    id: 'heavy-duty-workwear',
+    name: 'Heavy-Duty Industrial Workwear',
+    slug: 'heavy-duty-industrial-workwear',
+    categoryId: 'industrial-uniforms',
+    description: 'Durable and flame-retardant industrial coveralls designed for safety and mobility in harsh environments.',
     images: [getImageUrl('uniform-industrial')],
-    moq: '100 units',
-    leadTime: '6-8 Weeks',
-    keyFeatures: 'High-durability, safety features, comfortable for long hours',
-    customizationOptions: ['Specialized fabrics', 'High-visibility strips', 'Reinforced stitching', 'Custom sizing'],
+    specifications: { material: 'Flame-Retardant Cotton', features: 'High-visibility strips, reinforced knees' },
+    customizationOptions: ['Reflective Taping', 'Company Logo Patch', 'Custom Pockets'],
+    moq: '100 units'
   },
   {
-    id: 'custom-t-shirts',
-    name: 'Custom T-Shirts',
-    description: 'High-quality custom t-shirts for corporate events, promotions, or team wear. Available in a variety of fabrics, colors, and printing options.',
-    shortSpecs: 'Cotton/Dri-Fit, Screen/Digital Print',
-    category: {
-      type: 'apparel',
-      material: 'Custom T-Shirts',
-      usage: 'Custom Uniforms & Apparel',
-    },
+    id: 'dri-fit-polo-tshirt',
+    name: 'Dri-Fit Polo T-Shirt',
+    slug: 'dri-fit-polo-tshirt',
+    categoryId: 'custom-t-shirts',
+    description: 'Moisture-wicking dri-fit polo t-shirt, ideal for promotional events, team wear, or casual corporate attire.',
     images: [getImageUrl('uniform-tshirt')],
-    moq: '100 units',
-    leadTime: '3-4 Weeks',
-    keyFeatures: 'Variety of fabrics and colors, high-quality printing',
-    customizationOptions: ['Fabric (cotton, dri-fit)', 'GSM customization', 'Screen print, Digital print, Embroidery', 'Wide color range'],
-  },
-  {
-    id: 'jerseys-sportswear',
-    name: 'Jerseys & Sportswear',
-    description: 'Custom-designed jerseys and sportswear for teams and athletic events. Made with breathable, performance-enhancing fabrics.',
-    shortSpecs: 'Dri-fit/Performance fabrics, Sublimation print',
-    category: {
-      type: 'apparel',
-      material: 'Jerseys & Sportswear',
-      usage: 'Custom Uniforms & Apparel',
-    },
-    images: [getImageUrl('uniform-jersey')],
-    moq: '50 units',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Breathable fabrics, full customization of design and color',
-    customizationOptions: ['Sublimation printing', 'Custom team logos and numbers', 'Performance fabric selection', 'Player-specific sizing'],
+    specifications: { material: 'Dri-Fit Polyester', features: 'UV Protection' },
+    customizationOptions: ['Color Matching', 'Screen Printing', 'Embroidery'],
+    moq: '100 units'
   },
 
   // Mattresses & Bedding
   {
-    id: 'foam-mattress',
-    name: 'Foam Mattress',
-    description: 'High-density foam mattresses offering excellent support and comfort for hospitality use. Durable and designed for longevity.',
-    shortSpecs: 'High-Density Foam, Hotel Grade',
-    category: {
-      type: 'mattress',
-      material: 'Foam Mattress',
-      usage: 'Mattresses & Bedding',
-    },
+    id: 'ortho-memory-foam-mattress',
+    name: 'Orthopedic Memory Foam Mattress',
+    slug: 'ortho-memory-foam-mattress',
+    categoryId: 'foam-mattress',
+    description: 'Multi-layered orthopedic memory foam mattress designed to provide ultimate support and pressure relief for a restful sleep.',
     images: [getImageUrl('mattress-foam')],
-    moq: '10 units',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Excellent support, durable, comfortable for guests',
-    customizationOptions: ['Size (Single, Queen, King, Custom)', 'Firmness (Soft, Medium, Hard)', 'Fabric cover branding'],
+    specifications: { material: 'High-Density Memory Foam', firmness: 'Medium-Firm', height: '8 inches' },
+    customizationOptions: ['Custom Sizes', 'Removable Cover with Branding'],
+    moq: '10 units'
   },
   {
-    id: 'spring-mattress',
-    name: 'Spring Mattress',
-    description: 'Classic spring mattresses providing a traditional bouncy feel with robust support. Ideal for a wide range of hotel accommodations.',
-    shortSpecs: 'Bonnell/Pocket Spring, Durable Support',
-    category: {
-      type: 'mattress',
-      material: 'Spring Mattress',
-      usage: 'Mattresses & Bedding',
-    },
+    id: 'hotel-pocket-spring-mattress',
+    name: 'Hotel Pocket Spring Mattress',
+    slug: 'hotel-pocket-spring-mattress',
+    categoryId: 'spring-mattress',
+    description: 'Luxury hotel-grade pocket spring mattress with zero partner disturbance and a plush pillow top for enhanced comfort.',
     images: [getImageUrl('mattress-spring')],
-    moq: '10 units',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Traditional support, long-lasting, cost-effective',
-    customizationOptions: ['Size (Single, Queen, King, Custom)', 'Firmness level', 'Custom fabric covers'],
+    specifications: { material: 'Individual Pocket Springs', top: 'Euro Top', firmness: 'Medium' },
+    customizationOptions: ['Custom Sizes (King, Queen, etc.)', 'Fabric Cover'],
+    moq: '10 units'
   },
   {
-    id: 'bedsheets',
-    name: 'Bedsheets',
-    description: 'Premium bedsheets available in a range of thread counts and materials, including 100% cotton and poly-cotton blends for durability.',
-    shortSpecs: 'Cotton/Poly-Cotton, Various Thread Counts',
-    category: {
-      type: 'bedding',
-      material: 'Bedsheets',
-      usage: 'Mattresses & Bedding',
-    },
+    id: 'sateen-stripe-bedsheet',
+    name: '300TC Sateen Stripe Bedsheet Set',
+    slug: 'sateen-stripe-bedsheet-set',
+    categoryId: 'bed-sheets',
+    description: 'Elegant and silky 300 thread count sateen stripe bedsheet set. Includes one flat sheet, one fitted sheet, and two pillowcases.',
     images: [getImageUrl('bedding-sheets')],
-    moq: '100 sets',
-    leadTime: '4-6 Weeks',
-    keyFeatures: 'Soft and durable, choice of materials and colors',
-    customizationOptions: ['Color', 'GSM and Thread Count', 'Size', 'Embroidery'],
-  },
-  {
-    id: 'pillow-covers',
-    name: 'Pillow Covers',
-    description: 'High-quality pillow covers to match your bedding. Available in various fabrics and sizes, with options for custom embroidery.',
-    shortSpecs: 'Cotton/Satin, Custom Embroidery',
-    category: {
-      type: 'bedding',
-      material: 'Pillow Covers',
-      usage: 'Mattresses & Bedding',
-    },
-    images: [getImageUrl('bedding-pillows')],
-    moq: '200 units',
-    leadTime: '3-5 Weeks',
-    keyFeatures: 'Soft fabric, elegant finish, branding options',
-    customizationOptions: ['Fabric', 'Size', 'Embroidery', 'Color matching'],
-  },
-
-  // Chemicals & Supplies
-  {
-    id: 'laundry-chemicals',
-    name: 'Laundry Chemicals',
-    description: 'A comprehensive range of professional laundry chemicals, including detergents, softeners, and stain removers, formulated for commercial laundries.',
-    shortSpecs: 'Concentrated Formula, High Efficiency',
-    category: {
-      type: 'chemical',
-      material: 'Laundry Chemicals',
-      usage: 'Chemicals & Supplies',
-    },
-    images: [getImageUrl('chemical-laundry')],
-    moq: '50 Liters',
-    leadTime: '2-3 Weeks',
-    keyFeatures: 'Effective on tough stains, suitable for all water types',
-    safetyInfo: 'Refer to Safety Data Sheet (SDS) for handling instructions. Keep out of reach of children.',
-    specSheetUrl: '#',
-  },
-  {
-    id: 'cleaning-solutions',
-    name: 'Cleaning Solutions',
-    description: 'Versatile, all-purpose cleaning solutions for maintaining hygiene across your facility. Effective on floors, surfaces, and bathrooms.',
-    shortSpecs: 'Multi-Surface, Concentrated',
-    category: {
-      type: 'chemical',
-      material: 'Cleaning Solutions',
-      usage: 'Chemicals & Supplies',
-    },
-    images: [getImageUrl('chemical-cleaning')],
-    moq: '50 Liters',
-    leadTime: '2-3 Weeks',
-    keyFeatures: 'Multi-purpose, economical dilution ratios',
-    safetyInfo: 'Refer to Safety Data Sheet (SDS). Avoid contact with eyes.',
-    specSheetUrl: '#',
+    specifications: { material: '100% Cotton Sateen', tc: '300 TC', color: 'White, Ivory' },
+    customizationOptions: ['Custom Sizes', 'Color Matching', 'Thread Count (200-600 TC)'],
+    moq: '50 sets'
   },
 ];
-
-export const subCategories = [...new Set(products.map(p => p.category.material))];

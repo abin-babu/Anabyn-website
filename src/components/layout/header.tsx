@@ -21,18 +21,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { AnabynLogo } from '../anabyn-logo';
-import { mainCategories, subCategories, products } from '@/lib/products';
-import type { Product } from '@/lib/types';
+import { categories } from '@/lib/products';
+import type { Category } from '@/lib/types';
 
-const productNav = Object.entries(mainCategories).map(([key, name]) => {
-    const categoryProducts = products.filter(p => p.category.usage === name);
-    const categorySubCategories = [...new Set(categoryProducts.map(p => p.category.material))];
+const mainCats = categories.filter(c => c.parentId === null);
+const productNav = mainCats.map(cat => {
+    const subCats = categories.filter(sc => sc.parentId === cat.id);
     return {
-        name,
-        href: `/products/category/${encodeURIComponent(name)}`,
-        subCategories: categorySubCategories.map(sub => ({
-            name: sub,
-            href: `/products/subcategory/${encodeURIComponent(sub)}`
+        ...cat,
+        href: `/products/category/${cat.slug}`,
+        subCategories: subCats.map(sc => ({
+            ...sc,
+            href: `/products/subcategory/${sc.slug}`
         }))
     };
 });
@@ -53,7 +53,7 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo width={32} height={32} />
+            <AnabynLogo width={16} height={16} />
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
              <Link

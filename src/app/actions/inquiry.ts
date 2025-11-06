@@ -10,10 +10,8 @@ const inquirySchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address.' }),
   company: z.string().optional(),
   phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
-  inquiryType: z.enum(['General Inquiry', 'Sample Request', 'Bulk Order']),
-  productId: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
-  whatsappOptIn: z.boolean().optional(),
+  productId: z.string().optional(),
 });
 
 type InquiryInput = z.infer<typeof inquirySchema>;
@@ -30,7 +28,6 @@ async function sendInquiryEmails(inquiryData: any) {
             Email: ${inquiryData.email}
             Phone: ${inquiryData.phone}
             Company: ${inquiryData.company || 'N/A'}
-            Type: ${inquiryData.type}
             Message: ${inquiryData.message}
             Product ID: ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'N/A'}
         `,
@@ -53,11 +50,6 @@ async function sendInquiryEmails(inquiryData: any) {
     console.log("Sending to admin:", adminEmail);
     console.log("Sending confirmation to user:", userConfirmationEmail);
     // In a real implementation, you would use a service like SendGrid or Nodemailer here.
-    // e.g., await sendEmail(adminEmail);
-    // e.g., await sendEmail(userConfirmationEmail);
-    console.log("--- End Email Simulation ---");
-    
-    // Returning a promise to simulate async operation
     return Promise.resolve();
 }
 
@@ -71,11 +63,13 @@ export async function handleInquiry(data: InquiryInput) {
   const { firestore } = getSdks();
 
   const inquiryData = {
-    ...validation.data,
+    name: validation.data.name,
+    email: validation.data.email,
+    company: validation.data.company,
+    phone: validation.data.phone,
+    message: validation.data.message,
     products: validation.data.productId ? [{ id: validation.data.productId, qty: 1 }] : [],
-    type: validation.data.inquiryType.toLowerCase().replace(' ', '-'),
-    status: 'new',
-    source: 'site',
+    status: 'Enquired',
     createdAt: serverTimestamp(),
   };
 
@@ -83,8 +77,6 @@ export async function handleInquiry(data: InquiryInput) {
     const inquiriesRef = collection(firestore, 'inquiries');
     const docRef = await addDoc(inquiriesRef, inquiryData);
 
-    // After successfully saving to Firestore, simulate sending emails.
-    // In a real-world scenario, this would be handled by a Cloud Function triggered by the new document.
     await sendInquiryEmails({ ...inquiryData, id: docRef.id });
 
     return { success: true };
