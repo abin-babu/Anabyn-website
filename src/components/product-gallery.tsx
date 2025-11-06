@@ -2,7 +2,7 @@
 'use client';
 
 import { useState } from 'react';
-import { products, mainCategories, subCategories } from '@/lib/products';
+import { products, categories } from '@/lib/products';
 import { ProductCard } from './product-card';
 import type { Product } from '@/lib/types';
 
@@ -14,8 +14,14 @@ export function ProductGallery({ initialCategory, initialSubCategory }: { initia
   });
 
   const filteredProducts = products.filter(product => {
-    const categoryMatch = filters.category === 'all' || product.category.usage === filters.category;
-    const subCategoryMatch = filters.subCategory === 'all' || product.category.material === filters.subCategory;
+    const category = categories.find(c => c.id === product.categoryId);
+    if (!category) return false;
+
+    const parentCategory = category.parentId ? categories.find(c => c.id === category.parentId) : category;
+
+    const categoryMatch = filters.category === 'all' || parentCategory?.name === filters.category;
+    const subCategoryMatch = filters.subCategory === 'all' || category.name === filters.subCategory;
+
     return categoryMatch && subCategoryMatch;
   });
 
