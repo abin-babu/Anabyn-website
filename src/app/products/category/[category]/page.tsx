@@ -4,16 +4,18 @@ import { useParams } from 'next/navigation';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { ProductGallery } from '@/components/product-gallery';
-import { mainCategories } from '@/lib/products';
+import { categories } from '@/lib/products';
 
 export default function ProductCategoryPage() {
     const params = useParams();
-    const category = decodeURIComponent(params.category as string);
+    const categorySlug = decodeURIComponent(params.category as string);
 
     // Find the readable category name to pass to ProductGallery
-    const categoryName = Object.values(mainCategories).find(
-        (name) => name.toLowerCase() === category.toLowerCase()
-    ) || category;
+    const category = categories.find(
+        (c) => c.slug.toLowerCase() === categorySlug.toLowerCase()
+    );
+    
+    const categoryName = category ? category.name : categorySlug;
     
     return (
         <div className="flex min-h-screen flex-col">
