@@ -7,18 +7,6 @@
       "imageHint": "luxury hotel"
     },
     {
-      "id": "hero-2",
-      "description": "Woven fabric texture",
-      "imageUrl": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxmYWJyaWMlMjB0ZXh0dXJlfGVufDB8fHx8MTc2MDk2MjA5NHww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "fabric texture"
-    },
-    {
-      "id": "hero-3",
-      "description": "Luxurious rug detail",
-      "imageUrl": "https://images.unsplash.com/photo-1758448500596-ce0e0239f1be?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxsdXh1cnklMjBydWd8ZW58MHx8fHwxNzYwOTY1NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "luxury rug"
-    },
-    {
       "id": "towel-terry",
       "description": "Plush terry bath towel",
       "imageUrl": "https://images.unsplash.com/photo-1590737152062-72856a29792e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
@@ -137,6 +125,12 @@
       "description": "Person downloading a file on a laptop",
       "imageUrl": "https://images.unsplash.com/photo-1588665809513-5a022b72458e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
       "imageHint": "download file"
+    },
+    {
+      "id": "dining-linen",
+      "description": "Elegant restaurant table setting",
+      "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "restaurant table"
     }
   ]
 }
