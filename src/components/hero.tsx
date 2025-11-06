@@ -14,38 +14,27 @@ const whatsappMessage = `Hi Anabyn — I’d like to make an enquiry.`;
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
 export function Hero() {
-  const heroImages = PlaceHolderImages.filter(img => img.id.startsWith('hero-'));
+  const heroImage = PlaceHolderImages.find(img => img.id === 'hero-1');
 
   return (
     <section className="relative h-screen w-full">
-      <Carousel
-        className="h-full w-full"
-        opts={{
-          loop: true,
-        }}
-      >
-        <CarouselContent>
-          {heroImages.map((image, index) => (
-            <CarouselItem key={index}>
-              <div className="relative h-screen w-full">
-                <Image
-                  src={image.imageUrl}
-                  alt={image.description}
-                  fill
-                  className="object-cover"
-                  priority={index === 0}
-                  data-ai-hint={image.imageHint}
-                />
-                <div className="absolute inset-0 bg-black/50" />
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-      </Carousel>
+      {heroImage && (
+         <div className="relative h-screen w-full">
+            <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                fill
+                className="object-cover"
+                priority
+                data-ai-hint={heroImage.imageHint}
+            />
+            <div className="absolute inset-0 bg-black/50" />
+        </div>
+      )}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <div 
           className="text-center text-white animate-fade-in-up"
-          style={{ animationDelay: '0.2s', animationFillMode: 'backwards' }}
+          style={{ animationDelay: '0.5s', animationDuration: '0.8s', animationFillMode: 'backwards' }}
         >
           <h1 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight drop-shadow-lg max-w-4xl">
             Global Export Partner from India — Textiles, Uniforms, Chemicals & Supplies
@@ -70,3 +59,5 @@ export function Hero() {
     </section>
   );
 }
+
+    
