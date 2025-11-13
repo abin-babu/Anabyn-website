@@ -1,4 +1,5 @@
 
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/lib/products';
@@ -12,25 +13,27 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Download, MessageSquare, Phone, ShieldCheck } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { categories } from '@/lib/products';
 
 type Props = {
-  params: { id: string };
+  params: { slug: string };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = products.find(p => p.id === params.id);
+  const product = products.find(p => p.slug === params.slug);
   if (!product) {
     return {
       title: 'Product Not Found',
     };
   }
+  const category = categories.find(c => c.id === product.categoryId);
 
   try {
     const seoData = await generateSeoMetadata({
       productName: product.name,
       productDescription: product.description,
-      productCategory: product.category.usage,
-      keyFeatures: product.keyFeatures,
+      productCategory: category?.name || 'General',
+      keyFeatures: product.shortSpecs || '',
     });
     return {
       title: seoData.metaTitle,
@@ -46,12 +49,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function ProductDetailPage({ params }: Props) {
-  const product = products.find(p => p.id === params.id);
+  const product = products.find(p => p.slug === params.slug);
 
   if (!product) {
     notFound();
   }
-  
+
+  const category = categories.find(c => c.id === product.categoryId);
+  const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
+
   const whatsappNumber = "919495613121";
   const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -80,25 +86,30 @@ export default function ProductDetailPage({ params }: Props) {
             <div className="flex flex-col gap-6">
               <div>
                 <div className="flex gap-2 mb-2">
-                    <Badge variant="secondary" className="capitalize">{product.category.usage}</Badge>
-                    <Badge variant="outline" className="capitalize">{product.category.material}</Badge>
+                    {parentCategory && <Badge variant="secondary">{parentCategory.name}</Badge>}
+                    {category && category.id !== parentCategory?.id && <Badge variant="outline">{category.name}</Badge>}
                 </div>
                 <h1 className="text-3xl lg:text-4xl font-bold font-headline">{product.name}</h1>
               </div>
               <p className="text-muted-foreground">{product.description}</p>
-              
+
               <Card>
                 <CardHeader>
                     <CardTitle className="text-lg">Product Specifications</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                        <li className="flex justify-between items-start"><strong>Key Features:</strong> <span className="text-right">{product.keyFeatures}</span></li>
+                        {product.specifications.material && <li className="flex justify-between items-start"><strong>Material:</strong> <span className="text-right">{product.specifications.material}</span></li>}
+                        {product.specifications.gsm && <li className="flex justify-between items-start"><strong>GSM:</strong> <span className="text-right">{product.specifications.gsm}</span></li>}
+                        {product.specifications.tc && <li className="flex justify-between items-start"><strong>Thread Count:</strong> <span className="text-right">{product.specifications.tc}</span></li>}
+                        {product.specifications.size && <li className="flex justify-between items-start"><strong>Size:</strong> <span className="text-right">{product.specifications.size}</span></li>}
+                        {product.specifications.color && <li className="flex justify-between items-start"><strong>Color:</strong> <span className="text-right">{product.specifications.color}</span></li>}
+                        {product.specifications.features && <li className="flex justify-between items-start"><strong>Features:</strong> <span className="text-right">{product.specifications.features}</span></li>}
+
                         {product.customizationOptions && (
                           <li className="flex justify-between items-start"><strong>Customization:</strong> <span className="text-right">{product.customizationOptions.join(', ')}</span></li>
                         )}
-                        <li className="flex justify-between"><strong>Minimum Order (MOQ):</strong> <span>{product.moq}</span></li>
-                        <li className="flex justify-between"><strong>Lead Time:</strong> <span>{product.leadTime}</span></li>
+                        {product.moq && <li className="flex justify-between"><strong>Minimum Order (MOQ):</strong> <span>{product.moq}</span></li>}
                     </ul>
                      {product.safetyInfo && (
                         <div className="mt-4 p-3 bg-yellow-100/50 border-l-4 border-yellow-400 text-yellow-800 text-sm flex gap-2">

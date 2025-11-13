@@ -34,6 +34,11 @@ export const categories: Category[] = [
     { id: 'mattresses-bedding', name: 'Mattresses & Bedding', slug: 'mattresses-bedding', parentId: null, imageUrl: getImageUrl('mattress-foam') },
     { id: 'foam-mattress', name: 'Foam Mattress', slug: 'foam-mattress', parentId: 'mattresses-bedding', imageUrl: getImageUrl('mattress-foam') },
     { id: 'spring-mattress', name: 'Spring Mattress', slug: 'spring-mattress', parentId: 'mattresses-bedding', imageUrl: getImageUrl('mattress-spring') },
+    
+    // Chemicals & Supplies
+    { id: 'chemicals-supplies', name: 'Chemicals & Supplies', slug: 'chemicals-supplies', parentId: null, imageUrl: getImageUrl('chemical-cleaning') },
+    { id: 'laundry-chemicals', name: 'Laundry Chemicals', slug: 'laundry-chemicals', parentId: 'chemicals-supplies', imageUrl: getImageUrl('chemical-laundry') },
+    { id: 'cleaning-supplies', name: 'Cleaning Supplies', slug: 'cleaning-supplies', parentId: 'chemicals-supplies', imageUrl: getImageUrl('chemical-cleaning') },
 ];
 
 
@@ -41,8 +46,8 @@ export const products: Product[] = [
   // Bath Linen Products
   {
     id: 'terry-bath-towel-premium',
-    name: 'Premium Terry Bath Towel',
     slug: 'premium-terry-bath-towel',
+    name: 'Premium Terry Bath Towel',
     categoryId: 'bath-towels',
     description: 'Ultra-soft and absorbent 100% cotton terry bath towel, perfect for luxury hotels and spas.',
     images: [getImageUrl('towel-terry'), getImageUrl('towel-waffle')],
@@ -53,8 +58,8 @@ export const products: Product[] = [
   },
   {
     id: 'waffle-robe-spa',
-    name: 'Spa Waffle Weave Robe',
     slug: 'spa-waffle-weave-robe',
+    name: 'Spa Waffle Weave Robe',
     categoryId: 'bath-robes',
     description: 'Lightweight and breathable waffle weave bathrobe, designed for comfort and quick drying.',
     images: [getImageUrl('towel-waffle'), getImageUrl('towel-velour')],
@@ -65,8 +70,8 @@ export const products: Product[] = [
   },
    {
     id: 'velour-hand-towel',
-    name: 'Velour Hand Towel',
     slug: 'velour-hand-towel',
+    name: 'Velour Hand Towel',
     categoryId: 'hand-towels',
     description: 'Plush velour hand towel with a smooth finish for a touch of elegance in any guest bathroom.',
     images: [getImageUrl('towel-velour'), getImageUrl('towel-terry')],
@@ -79,8 +84,8 @@ export const products: Product[] = [
   // Uniforms Products
   {
     id: 'exec-corporate-shirt',
-    name: 'Executive Corporate Shirt',
     slug: 'exec-corporate-shirt',
+    name: 'Executive Corporate Shirt',
     categoryId: 'corporate-uniforms',
     description: 'Professional long-sleeve corporate shirt in a comfortable poly-cotton blend. Wrinkle-resistant and perfect for daily wear.',
     images: [getImageUrl('uniform-corporate')],
@@ -91,8 +96,8 @@ export const products: Product[] = [
   },
   {
     id: 'heavy-duty-workwear',
-    name: 'Heavy-Duty Industrial Workwear',
     slug: 'heavy-duty-industrial-workwear',
+    name: 'Heavy-Duty Industrial Workwear',
     categoryId: 'industrial-uniforms',
     description: 'Durable and flame-retardant industrial coveralls designed for safety and mobility in harsh environments.',
     images: [getImageUrl('uniform-industrial')],
@@ -103,8 +108,8 @@ export const products: Product[] = [
   },
   {
     id: 'dri-fit-polo-tshirt',
-    name: 'Dri-Fit Polo T-Shirt',
     slug: 'dri-fit-polo-tshirt',
+    name: 'Dri-Fit Polo T-Shirt',
     categoryId: 'custom-t-shirts',
     description: 'Moisture-wicking dri-fit polo t-shirt, ideal for promotional events, team wear, or casual corporate attire.',
     images: [getImageUrl('uniform-tshirt')],
@@ -117,8 +122,8 @@ export const products: Product[] = [
   // Mattresses & Bedding
   {
     id: 'ortho-memory-foam-mattress',
-    name: 'Orthopedic Memory Foam Mattress',
     slug: 'ortho-memory-foam-mattress',
+    name: 'Orthopedic Memory Foam Mattress',
     categoryId: 'foam-mattress',
     description: 'Multi-layered orthopedic memory foam mattress designed to provide ultimate support and pressure relief for a restful sleep.',
     images: [getImageUrl('mattress-foam')],
@@ -129,8 +134,8 @@ export const products: Product[] = [
   },
   {
     id: 'hotel-pocket-spring-mattress',
-    name: 'Hotel Pocket Spring Mattress',
     slug: 'hotel-pocket-spring-mattress',
+    name: 'Hotel Pocket Spring Mattress',
     categoryId: 'spring-mattress',
     description: 'Luxury hotel-grade pocket spring mattress with zero partner disturbance and a plush pillow top for enhanced comfort.',
     images: [getImageUrl('mattress-spring')],
@@ -141,8 +146,8 @@ export const products: Product[] = [
   },
   {
     id: 'sateen-stripe-bedsheet',
-    name: '300TC Sateen Stripe Bedsheet Set',
     slug: 'sateen-stripe-bedsheet-set',
+    name: '300TC Sateen Stripe Bedsheet Set',
     categoryId: 'bed-sheets',
     description: 'Elegant and silky 300 thread count sateen stripe bedsheet set. Includes one flat sheet, one fitted sheet, and two pillowcases.',
     images: [getImageUrl('bedding-sheets')],
@@ -150,5 +155,44 @@ export const products: Product[] = [
     customizationOptions: ['Custom Sizes', 'Color Matching', 'Thread Count (200-600 TC)'],
     moq: '50 sets',
     shortSpecs: '300TC, 100% Cotton Sateen'
+  },
+  // F&B / Dining Linen
+  {
+    id: 'jacquard-tablecloth',
+    slug: 'jacquard-tablecloth',
+    name: 'Jacquard Weave Tablecloth',
+    categoryId: 'tablecloths',
+    description: 'Elegant jacquard weave tablecloth perfect for fine dining restaurants and banquet halls. Stain-resistant and highly durable.',
+    images: [getImageUrl('dining-linen')],
+    specifications: { material: '100% Polyester Jacquard', color: 'White, Ivory, Black' },
+    customizationOptions: ['Custom Sizes', 'Color Matching', 'Custom Patterns'],
+    moq: '25 units',
+    shortSpecs: 'Polyester Jacquard, Stain-Resistant'
+  },
+
+  // Chemicals & Supplies
+  {
+    id: 'laundry-detergent-pro',
+    slug: 'laundry-detergent-pro',
+    name: 'Professional Laundry Detergent',
+    categoryId: 'laundry-chemicals',
+    description: 'High-efficiency, concentrated laundry detergent for commercial use. Effective on tough stains while being gentle on fabrics.',
+    images: [getImageUrl('chemical-laundry')],
+    specifications: { size: '20 Litre Can', features: 'Low-foam formula, suitable for all water temperatures' },
+    customizationOptions: ['Custom Fragrance', 'Private Labeling'],
+    moq: '10 Cans',
+    shortSpecs: '20L, Concentrated Formula'
+  },
+  {
+    id: 'all-purpose-cleaner',
+    slug: 'all-purpose-cleaner',
+    name: 'All-Purpose Surface Cleaner',
+    categoryId: 'cleaning-supplies',
+    description: 'Versatile all-purpose cleaner for use on a variety of surfaces in guest rooms, kitchens, and public areas. Kills 99.9% of germs.',
+    images: [getImageUrl('chemical-cleaning')],
+    specifications: { size: '5 Litre Can', features: 'Disinfectant, Streak-free shine' },
+    customizationOptions: ['Private Labeling'],
+    moq: '20 Cans',
+    shortSpecs: '5L, Disinfectant'
   },
 ];

@@ -32,7 +32,7 @@ export default function DownloadsPage() {
                         <CardHeader className="text-center">
                             {bannerImage && (
                                 <div className="relative w-full h-48 mb-6 rounded-lg overflow-hidden">
-                                     <Image src={bannerImage.imageUrl} alt={bannerImage.description} fill className="object-cover" data-ai-hint={bannerImage.imageHint}/>
+                                     <Image src={bannerImage.imageUrl} alt={bannerImage.description || 'Downloads Banner'} fill className="object-cover" data-ai-hint={bannerImage.imageHint}/>
                                      <div className="absolute inset-0 bg-black/40"></div>
                                 </div>
                             )}
