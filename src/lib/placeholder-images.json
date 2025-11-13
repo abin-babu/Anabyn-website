@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Natural cotton plants in a field, representing sustainable and organic textile sourcing.",
-      "imageUrl": "https://images.unsplash.com/photo-1627920559383-52737401a5e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdXN0YWluYWJsZSUyMHRleHRpbGV8ZW58MHx8fHwxNzYzOTQyMjMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "sustainable textile"
+      "description": "Textile factory showing rolls of fabric.",
+      "imageUrl": "https://images.unsplash.com/photo-1620756240243-f25b6d729864?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "textile factory"
     },
     {
       "id": "towel-terry",
@@ -57,7 +57,7 @@
     {
       "id": "uniform-tshirt",
       "description": "Custom branded t-shirts",
-      "imageUrl": "https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjB0LXNoaXJ0fGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjB0LXNoaXJ0fGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "custom t-shirt"
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "mattress-foam",
       "description": "High-density foam mattress",
-      "imageUrl": "https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb2FtJTIwbWF0dHJlc3N8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb2FtJTIwbWF0dHJlc3N8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "foam mattress"
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "mattress-spring-2",
       "description": "Close up of pocket springs in a mattress",
-      "imageUrl": "https://images.unsplash.com/photo-1627515780209-f30ff2682542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYXR0cmVzcyUyMHNwcmluZ3xlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1627515780209-f30ff2682542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYXR0cmVzcyUyMHNwcmluZ3xlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "mattress spring"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "chemical-cleaning",
       "description": "Industrial cleaning supplies",
-      "imageUrl": "https://images.unsplash.com/photo-1583947581924-860bda6a26df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbmluZyUyMHN1cHBsaWVzfGVufDB8fHx8MTc2MzAxMDMyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1583947581924-860bda6a26df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbmluZyUyMHN1cHBsaWVzfGVufDB8fHx8MTc2MzAxMDMyN3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "cleaning supplies"
     },
     {
@@ -153,7 +153,7 @@
     {
       "id": "sustainability-banner",
       "description": "Hands holding a green sprout",
-      "imageUrl": "https://images.unsplash.com/photo-1492496913980-501348b61469?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHNwcm91dHxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1492496913980-501348b61469?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHNwcm91dHxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "green sprout"
     },
     {
