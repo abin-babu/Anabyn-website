@@ -8,20 +8,20 @@ export const categories: Category[] = [
     // Bed Linen
     { id: 'bed-linen', name: 'Bed Linen', slug: 'bed-linen', parentId: null, imageUrl: getImageUrl('bedding-sheets') },
     { id: 'bed-sheets', name: 'Bed Sheets', slug: 'bed-sheets', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-sheets') },
-    { id: 'duvet-covers', name: 'Duvet Covers', slug: 'duvet-covers', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-sheets') },
+    { id: 'duvet-covers', name: 'Duvet Covers', slug: 'duvet-covers', parentId: 'bed-linen', imageUrl: getImageUrl('duvet-cover') },
     { id: 'pillowcases', name: 'Pillowcases', slug: 'pillowcases', parentId: 'bed-linen', imageUrl: getImageUrl('bedding-pillows') },
 
     // Bath Linen
     { id: 'bath-linen', name: 'Bath Linen', slug: 'bath-linen', parentId: null, imageUrl: getImageUrl('towel-terry') },
-    { id: 'bath-towels', name: 'Bath Towels', slug: 'bath-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
-    { id: 'hand-towels', name: 'Hand Towels', slug: 'hand-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
-    { id: 'face-towels', name: 'Face Towels', slug: 'face-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry') },
+    { id: 'bath-towels', name: 'Bath Towels', slug: 'bath-towels', parentId: 'bath-linen', imageUrl: getImageUrl('towel-terry-stack') },
+    { id: 'hand-towels', name: 'Hand Towels', slug: 'hand-towels', parentId: 'bath-linen', imageUrl: getImageUrl('hand-towel') },
+    { id: 'face-towels', name: 'Face Towels', slug: 'face-towels', parentId: 'bath-linen', imageUrl: getImageUrl('face-towel') },
     { id: 'bath-robes', name: 'Bath Robes', slug: 'bath-robes', parentId: 'bath-linen', imageUrl: getImageUrl('towel-velour') },
 
     // F&B / Dining Linen
     { id: 'dining-linen', name: 'F&B / Dining Linen', slug: 'dining-linen', parentId: null, imageUrl: getImageUrl('dining-linen') },
-    { id: 'tablecloths', name: 'Tablecloths', slug: 'tablecloths', parentId: 'dining-linen', imageUrl: getImageUrl('dining-linen') },
-    { id: 'napkins', name: 'Napkins', slug: 'napkins', parentId: 'dining-linen', imageUrl: getImageUrl('dining-linen') },
+    { id: 'tablecloths', name: 'Tablecloths', slug: 'tablecloths', parentId: 'dining-linen', imageUrl: getImageUrl('table-cloth') },
+    { id: 'napkins', name: 'Napkins', slug: 'napkins', parentId: 'dining-linen', imageUrl: getImageUrl('napkin') },
 
     // Uniforms
     { id: 'uniforms', name: 'Uniforms', slug: 'uniforms', parentId: null, imageUrl: getImageUrl('uniform-corporate') },
@@ -38,7 +38,7 @@ export const categories: Category[] = [
     // Chemicals & Supplies
     { id: 'chemicals-supplies', name: 'Chemicals & Supplies', slug: 'chemicals-supplies', parentId: null, imageUrl: getImageUrl('chemical-cleaning') },
     { id: 'laundry-chemicals', name: 'Laundry Chemicals', slug: 'laundry-chemicals', parentId: 'chemicals-supplies', imageUrl: getImageUrl('chemical-laundry') },
-    { id: 'cleaning-supplies', name: 'Cleaning Supplies', slug: 'cleaning-supplies', parentId: 'chemicals-supplies', imageUrl: getImageUrl('chemical-cleaning') },
+    { id: 'cleaning-supplies', name: 'Cleaning Supplies', slug: 'cleaning-supplies', parentId: 'chemicals-supplies', imageUrl: getImageUrl('cleaning-cart') },
 ];
 
 
@@ -50,7 +50,7 @@ export const products: Product[] = [
     name: 'Premium Terry Bath Towel',
     categoryId: 'bath-towels',
     description: 'Ultra-soft and absorbent 100% cotton terry bath towel, perfect for luxury hotels and spas.',
-    images: [getImageUrl('towel-terry'), getImageUrl('towel-waffle')],
+    images: [getImageUrl('towel-terry-stack'), getImageUrl('towel-waffle')],
     specifications: { material: '100% Terry Cotton', gsm: '600 GSM', size: '30x60 inches' },
     customizationOptions: ['Color', 'GSM', 'Size', 'Embroidery'],
     moq: '100 units',
@@ -74,7 +74,7 @@ export const products: Product[] = [
     name: 'Velour Hand Towel',
     categoryId: 'hand-towels',
     description: 'Plush velour hand towel with a smooth finish for a touch of elegance in any guest bathroom.',
-    images: [getImageUrl('towel-velour'), getImageUrl('towel-terry')],
+    images: [getImageUrl('hand-towel'), getImageUrl('towel-terry')],
     specifications: { material: '100% Cotton Velour', gsm: '550 GSM', size: '16x30 inches' },
     customizationOptions: ['Color', 'Embroidery'],
     moq: '200 units',
@@ -126,7 +126,7 @@ export const products: Product[] = [
     name: 'Orthopedic Memory Foam Mattress',
     categoryId: 'foam-mattress',
     description: 'Multi-layered orthopedic memory foam mattress designed to provide ultimate support and pressure relief for a restful sleep.',
-    images: [getImageUrl('mattress-foam')],
+    images: [getImageUrl('mattress-foam-2'), getImageUrl('mattress-foam')],
     specifications: { material: 'High-Density Memory Foam', firmness: 'Medium-Firm', height: '8 inches' },
     customizationOptions: ['Custom Sizes', 'Removable Cover with Branding'],
     moq: '10 units',
@@ -138,7 +138,7 @@ export const products: Product[] = [
     name: 'Hotel Pocket Spring Mattress',
     categoryId: 'spring-mattress',
     description: 'Luxury hotel-grade pocket spring mattress with zero partner disturbance and a plush pillow top for enhanced comfort.',
-    images: [getImageUrl('mattress-spring')],
+    images: [getImageUrl('mattress-spring-2'), getImageUrl('mattress-spring')],
     specifications: { material: 'Individual Pocket Springs', top: 'Euro Top', firmness: 'Medium' },
     customizationOptions: ['Custom Sizes (King, Queen, etc.)', 'Fabric Cover'],
     moq: '10 units',
@@ -163,12 +163,25 @@ export const products: Product[] = [
     name: 'Jacquard Weave Tablecloth',
     categoryId: 'tablecloths',
     description: 'Elegant jacquard weave tablecloth perfect for fine dining restaurants and banquet halls. Stain-resistant and highly durable.',
-    images: [getImageUrl('dining-linen')],
+    images: [getImageUrl('table-cloth')],
     specifications: { material: '100% Polyester Jacquard', color: 'White, Ivory, Black' },
     customizationOptions: ['Custom Sizes', 'Color Matching', 'Custom Patterns'],
     moq: '25 units',
     shortSpecs: 'Polyester Jacquard, Stain-Resistant'
   },
+  {
+    id: 'cotton-dinner-napkins',
+    slug: 'cotton-dinner-napkins',
+    name: '100% Cotton Dinner Napkins',
+    categoryId: 'napkins',
+    description: 'Classic and absorbent 100% cotton dinner napkins, available in a wide range of colors to match your restaurant\'s decor.',
+    images: [getImageUrl('napkin')],
+    specifications: { material: '100% Cotton', size: '20x20 inches', color: 'Custom' },
+    customizationOptions: ['Color Matching', 'Embroidery'],
+    moq: '200 units',
+    shortSpecs: '100% Cotton, 20x20 inches'
+  },
+
 
   // Chemicals & Supplies
   {
@@ -189,7 +202,7 @@ export const products: Product[] = [
     name: 'All-Purpose Surface Cleaner',
     categoryId: 'cleaning-supplies',
     description: 'Versatile all-purpose cleaner for use on a variety of surfaces in guest rooms, kitchens, and public areas. Kills 99.9% of germs.',
-    images: [getImageUrl('chemical-cleaning')],
+    images: [getImageUrl('cleaning-cart')],
     specifications: { size: '5 Litre Can', features: 'Disinfectant, Streak-free shine' },
     customizationOptions: ['Private Labeling'],
     moq: '20 Cans',

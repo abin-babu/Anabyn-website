@@ -13,10 +13,28 @@
       "imageHint": "terry towel"
     },
     {
+      "id": "towel-terry-stack",
+      "description": "Stack of clean terry towels",
+      "imageUrl": "https://images.unsplash.com/photo-1619623623nDEz-el-salvador-2023-modern-white-bathroom-with-towels-and-soap-on-a-wooden-counter-e1687789456423-1536x1024.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "towel stack"
+    },
+    {
       "id": "towel-velour",
       "description": "Smooth velour bath towel",
       "imageUrl": "https://images.unsplash.com/photo-1616627561839-074385245ff6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "velour towel"
+    },
+    {
+      "id": "hand-towel",
+      "description": "Rolled hand towel",
+      "imageUrl": "https://images.unsplash.com/photo-1618762589887-dd2095d8525e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "hand towel"
+    },
+    {
+      "id": "face-towel",
+      "description": "Soft face towel",
+      "imageUrl": "https://images.unsplash.com/photo-1582211589255-b0a3b51b3d5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "face towel"
     },
     {
       "id": "towel-waffle",
@@ -55,16 +73,34 @@
       "imageHint": "foam mattress"
     },
     {
+      "id": "mattress-foam-2",
+      "description": "Close up of memory foam mattress",
+      "imageUrl": "https://images.unsplash.com/photo-1617323821427-897463f235a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "foam mattress"
+    },
+    {
       "id": "mattress-spring",
       "description": "Pocket spring mattress",
       "imageUrl": "https://images.unsplash.com/photo-1618220252344-88bde21040b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "spring mattress"
     },
     {
+      "id": "mattress-spring-2",
+      "description": "Close up of pocket springs in a mattress",
+      "imageUrl": "https://images.unsplash.com/photo-1560748179-82a991ee30a3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "mattress spring"
+    },
+    {
       "id": "bedding-sheets",
       "description": "Crisp white bed sheets",
       "imageUrl": "https://images.unsplash.com/photo-1603201664162-acb839f375c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "bed sheets"
+    },
+    {
+      "id": "duvet-cover",
+      "description": "Duvet cover on a bed",
+      "imageUrl": "https://images.unsplash.com/photo-1582299246379-3c7a65f70f63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "duvet cover"
     },
     {
       "id": "bedding-pillows",
@@ -83,6 +119,12 @@
       "description": "Industrial cleaning supplies",
       "imageUrl": "https://images.unsplash.com/photo-1584473456380-0487443198ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "cleaning supplies"
+    },
+    {
+      "id": "cleaning-cart",
+      "description": "A janitor's cleaning cart",
+      "imageUrl": "https://images.unsplash.com/photo-1584473456380-0487443198ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "cleaning cart"
     },
     {
       "id": "founder-abin",
@@ -131,6 +173,18 @@
       "description": "Elegant restaurant table setting",
       "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
       "imageHint": "restaurant table"
+    },
+    {
+      "id": "table-cloth",
+      "description": "Close up of a table cloth",
+      "imageUrl": "https://images.unsplash.com/photo-1596702931446-9d33281d3e8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "table cloth"
+    },
+    {
+      "id": "napkin",
+      "description": "A folded dinner napkin",
+      "imageUrl": "https://images.unsplash.com/photo-1593806981729-3c35b541369e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
+      "imageHint": "dinner napkin"
     }
   ]
 }
