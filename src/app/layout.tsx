@@ -6,8 +6,11 @@ import { FirebaseClientProvider } from '@/firebase';
 import { WhatsappCta } from '@/components/whatsapp-cta';
 
 export const metadata: Metadata = {
-  title: 'Anabyn Premium Gallery',
+  title: 'Anabyn Global Ventures',
   description: 'A Trusted Partner in Premium Textiles and Materials',
+  icons: {
+    icon: '/images/logo.png',
+  },
 };
 
 export default function RootLayout({
