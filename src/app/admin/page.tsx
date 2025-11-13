@@ -66,7 +66,6 @@ export default function AdminPage() {
                                         <TableHead>Date</TableHead>
                                         <TableHead>Name</TableHead>
                                         <TableHead>Email</TableHead>
-                                        <TableHead>Type</TableHead>
                                         <TableHead>Status</TableHead>
                                         <TableHead>Actions</TableHead>
                                     </TableRow>
@@ -74,7 +73,7 @@ export default function AdminPage() {
                                 <TableBody>
                                     {inquiriesLoading && (
                                         <TableRow>
-                                            <TableCell colSpan={6} className="text-center">Loading inquiries...</TableCell>
+                                            <TableCell colSpan={5} className="text-center">Loading inquiries...</TableCell>
                                         </TableRow>
                                     )}
                                     {inquiries && inquiries.map((inquiry : any) => (
@@ -82,7 +81,6 @@ export default function AdminPage() {
                                             <TableCell>{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
                                             <TableCell>{inquiry.name}</TableCell>
                                             <TableCell>{inquiry.email}</TableCell>
-                                            <TableCell className="capitalize">{inquiry.type.replace('-', ' ')}</TableCell>
                                             <TableCell><Badge>{inquiry.status}</Badge></TableCell>
                                             <TableCell>
                                                 <Button variant="outline" size="sm">View</Button>
