@@ -2,7 +2,7 @@
 import type { Product, Category } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 
-const getImageUrl = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://picsum.photos/seed/placeholder/800/600';
+const getImageUrl = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://placehold.co/800x600/e2e8f0/e2e8f0';
 
 export const categories: Category[] = [
     // Bed Linen
@@ -209,3 +209,5 @@ export const products: Product[] = [
     shortSpecs: '5L, Disinfectant'
   },
 ];
+
+    
