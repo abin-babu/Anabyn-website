@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,7 +39,7 @@ export function Hero() {
             Global Export Partner from India — Textiles, Uniforms, Chemicals & Supplies
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-2xl">
-            Quality. Customization. Trust. Delivered Worldwide.
+            Supplying the World with India’s Best
           </p>
           <div className="pointer-events-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
@@ -57,5 +58,3 @@ export function Hero() {
     </section>
   );
 }
-
-    
