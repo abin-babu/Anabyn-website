@@ -49,36 +49,36 @@ export const products: Product[] = [
     slug: 'premium-terry-bath-towel',
     name: 'Premium Terry Bath Towel',
     categoryId: 'bath-towels',
-    description: 'Ultra-soft and absorbent 100% cotton terry bath towel, perfect for luxury hotels and spas.',
+    description: 'Experience pure luxury with our ultra-plush 100% cotton terry towels. Expertly crafted for maximum absorbency and a sumptuously soft feel, available in weights up to 700 GSM for a true 5-star experience.',
     images: [getImageUrl('towel-terry-stack'), getImageUrl('towel-waffle')],
-    specifications: { material: '100% Terry Cotton', gsm: '600 GSM', size: '30x60 inches' },
+    specifications: { material: '100% Terry Cotton', gsm: '400-700 GSM', size: 'Customizable' },
     customizationOptions: ['Color', 'GSM', 'Size', 'Embroidery'],
     moq: '100 units',
-    shortSpecs: '600 GSM, 100% Cotton'
+    shortSpecs: 'Up to 700 GSM, 100% Terry Cotton'
   },
   {
     id: 'waffle-robe-spa',
     slug: 'spa-waffle-weave-robe',
     name: 'Spa Waffle Weave Robe',
     categoryId: 'bath-robes',
-    description: 'Lightweight and breathable waffle weave bathrobe, designed for comfort and quick drying.',
+    description: 'A sophisticated and lightweight waffle weave bathrobe, designed for ultimate comfort and quick-drying performance. The perfect robe for spas, hotels, and resorts.',
     images: [getImageUrl('towel-waffle'), getImageUrl('towel-velour')],
-    specifications: { material: '100% Cotton Waffle Weave', gsm: '300 GSM', size: 'One Size Fits Most' },
+    specifications: { material: '100% Cotton Waffle Weave', gsm: '300-450 GSM', size: 'One Size Fits Most' },
     customizationOptions: ['Color', 'Logo Embroidery', 'Piping'],
     moq: '50 units',
-    shortSpecs: '300 GSM, Waffle Weave'
+    shortSpecs: 'Luxury Waffle Weave, 300-450 GSM'
   },
    {
     id: 'velour-hand-towel',
     slug: 'velour-hand-towel',
     name: 'Velour Hand Towel',
     categoryId: 'hand-towels',
-    description: 'Plush velour hand towel with a smooth finish for a touch of elegance in any guest bathroom.',
+    description: 'Add a touch of elegance with our plush velour hand towels. Featuring a smooth, sheared finish for a luxurious feel and excellent absorbency, perfect for premium guest bathrooms.',
     images: [getImageUrl('hand-towel'), getImageUrl('towel-terry')],
     specifications: { material: '100% Cotton Velour', gsm: '550 GSM', size: '16x30 inches' },
     customizationOptions: ['Color', 'Embroidery'],
     moq: '200 units',
-    shortSpecs: '550 GSM, Plush Velour'
+    shortSpecs: '550 GSM, Premium Plush Velour'
   },
 
   // Uniforms Products
@@ -87,36 +87,36 @@ export const products: Product[] = [
     slug: 'exec-corporate-shirt',
     name: 'Executive Corporate Shirt',
     categoryId: 'corporate-uniforms',
-    description: 'Professional long-sleeve corporate shirt in a comfortable poly-cotton blend. Wrinkle-resistant and perfect for daily wear.',
+    description: 'Impeccably tailored professional shirt in a wrinkle-resistant poly-cotton blend. Designed for all-day comfort and a consistently sharp appearance in any corporate setting.',
     images: [getImageUrl('uniform-corporate')],
-    specifications: { material: 'Poly-Cotton Blend', color: 'White, Blue, Grey' },
+    specifications: { material: 'Premium Poly-Cotton Blend', color: 'White, Blue, Grey' },
     customizationOptions: ['Logo Embroidery', 'Custom Colors', 'Fit (Slim/Regular)'],
     moq: '50 units',
-    shortSpecs: 'Poly-Cotton, Wrinkle-Resistant'
+    shortSpecs: 'Premium Poly-Cotton, Wrinkle-Resistant'
   },
   {
     id: 'heavy-duty-workwear',
     slug: 'heavy-duty-industrial-workwear',
     name: 'Heavy-Duty Industrial Workwear',
     categoryId: 'industrial-uniforms',
-    description: 'Durable and flame-retardant industrial coveralls designed for safety and mobility in harsh environments.',
+    description: 'Engineered for safety and durability, our flame-retardant industrial coveralls offer maximum protection and mobility. Features high-visibility strips and reinforced construction.',
     images: [getImageUrl('uniform-industrial')],
     specifications: { material: 'Flame-Retardant Cotton', features: 'High-visibility strips, reinforced knees' },
     customizationOptions: ['Reflective Taping', 'Company Logo Patch', 'Custom Pockets'],
     moq: '100 units',
-    shortSpecs: 'Flame-Retardant Cotton'
+    shortSpecs: 'Certified Flame-Retardant Cotton'
   },
   {
     id: 'dri-fit-polo-tshirt',
     slug: 'dri-fit-polo-tshirt',
     name: 'Dri-Fit Polo T-Shirt',
     categoryId: 'custom-t-shirts',
-    description: 'Moisture-wicking dri-fit polo t-shirt, ideal for promotional events, team wear, or casual corporate attire.',
+    description: 'High-performance moisture-wicking polo shirt with UV protection. Ideal for corporate events, team wear, or casual staff uniforms, keeping your team cool and professional.',
     images: [getImageUrl('uniform-tshirt')],
-    specifications: { material: 'Dri-Fit Polyester', features: 'UV Protection' },
+    specifications: { material: 'Performance Dri-Fit Polyester', features: 'UV Protection' },
     customizationOptions: ['Color Matching', 'Screen Printing', 'Embroidery'],
     moq: '100 units',
-    shortSpecs: 'Dri-Fit, UV Protection'
+    shortSpecs: 'Performance Dri-Fit, UV Protection'
   },
 
   // Mattresses & Bedding
@@ -125,36 +125,36 @@ export const products: Product[] = [
     slug: 'ortho-memory-foam-mattress',
     name: 'Orthopedic Memory Foam Mattress',
     categoryId: 'foam-mattress',
-    description: 'Multi-layered orthopedic memory foam mattress designed to provide ultimate support and pressure relief for a restful sleep.',
+    description: 'Expertly engineered orthopedic mattress with high-density memory foam. Provides superior pressure relief and spinal alignment for an exceptionally restful sleep.',
     images: [getImageUrl('mattress-foam-2'), getImageUrl('mattress-foam')],
-    specifications: { material: 'High-Density Memory Foam', firmness: 'Medium-Firm', height: '8 inches' },
+    specifications: { material: 'High-Density Orthopedic Foam', firmness: 'Medium-Firm', height: '8-12 inches' },
     customizationOptions: ['Custom Sizes', 'Removable Cover with Branding'],
     moq: '10 units',
-    shortSpecs: 'Memory Foam, 8-inch'
+    shortSpecs: 'High-Density Orthopedic Foam, 8-12"'
   },
   {
     id: 'hotel-pocket-spring-mattress',
     slug: 'hotel-pocket-spring-mattress',
-    name: 'Hotel Pocket Spring Mattress',
+    name: '5-Star Hotel Pocket Spring Mattress',
     categoryId: 'spring-mattress',
-    description: 'Luxury hotel-grade pocket spring mattress with zero partner disturbance and a plush pillow top for enhanced comfort.',
+    description: 'Indulge in 5-star comfort with our luxury pocket spring mattress. Featuring a plush Euro top and zero partner disturbance technology for an undisturbed, premium sleep experience.',
     images: [getImageUrl('mattress-spring-2'), getImageUrl('mattress-spring')],
-    specifications: { material: 'Individual Pocket Springs', top: 'Euro Top', firmness: 'Medium' },
+    specifications: { material: 'Individual Pocket Springs', top: 'Plush Euro Top', firmness: 'Medium' },
     customizationOptions: ['Custom Sizes (King, Queen, etc.)', 'Fabric Cover'],
     moq: '10 units',
-    shortSpecs: 'Pocket Spring, Euro Top'
+    shortSpecs: 'Luxury Pocket Spring, Plush Euro Top'
   },
   {
     id: 'sateen-stripe-bedsheet',
     slug: 'sateen-stripe-bedsheet-set',
-    name: '300TC Sateen Stripe Bedsheet Set',
+    name: 'Sateen Stripe Bedsheet Set',
     categoryId: 'bed-sheets',
-    description: 'Elegant and silky 300 thread count sateen stripe bedsheet set. Includes one flat sheet, one fitted sheet, and two pillowcases.',
+    description: 'Silky and elegant sateen stripe bedsheet sets crafted from 100% long-staple cotton. Available in thread counts up to 600TC for an exquisitely smooth finish and lasting durability.',
     images: [getImageUrl('bedding-sheets')],
-    specifications: { material: '100% Cotton Sateen', tc: '300 TC', color: 'White, Ivory' },
+    specifications: { material: '100% Cotton Sateen', tc: '300-600 TC', color: 'White, Ivory' },
     customizationOptions: ['Custom Sizes', 'Color Matching', 'Thread Count (200-600 TC)'],
     moq: '50 sets',
-    shortSpecs: '300TC, 100% Cotton Sateen'
+    shortSpecs: 'Up to 600 TC, 100% Cotton Sateen'
   },
   // F&B / Dining Linen
   {
@@ -162,24 +162,24 @@ export const products: Product[] = [
     slug: 'jacquard-tablecloth',
     name: 'Jacquard Weave Tablecloth',
     categoryId: 'tablecloths',
-    description: 'Elegant jacquard weave tablecloth perfect for fine dining restaurants and banquet halls. Stain-resistant and highly durable.',
+    description: 'Sophisticated jacquard weave tablecloths with intricate patterns. Made from highly durable, stain-resistant polyester for fine dining and banquet settings.',
     images: [getImageUrl('table-cloth')],
     specifications: { material: '100% Polyester Jacquard', color: 'White, Ivory, Black' },
     customizationOptions: ['Custom Sizes', 'Color Matching', 'Custom Patterns'],
     moq: '25 units',
-    shortSpecs: 'Polyester Jacquard, Stain-Resistant'
+    shortSpecs: 'Premium Polyester Jacquard, Stain-Resistant'
   },
   {
     id: 'cotton-dinner-napkins',
     slug: 'cotton-dinner-napkins',
     name: '100% Cotton Dinner Napkins',
     categoryId: 'napkins',
-    description: 'Classic and absorbent 100% cotton dinner napkins, available in a wide range of colors to match your restaurant\'s decor.',
+    description: 'Classic, heavyweight 100% cotton dinner napkins offering excellent absorbency and a premium feel. Available in a vast range of custom-dyed colors.',
     images: [getImageUrl('napkin')],
-    specifications: { material: '100% Cotton', size: '20x20 inches', color: 'Custom' },
+    specifications: { material: '100% Premium Cotton', size: '20x20 inches', color: 'Custom' },
     customizationOptions: ['Color Matching', 'Embroidery'],
     moq: '200 units',
-    shortSpecs: '100% Cotton, 20x20 inches'
+    shortSpecs: '100% Premium Cotton, Custom Colors'
   },
 
 
@@ -189,25 +189,27 @@ export const products: Product[] = [
     slug: 'laundry-detergent-pro',
     name: 'Professional Laundry Detergent',
     categoryId: 'laundry-chemicals',
-    description: 'High-efficiency, concentrated laundry detergent for commercial use. Effective on tough stains while being gentle on fabrics.',
+    description: 'A concentrated, high-efficiency laundry detergent formulated for commercial use. Powerfully removes tough stains while protecting fabric integrity and color.',
     images: [getImageUrl('chemical-laundry')],
     specifications: { size: '20 Litre Can', features: 'Low-foam formula, suitable for all water temperatures' },
     customizationOptions: ['Custom Fragrance', 'Private Labeling'],
     moq: '10 Cans',
-    shortSpecs: '20L, Concentrated Formula'
+    shortSpecs: '20L, Professional Concentrated Formula'
   },
   {
     id: 'all-purpose-cleaner',
     slug: 'all-purpose-cleaner',
     name: 'All-Purpose Surface Cleaner',
     categoryId: 'cleaning-supplies',
-    description: 'Versatile all-purpose cleaner for use on a variety of surfaces in guest rooms, kitchens, and public areas. Kills 99.9% of germs.',
+    description: 'A versatile, commercial-grade all-purpose cleaner that disinfects and provides a streak-free shine. Ideal for all non-porous surfaces.',
     images: [getImageUrl('cleaning-cart')],
     specifications: { size: '5 Litre Can', features: 'Disinfectant, Streak-free shine' },
     customizationOptions: ['Private Labeling'],
     moq: '20 Cans',
-    shortSpecs: '5L, Disinfectant'
+    shortSpecs: '5L, Commercial-Grade Disinfectant'
   },
 ];
+
+    
 
     
