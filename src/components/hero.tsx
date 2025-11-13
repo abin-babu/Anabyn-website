@@ -2,7 +2,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from './ui/button';
 import { FaWhatsapp } from 'react-icons/fa';
