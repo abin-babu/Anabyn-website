@@ -1,7 +1,6 @@
-
 import Link from 'next/link';
 import { AnabynLogo } from '../anabyn-logo';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 export function Footer() {
@@ -16,17 +15,21 @@ export function Footer() {
               © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
             </p>
              <div className="flex items-center gap-4">
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                <a href="https://www.instagram.com/anabyn_global_ventures/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                     <FaInstagram className="h-5 w-5" />
                     <span className="sr-only">Instagram</span>
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                <a href="https://www.linkedin.com/company/anabyn-global-ventures/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                     <FaLinkedin className="h-5 w-5" />
                     <span className="sr-only">LinkedIn</span>
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                <a href="https://www.facebook.com/people/Anabyn-Global-Ventures-LLP/61581460358902/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                     <FaFacebook className="h-5 w-5" />
                     <span className="sr-only">Facebook</span>
+                </a>
+                 <a href="https://maps.app.goo.gl/gwm9UAW6Ym55nWMb8" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <MapPin className="h-5 w-5" />
+                    <span className="sr-only">Google Maps</span>
                 </a>
             </div>
           </div>
