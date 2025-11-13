@@ -84,12 +84,6 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-             <Link
-                href={'/admin'}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-              >
-                Admin
-              </Link>
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4">
@@ -144,12 +138,6 @@ export function Header() {
                         </Link>
                     </SheetClose>
                 ))}
-                 <Link
-                    href={'/admin'}
-                    className="text-lg font-medium transition-colors hover:text-primary py-2"
-                  >
-                    Admin
-                  </Link>
                 <Button asChild className="mt-4">
                     <Link href="/inquiry">Inquire Now</Link>
                 </Button>
