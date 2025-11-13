@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Luxurious hotel setting with clean white towels and amenities",
-      "imageUrl": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMHJvb218ZW58MHx8fHwxNzYwOTY1NTAzfDA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "luxury hotel"
+      "description": "Natural cotton plants in a field, representing sustainable and organic textile sourcing.",
+      "imageUrl": "https://images.unsplash.com/photo-1627920559383-52737401a5e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzdXN0YWluYWJsZSUyMHRleHRpbGV8ZW58MHx8fHwxNzYzOTQyMjMzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "sustainable textile"
     },
     {
       "id": "towel-terry",
@@ -123,7 +123,7 @@
     {
       "id": "cleaning-cart",
       "description": "A janitor's cleaning cart",
-      "imageUrl": "https://images.unsplash.com/photo-1758798350469-febfe7f2b87c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjbGVhbmluZyUyMGNhcnR8ZW58MHx8fHwxNzYzMDM4OTM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1758798350469-febfe7f2b87c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjbGVhbmluZyUyMGNhcnR8ZW58MHx8fHwxNzYzMDM4OTM2fDA&ixlibrb-4.1.0&q=80&w=1080",
       "imageHint": "cleaning cart"
     },
     {
@@ -141,49 +141,49 @@
     {
       "id": "customization-cta",
       "description": "Custom textile design process",
-      "imageUrl": "https://images.unsplash.com/photo-1701964620877-5653b8a7280e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZXh0aWxlJTIwZGVzaWdufGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1701964620877-5653b8a7280e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZXh0aWxlJTIwZGVzaWdufGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "textile design"
     },
     {
       "id": "quality-banner",
       "description": "Textile factory quality inspection",
-      "imageUrl": "https://images.unsplash.com/photo-1526290766257-c015850e4629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1526290766257-c015850e4629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "textile factory"
     },
     {
       "id": "sustainability-banner",
       "description": "Hands holding a green sprout",
-      "imageUrl": "https://images.unsplash.com/photo-1492496913980-501348b61469?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHNwcm91dHxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1492496913980-501348b61469?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxncmVlbiUyMHNwcm91dHxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "green sprout"
     },
     {
       "id": "careers-banner",
       "description": "Diverse team collaborating in a modern office",
-      "imageUrl": "https://images.unsplash.com/photo-1573165706511-3ffde6ef1fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaXZlcnNlJTIwdGVhbXxlbnwwfHx8fDE3NjI5ODk1OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1573165706511-3ffde6ef1fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaXZlcnNlJTIwdGVhbXxlbnwwfHx8fDE3NjI5ODk1OTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "diverse team"
     },
     {
       "id": "downloads-banner",
       "description": "Person downloading a file on a laptop",
-      "imageUrl": "https://images.unsplash.com/photo-1550221997-0f417b27dd74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkb3dubG9hZCUyMGZpbGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1550221997-0f417b27dd74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkb3dubG9hZCUyMGZpbGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "download file"
     },
     {
       "id": "dining-linen",
       "description": "Elegant restaurant table setting",
-      "imageUrl": "https://images.unsplash.com/photo-1574923216693-3bdd71bf103a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXN0YXVyYW50JTIwdGFibGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1574923216693-3bdd71bf103a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXN0YXVyYW50JTIwdGFibGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "restaurant table"
     },
     {
       "id": "table-cloth",
       "description": "Close up of a table cloth",
-      "imageUrl": "https://images.unsplash.com/photo-1600294421265-c354b772e790?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0YWJsZSUyMGNsb3RofGVufDB8fHx8MTc2Mjk3Njg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1600294421265-c354b772e790?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0YWJsZSUyMGNsb3RofGVufDB8fHx8MTc2Mjk3Njg3NHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "table cloth"
     },
     {
       "id": "napkin",
       "description": "A folded dinner napkin",
-      "imageUrl": "https://images.unsplash.com/photo-1759124649780-304cce7bcb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkaW5uZXIlMjBuYXBraW58ZW58MHx8fHwxNzYzMDQ4OTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1759124649780-304cce7bcb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkaW5uZXIlMjBuYXBraW58ZW58MHx8fHwxNzYzMDQ4OTUzfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "dinner napkin"
     }
   ]
