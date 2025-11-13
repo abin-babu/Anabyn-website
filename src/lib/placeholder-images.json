@@ -2,9 +2,9 @@
   "placeholderImages": [
     {
       "id": "hero-1",
-      "description": "Textile factory showing rolls of fabric.",
-      "imageUrl": "https://images.unsplash.com/photo-1620756240243-f25b6d729864?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjA5ODA1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "textile factory"
+      "description": "A luxurious and comfortable hotel bed with plush pillows.",
+      "imageUrl": "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxob3RlbCUyMHJvb218ZW58MHx8fHwxNzYzOTUwNzY3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "luxury hotel"
     },
     {
       "id": "towel-terry",
@@ -57,7 +57,7 @@
     {
       "id": "uniform-tshirt",
       "description": "Custom branded t-shirts",
-      "imageUrl": "https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjB0LXNoaXJ0fGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjB0LXNoaXJ0fGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "custom t-shirt"
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "mattress-foam",
       "description": "High-density foam mattress",
-      "imageUrl": "https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb2FtJTIwbWF0dHJlc3N8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmb2FtJTIwbWF0dHJlc3N8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "foam mattress"
     },
     {
@@ -87,7 +87,7 @@
     {
       "id": "mattress-spring-2",
       "description": "Close up of pocket springs in a mattress",
-      "imageUrl": "https://images.unsplash.com/photo-1627515780209-f30ff2682542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYXR0cmVzcyUyMHNwcmluZ3xlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1627515780209-f30ff2682542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtYXR0cmVzcyUyMHNwcmluZ3xlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mattress spring"
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "chemical-cleaning",
       "description": "Industrial cleaning supplies",
-      "imageUrl": "https://images.unsplash.com/photo-1583947581924-860bda6a26df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbmluZyUyMHN1cHBsaWVzfGVufDB8fHx8MTc2MzAxMDMyN3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1583947581924-860bda6a26df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjbGVhbmluZyUyMHN1cHBsaWVzfGVufDB8fHx8MTc2MzAxMDMyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "cleaning supplies"
     },
     {
@@ -141,13 +141,13 @@
     {
       "id": "customization-cta",
       "description": "Custom textile design process",
-      "imageUrl": "https://images.unsplash.com/photo-1701964620877-5653b8a7280e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZXh0aWxlJTIwZGVzaWdufGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1701964620877-5653b8a7280e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHx0ZXh0aWxlJTIwZGVzaWdufGVufDB8fHx8MTc2MzA0ODk1Mnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "textile design"
     },
     {
       "id": "quality-banner",
       "description": "Textile factory quality inspection",
-      "imageUrl": "https://images.unsplash.com/photo-1526290766257-c015850e4629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1526290766257-c015850e4629?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx0ZXh0aWxlJTIwZmFjdG9yeXxlbnwwfHx8fDE3NjMwNDg5NTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "textile factory"
     },
     {
@@ -159,31 +159,31 @@
     {
       "id": "careers-banner",
       "description": "Diverse team collaborating in a modern office",
-      "imageUrl": "https://images.unsplash.com/photo-1573165706511-3ffde6ef1fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaXZlcnNlJTIwdGVhbXxlbnwwfHx8fDE3NjI5ODk1OTB8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1573165706511-3ffde6ef1fe3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxkaXZlcnNlJTIwdGVhbXxlbnwwfHx8fDE3NjI5ODk1OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "diverse team"
     },
     {
       "id": "downloads-banner",
       "description": "Person downloading a file on a laptop",
-      "imageUrl": "https://images.unsplash.com/photo-1550221997-0f417b27dd74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkb3dubG9hZCUyMGZpbGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1550221997-0f417b27dd74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkb3dubG9hZCUyMGZpbGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "download file"
     },
     {
       "id": "dining-linen",
       "description": "Elegant restaurant table setting",
-      "imageUrl": "https://images.unsplash.com/photo-1574923216693-3bdd71bf103a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXN0YXVyYW50JTIwdGFibGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1574923216693-3bdd71bf103a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXN0YXVyYW50JTIwdGFibGV8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "restaurant table"
     },
     {
       "id": "table-cloth",
       "description": "Close up of a table cloth",
-      "imageUrl": "https://images.unsplash.com/photo-1600294421265-c354b772e790?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0YWJsZSUyMGNsb3RofGVufDB8fHx8MTc2Mjk3Njg3NHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1600294421265-c354b772e790?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0YWJsZSUyMGNsb3RofGVufDB8fHx8MTc2Mjk3Njg3NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "table cloth"
     },
     {
       "id": "napkin",
       "description": "A folded dinner napkin",
-      "imageUrl": "https://images.unsplash.com/photo-1759124649780-304cce7bcb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkaW5uZXIlMjBuYXBraW58ZW58MHx8fHwxNzYzMDQ4OTUzfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1759124649780-304cce7bcb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkaW5uZXIlMjBuYXBraW58ZW58MHx8fHwxNzYzMDQ4OTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dinner napkin"
     }
   ]
