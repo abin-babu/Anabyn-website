@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { AnabynLogo } from '../anabyn-logo';
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -10,7 +11,7 @@ export function Footer() {
       <div className="container py-8">
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start gap-4">
-            <AnabynLogo width={16} height={16} />
+            <AnabynLogo width={24} height={24} />
             <p className="text-sm leading-loose text-muted-foreground">
               © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
             </p>
