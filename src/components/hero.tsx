@@ -38,8 +38,11 @@ export function Hero() {
           <h1 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight drop-shadow-lg max-w-4xl">
             Connecting India’s Manufacturing Power to Global Markets
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-2xl">
+          <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-3xl mx-auto">
             High-quality products. On-time delivery. World-class logistics.
+          </p>
+           <p className="mt-2 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-3xl mx-auto">
+            Backed by exclusive manufacturer alliances, we deliver guaranteed quality with unbeatable cost efficiency.
           </p>
           <div className="pointer-events-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
