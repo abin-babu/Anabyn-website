@@ -64,12 +64,10 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo width={48} height={48} />
-            <div className="flex flex-col">
+            <AnabynLogo width={40} height={40} />
+            <div className="flex items-center gap-2">
               <span className="font-bold text-lg leading-tight">Anabyn Global Ventures LLP</span>
-              <div className="flex items-center gap-1.5">
-                <IndianFlag />
-              </div>
+              <IndianFlag />
             </div>
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
