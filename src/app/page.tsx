@@ -1,9 +1,10 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Hero } from '@/components/hero';
-import { ProductGallery } from '@/components/product-gallery';
+import { FeaturedProducts } from '@/components/featured-products';
 import { WhyChooseUs } from '@/components/why-choose-us';
 import { Testimonials } from '@/components/testimonials';
+import { ProductCategoryShowcase } from '@/components/product-category-showcase';
 
 export default function Home() {
   return (
@@ -12,7 +13,8 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <WhyChooseUs />
-        <ProductGallery />
+        <ProductCategoryShowcase />
+        <FeaturedProducts />
         <Testimonials />
       </main>
       <Footer />
