@@ -1,4 +1,6 @@
 
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu, ChevronDown, Globe } from 'lucide-react';
@@ -13,6 +15,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
 } from '@/components/ui/dropdown-menu';
 import {
   Accordion,
@@ -86,9 +92,26 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {productNav.map((cat) => (
-                    <DropdownMenuItem key={cat.name} asChild>
-                        <Link href={cat.href}>{cat.name}</Link>
+                  cat.subCategories.length > 0 ? (
+                    <DropdownMenuSub key={cat.id}>
+                      <DropdownMenuSubTrigger>
+                        <Link href={cat.href} className="w-full text-left">{cat.name}</Link>
+                      </DropdownMenuSubTrigger>
+                      <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                          {cat.subCategories.map((sub) => (
+                            <DropdownMenuItem key={sub.id} asChild>
+                              <Link href={sub.href}>{sub.name}</Link>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuSubContent>
+                      </DropdownMenuPortal>
+                    </DropdownMenuSub>
+                  ) : (
+                    <DropdownMenuItem key={cat.id} asChild>
+                      <Link href={cat.href}>{cat.name}</Link>
                     </DropdownMenuItem>
+                  )
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
@@ -147,6 +170,7 @@ export function Header() {
                                             <Link href={cat.href} className="hover:underline">{cat.name}</Link>
                                         </SheetClose>
                                     </AccordionTrigger>
+                                    {cat.subCategories.length > 0 && (
                                     <AccordionContent className="pl-4">
                                         {cat.subCategories.map(sub => (
                                             <SheetClose asChild key={sub.name}>
@@ -154,6 +178,7 @@ export function Header() {
                                             </SheetClose>
                                         ))}
                                     </AccordionContent>
+                                    )}
                                 </AccordionItem>
                              </Accordion>
                         ))}

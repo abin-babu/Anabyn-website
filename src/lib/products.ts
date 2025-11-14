@@ -14,22 +14,22 @@ export const categories: Category[] = [
     { id: 'hotel-towels', name: 'Hotel Towels & Bath Linen', slug: 'hotel-towels', parentId: 'hospitality', imageUrl: getImageUrl('towel-terry-stack') },
     { id: 'hotel-furnishings', name: 'Curtains, Upholstery & Soft Furnishings', slug: 'hotel-furnishings', parentId: 'hospitality', imageUrl: getImageUrl('bedding-pillows') },
     { id: 'guest-amenities', name: 'Guest Amenities & Toiletries', slug: 'guest-amenities', parentId: 'hospitality', imageUrl: getImageUrl('chemical-laundry') },
-    { id: 'hotel-accessories', name: 'Hotel Room Accessories', slug: 'hotel-accessories', parentId: 'hospitality', imageUrl: 'https://picsum.photos/seed/kettle/600/400' },
-    { id: 'hotel-furniture', name: 'Hotel Furniture', slug: 'hotel-furniture', parentId: 'hospitality', imageUrl: 'https://picsum.photos/seed/sofa/600/400' },
+    { id: 'hotel-accessories', name: 'Hotel Room Accessories', slug: 'hotel-accessories', parentId: 'hospitality', imageUrl: 'https://images.unsplash.com/photo-1621295399999-9370b3a3d53b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGtldHRsZXxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'hotel-furniture', name: 'Hotel Furniture', slug: 'hotel-furniture', parentId: 'hospitality', imageUrl: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2ZhfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080' },
     { id: 'restaurant-supplies', name: 'Restaurant & F&B Supplies', slug: 'restaurant-supplies', parentId: 'hospitality', imageUrl: getImageUrl('dining-linen') },
     { id: 'housekeeping-supplies', name: 'Housekeeping & Laundry Supplies', slug: 'housekeeping-supplies', parentId: 'hospitality', imageUrl: getImageUrl('cleaning-cart') },
     { id: 'hospitality-uniforms', name: 'Uniforms & Workwear (Hospitality)', slug: 'hospitality-uniforms', parentId: 'hospitality', imageUrl: getImageUrl('uniform-corporate') },
 
     // Medical Sub-categories
-    { id: 'medical-consumables', name: 'Medical Consumables & Disposables', slug: 'medical-consumables', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/syringe/600/400' },
-    { id: 'medical-devices', name: 'Medical Devices & Equipment', slug: 'medical-devices', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/monitor/600/400' },
-    { id: 'surgical-instruments', name: 'Surgical Instruments', slug: 'surgical-instruments', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/forceps/600/400' },
-    { id: 'orthopedic-rehab', name: 'Orthopedic & Rehabilitation Products', slug: 'orthopedic-rehab', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/brace/600/400' },
-    { id: 'hospital-furniture', name: 'Hospital Furniture', slug: 'hospital-furniture', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/hospital-bed/600/400' },
-    { id: 'infection-control', name: 'Infection Control & Sterilization', slug: 'infection-control', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/disinfectant/600/400' },
-    { id: 'medical-textiles', name: 'Medical Textiles & Hospital Linens', slug: 'medical-textiles', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/scrubs/600/400' },
-    { id: 'lab-supplies', name: 'Laboratory Supplies', slug: 'lab-supplies', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/beaker/600/400' },
-    { id: 'emergency-first-aid', name: 'Emergency & First Aid', slug: 'emergency-first-aid', parentId: 'medical', imageUrl: 'https://picsum.photos/seed/first-aid/600/400' },
+    { id: 'medical-consumables', name: 'Medical Consumables & Disposables', slug: 'medical-consumables', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1631804959147-75a1b5a837e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzeXJpbmdlfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'medical-devices', name: 'Medical Devices & Equipment', slug: 'medical-devices', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1579684385127-6c17937c4635?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZWRpY2FsJTIwbW9uaXRvcnxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'surgical-instruments', name: 'Surgical Instruments', slug: 'surgical-instruments', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1542312574-55db74e54884?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZm9yY2Vwc3xlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'orthopedic-rehab', name: 'Orthopedic & Rehabilitation Products', slug: 'orthopedic-rehab', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1620295116790-a7d0130089e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrbmVlJTIwYnJhY2V8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'hospital-furniture', name: 'Hospital Furniture', slug: 'hospital-furniture', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1584983191144-7734c3527a6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMGJlZHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'infection-control', name: 'Infection Control & Sterilization', slug: 'infection-control', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1616788417639-656858548a33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWQxJTIwZGlzaW5mZWN0YW50fGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'medical-textiles', name: 'Medical Textiles & Hospital Linens', slug: 'medical-textiles', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibHVlJTIwc2NydWJzfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'lab-supplies', name: 'Laboratory Supplies', slug: 'lab-supplies', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1579165466949-5536a5356c35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYWIlMjBiZWFrZXJ8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080' },
+    { id: 'emergency-first-aid', name: 'Emergency & First Aid', slug: 'emergency-first-aid', parentId: 'medical', imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXJzdCUyMGFpZCUyMGtpdHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080' },
 ];
 
 
@@ -155,7 +155,7 @@ export const products: Product[] = [
         name: 'Hotel Blackout & Sheer Curtains',
         categoryId: 'hotel-furnishings',
         description: 'High-quality blackout and sheer curtains. Blackout options offer 70-100% light blocking with a 3-pass coating. Made from polyester, cotton, or FR-treated fabrics, compliant with international safety standards.',
-        images: ['https://picsum.photos/seed/curtain/800/600'],
+        images: ['https://images.unsplash.com/photo-1620626334238-6629b35a788c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb29tJTIwY3VydGFpbnxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: '70-100% Blackout, FR-Treated Options',
         specifications: {
             fabric: 'Polyester, cotton, blends or FR-treated fabrics',
@@ -173,7 +173,7 @@ export const products: Product[] = [
         name: 'Upholstery, Cushion Covers & Throws',
         categoryId: 'hotel-furnishings',
         description: 'Durable upholstery fabrics and decorative soft furnishings like cushion covers and throws to complement hotel interiors.',
-        images: ['https://picsum.photos/seed/cushion/800/600'],
+        images: ['https://images.unsplash.com/photo-1617103994274-c335532b35a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGN1c2hpb258ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'High Martindale Rating, Custom Designs',
         specifications: {
             fabric: 'Wide range of commercial-grade fabrics',
@@ -213,7 +213,7 @@ export const products: Product[] = [
         name: 'Room Trays, Bins & Kettles',
         categoryId: 'hotel-accessories',
         description: 'A selection of durable and stylish in-room accessories including service trays, waste bins, and electric kettles, designed for heavy hotel use.',
-        images: ['https://picsum.photos/seed/kettle-tray/800/600'],
+        images: ['https://images.unsplash.com/photo-1621295399999-9370b3a3d53b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGtldHRsZXxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Faux Leather, SS, Wood; Scratch-Resistant',
         specifications: {
             materials: 'Faux leather, stainless steel, wood, melamine, ABS',
@@ -230,7 +230,7 @@ export const products: Product[] = [
         name: 'Desk Accessories & Folders',
         categoryId: 'hotel-accessories',
         description: 'Coordinated desk accessories including tissue box covers, welcome trays, folder sets, and more to create a professional and organized guest experience.',
-        images: ['https://picsum.photos/seed/desk-set/800/600'],
+        images: ['https://images.unsplash.com/photo-1593345378735-96f35d1ea7a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGRlc2slMjBzZXR8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Faux Leather, Wood; Embossed Logos',
         specifications: {
             materials: 'Faux leather, wood, or other custom materials',
@@ -301,7 +301,7 @@ export const products: Product[] = [
         name: 'Buffetware & Kitchenware',
         categoryId: 'restaurant-supplies',
         description: 'Comprehensive range of buffet and kitchen supplies, including food-grade SS 304 chafing dishes, standard GN pans, and serving trays.',
-        images: ['https://picsum.photos/seed/buffet/800/600'],
+        images: ['https://images.unsplash.com/photo-1517840933437-c42d2b168645?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxidWZmZXQlMjBmb29kfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'SS 304 Chafing Dishes, GN Pans',
         specifications: {
             chafingDishes: 'Food-grade SS 304, robust hinges, fuel/electric compatible',
@@ -360,7 +360,7 @@ export const products: Product[] = [
         name: 'Syringes, Needles & IV Sets',
         categoryId: 'medical-consumables',
         description: 'Sterile, single-use syringes, needles, IV cannula, and infusion sets. Manufactured in ISO 13485 facilities, CE marked and/or USFDA registered where applicable for utmost safety.',
-        images: ['https://picsum.photos/seed/syringe-pack/800/600'],
+        images: ['https://images.unsplash.com/photo-1631804959147-75a1b5a837e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzeXJpbmdlfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Sterile, ISO 13485, CE/FDA Marked',
         specifications: {
             standards: 'ISO 13485 manufacturer, CE marking / USFDA registration where applicable',
@@ -377,7 +377,7 @@ export const products: Product[] = [
         name: 'Surgical & Examination Gloves',
         categoryId: 'medical-consumables',
         description: 'High-quality latex, nitrile, or vinyl gloves for surgical and examination purposes. Available powdered or powder-free with low-protein content to minimize allergic reactions.',
-        images: ['https://picsum.photos/seed/gloves/800/600'],
+        images: ['https://images.unsplash.com/photo-1606950669720-5f4b34856f6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMGdsb3Zlc3xlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Latex/Nitrile/Vinyl, Powder-Free Options',
         specifications: {
             material: 'Latex/Nitrile/Vinyl',
@@ -396,7 +396,7 @@ export const products: Product[] = [
         name: 'Patient Monitors, ECG & Diagnostic Devices',
         categoryId: 'medical-devices',
         description: 'Reliable patient monitors, ECG machines, nebulizers, and diagnostic devices (BP apparatus, thermometers) with CE/USFDA approvals. Factory calibrated with clear user manuals and warranty.',
-        images: ['https://picsum.photos/seed/ecg/800/600'],
+        images: ['https://images.unsplash.com/photo-1579684385127-6c17937c4635?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZWRpY2FsJTIwbW9uaXRvcnxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'CE/USFDA Approved, Calibrated, Warranty',
         specifications: {
             regulatory: 'CE / USFDA / local approvals as per target market',
@@ -416,7 +416,7 @@ export const products: Product[] = [
         name: 'Surgical Instruments',
         categoryId: 'surgical-instruments',
         description: 'General and specialized surgical instruments made from high-grade stainless steel. Corrosion-resistant with controlled hardness for sharpness and durability. Sourced from ISO 13485 facilities.',
-        images: ['https://picsum.photos/seed/surgical-set/800/600'],
+        images: ['https://images.unsplash.com/photo-1588776848 nascosto?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMHNldHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'High-Grade SS, ISO 7153-1',
         specifications: {
             material: 'High-grade stainless steel (e.g., 410/420/440 or as required)',
@@ -436,7 +436,7 @@ export const products: Product[] = [
         name: 'Orthopedic & Rehabilitation Aids',
         categoryId: 'orthopedic-rehab',
         description: 'A range of external supports (braces, splints), walking aids (crutches, walkers), and wheelchairs. Designed with medical-grade, hypoallergenic materials for patient comfort and safety.',
-        images: ['https://picsum.photos/seed/wheelchair/800/600'],
+        images: ['https://images.unsplash.com/photo-1616422285852-2430335f6a90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGVlbGNoYWlyfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Medical-Grade Materials, Ergonomic Design',
         specifications: {
             materials: 'Medical-grade metals & polymers; hypoallergenic materials for contact surfaces',
@@ -454,7 +454,7 @@ export const products: Product[] = [
         name: 'Hospital Beds (ICU, Fowler)',
         categoryId: 'hospital-furniture',
         description: 'Durable ICU and Fowler beds with MS/SS framework and epoxy powder coating. Load capacity tested for 150-250 kg, featuring smooth crank or electric motor mechanisms.',
-        images: ['https://picsum.photos/seed/hospital-bed-2/800/600'],
+        images: ['https://images.unsplash.com/photo-1584983191144-7734c3527a6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMGJlZHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: '150-250kg Capacity, Crank/Electric',
         specifications: {
             frame: 'MS/SS framework; epoxy powder-coated or SS 304/202',
@@ -474,7 +474,7 @@ export const products: Product[] = [
         name: 'Disinfectants & Sterilization Products',
         categoryId: 'infection-control',
         description: 'Broad-spectrum disinfectants (surface, instrument, hand rubs) and sterilization supplies like pouches and wraps. Efficacy tested to international standards, with MSDS available.',
-        images: ['https://picsum.photos/seed/disinfectant-bottles/800/600'],
+        images: ['https://images.unsplash.com/photo-1584362142279-797695303450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaXNpbmZlY3RhbnQlMjBib3R0bGVzfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Broad-Spectrum, Efficacy Tested, MSDS Available',
         specifications: {
             chemicalComposition: 'Clearly declared; broad-spectrum efficacy (bacteria, virus, fungi)',
@@ -493,7 +493,7 @@ export const products: Product[] = [
         name: 'Medical Textiles (Scrubs, Gowns, Drapes)',
         categoryId: 'medical-textiles',
         description: 'Reusable and disposable medical textiles including scrub suits, patient gowns, and OT drapes. Reusable fabrics are tested for high wash durability, while disposable options offer fluid resistance.',
-        images: ['https://picsum.photos/seed/scrubs-stack/800/600'],
+        images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibHVlJTIwc2NydWJzfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'High Wash Durability, Fluid-Resistant',
         specifications: {
             reusableTextiles: 'Fabric: Cotton, poly-cotton, or barrier fabrics; GSM: 120–200 GSM; High wash durability (50–100+ cycles); color fastness; low lint',
@@ -511,7 +511,7 @@ export const products: Product[] = [
         name: 'Lab Glassware & Plasticware',
         categoryId: 'lab-supplies',
         description: 'A range of laboratory supplies including borosilicate glassware (beakers, flasks) and virgin medical-grade plasticware (pipette tips, petri dishes). Packaged for cleanliness with lot traceability.',
-        images: ['https://picsum.photos/seed/lab-beakers/800/600'],
+        images: ['https://images.unsplash.com/photo-1579165466949-5536a5356c35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYWIlMjBiZWFrZXJ8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Borosilicate Glass, Medical-Grade Plastic',
         specifications: {
             glassware: 'Borosilicate glass; thermal shock resistance; calibration marks where applicable',
@@ -529,7 +529,7 @@ export const products: Product[] = [
         name: 'Emergency & First Aid Kits',
         categoryId: 'emergency-first-aid',
         description: 'Comprehensive first aid kits for workplace, vehicle, or home use. Contents can be customized to meet specific country regulations. Also includes stretchers, spine boards, and splints.',
-        images: ['https://picsum.photos/seed/first-aid-box/800/600'],
+        images: ['https://images.unsplash.com/photo-1576086213369-97a306d36557?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXJzdCUyMGFpZCUyMGtpdHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Customizable Contents, Durable Cases',
         specifications: {
             kitContents: 'As per client/country regulation (e.g. workplace, vehicle, home kits)',
