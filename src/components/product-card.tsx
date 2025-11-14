@@ -4,13 +4,18 @@ import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Phone, Search } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { categories } from '@/lib/products';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export function ProductCard({ product }: { product: Product }) {
   const category = categories.find(c => c.id === product.categoryId);
   const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
+
+  const whatsappNumber = "919495613121";
+  const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
@@ -44,8 +49,13 @@ export function ProductCard({ product }: { product: Product }) {
               View Details <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
-          <Button asChild variant="secondary">
+           <Button asChild variant="outline">
             <Link href={`/inquiry?productId=${product.id}`}>Quick Inquiry</Link>
+          </Button>
+          <Button asChild variant="secondary">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp className="mr-2 h-5 w-5" /> Chat on WhatsApp
+            </a>
           </Button>
         </div>
       </div>
