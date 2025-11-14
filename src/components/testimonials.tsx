@@ -5,19 +5,19 @@ const testimonials = [
     {
         quote: "Anabyn's attention to detail and commitment to quality is unmatched. They are our go-to partner for all our hotel linen needs.",
         name: "Director of Procurement",
-        company: "Marriott Hotels, Dubai",
+        company: "Leading Hotel Group, Dubai",
         logoUrl: "/images/logo-placeholder.png"
     },
     {
         quote: "The quality of the uniforms and the efficiency of their export process have made them an invaluable part of our supply chain.",
         name: "Supply Chain Manager",
-        company: "Accor Group, APAC",
+        company: "Global Hospitality Brand, APAC",
         logoUrl: "/images/logo-placeholder.png"
     },
     {
         quote: "Reliable, professional, and always on time. Anabyn Global Ventures truly understands the needs of the international hospitality market.",
         name: "General Manager",
-        company: "Hilton Hotels, London",
+        company: "5-Star Hotel, London",
         logoUrl: "/images/logo-placeholder.png"
     }
 ]
@@ -41,10 +41,6 @@ export function Testimonials() {
                                     "{testimonial.quote}"
                                 </blockquote>
                                 <div className="mt-4 flex items-center">
-                                    {/* Placeholder for a company logo */}
-                                    {/* <div className="flex-shrink-0 mr-4">
-                                        <Image src={testimonial.logoUrl} alt={`${testimonial.company} logo`} width={40} height={40} className="rounded-full"/>
-                                    </div> */}
                                     <div>
                                         <p className="font-semibold">{testimonial.name}</p>
                                         <p className="text-sm text-muted-foreground">{testimonial.company}</p>
