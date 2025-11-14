@@ -88,6 +88,12 @@ export default function ProductDetailPage({ params }: Props) {
                 <CarouselPrevious className="left-2" />
                 <CarouselNext className="right-2" />
               </Carousel>
+              {product.safetyInfo && (
+                  <div className="mt-4 flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-green-600" />
+                    <span className="text-sm text-muted-foreground">{product.safetyInfo}</span>
+                  </div>
+              )}
             </div>
             <div className="flex flex-col gap-6">
               <div>
@@ -98,6 +104,24 @@ export default function ProductDetailPage({ params }: Props) {
                 <h1 className="text-3xl lg:text-4xl font-bold font-headline">{product.name}</h1>
               </div>
               <p className="text-muted-foreground">{product.description}</p>
+              
+              <div className="flex flex-wrap gap-2">
+                <Button asChild>
+                  <Link href={`/inquiry?productId=${product.id}`}>Request a Quote</Link>
+                </Button>
+                <Button asChild variant="secondary">
+                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <MessageSquare className="mr-2 h-4 w-4" /> Chat on WhatsApp
+                  </a>
+                </Button>
+                {product.specSheetUrl && (
+                  <Button asChild variant="outline">
+                    <a href={product.specSheetUrl} download>
+                      <Download className="mr-2 h-4 w-4" /> Download Spec Sheet
+                    </a>
+                  </Button>
+                )}
+              </div>
 
               <Card>
                 <CardHeader>
@@ -105,46 +129,39 @@ export default function ProductDetailPage({ params }: Props) {
                 </CardHeader>
                 <CardContent>
                     <ul className="space-y-2 text-sm text-muted-foreground">
-                        {product.specifications.material && <li className="flex justify-between items-start"><strong>Material:</strong> <span className="text-right">{product.specifications.material}</span></li>}
-                        {product.specifications.gsm && <li className="flex justify-between items-start"><strong>GSM:</strong> <span className="text-right">{product.specifications.gsm}</span></li>}
-                        {product.specifications.tc && <li className="flex justify-between items-start"><strong>Thread Count:</strong> <span className="text-right">{product.specifications.tc}</span></li>}
-                        {product.specifications.size && <li className="flex justify-between items-start"><strong>Size:</strong> <span className="text-right">{product.specifications.size}</span></li>}
-                        {product.specifications.color && <li className="flex justify-between items-start"><strong>Color:</strong> <span className="text-right">{product.specifications.color}</span></li>}
-                        {product.specifications.features && <li className="flex justify-between items-start"><strong>Features:</strong> <span className="text-right">{product.specifications.features}</span></li>}
-                        {product.specifications.fabric && <li className="flex justify-between items-start"><strong>Fabric:</strong> <span className="text-right">{product.specifications.fabric}</span></li>}
-                        {product.specifications.construction && <li className="flex justify-between items-start"><strong>Construction:</strong> <span className="text-right">{product.specifications.construction}</span></li>}
-                        {product.specifications.fasteners && <li className="flex justify-between items-start"><strong>Fasteners:</strong> <span className="text-right">{product.specifications.fasteners}</span></li>}
-                        {product.specifications.finishing && <li className="flex justify-between items-start"><strong>Finishing:</strong> <span className="text-right">{product.specifications.finishing}</span></li>}
-                        {product.specifications.colorFastness && <li className="flex justify-between items-start"><strong>Color Fastness:</strong> <span className="text-right">{product.specifications.colorFastness}</span></li>}
-                        {product.specifications.packaging && <li className="flex justify-between items-start"><strong>Packaging:</strong> <span className="text-right">{product.specifications.packaging}</span></li>}
-                        {product.specifications.absorbency && <li className="flex justify-between items-start"><strong>Absorbency:</strong> <span className="text-right">{product.specifications.absorbency}</span></li>}
-                        {product.specifications.shrinkage && <li className="flex justify-between items-start"><strong>Shrinkage:</strong> <span className="text-right">{product.specifications.shrinkage}</span></li>}
-                        {product.specifications.bathrobes && <li className="flex justify-between items-start"><strong>Bathrobes:</strong> <span className="text-right">{product.specifications.bathrobes}</span></li>}
-                        {product.specifications.slippers && <li className="flex justify-between items-start"><strong>Slippers:</strong> <span className="text-right">{product.specifications.slippers}</span></li>}
-                        {product.specifications.blackout && <li className="flex justify-between items-start"><strong>Blackout:</strong> <span className="text-right">{product.specifications.blackout}</span></li>}
-                        {product.specifications.frStandards && <li className="flex justify-between items-start"><strong>FR Standards:</strong> <span className="text-right">{product.specifications.frStandards}</span></li>}
-                        {product.specifications.stitching && <li className="flex justify-between items-start"><strong>Stitching:</strong> <span className="text-right">{product.specifications.stitching}</span></li>}
-                        {product.specifications.formulation && <li className="flex justify-between items-start"><strong>Formulation:</strong> <span className="text-right">{product.specifications.formulation}</span></li>}
-                        {product.specifications.compliance && <li className="flex justify-between items-start"><strong>Compliance:</strong> <span className="text-right">{product.specifications.compliance}</span></li>}
-                        {product.specifications.fragrance && <li className="flex justify-between items-start"><strong>Fragrance:</strong> <span className="text-right">{product.specifications.fragrance}</span></li>}
-                        {product.specifications.labeling && <li className="flex justify-between items-start"><strong>Labeling:</strong> <span className="text-right">{product.specifications.labeling}</span></li>}
-                        {product.specifications.soaps && <li className="flex justify-between items-start"><strong>Soaps:</strong> <span className="text-right">{product.specifications.soaps}</span></li>}
-                        {product.specifications.finish && <li className="flex justify-between items-start"><strong>Finish:</strong> <span className="text-right">{product.specifications.finish}</span></li>}
-                        {product.specifications.hardware && <li className="flex justify-between items-start"><strong>Hardware:</strong> <span className="text-right">{product.specifications.hardware}</span></li>}
-                        {product.specifications.durability && <li className="flex justify-between items-start"><strong>Durability:</strong> <span className="text-right">{product.specifications.durability}</span></li>}
-                        {product.specifications.frame && <li className="flex justify-between items-start"><strong>Frame:</strong> <span className="text-right">{product.specifications.frame}</span></li>}
-                        {product.specifications.foam && <li className="flex justify-between items-start"><strong>Foam:</strong> <span className="text-right">{product.specifications.foam}</span></li>}
-                        {product.specifications.upholstery && <li className="flex justify-between items-start"><strong>Upholstery:</strong> <span className="text-right">{product.specifications.upholstery}</span></li>}
-                        {product.specifications.mattresses && <li className="flex justify-between items-start"><strong>Mattresses:</strong> <span className="text-right">{product.specifications.mattresses}</span></li>}
-                        {product.specifications.porcelain && <li className="flex justify-between items-start"><strong>Porcelain:</strong> <span className="text-right">{product.specifications.porcelain}</span></li>}
-                        {product.specifications.cutlery && <li className="flex justify-between items-start"><strong>Cutlery:</strong> <span className="text-right">{product.specifications.cutlery}</span></li>}
-                        {product.specifications.glassware && <li className="flex justify-between items-start"><strong>Glassware:</strong> <span className="text-right">{product.specifications.glassware}</span></li>}
-                        {product.specifications.chafingDishes && <li className="flex justify-between items-start"><strong>Chafing Dishes:</strong> <span className="text-right">{product.specifications.chafingDishes}</span></li>}
-                        {product.specifications.gnPans && <li className="flex justify-between items-start"><strong>GN Pans:</strong> <span className="text-right">{product.specifications.gnPans}</span></li>}
-                        {product.specifications.certifications && <li className="flex justify-between items-start"><strong>Certifications:</strong> <span className="text-right">{product.specifications.certifications}</span></li>}
-                        {product.specifications.trolleys && <li className="flex justify-between items-start"><strong>Trolleys:</strong> <span className="text-right">{product.specifications.trolleys}</span></li>}
-                        {product.specifications.cleaningTools && <li className="flex justify-between items-start"><strong>Cleaning Tools:</strong> <span className="text-right">{product.specifications.cleaningTools}</span></li>}
-                        {product.specifications.chemicals && <li className="flex justify-between items-start"><strong>Chemicals:</strong> <span className="text-right">{product.specifications.chemicals}</span></li>}
-                        {product.specifications.design && <li className="flex justify-between items-start"><strong>Design:</strong> <span className="text-right">{product.specifications.design}</span></li>}
-                        {product.specifications.standards && <li className="flex justify-between items-start"><strong>Standards:</strong> <span className="text-right">{product.specifications.standards}</span></li>}
-                        {product.specifications.sterility && <li className="flex justify-between items-start"><strong>Sterility:</strong> <span className="text-right">{product.specifications.sterility}</span></li>
+                        {Object.entries(product.specifications).map(([key, value]) => {
+                          if (!value) return null;
+                          const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+                          return (
+                            <li key={key} className="flex justify-between items-start">
+                              <strong>{formattedKey}:</strong> <span className="text-right">{value}</span>
+                            </li>
+                          );
+                        })}
+                    </ul>
+                </CardContent>
+              </Card>
+
+              {product.customizationOptions && product.customizationOptions.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-lg">Customization Options</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      {product.customizationOptions.map(option => (
+                        <Badge key={option} variant="outline">{option}</Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}

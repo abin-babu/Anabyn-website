@@ -55,7 +55,9 @@ export const products: Product[] = [
             packaging: 'Folded, polybag with labels; export cartons, custom branding',
         },
         customizationOptions: ['Thread Count', 'Fabric Blend', 'Size', 'Packaging'],
-        moq: '100 sets'
+        moq: '100 sets',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-duvet-covers',
@@ -74,7 +76,9 @@ export const products: Product[] = [
             finishing: 'Soft hand-feel, azo-free dyes',
         },
         customizationOptions: ['Fabric', 'Thread Count', 'Closure Type', 'Size', 'Duvet Filling'],
-        moq: '100 units'
+        moq: '100 units',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-pillows-protectors',
@@ -90,7 +94,9 @@ export const products: Product[] = [
             size: 'Standard and custom sizes available'
         },
         customizationOptions: ['Pillow Firmness', 'Topper Thickness', 'Size'],
-        moq: '100 units'
+        moq: '100 units',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
 
     // 2. Hotel Towels & Bath Linen
@@ -111,7 +117,9 @@ export const products: Product[] = [
             colorFastness: 'Suitable for hot water industrial laundering',
         },
         customizationOptions: ['GSM', 'Yarn Type', 'Size', 'Embroidery'],
-        moq: '200 units'
+        moq: '200 units',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-pool-towels',
@@ -128,7 +136,9 @@ export const products: Product[] = [
             construction: 'Robust double-stitched hems'
         },
         customizationOptions: ['Color', 'Stripe Pattern', 'Embroidery'],
-        moq: '200 units'
+        moq: '200 units',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-bathrobes-slippers',
@@ -145,7 +155,9 @@ export const products: Product[] = [
             slippers: 'Non-slip sole, closed or open toe; disposable or reusable',
         },
         customizationOptions: ['Fabric Type', 'Embroidery', 'Piping', 'Slipper Style'],
-        moq: '50 units'
+        moq: '50 units',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
     
     // 3. Curtains, Upholstery & Soft Furnishings
@@ -165,7 +177,9 @@ export const products: Product[] = [
             stitching: 'Overlocked edges, uniform pleats, reinforced hooks/eyelets',
         },
         customizationOptions: ['Fabric', 'Color', 'Size', 'Pleat Style', 'Light Blocking %'],
-        moq: '50 pairs'
+        moq: '50 pairs',
+        safetyInfo: 'FR certification available on request',
+        specSheetUrl: '#'
     },
      {
         id: 'upholstery-cushions-throws',
@@ -181,7 +195,8 @@ export const products: Product[] = [
             design: 'Custom designs, colors, and sizes available for cushions and throws',
         },
         customizationOptions: ['Fabric Type', 'Design', 'Color'],
-        moq: '100 meters (fabric), 100 units (covers/throws)'
+        moq: '100 meters (fabric), 100 units (covers/throws)',
+        specSheetUrl: '#'
     },
 
     // 4. Guest Amenities & Toiletries
@@ -203,7 +218,8 @@ export const products: Product[] = [
             kitContents: 'Dental Kit, Shaving Kit, Vanity Kit, Sewing Kit, Shower Caps, Loofahs, Combs',
         },
         customizationOptions: ['Fragrance', 'Packaging Design', 'Kit Contents', 'Private Labeling'],
-        moq: '1000 kits'
+        moq: '1000 kits',
+        specSheetUrl: '#'
     },
 
     // 5. Hotel Room Accessories
@@ -216,13 +232,14 @@ export const products: Product[] = [
         images: ['https://images.unsplash.com/photo-1621295399999-9370b3a3d53b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGtldHRsZXxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Faux Leather, SS, Wood; Scratch-Resistant',
         specifications: {
-            materials: 'Faux leather, stainless steel, wood, melamine, ABS',
+            material: 'Faux leather, stainless steel, wood, melamine, ABS',
             finish: 'Scratch-resistant, stain-resistant, easy to clean',
             hardware: 'Rust-free metal parts; smooth edges; no sharp corners',
             durability: 'Designed for heavy hotel use; impact-resistant where needed',
         },
         customizationOptions: ['Material', 'Color', 'Logo Branding'],
-        moq: '100 units'
+        moq: '100 units',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-desk-accessories',
@@ -233,13 +250,14 @@ export const products: Product[] = [
         images: ['https://images.unsplash.com/photo-1593345378735-96f35d1ea7a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGRlc2slMjBzZXR8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Faux Leather, Wood; Embossed Logos',
         specifications: {
-            materials: 'Faux leather, wood, or other custom materials',
+            material: 'Faux leather, wood, or other custom materials',
             finish: 'High-quality stitching and finish',
             color: 'PMS color matching available',
             branding: 'Embossed/debossed or printed logos',
         },
         customizationOptions: ['Material', 'Set Composition', 'Logo Branding'],
-        moq: '100 sets'
+        moq: '100 sets',
+        specSheetUrl: '#'
     },
     
     // 6. Hotel Furniture
@@ -259,7 +277,8 @@ export const products: Product[] = [
             compliance: 'FR, structural stability, weight limits clearly stated',
         },
         customizationOptions: ['Size', 'Mattress Type', 'Headboard Design', 'Upholstery'],
-        moq: '10 units'
+        moq: '10 units',
+        specSheetUrl: '#'
     },
     {
         id: 'hotel-case-goods',
@@ -275,7 +294,8 @@ export const products: Product[] = [
             upholstery: 'Commercial-grade fabric or faux leather with high abrasion resistance',
         },
         customizationOptions: ['Design', 'Finish', 'Upholstery Fabric'],
-        moq: '10 units'
+        moq: '10 units',
+        specSheetUrl: '#'
     },
 
     // 7. Restaurant & F&B Supplies
@@ -293,7 +313,8 @@ export const products: Product[] = [
             certifications: 'Food contact safety compliant (EU/US standards where applicable)',
         },
         customizationOptions: ['Design Pattern', 'Cutlery Finish', 'Logo on Porcelain'],
-        moq: '100 sets'
+        moq: '100 sets',
+        specSheetUrl: '#'
     },
     {
         id: 'restaurant-buffetware',
@@ -309,7 +330,8 @@ export const products: Product[] = [
             glassware: 'Tempered or toughened for hotel use; clarity and break resistance',
         },
         customizationOptions: ['Chafing Dish Capacity', 'GN Pan Sizes'],
-        moq: '10 units'
+        moq: '10 units',
+        specSheetUrl: '#'
     },
 
     // 8. Housekeeping & Laundry Supplies
@@ -328,7 +350,8 @@ export const products: Product[] = [
             compliance: 'Biodegradable/eco certifications if applicable; non-corrosive where needed',
         },
         customizationOptions: ['Trolley Configuration', 'Color'],
-        moq: '5 units'
+        moq: '5 units',
+        specSheetUrl: '#'
     },
 
     // 9. Uniforms & Workwear (Hospitality)
@@ -348,7 +371,9 @@ export const products: Product[] = [
             design: 'Custom branding, piping, embroidery options',
         },
         customizationOptions: ['Fabric Blend', 'Color', 'Logo Embroidery', 'Design'],
-        moq: '50 sets'
+        moq: '50 sets',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
 
     // --- MEDICAL SUPPLIES ---
@@ -369,7 +394,8 @@ export const products: Product[] = [
             packaging: 'Sterile pouches, peelable, with clear IFUs',
         },
         customizationOptions: ['Gauge Size', 'Length', 'Packaging Volume'],
-        moq: '10,000 units'
+        moq: '10,000 units',
+        specSheetUrl: '#'
     },
     {
         id: 'surgical-examination-gloves',
@@ -386,7 +412,8 @@ export const products: Product[] = [
             biocompatibility: 'Tested as per ISO 10993',
         },
         customizationOptions: ['Material', 'Size', 'Powdered/Powder-Free'],
-        moq: '1 case'
+        moq: '1 case',
+        specSheetUrl: '#'
     },
 
     // 2. Medical Devices & Equipment
@@ -406,7 +433,8 @@ export const products: Product[] = [
             warranty: 'Typically 1–2 years; service support assurances',
         },
         customizationOptions: ['Language Support', 'Accessory Packs'],
-        moq: '1 unit'
+        moq: '1 unit',
+        specSheetUrl: '#'
     },
 
     // 3. Surgical Instruments
@@ -416,7 +444,7 @@ export const products: Product[] = [
         name: 'Surgical Instruments',
         categoryId: 'surgical-instruments',
         description: 'General and specialized surgical instruments made from high-grade stainless steel. Corrosion-resistant with controlled hardness for sharpness and durability. Sourced from ISO 13485 facilities.',
-        images: ['https://images.unsplash.com/photo-1588776848 nascosto?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMHNldHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
+        images: ['https://images.unsplash.com/photo-1588776848048-c8543b3bfa34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMHNldHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'High-Grade SS, ISO 7153-1',
         specifications: {
             material: 'High-grade stainless steel (e.g., 410/420/440 or as required)',
@@ -426,7 +454,8 @@ export const products: Product[] = [
             packaging: 'Individually packed or set packed in trays; labeled with lot/batch no.',
         },
         customizationOptions: ['Instrument Set Composition', 'Finish'],
-        moq: '1 set'
+        moq: '1 set',
+        specSheetUrl: '#'
     },
 
     // 4. Orthopedic & Rehabilitation Products
@@ -439,12 +468,13 @@ export const products: Product[] = [
         images: ['https://images.unsplash.com/photo-1616422285852-2430335f6a90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGVlbGNoYWlyfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080'],
         shortSpecs: 'Medical-Grade Materials, Ergonomic Design',
         specifications: {
-            materials: 'Medical-grade metals & polymers; hypoallergenic materials for contact surfaces',
+            material: 'Medical-grade metals & polymers; hypoallergenic materials for contact surfaces',
             loadCapacity: 'Clearly stated and tested (e.g. 100–120 kg)',
             design: 'Adjustable, ergonomic, padded where required',
         },
         customizationOptions: ['Size', 'Adjustability Features'],
-        moq: '10 units'
+        moq: '10 units',
+        specSheetUrl: '#'
     },
 
     // 5. Hospital Furniture
@@ -464,7 +494,8 @@ export const products: Product[] = [
             casters: 'Lockable, anti-rust, smooth movement',
         },
         customizationOptions: ['Mechanism Type', 'Mattress Type', 'Side Rails'],
-        moq: '5 units'
+        moq: '5 units',
+        specSheetUrl: '#'
     },
 
     // 6. Infection Control & Sterilization
@@ -483,7 +514,8 @@ export const products: Product[] = [
             packaging: 'Leak-proof; compatible with shipping regulations for chemicals',
         },
         customizationOptions: ['Concentration', 'Packaging Size'],
-        moq: '100 Liters'
+        moq: '100 Liters',
+        specSheetUrl: '#'
     },
 
     // 7. Medical Textiles & Hospital Linens
@@ -501,7 +533,9 @@ export const products: Product[] = [
             infectionControl: 'Optional antibacterial/antimicrobial finishes',
         },
         customizationOptions: ['Color', 'Fabric Type', 'Logo Embroidery'],
-        moq: '100 sets'
+        moq: '100 sets',
+        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
+        specSheetUrl: '#'
     },
 
     // 8. Laboratory Supplies
@@ -519,7 +553,8 @@ export const products: Product[] = [
             packaging: 'Clean, dust-free packing; lot traceability',
         },
         customizationOptions: ['Volume/Size', 'Sterilization (for plasticware)'],
-        moq: '1 case'
+        moq: '1 case',
+        specSheetUrl: '#'
     },
 
     // 9. Emergency & First Aid
@@ -537,6 +572,7 @@ export const products: Product[] = [
             labeling: 'Clear, multilingual where required',
         },
         customizationOptions: ['Kit Contents', 'Case Type', 'Branding'],
-        moq: '50 kits'
+        moq: '50 kits',
+        specSheetUrl: '#'
     },
 ];

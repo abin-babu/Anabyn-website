@@ -63,4 +63,8 @@ export default function FAQPage() {
                         </CardContent>
                     </Card>
                 </div>
-            </main
+            </main>
+            <Footer />
+        </div>
+    );
+}

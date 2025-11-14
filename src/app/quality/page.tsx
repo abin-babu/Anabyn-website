@@ -2,15 +2,15 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { BadgeCheck, BarChart, FileText } from 'lucide-react';
+import { BadgeCheck, BarChart, FileText, Globe } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const qualityPoints = [
     {
         icon: BadgeCheck,
-        title: '100% Terry Cotton',
-        description: 'Our products are crafted from the finest 100% terry cotton, ensuring superior softness, absorbency, and durability for an exceptional guest experience.'
+        title: 'Premium Raw Materials',
+        description: 'Our products are crafted from the finest materials like 100% terry cotton, ensuring superior softness, absorbency, and durability.'
     },
     {
         icon: BarChart,
@@ -19,9 +19,16 @@ const qualityPoints = [
     },
     {
         icon: FileText,
-        title: 'ISO & Export Certified',
-        description: 'We adhere to the highest international standards, holding ISO and other key export certifications that reflect our commitment to quality and reliability.'
+        title: 'Comprehensive Certification',
+        description: 'We adhere to the highest international standards, holding key export certifications that reflect our commitment to quality and reliability.'
     }
+];
+
+const certifications = [
+    { name: 'ISO 9001:2015', description: 'For quality management systems.' },
+    { name: 'OEKO-TEX STANDARD 100', description: 'Certifies that our textiles are free from harmful substances.' },
+    { name: 'GOTS (Global Organic Textile Standard)', description: 'Available for our organic product lines.' },
+    { name: 'SA8000 / BSCI', description: 'Ensuring ethical and social accountability in our supply chain.' }
 ];
 
 export default function QualityPage() {
@@ -31,7 +38,7 @@ export default function QualityPage() {
         <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1 py-12 md:py-20 bg-secondary/50">
-                <div className="container max-w-5xl mx-auto">
+                <div className="container max-w-5xl mx-auto space-y-12">
                     <Card>
                         <CardHeader className="text-center">
                              <div className="flex justify-center mb-4">
@@ -68,6 +75,29 @@ export default function QualityPage() {
                             </div>
                         </CardContent>
                     </Card>
+
+                     <Card>
+                        <CardHeader className="text-center">
+                            <CardTitle className="text-3xl font-headline">Our Certifications & Standards</CardTitle>
+                            <CardDescription className="mt-2 text-muted-foreground">We build trust through transparency and adherence to global standards.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                             <div className="grid md:grid-cols-2 gap-8">
+                                {certifications.map((cert) => (
+                                    <div key={cert.name} className="flex items-start gap-4">
+                                        <div className="flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-primary/10">
+                                            <Globe className="h-6 w-6 text-primary" />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold">{cert.name}</h3>
+                                            <p className="text-muted-foreground mt-1">{cert.description}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </CardContent>
+                    </Card>
+
                 </div>
             </main>
             <Footer />
