@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from './ui/button';
-import { FaWhatsapp } from 'react-icons/fa';
 import { ArrowRight } from 'lucide-react';
 
 
@@ -42,18 +41,18 @@ export function Hero() {
             High-quality products. On-time delivery. World-class logistics.
           </p>
            <p className="mt-2 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-3xl mx-auto">
-            Backed by exclusive manufacturer alliances, we deliver guaranteed quality with unbeatable cost efficiency.
+            Backed by exclusive alliances with top manufacturers, we deliver verified quality with unbeatable cost efficiency.
           </p>
           <div className="pointer-events-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
                 <Link href="/inquiry">
-                    Request a Quote <ArrowRight className="ml-2 h-5 w-5"/>
+                    Start Sourcing <ArrowRight className="ml-2 h-5 w-5"/>
                 </Link>
             </Button>
             <Button asChild size="lg" variant="secondary">
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                    <FaWhatsapp className="mr-2 h-5 w-5"/> WhatsApp Enquiry
-                </a>
+                <Link href="/#products">
+                    Explore Product Range
+                </Link>
             </Button>
           </div>
         </div>

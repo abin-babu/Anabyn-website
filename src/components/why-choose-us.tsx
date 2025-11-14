@@ -1,26 +1,27 @@
-import { Award, Globe, Truck, Users } from 'lucide-react';
+
+import { Check, ShieldCheck, Truck, Users } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 const features = [
     {
-        icon: Award,
-        title: 'Decades of Expertise',
-        description: 'With a 40-year heritage in textiles and manufacturing, we deliver unparalleled quality and deep industry knowledge.'
-    },
-    {
-        icon: Globe,
-        title: 'Global Export Ready',
-        description: 'Our seamless logistics and compliance expertise make us a trusted partner for international clients across 40+ countries.'
-    },
-    {
         icon: Users,
-        title: 'Complete Customization',
-        description: 'From bespoke branding on uniforms to custom specifications for textiles, we tailor products to your exact needs.'
+        title: 'Exclusive Manufacturer Access',
+        description: 'Better pricing and quality than dealing directly.'
     },
     {
         icon: Truck,
-        title: 'Reliability & Timely Delivery',
-        description: 'We are committed to on-time delivery, ensuring your supply chain remains uninterrupted and dependable.'
+        title: 'Global Shipping Expertise',
+        description: 'Hassle-free logistics with strong freight and cargo partners.'
+    },
+    {
+        icon: ShieldCheck,
+        title: 'Quality That Speaks for Itself',
+        description: 'We ensure product inspections, certifications, and sample approvals.'
+    },
+    {
+        icon: Check,
+        title: 'Transparent & Reliable',
+        description: 'Real-time updates, ethical sourcing, and clear communication.'
     }
 ]
 
@@ -29,9 +30,9 @@ export function WhyChooseUs() {
         <section id="why-us" className="py-12 md:py-20 bg-background">
             <div className="container">
                 <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4">A Trusted Partner for Global Sourcing</h2>
+                    <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4">Why Choose Us</h2>
                     <p className="text-muted-foreground mb-12 text-lg">
-                        We bridge India’s manufacturing strength with global demand. Our mission is to make sourcing from India seamless—across textiles, uniforms, chemicals, and essential supplies—all under one trusted brand.
+                        We bridge India’s manufacturing strength with global demand. Our mission is to make sourcing from India seamless—all under one trusted brand.
                     </p>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
