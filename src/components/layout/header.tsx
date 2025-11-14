@@ -53,7 +53,7 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <AnabynLogo width={40} height={40} />
+            <AnabynLogo width={48} height={48} />
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
              <Link
