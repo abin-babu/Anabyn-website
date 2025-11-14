@@ -36,10 +36,10 @@ export function Hero() {
           style={{ animationDelay: '0.5s', animationDuration: '0.8s', animationFillMode: 'backwards' }}
         >
           <h1 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight drop-shadow-lg max-w-4xl">
-            Supplying the World with India’s Best
+            Connecting India’s Manufacturing Power to Global Markets
           </h1>
           <p className="mt-4 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-2xl">
-            A Trusted Partner in Premium Textiles and Materials
+            High-quality products. On-time delivery. World-class logistics.
           </p>
           <div className="pointer-events-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild size="lg">
