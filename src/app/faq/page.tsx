@@ -12,24 +12,28 @@ import {
 const faqs = [
     {
         question: "What is your minimum order quantity (MOQ)?",
-        answer: "Our MOQ varies depending on the product and level of customization. Please check the individual product pages or contact us for a specific quote."
+        answer: "Our MOQ varies by product and customization level. For example, standard hotel bed sheet sets typically have an MOQ of 100 sets, while custom-embroidered bathrobes start at 50 units. Please refer to the specific product page for its MOQ or contact us with your requirements for a detailed quote."
     },
     {
         question: "Do you ship internationally?",
-        answer: "Yes, we ship globally from our base in India. We have extensive experience in export documentation and logistics to ensure a smooth delivery process."
+        answer: "Yes, we ship globally from our base in India. We have extensive experience in export documentation and logistics, partnering with leading freight carriers to ensure smooth and timely delivery to your destination port or warehouse. We can handle various incoterms (FOB, CIF, DDP) based on your needs."
     },
     {
         question: "What are your payment terms?",
-        answer: "Our standard payment terms are typically a percentage upfront and the remainder upon shipment, but this can be negotiated for larger or long-term contracts. We accept wire transfers and other standard payment methods."
+        answer: "For new clients, our standard payment terms are typically a 30-50% advance payment to initiate production and the remaining balance against a bill of lading (B/L) copy before delivery. For larger or long-term contracts, we can discuss other options such as Letters of Credit (L/C). We accept international wire transfers."
     },
     {
         question: "Can I customize the products with my own branding?",
-        answer: "Absolutely. We offer a wide range of customization services, including logo embroidery, custom colors, and unique patterns to match your brand identity. Visit our Customization page for more details."
+        answer: "Absolutely. We specialize in customization. Options include custom logo embroidery, Pantone color matching for dyes, specific fabric weaves, and branded packaging. Please visit our 'Customization' page or contact our team to discuss your branding requirements."
     },
     {
         question: "How can I track my order?",
-        answer: "Once your order is confirmed, you will receive an enquiry ID. You will be able to use this ID on our 'Track Your Order' page to see the real-time status of your shipment. This feature is coming soon!"
+        answer: "This feature is coming soon! Once implemented, you will receive an enquiry ID upon order confirmation. You will be able to use this ID on our 'Track Your Order' page to see the real-time status of your shipment from production to final delivery."
     },
+     {
+        question: "How do you handle quality control and samples?",
+        answer: "We have a multi-stage quality control process, from raw material inspection to final product checks. We can also arrange for third-party inspection (e.g., SGS, Intertek) at the client's request. We offer a sample request program; please contact us to arrange for samples of the products you are interested in."
+    }
 ];
 
 export default function FAQPage() {
@@ -59,8 +63,4 @@ export default function FAQPage() {
                         </CardContent>
                     </Card>
                 </div>
-            </main>
-            <Footer />
-        </div>
-    );
-}
+            </main
