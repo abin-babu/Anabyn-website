@@ -47,6 +47,17 @@ const staticNavItems = [
     { label: 'Careers', href: '/careers' },
 ];
 
+const IndianFlag = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" width="24" height="16">
+      <rect width="24" height="16" fill="#FFF"/>
+      <rect width="24" height="5.33" fill="#FF9933"/>
+      <rect y="10.67" width="24" height="5.33" fill="#138808"/>
+      <circle cx="12" cy="8" r="1.7" fill="none" stroke="#000080" strokeWidth="0.6"/>
+      <circle cx="12" cy="8" r="0.4" fill="#000080"/>
+      <path d="M12 8 L12 6.3 M12 9.7 L12 8 M12 8 L13.7 8 M10.3 8 L12 8 M12 8 L13.204 7.196 M10.796 8.804 L12 8 M12 8 L13.204 8.804 M10.796 7.196 L12 8 M12 8 L13.568 7.568 M10.432 8.432 L12 8 M12 8 L13.568 8.432 M10.432 7.568 L12 8" stroke="#000080" strokeWidth="0.2" strokeLinecap="round"/>
+    </svg>
+  );
+
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -54,6 +65,12 @@ export function Header() {
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <AnabynLogo width={48} height={48} />
+            <div className="flex flex-col">
+              <span className="font-bold text-lg leading-tight">Anabyn Global Ventures LLP</span>
+              <div className="flex items-center gap-1.5">
+                <IndianFlag />
+              </div>
+            </div>
           </Link>
           <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
              <Link
