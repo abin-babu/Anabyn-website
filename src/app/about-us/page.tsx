@@ -3,7 +3,7 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
-import { Briefcase, Building, Eye, Globe, Package, Target } from 'lucide-react';
+import { Briefcase, Building, Eye, Globe, Package, Target, Truck, Users } from 'lucide-react';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const whatWeDo = [
@@ -13,19 +13,19 @@ const whatWeDo = [
         description: "We export high-quality products from India to clients across the globe, ensuring on-time delivery and comprehensive documentation compliance."
     },
     {
-        icon: Building,
+        icon: Users,
         title: "Manufacturer Partnerships",
         description: "Our exclusive tie-ups with top manufacturers provide competitive pricing, guaranteed quality, and priority production access."
     },
     {
-        icon: Package,
+        icon: Truck,
         title: "End-to-End Logistics",
         description: "From sourcing to packaging to international shipping, we manage everything with world-class logistics and transparent communication."
     },
     {
-        icon: Briefcase,
+        icon: Package,
         title: "Product Sourcing Across Categories",
-        description: "We source directly from certified units to meet global standards across textiles, FMCG, industrial goods, and more."
+        description: "Whether it’s textiles, FMCG, handicrafts, fresh produce, industrial goods, spices, or custom products, we source directly from certified units to meet global standards."
     },
 ];
 

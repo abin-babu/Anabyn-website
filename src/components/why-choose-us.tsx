@@ -1,5 +1,5 @@
 
-import { Check, ShieldCheck, Truck, Users } from 'lucide-react';
+import { Check, ShieldCheck, Truck, Users, Settings } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 const features = [
@@ -22,6 +22,11 @@ const features = [
         icon: Check,
         title: 'Transparent & Reliable',
         description: 'Real-time updates, ethical sourcing, and clear communication.'
+    },
+    {
+        icon: Settings,
+        title: 'Tailored Solutions',
+        description: 'We support retail chains, wholesalers, private labels, and distributors with custom sourcing.'
     }
 ]
 
@@ -35,7 +40,7 @@ export function WhyChooseUs() {
                         We bridge India’s manufacturing strength with global demand. Our mission is to make sourcing from India seamless—all under one trusted brand.
                     </p>
                 </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
                     {features.map((feature) => (
                         <Card key={feature.title} className="text-center border-0 shadow-none bg-transparent">
                             <CardHeader className="flex flex-col items-center">
