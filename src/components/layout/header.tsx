@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, ChevronDown } from 'lucide-react';
+import { Menu, ChevronDown, Globe } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -62,14 +62,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
+        <div className="mr-6 flex items-center">
+          <Link href="/" className="flex items-center space-x-2">
             <AnabynLogo width={40} height={40} />
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg leading-tight">Anabyn Global Ventures LLP</span>
               <IndianFlag />
             </div>
           </Link>
+        </div>
+        
+        <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
              <Link
                 href={'/'}
@@ -100,11 +103,26 @@ export function Header() {
               </Link>
             ))}
           </nav>
-        </div>
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button asChild className="hidden md:inline-flex">
-            <Link href="/inquiry">Inquire Now</Link>
-          </Button>
+
+          <div className="hidden md:flex items-center gap-4">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Globe className="h-5 w-5" />
+                    <span className="sr-only">Change language</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>
+                    English
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Button asChild>
+                <Link href="/inquiry">Inquire Now</Link>
+              </Button>
+          </div>
+
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="lg:hidden">
