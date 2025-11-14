@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from './ui/button';
 import { ArrowRight } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 
 const whatsappNumber = "919495613121";
@@ -53,6 +54,11 @@ export function Hero() {
                 <Link href="/#products">
                     Explore Product Range
                 </Link>
+            </Button>
+             <Button asChild size="lg" variant="outline">
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="mr-2 h-5 w-5" /> Chat on WhatsApp
+              </a>
             </Button>
           </div>
         </div>
