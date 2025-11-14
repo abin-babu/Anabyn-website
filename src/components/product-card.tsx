@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
-import { ArrowRight, Phone, Search } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { categories } from '@/lib/products';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -33,9 +33,16 @@ export function ProductCard({ product }: { product: Product }) {
       </Link>
       <CardContent className="p-4 bg-card flex-grow flex flex-col">
         <h3 className="font-bold font-headline text-lg truncate">{product.name}</h3>
-        <p className="text-sm text-muted-foreground flex-grow">{product.shortSpecs}</p>
-        <div className="mt-2">
-            {parentCategory && <Badge variant="secondary">{parentCategory.name}</Badge>}
+        <p className="text-sm text-muted-foreground flex-grow mb-4">{product.shortSpecs}</p>
+        <div className="mt-auto flex flex-col gap-2">
+            <div className="flex justify-between items-center">
+                {parentCategory && <Badge variant="secondary">{parentCategory.name}</Badge>}
+                 <Button asChild variant="secondary" size="sm">
+                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                        <FaWhatsapp className="mr-2 h-4 w-4" /> Chat
+                    </a>
+                </Button>
+            </div>
         </div>
       </CardContent>
 
@@ -51,11 +58,6 @@ export function ProductCard({ product }: { product: Product }) {
           </Button>
            <Button asChild variant="outline">
             <Link href={`/inquiry?productId=${product.id}`}>Quick Inquiry</Link>
-          </Button>
-          <Button asChild variant="secondary">
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <FaWhatsapp className="mr-2 h-5 w-5" /> Chat on WhatsApp
-            </a>
           </Button>
         </div>
       </div>
