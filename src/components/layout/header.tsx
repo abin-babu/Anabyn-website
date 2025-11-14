@@ -64,7 +64,7 @@ export function Header() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
-            <AnabynLogo width="48" height="48" />
+            <AnabynLogo width="36" height="36" />
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg leading-tight">Anabyn Global Ventures LLP</span>
               <IndianFlag />
@@ -104,7 +104,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon">
