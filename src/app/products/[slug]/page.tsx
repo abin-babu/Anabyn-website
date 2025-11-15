@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
   const category = categories.find(c => c.id === product.categoryId);
+  const canonicalUrl = `https://www.anabyn.com/products/${product.slug}`;
 
   try {
     const seoData = await generateSeoMetadata({
@@ -44,12 +45,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: seoData.metaTitle,
       description: seoData.metaDescription,
+      alternates: {
+        canonical: canonicalUrl,
+      },
+      openGraph: {
+        title: seoData.metaTitle,
+        description: seoData.metaDescription,
+        url: canonicalUrl,
+        type: 'website',
+      },
     };
   } catch (error) {
     console.error("AI metadata generation failed, using fallback.", error);
     return {
       title: `${product.name} | Anabyn`,
       description: product.description.substring(0, 160),
+      alternates: {
+        canonical: canonicalUrl,
+      },
+       openGraph: {
+        title: `${product.name} | Anabyn`,
+        description: product.description.substring(0, 160),
+        url: canonicalUrl,
+        type: 'website',
+      },
     };
   }
 }

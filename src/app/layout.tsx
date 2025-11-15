@@ -6,8 +6,8 @@ import { FirebaseClientProvider } from '@/firebase';
 import { WhatsappCta } from '@/components/whatsapp-cta';
 
 export const metadata: Metadata = {
-  title: 'Anabyn Global Ventures',
-  description: 'A Trusted Partner in Premium Textiles and Materials',
+  title: 'Anabyn Global Ventures | Indian Exporter for Catering, Hospital & Hospitality Supplies',
+  description: 'Anabyn Global Ventures is a trusted Indian exporter specializing in sourcing cost-effective catering, hospital, and hospitality supplies. We connect global businesses with quality products from reliable Indian manufacturers, built on trust and goodwill.',
   icons: {
     icon: '/images/logo.png',
   },

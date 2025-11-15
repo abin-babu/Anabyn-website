@@ -2,9 +2,23 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import Image from 'next/image';
-import { Briefcase, Building, Eye, Globe, Package, Target, Truck, Users } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Eye, Target, Globe, Users, Truck, Package } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Anabyn Global Ventures | Indian Exporter',
+  description: 'Learn about Anabyn Global Ventures, a trusted Indian exporter committed to quality, trust, and delivering cost-effective catering, hospital, and hospitality supplies worldwide.',
+  alternates: {
+    canonical: 'https://www.anabyn.com/about-us',
+  },
+  openGraph: {
+    title: 'About Anabyn Global Ventures | Indian Exporter',
+    description: 'Learn about Anabyn Global Ventures, a trusted Indian exporter committed to quality, trust, and delivering cost-effective catering, hospital, and hospitality supplies worldwide.',
+    url: 'https://www.anabyn.com/about-us',
+    type: 'website',
+  },
+};
+
 
 const whatWeDo = [
     {
@@ -30,7 +44,6 @@ const whatWeDo = [
 ];
 
 export default function AboutUsPage() {
-    const bannerImage = PlaceHolderImages.find(img => img.id === 'sustainability-banner');
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
@@ -39,7 +52,7 @@ export default function AboutUsPage() {
                     <Card>
                         <CardHeader className="text-center">
                             <h2 className="text-base font-semibold text-primary tracking-wider uppercase">Anabyn Global Ventures</h2>
-                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Your Trusted Export Partner for Quality Indian Products</CardTitle>
+                            <h1 className="text-3xl md:text-4xl font-bold font-headline">Your Trusted Export Partner for Quality Indian Products</h1>
                             <CardDescription className="mt-4 text-lg max-w-3xl mx-auto">
                                 Anabyn Global Ventures is a global sourcing and export company committed to delivering India’s finest products to businesses around the world. With a strong network of top-tier manufacturers, we ensure unmatched product quality, competitive pricing, and seamless logistics.
                             </CardDescription>
