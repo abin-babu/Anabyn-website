@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <head>
+        <link rel="icon" href="/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
