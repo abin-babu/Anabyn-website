@@ -77,6 +77,7 @@ export async function handleInquiry(data: InquiryInput) {
     const inquiriesRef = collection(firestore, 'inquiries');
     const docRef = await addDoc(inquiriesRef, inquiryData);
 
+    // Call the email sending function
     await sendInquiryEmails({ ...inquiryData, id: docRef.id });
 
     return { success: true };
