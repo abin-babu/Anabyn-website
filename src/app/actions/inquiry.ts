@@ -29,7 +29,7 @@ async function sendInquiryEmails(inquiryData: any) {
             Phone: ${inquiryData.phone}
             Company: ${inquiryData.company || 'N/A'}
             Message: ${inquiryData.message}
-            Product ID: ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'N/A'}
+            Product ID: ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'General Inquiry'}
         `,
     };
 
