@@ -17,7 +17,7 @@ const inquirySchema = z.object({
 type InquiryInput = z.infer<typeof inquirySchema>;
 
 // This is a placeholder for where the email sending logic would go.
-// In a real application, this would be a Cloud Function triggered by a new document in Firestore.
+// In a real application, you would replace the console.log calls with a real email service (e.g., SendGrid, Resend).
 async function sendInquiryEmails(inquiryData: any) {
     const adminEmail = {
         to: 'sales@anabyn.com',
@@ -57,7 +57,8 @@ export async function handleInquiry(data: InquiryInput) {
   const validation = inquirySchema.safeParse(data);
 
   if (!validation.success) {
-    return { success: false, error: 'Invalid data provided.' };
+    console.error('Invalid inquiry data:', validation.error.flatten().fieldErrors);
+    return { success: false, error: 'Invalid data provided. Please check the form and try again.' };
   }
   
   const { firestore } = getSdks();
@@ -76,13 +77,15 @@ export async function handleInquiry(data: InquiryInput) {
   try {
     const inquiriesRef = collection(firestore, 'inquiries');
     const docRef = await addDoc(inquiriesRef, inquiryData);
+    console.log('Inquiry saved to Firestore with ID:', docRef.id);
 
-    // Call the email sending function
+    // Call the email sending function (currently a simulation)
     await sendInquiryEmails({ ...inquiryData, id: docRef.id });
 
     return { success: true };
-  } catch (error) {
+  } catch (error: any) {
     console.error('Failed to process inquiry:', error);
+    // Return a generic error message to the user for security
     return { success: false, error: 'Could not process your inquiry at this time. Please try again later.' };
   }
 }
