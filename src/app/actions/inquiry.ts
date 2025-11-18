@@ -3,7 +3,7 @@
 
 import { z } from 'zod';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { getSdks } from '@/firebase';
+import { getSdks } from '@/firebase/server'; // Correctly import from the server-only module
 
 const inquirySchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
