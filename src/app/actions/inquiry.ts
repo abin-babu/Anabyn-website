@@ -3,7 +3,7 @@
 
 import { z } from 'zod';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { getSdks } from '@/firebase/server'; // Correctly import from the server-only module
+import { getSdks } from '@/firebase/server';
 
 const inquirySchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -46,10 +46,13 @@ async function sendInquiryEmails(inquiryData: any) {
         `,
     };
 
-    console.log("--- Email Sending Simulation ---");
-    console.log("Sending to admin:", adminEmail);
-    console.log("Sending confirmation to user:", userConfirmationEmail);
+    console.log("--- SIMULATING EMAIL SENDING ---");
+    console.log("This is a development-only simulation. To send real emails, you must integrate a third-party email service like SendGrid or Resend in 'src/app/actions/inquiry.ts'.");
+    console.log("\nEmail to Admin:", adminEmail);
+    console.log("\nEmail to User:", userConfirmationEmail);
     // In a real implementation, you would use a service like SendGrid or Nodemailer here.
+    // Example: await resend.emails.send(adminEmail);
+    // Example: await resend.emails.send(userConfirmationEmail);
     return Promise.resolve();
 }
 
@@ -57,8 +60,9 @@ export async function handleInquiry(data: InquiryInput) {
   const validation = inquirySchema.safeParse(data);
 
   if (!validation.success) {
+    const errorMessage = "Invalid data provided. Please check the form and try again.";
     console.error('Invalid inquiry data:', validation.error.flatten().fieldErrors);
-    return { success: false, error: 'Invalid data provided. Please check the form and try again.' };
+    return { success: false, error: errorMessage };
   }
   
   const { firestore } = getSdks();
@@ -86,6 +90,7 @@ export async function handleInquiry(data: InquiryInput) {
   } catch (error: any) {
     console.error('Failed to process inquiry:', error);
     // Return a generic error message to the user for security
-    return { success: false, error: 'Could not process your inquiry at this time. Please try again later.' };
+    const userErrorMessage = 'Could not process your inquiry at this time. Please try again later.';
+    return { success: false, error: userErrorMessage };
   }
 }
