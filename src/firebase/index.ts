@@ -15,6 +15,12 @@ export function getSdks(firebaseApp?: FirebaseApp) {
   };
 }
 
+// This function is for client-side initialization and should not be used on the server.
+export function initializeFirebase() {
+    'use client';
+    return getSdks();
+}
+
 // All exports from here are client-side only and will cause errors if used on the server.
 export * from './provider';
 export * from './client-provider';
@@ -24,9 +30,3 @@ export * from './non-blocking-updates';
 export * from './non-blocking-login';
 export * from './errors';
 export * from './error-emitter';
-
-// This function is for client-side initialization and should not be used on the server.
-export function initializeFirebase() {
-    'use client';
-    return getSdks();
-}
