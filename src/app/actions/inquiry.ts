@@ -4,6 +4,7 @@
 import { z } from 'zod';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getSdks } from '@/firebase/server';
+import { Resend } from 'resend';
 
 const inquirySchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -16,44 +17,52 @@ const inquirySchema = z.object({
 
 type InquiryInput = z.infer<typeof inquirySchema>;
 
-// This is a placeholder for where the email sending logic would go.
-// In a real application, you would replace the console.log calls with a real email service (e.g., SendGrid, Resend).
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
+
 async function sendInquiryEmails(inquiryData: any) {
-    const adminEmail = {
-        to: 'sales@anabyn.com',
-        subject: `New Inquiry from ${inquiryData.name} – Anabyn Website`,
-        body: `
-            You have received a new inquiry with the following details:
-            Name: ${inquiryData.name}
-            Email: ${inquiryData.email}
-            Phone: ${inquiryData.phone}
-            Company: ${inquiryData.company || 'N/A'}
-            Message: ${inquiryData.message}
-            Product ID: ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'General Inquiry'}
-        `,
-    };
+  const adminEmail = {
+    from: 'Anabyn Inquiry <onboarding@resend.dev>', // IMPORTANT: Replace with your verified domain in Resend
+    to: 'sales@anabyn.com',
+    subject: `New Inquiry from ${inquiryData.name} – Anabyn Website`,
+    html: `
+      <h1>New Inquiry</h1>
+      <p><strong>Name:</strong> ${inquiryData.name}</p>
+      <p><strong>Email:</strong> ${inquiryData.email}</p>
+      <p><strong>Phone:</strong> ${inquiryData.phone}</p>
+      <p><strong>Company:</strong> ${inquiryData.company || 'N/A'}</p>
+      <p><strong>Product ID:</strong> ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'General Inquiry'}</p>
+      <hr>
+      <p><strong>Message:</strong></p>
+      <p>${inquiryData.message}</p>
+    `,
+  };
 
-    const userConfirmationEmail = {
-        to: inquiryData.email,
-        subject: 'Thank you for your inquiry with Anabyn',
-        body: `
-            Hi ${inquiryData.name},
+  const userConfirmationEmail = {
+    from: 'Anabyn Global Ventures <onboarding@resend.dev>', // IMPORTANT: Replace with your verified domain in Resend
+    to: inquiryData.email,
+    subject: 'Thank you for your inquiry with Anabyn',
+    html: `
+      <h2>Thank You For Your Inquiry</h2>
+      <p>Hi ${inquiryData.name},</p>
+      <p>Thank you for reaching Anabyn Global Ventures. Our team has received your inquiry and will respond shortly.</p>
+      <p>Best regards,<br>The Anabyn Team</p>
+    `,
+  };
 
-            Thank you for reaching Anabyn Global Ventures. Our team has received your inquiry and will respond shortly.
-
-            Best regards,
-            The Anabyn Team
-        `,
-    };
-
-    console.log("--- SIMULATING EMAIL SENDING ---");
-    console.log("This is a development-only simulation. To send real emails, you must integrate a third-party email service like SendGrid or Resend in 'src/app/actions/inquiry.ts'.");
-    console.log("\nEmail to Admin:", adminEmail);
-    console.log("\nEmail to User:", userConfirmationEmail);
-    // In a real implementation, you would use a service like SendGrid or Nodemailer here.
-    // Example: await resend.emails.send(adminEmail);
-    // Example: await resend.emails.send(userConfirmationEmail);
-    return Promise.resolve();
+  try {
+    if (!process.env.RESEND_API_KEY) {
+        console.warn("Resend API key is not set. Skipping email sending. To enable emails, add RESEND_API_KEY to your .env file.");
+        return;
+    }
+    await resend.emails.send(adminEmail);
+    await resend.emails.send(userConfirmationEmail);
+    console.log('Inquiry emails sent successfully via Resend.');
+  } catch (error) {
+    console.error('Failed to send emails via Resend:', error);
+    // This failure should not block the user-facing success message.
+    // We log it for debugging, but the primary action (saving to DB) is complete.
+  }
 }
 
 export async function handleInquiry(data: InquiryInput) {
@@ -83,7 +92,7 @@ export async function handleInquiry(data: InquiryInput) {
     const docRef = await addDoc(inquiriesRef, inquiryData);
     console.log('Inquiry saved to Firestore with ID:', docRef.id);
 
-    // Call the email sending function (currently a simulation)
+    // After saving to DB, send the emails.
     await sendInquiryEmails({ ...inquiryData, id: docRef.id });
 
     return { success: true };
