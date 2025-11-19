@@ -2,6 +2,7 @@ import { Star, StarHalf } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import Link from 'next/link';
+import { FaGoogle } from 'react-icons/fa';
 
 const googleReviews = [
   {
@@ -93,6 +94,7 @@ export function Testimonials() {
         <div className="mt-12 text-center">
             <Button asChild>
                 <Link href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank" rel="noopener noreferrer">
+                    <FaGoogle className="mr-2 h-4 w-4" />
                     Read More Reviews on Google
                 </Link>
             </Button>
