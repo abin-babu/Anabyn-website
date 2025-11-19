@@ -57,7 +57,7 @@ export function ProductCard({ product }: { product: Product }) {
             </Link>
           </Button>
            <Button asChild variant="outline">
-            <Link href={`/inquiry?productId=${product.id}`}>Quick Inquiry</Link>
+            <Link href={`/inquiry?productId=${product.id}`}>Contact Us</Link>
           </Button>
         </div>
       </div>

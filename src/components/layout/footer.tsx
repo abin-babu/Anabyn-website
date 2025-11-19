@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import { AnabynLogo } from '../anabyn-logo';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Star } from 'lucide-react';
 import { FaInstagram, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 export function Footer() {
@@ -31,6 +31,10 @@ export function Footer() {
                  <a href="https://maps.app.goo.gl/gwm9UAW6Ym55nWMb8" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
                     <MapPin className="h-5 w-5" />
                     <span className="sr-only">Google Maps</span>
+                </a>
+                <a href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary">
+                    <Star className="h-5 w-5" />
+                    <span className="sr-only">Google Reviews</span>
                 </a>
             </div>
           </div>

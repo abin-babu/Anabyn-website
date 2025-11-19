@@ -65,7 +65,7 @@ export default function CustomizationPage() {
                                         <h3 className="text-2xl font-bold mb-2">Have a Unique Requirement?</h3>
                                         <p>Our team is ready to collaborate with you to create fully customized textile solutions. Contact us today to start the conversation.</p>
                                         <a href="/inquiry" className="inline-block mt-4 bg-primary-foreground text-primary font-semibold py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors">
-                                            Inquire Now
+                                            Contact Us
                                         </a>
                                      </div>
                                 </div>

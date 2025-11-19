@@ -142,7 +142,7 @@ export function Header() {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Button asChild>
-                <Link href="/inquiry">Inquire Now</Link>
+                <Link href="/inquiry">Contact Us</Link>
               </Button>
           </div>
 
@@ -197,7 +197,7 @@ export function Header() {
                     </SheetClose>
                 ))}
                 <Button asChild className="mt-4">
-                    <Link href="/inquiry">Inquire Now</Link>
+                    <Link href="/inquiry">Contact Us</Link>
                 </Button>
               </nav>
             </SheetContent>
