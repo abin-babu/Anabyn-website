@@ -16,6 +16,7 @@ export function AnabynLogo({
       width={width}
       height={height}
       className={className}
+      style={{ objectFit: 'contain' }}
     />
   );
 }
