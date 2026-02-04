@@ -12,7 +12,7 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start gap-4">
             <Link href="/">
-              <AnabynLogo className="h-12 w-32" />
+              <AnabynLogo className="h-12 w-40" />
             </Link>
             <p className="text-sm leading-loose text-muted-foreground">
               © {currentYear} Anabyn Global Ventures LLP. All rights reserved.
