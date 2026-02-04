@@ -70,7 +70,7 @@ export function Header() {
       <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
-            <AnabynLogo width={140} height={56} />
+            <AnabynLogo className="h-14 w-36" />
             <IndianFlag />
           </Link>
         </div>

@@ -1,22 +1,20 @@
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 export function AnabynLogo({
-  width,
-  height,
-  className,
+    className,
 }: {
-  width: number;
-  height: number;
-  className?: string;
+    className?: string;
 }) {
-  return (
-    <Image
-      src="/images/logo.png"
-      alt="Anabyn Global Ventures LLP Logo"
-      width={width}
-      height={height}
-      className={className}
-      style={{ objectFit: 'contain' }}
-    />
-  );
+    return (
+        <div className={cn("relative", className)}>
+            <Image
+                src="/images/logo.png"
+                alt="Anabyn Global Ventures LLP Logo"
+                fill
+                sizes="200px"
+                className="object-contain"
+            />
+        </div>
+    );
 }
