@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -68,8 +69,9 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-0.5">
-            <AnabynLogo className="h-14 w-36" />
+          <Link href="/" className="flex items-center gap-2">
+            <AnabynLogo className="h-12 w-10 flex-shrink-0" />
+            <span className="font-semibold text-primary text-sm whitespace-nowrap hidden sm:inline">ANABYN GLOBAL VENTURES LLP</span>
             <IndianFlag />
           </Link>
         </div>
