@@ -10,14 +10,22 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const brochures = [
     {
+        title: 'Anabyn Global Ventures - Corporate Brochure',
+        description: 'An overview of our premium home and hospitality textiles. Crafted in Premium Cotton, Trusted Worldwide.',
+        fileUrl: '/brochures/anabyn-corporate-brochure.jpg',
+        fileType: 'JPG'
+    },
+    {
         title: 'Anabyn Hotel Towel Collection 2025',
         description: 'Explore our complete range of premium towels for the hospitality industry.',
-        fileUrl: '#' // Placeholder URL
+        fileUrl: '#', // Placeholder URL
+        fileType: 'PDF'
     },
     {
         title: 'Anabyn Customization Guide',
         description: 'Learn about our bespoke services for branding, sizing, and material selection.',
-        fileUrl: '#' // Placeholder URL
+        fileUrl: '#', // Placeholder URL
+        fileType: 'PDF'
     }
 ];
 
@@ -52,7 +60,7 @@ export default function DownloadsPage() {
                                         <Button asChild className="mt-4 sm:mt-0">
                                             <a href={brochure.fileUrl} download>
                                                 <DownloadCloud className="mr-2 h-4 w-4" />
-                                                Download PDF
+                                                Download {brochure.fileType}
                                             </a>
                                         </Button>
                                     </div>
