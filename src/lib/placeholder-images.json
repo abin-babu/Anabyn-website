@@ -185,6 +185,120 @@
       "description": "A folded dinner napkin",
       "imageUrl": "https://images.unsplash.com/photo-1759124649780-304cce7bcb37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxkaW5uZXIlMjBuYXBraW58ZW58MHx8fHwxNzYzMDQ4OTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "dinner napkin"
+    },
+    {
+      "id": "hotel-kettle",
+      "description": "A modern electric kettle in a hotel room setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1621295399999-9370b3a3d53b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGtldHRsZXxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel kettle"
+    },
+    {
+      "id": "hotel-sofa",
+      "description": "A stylish sofa in a hotel lobby.",
+      "imageUrl": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2ZhfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel sofa"
+    },
+    {
+      "id": "medical-syringe",
+      "description": "A close-up of a medical syringe.",
+      "imageUrl": "https://images.unsplash.com/photo-1631804959147-75a1b5a837e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzeXJpbmdlfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medical syringe"
+    },
+    {
+      "id": "medical-monitor",
+      "description": "A patient monitor displaying vital signs.",
+      "imageUrl": "https://images.unsplash.com/photo-1579684385127-6c17937c4635?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxtZWRpY2FsJTIwbW9uaXRvcnxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "patient monitor"
+    },
+    {
+      "id": "surgical-forceps",
+      "description": "A pair of surgical forceps.",
+      "imageUrl": "https://images.unsplash.com/photo-1542312574-55db74e54884?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZm9yY2Vwc3xlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "surgical instruments"
+    },
+    {
+      "id": "knee-brace",
+      "description": "A person wearing a knee brace.",
+      "imageUrl": "https://images.unsplash.com/photo-1620295116790-a7d0130089e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrbmVlJTIwYnJhY2V8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "knee brace"
+    },
+    {
+      "id": "hospital-bed",
+      "description": "An empty hospital bed.",
+      "imageUrl": "https://images.unsplash.com/photo-1584983191144-7734c3527a6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMGJlZHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hospital bed"
+    },
+    {
+      "id": "disinfectant-spray",
+      "description": "A red bottle of disinfectant spray.",
+      "imageUrl": "https://images.unsplash.com/photo-1616788417639-656858548a33?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxyZWQxJTIwZGlzaW5mZWN0YW50fGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "disinfectant spray"
+    },
+    {
+      "id": "blue-scrubs",
+      "description": "A set of blue medical scrubs.",
+      "imageUrl": "https://images.unsplash.com/photo-1628068311627-0f5abce65050?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxibHVlJTIwc2NydWJzfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "medical scrubs"
+    },
+    {
+      "id": "lab-beaker",
+      "description": "A glass beaker in a laboratory setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1579165466949-5536a5356c35?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxsYWIlMjBiZWFrZXJ8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "lab beaker"
+    },
+    {
+      "id": "first-aid-kit",
+      "description": "An open first aid kit.",
+      "imageUrl": "https://images.unsplash.com/photo-1576086213369-97a306d36557?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxmaXJzdCUyMGFpZCUyMGtpdHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "first aid"
+    },
+    {
+      "id": "room-curtains",
+      "description": "Elegant curtains hanging in a room.",
+      "imageUrl": "https://images.unsplash.com/photo-1620626334238-6629b35a788c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxyb29tJTIwY3VydGFpbnxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "room curtains"
+    },
+    {
+      "id": "hotel-cushion",
+      "description": "A decorative cushion on a hotel bed.",
+      "imageUrl": "https://images.unsplash.com/photo-1617103994274-c335532b35a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGN1c2hpb258ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hotel cushion"
+    },
+    {
+      "id": "hotel-desk-set",
+      "description": "A set of accessories on a hotel room desk.",
+      "imageUrl": "https://images.unsplash.com/photo-1593345378735-96f35d1ea7a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGRlc2slMjBzZXR8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "desk accessories"
+    },
+    {
+      "id": "buffet-food",
+      "description": "A variety of food at a buffet.",
+      "imageUrl": "https://images.unsplash.com/photo-1517840933437-c42d2b168645?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxidWZmZXQlMjBmb29kfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "buffet food"
+    },
+    {
+      "id": "surgical-gloves",
+      "description": "A person putting on surgical gloves.",
+      "imageUrl": "https://images.unsplash.com/photo-1606950669720-5f4b34856f6c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMGdsb3Zlc3xlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "surgical gloves"
+    },
+    {
+      "id": "surgical-set",
+      "description": "A set of surgical instruments on a tray.",
+      "imageUrl": "https://images.unsplash.com/photo-1588776848048-c8543b3bfa34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdXJnaWNhbCUyMHNldHxlbnwwfHx8fDE3NjM2MzM4ODN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "surgical set"
+    },
+    {
+      "id": "wheelchair",
+      "description": "An empty wheelchair.",
+      "imageUrl": "https://images.unsplash.com/photo-1616422285852-2430335f6a90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3aGVlbGNoYWlyfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "wheelchair"
+    },
+    {
+      "id": "disinfectant-bottles",
+      "description": "Bottles of disinfectant.",
+      "imageUrl": "https://images.unsplash.com/photo-1584362142279-797695303450?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaXNpbmZlY3RhbnQlMjBib3R0bGVzfGVufDB8fHx8MTc2MzYzMzg4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "disinfectant bottles"
     }
   ]
 }
