@@ -1,13 +1,26 @@
-
 import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { FirebaseClientProvider } from '@/firebase';
 import { WhatsappCta } from '@/components/whatsapp-cta';
+import { Playfair_Display, Inter } from 'next/font/google';
+import { ScrollToTop } from '@/components/scroll-to-top';
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-playfair',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
-  title: 'Anabyn Global Ventures | Indian Exporter for Catering, Hospital & Hospitality Supplies',
-  description: 'Anabyn Global Ventures is a trusted Indian exporter specializing in sourcing cost-effective catering, hospital, and hospitality supplies. We connect global businesses with quality products from reliable Indian manufacturers, built on trust and goodwill.',
+  title: 'Anabyn Global Ventures LLP — Premium Textile & Medical Exports from India',
+  description: 'Anabyn Global Ventures LLP is a trusted Indian exporter specializing in sourcing premium bed linen, bath linen, and medical disposables for global markets.',
 };
 
 export default function RootLayout({
@@ -16,20 +29,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="light">
+    <html lang="en" className={`light ${playfair.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+          crossOrigin="anonymous" 
+          referrerPolicy="no-referrer" 
         />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-inter antialiased">
         <FirebaseClientProvider>
             {children}
             <Toaster />
             <WhatsappCta />
+            <ScrollToTop />
         </FirebaseClientProvider>
       </body>
     </html>

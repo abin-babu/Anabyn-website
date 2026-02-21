@@ -1,64 +1,75 @@
 'use client';
-import Image from 'next/image';
+
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Button } from './ui/button';
-import { ArrowRight } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
-
-
-const whatsappNumber = "919495613121";
-const whatsappMessage = `Hi Anabyn — I’d like to make an enquiry.`;
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero-1');
 
   return (
-    <section className="relative h-screen w-full">
-      {heroImage && (
-         <div className="relative h-screen w-full">
-            <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                fill
-                className="object-cover"
-                priority
-                data-ai-hint={heroImage.imageHint}
-            />
-            <div className="absolute inset-0 bg-black/50" />
-        </div>
-      )}
-      <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-        <div 
-          className="text-center text-white animate-fade-in-up"
-          style={{ animationDelay: '0.5s', animationDuration: '0.8s', animationFillMode: 'backwards' }}
-        >
-          <h1 className="text-4xl md:text-6xl font-extrabold font-headline tracking-tight drop-shadow-lg max-w-4xl">
-            Connecting India’s Manufacturing Power to Global Markets
+    <section className="relative h-screen w-full flex items-center overflow-hidden">
+      {/* Background with Overlays */}
+      <div className="absolute inset-0">
+        <img
+          src={heroImage?.imageUrl || "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6"}
+          alt="Premium Bed Linen"
+          className="w-full h-full object-cover"
+        />
+        {/* Navy to Royal Blue Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B3E]/90 via-[#0D1B3E]/70 to-[#1B45CC]/40" />
+        {/* Radial Gold Glow */}
+        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#C8A020]/10 blur-[120px] rounded-full" />
+        {/* White bottom fade */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
+      <div className="container relative z-10 px-4">
+        <div className="max-w-[680px] space-y-8 animate-fade-in-up">
+          <div className="inline-flex items-center bg-[#C8A020]/10 border border-[#C8A020]/30 rounded-full px-4 py-1.5">
+            <span className="text-[#C8A020] text-xs font-bold tracking-wider uppercase">✦ Trusted Global Export Partner from India</span>
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-playfair font-bold text-white leading-tight">
+            Premium Textile & Medical <br />
+            <span className="text-[#C8A020]">Exports You Can Trust</span>
           </h1>
-          <p className="mt-2 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-3xl mx-auto">
-            High-quality products. On-time delivery. World-class logistics.
+
+          <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light">
+            Anabyn Global Ventures LLP connects India's finest manufacturing prowess with global demand. From high-thread-count bed linen to certified medical disposables, we deliver quality without compromise.
           </p>
-           <p className="mt-2 text-lg md:text-xl text-gray-200 drop-shadow-md max-w-3xl mx-auto">
-            Backed by exclusive alliances with top manufacturers, we deliver verified quality with unbeatable cost efficiency.
-          </p>
-          <div className="pointer-events-auto mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild size="lg">
-                <Link href="/inquiry">
-                    Start Sourcing <ArrowRight className="ml-2 h-5 w-5"/>
-                </Link>
+
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Button asChild size="lg" className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold px-8 hover:scale-105 transition-transform border-none">
+              <Link href="/#contact">Request a Quote</Link>
             </Button>
-            <Button asChild size="lg" variant="secondary">
-                <Link href="/#products">
-                    Explore Product Range
-                </Link>
+            <Button asChild size="lg" variant="outline" className="rounded-full border-white text-white hover:bg-white hover:text-[#0D1B3E] px-8 bg-transparent">
+              <Link href="/#products">View Products</Link>
             </Button>
-             <Button asChild size="lg" variant="outline">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <FaWhatsapp className="mr-2 h-5 w-5" /> Chat on WhatsApp
-              </a>
-            </Button>
+          </div>
+
+          {/* Stats Row */}
+          <div className="pt-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="space-y-1">
+              <p className="text-2xl font-bold text-white">50+</p>
+              <div className="h-px w-8 bg-white/30" />
+              <p className="text-gray-400 text-xs uppercase tracking-widest">Countries Served</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-2xl font-bold text-white">10+</p>
+              <div className="h-px w-8 bg-white/30" />
+              <p className="text-gray-400 text-xs uppercase tracking-widest">Years Experience</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-2xl font-bold text-white">500+</p>
+              <div className="h-px w-8 bg-white/30" />
+              <p className="text-gray-400 text-xs uppercase tracking-widest">Happy Clients</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-2xl font-bold text-white">3</p>
+              <div className="h-px w-8 bg-white/30" />
+              <p className="text-gray-400 text-xs uppercase tracking-widest">Product Categories</p>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -11,94 +10,87 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { handleInquiry } from '@/app/actions/inquiry';
-import { products } from '@/lib/products';
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
-  email: z.string().email({ message: 'Please enter a valid email address.' }),
-  company: z.string().optional(),
-  phone: z.string().min(10, { message: 'Please enter a valid phone number.' }),
-  productId: z.string().optional(),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }).max(1000),
+  name: z.string().min(2, { message: 'Required' }),
+  company: z.string().min(2, { message: 'Required' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  phone: z.string().min(10, { message: 'Invalid phone' }),
+  category: z.string().min(1, { message: 'Please select a category' }),
+  message: z.string().min(10, { message: 'Please specify your requirements' }).max(1000),
 });
 
 export function InquiryForm() {
   const searchParams = useSearchParams();
   const { toast } = useToast();
-  const productIdParam = searchParams.get('productId');
-  const productName = products.find(p => p.id === productIdParam)?.name;
+  const categoryParam = searchParams.get('category') || '';
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
       company: '',
+      email: '',
       phone: '',
-      productId: productIdParam || '',
-      message: productName ? `I'm interested in the product: ${productName}. ` : '',
+      category: categoryParam,
+      message: '',
     },
   });
 
   useEffect(() => {
-    if (productIdParam) {
-      form.setValue('productId', productIdParam);
-      const productName = products.find(p => p.id === productIdParam)?.name;
-      if (productName && form.getValues('message') === '') {
-        form.setValue('message', `I'm interested in the product: ${productName}. `);
-      }
+    if (categoryParam) {
+      form.setValue('category', categoryParam);
     }
-  }, [productIdParam, form]);
+  }, [categoryParam, form]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const result = await handleInquiry(values);
+    // Map data to the action expected schema
+    const actionData = {
+        name: values.name,
+        email: values.email,
+        company: values.company,
+        phone: values.phone,
+        message: `[Category: ${values.category}] ${values.message}`,
+    };
+
+    const result = await handleInquiry(actionData);
     
     if (result.success) {
+      alert("Enquiry Sent! Thank you for contacting Anabyn Global Ventures LLP.");
       toast({
-        title: 'Inquiry Sent!',
-        description: 'Thank you for your inquiry. We will get back to you shortly.',
+        title: 'Enquiry Sent!',
+        description: 'We will get back to you shortly.',
       });
-      form.reset({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        productId: '',
-        message: '',
-      });
+      form.reset();
     } else {
       toast({
         variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: result.error || 'There was a problem with your request.',
+        title: 'Error',
+        description: result.error || 'There was a problem sending your request.',
       });
     }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid md:grid-cols-2 gap-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl><Input placeholder="John Doe" {...field} /></FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email Address</FormLabel>
-                <FormControl><Input placeholder="john.doe@example.com" {...field} /></FormControl>
+                <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Your Name</FormLabel>
+                <FormControl><Input placeholder="John Doe" className="bg-white border-none h-12" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -108,8 +100,19 @@ export function InquiryForm() {
             name="company"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Company (Optional)</FormLabel>
-                <FormControl><Input placeholder="Your Company Inc." {...field} /></FormControl>
+                <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Company Name</FormLabel>
+                <FormControl><Input placeholder="Your Company Inc." className="bg-white border-none h-12" {...field} /></FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Email Address</FormLabel>
+                <FormControl><Input placeholder="john@example.com" className="bg-white border-none h-12" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -119,34 +122,56 @@ export function InquiryForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl><Input placeholder="+1 (555) 123-4567" {...field} /></FormControl>
+                <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Country / Phone</FormLabel>
+                <FormControl><Input placeholder="+1..." className="bg-white border-none h-12" {...field} /></FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
         </div>
-        
-        {productName && (
-          <div className="rounded-md bg-secondary p-4">
-            <p className="text-sm font-medium">Inquiring about: <span className="font-bold">{productName}</span></p>
-          </div>
-        )}
+
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Product Category</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                <FormControl>
+                  <SelectTrigger className="bg-white border-none h-12">
+                    <SelectValue placeholder="Select a Category" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="BedLinen">Bed Linen</SelectItem>
+                  <SelectItem value="BathLinen">Bath Linen</SelectItem>
+                  <SelectItem value="MedicalDisposables">Medical Disposables</SelectItem>
+                  <SelectItem value="Multiple">Multiple Categories</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
-              <FormControl><Textarea placeholder="Please tell us more about your needs..." className="min-h-[120px]" {...field} /></FormControl>
+              <FormLabel className="text-[#0D1B3E] font-bold uppercase text-[10px] tracking-widest">Your Requirements</FormLabel>
+              <FormControl><Textarea placeholder="Please specify sizes, quantities, or customization needs..." className="bg-white border-none min-h-[120px]" {...field} /></FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" size="lg" disabled={form.formState.isSubmitting}>
-          {form.formState.isSubmitting ? 'Sending...' : 'Send Inquiry'}
+        <Button 
+          type="submit" 
+          className="w-full h-14 bg-[#1B45CC] hover:bg-[#2350D4] text-white font-bold rounded-xl text-lg transition-all"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting ? 'Processing...' : 'Send Enquiry'}
         </Button>
       </form>
     </Form>

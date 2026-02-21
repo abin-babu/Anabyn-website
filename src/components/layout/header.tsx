@@ -1,206 +1,101 @@
-
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, ChevronDown, Globe } from 'lucide-react';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose
-} from '@/components/ui/sheet';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuPortal,
-} from '@/components/ui/dropdown-menu';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { AnabynLogo } from '../anabyn-logo';
-import { categories } from '@/lib/products';
-import type { Category } from '@/lib/types';
-
-const mainCats = categories.filter(c => c.parentId === null);
-const productNav = mainCats.map(cat => {
-    const subCats = categories.filter(sc => sc.parentId === cat.id);
-    return {
-        ...cat,
-        href: `/products/category/${cat.slug}`,
-        subCategories: subCats.map(sc => ({
-            ...sc,
-            href: `/products/subcategory/${sc.slug}`
-        }))
-    };
-});
-
-const staticNavItems = [
-    { label: 'About Us', href: '/about-us' },
-    { label: 'Customization', href: '/customization' },
-    { label: 'Quality', href: '/quality' },
-    { label: 'Sustainability', href: '/sustainability' },
-    { label: 'Downloads', href: '/downloads' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Careers', href: '/careers' },
-];
-
-const IndianFlag = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" width="24" height="16">
-      <rect width="24" height="16" fill="#FFF"/>
-      <rect width="24" height="5.33" fill="#FF9933"/>
-      <rect y="10.67" width="24" height="5.33" fill="#138808"/>
-      <circle cx="12" cy="8" r="1.7" fill="none" stroke="#000080" strokeWidth="0.6"/>
-      <circle cx="12" cy="8" r="0.4" fill="#000080"/>
-      <path d="M12 8 L12 6.3 M12 9.7 L12 8 M12 8 L13.7 8 M10.3 8 L12 8 M12 8 L13.204 7.196 M10.796 8.804 L12 8 M12 8 L13.204 8.804 M10.796 7.196 L12 8 M12 8 L13.568 7.568 M10.432 8.432 L12 8 M12 8 L13.568 8.432 M10.432 7.568 L12 8" stroke="#000080" strokeWidth="0.2" strokeLinecap="round"/>
-    </svg>
-  );
+import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function Header() {
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <Link href="/" className="flex items-center gap-2">
-            <AnabynLogo className="h-12 w-40 flex-shrink-0" />
-            <IndianFlag />
-          </Link>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <nav className="hidden items-center space-x-6 text-sm font-medium lg:flex">
-             <Link
-                href={'/'}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-              >
-                Home
-              </Link>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60 outline-none">
-                Products <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {productNav.map((cat) => (
-                  cat.subCategories.length > 0 ? (
-                    <DropdownMenuSub key={cat.id}>
-                      <DropdownMenuSubTrigger>
-                        <Link href={cat.href} className="w-full text-left">{cat.name}</Link>
-                      </DropdownMenuSubTrigger>
-                      <DropdownMenuPortal>
-                        <DropdownMenuSubContent>
-                          {cat.subCategories.map((sub) => (
-                            <DropdownMenuItem key={sub.id} asChild>
-                              <Link href={sub.href}>{sub.name}</Link>
-                            </DropdownMenuItem>
-                          ))}
-                        </DropdownMenuSubContent>
-                      </DropdownMenuPortal>
-                    </DropdownMenuSub>
-                  ) : (
-                    <DropdownMenuItem key={cat.id} asChild>
-                      <Link href={cat.href}>{cat.name}</Link>
-                    </DropdownMenuItem>
-                  )
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-            {staticNavItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { label: 'Products', href: '/#products' },
+    { label: 'About Us', href: '/#about' },
+    { label: 'Markets', href: '/#markets' },
+    { label: 'Quality', href: '/quality' },
+  ];
+
+  return (
+    <header 
+      className={cn(
+        "fixed top-0 z-50 w-full h-[74px] transition-all duration-300",
+        "bg-[#0D1B3E]/90 backdrop-blur-md border-b border-[#C8A020]/20",
+        isScrolled && "shadow-xl"
+      )}
+    >
+      <div className="container h-full flex items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-3 group">
+          <img 
+            src="/images/logo.png" 
+            alt="Anabyn Logo" 
+            className="h-10 w-auto"
+          />
+          <div className="flex flex-col">
+            <span className="text-white font-playfair text-xl font-bold tracking-tight leading-none">ANABYN</span>
+            <span className="text-[#C8A020] text-[10px] font-bold uppercase tracking-[0.2em] leading-tight mt-0.5">Global Ventures LLP</span>
+          </div>
+        </Link>
+        
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.label} 
+              href={link.href}
+              className="text-white/90 hover:text-[#C8A020] text-sm font-medium transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Button 
+            asChild
+            className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold border-none hover:opacity-90 transition-all px-6"
+          >
+            <Link href="/#contact">Get a Quote</Link>
+          </Button>
+        </nav>
+
+        <button 
+          className="lg:hidden text-white"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-[74px] left-0 w-full bg-[#0D1B3E] border-b border-[#C8A020]/20 lg:hidden animate-in slide-in-from-top duration-300">
+          <nav className="flex flex-col p-6 space-y-4">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.label} 
+                href={link.href}
+                className="text-white text-lg font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
-                {item.label}
+                {link.label}
               </Link>
             ))}
+            <Button 
+              asChild
+              className="w-full rounded-full bg-gold-gradient text-[#0D1B3E] font-bold"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Link href="/#contact">Get a Quote</Link>
+            </Button>
           </nav>
-
-          <div className="hidden md:flex items-center gap-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <Globe className="h-5 w-5" />
-                    <span className="sr-only">Change language</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    English
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Button asChild>
-                <Link href="/inquiry">Contact Us</Link>
-              </Button>
-          </div>
-
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col space-y-2 mt-8">
-                 <SheetClose asChild>
-                    <Link href="/" className="text-lg font-medium transition-colors hover:text-primary">Home</Link>
-                 </SheetClose>
-                <Accordion type="single" collapsible className="w-full">
-                  <AccordionItem value="products">
-                    <AccordionTrigger className="text-lg font-medium">Products</AccordionTrigger>
-                    <AccordionContent className="pl-4">
-                        {productNav.map((cat) => (
-                             <Accordion key={cat.name} type="single" collapsible className="w-full">
-                                <AccordionItem value={cat.name}>
-                                    <AccordionTrigger>
-                                        <SheetClose asChild>
-                                            <Link href={cat.href} className="hover:underline">{cat.name}</Link>
-                                        </SheetClose>
-                                    </AccordionTrigger>
-                                    {cat.subCategories.length > 0 && (
-                                    <AccordionContent className="pl-4">
-                                        {cat.subCategories.map(sub => (
-                                            <SheetClose asChild key={sub.name}>
-                                                <Link href={sub.href} className="block py-2 text-muted-foreground hover:text-primary">{sub.name}</Link>
-                                            </SheetClose>
-                                        ))}
-                                    </AccordionContent>
-                                    )}
-                                </AccordionItem>
-                             </Accordion>
-                        ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                
-                {staticNavItems.map((item) => (
-                    <SheetClose asChild key={item.label}>
-                        <Link
-                            href={item.href}
-                            className="text-lg font-medium transition-colors hover:text-primary py-2"
-                        >
-                            {item.label}
-                        </Link>
-                    </SheetClose>
-                ))}
-                <Button asChild className="mt-4">
-                    <Link href="/inquiry">Contact Us</Link>
-                </Button>
-              </nav>
-            </SheetContent>
-          </Sheet>
         </div>
-      </div>
+      )}
     </header>
   );
 }
