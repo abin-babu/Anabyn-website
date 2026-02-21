@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -25,7 +26,7 @@ export function Footer() {
                 { icon: 'fa-linkedin-in', href: 'https://www.linkedin.com/company/anabyn-global-ventures/' },
                 { icon: 'fa-whatsapp', href: 'https://wa.me/919495613121' },
                 { icon: 'fa-instagram', href: 'https://www.instagram.com/anabyn_global_ventures/' },
-                { icon: 'fa-envelope', href: 'mailto:anabyn.group@gmail.com' }
+                { icon: 'fa-envelope', href: 'mailto:sales@anabyn.com' }
               ].map((social, i) => (
                 <a 
                   key={i} 
@@ -64,7 +65,7 @@ export function Footer() {
             <h4 className="text-white font-bold uppercase text-xs tracking-[0.2em] mb-8">Support</h4>
             <ul className="space-y-4 text-sm">
               <li><Link href="/#contact" className="hover:text-[#C8A020] transition-colors">Get a Quote</Link></li>
-              <li><a href="mailto:anabyn.group@gmail.com" className="hover:text-[#C8A020] transition-colors">Email Us</a></li>
+              <li><a href="mailto:sales@anabyn.com" className="hover:text-[#C8A020] transition-colors">Email Us</a></li>
               <li><Link href="/downloads" className="hover:text-[#C8A020] transition-colors">Product Catalogue</Link></li>
               <li><Link href="/faq" className="hover:text-[#C8A020] transition-colors">Shipping Info</Link></li>
             </ul>

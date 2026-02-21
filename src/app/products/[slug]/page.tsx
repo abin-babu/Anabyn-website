@@ -1,5 +1,4 @@
 
-
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/lib/products';
@@ -83,9 +82,9 @@ export default function ProductDetailPage({ params }: Props) {
   const category = categories.find(c => c.id === product.categoryId);
   const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
 
-  const whatsappNumber = "919495613121";
+  const whatsappNumber = "+919495613121";
   const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div className="flex min-h-screen flex-col">

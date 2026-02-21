@@ -1,3 +1,4 @@
+
 'use client';
 
 import { InquiryForm } from '@/components/inquiry-form';
@@ -25,7 +26,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#0D1B3E] mb-1 uppercase text-xs tracking-widest">Email</h4>
-                  <a href="mailto:anabyn.group@gmail.com" className="text-gray-600 font-medium hover:text-[#1B45CC]">anabyn.group@gmail.com</a>
+                  <a href="mailto:sales@anabyn.com" className="text-gray-600 font-medium hover:text-[#1B45CC]">sales@anabyn.com</a>
                 </div>
               </div>
               <div className="flex items-start gap-6 group">
@@ -34,7 +35,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold text-[#0D1B3E] mb-1 uppercase text-xs tracking-widest">WhatsApp / Call</h4>
-                  <p className="text-gray-600 font-medium">Available for quick queries</p>
+                  <p className="text-gray-600 font-medium">+91 94956 13121</p>
                 </div>
               </div>
               <div className="flex items-start gap-6 group">

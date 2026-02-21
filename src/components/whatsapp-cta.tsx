@@ -4,9 +4,9 @@ import { Button } from './ui/button';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export function WhatsappCta() {
-    const whatsappNumber = "919495613121";
+    const whatsappNumber = "+919495613121";
     const whatsappMessage = `Hi Anabyn. I'd like to make a business enquiry.`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
     return (
         <Button
             asChild

@@ -64,7 +64,7 @@ export default function CareersPage() {
                                 <h3 className="text-xl font-semibold">Don't see a role for you?</h3>
                                 <p className="text-muted-foreground mt-2">We're always open to connecting with talented people. Send us your resume and we'll keep it on file for future opportunities.</p>
                                 <Button asChild variant="link" className="mt-2">
-                                     <a href="mailto:careers@anabyn.com">Submit Your Resume</a>
+                                     <a href="mailto:sales@anabyn.com">Submit Your Resume</a>
                                 </Button>
                             </div>
                         </CardContent>

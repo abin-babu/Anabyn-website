@@ -13,9 +13,9 @@ export function ProductCard({ product }: { product: Product }) {
   const category = categories.find(c => c.id === product.categoryId);
   const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
 
-  const whatsappNumber = "919495613121";
+  const whatsappNumber = "+919495613121";
   const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
