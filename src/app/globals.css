@@ -27,10 +27,11 @@
     --ring: 226 76% 45%;
     --radius: 0.75rem;
 
-    /* Custom variables for the new spec */
-    --navy: 223 65% 15%; /* #0D1B3E */
+    /* Brand Colors */
+    --blue-dark: 223 65% 15%; /* #0D1B3E */
+    --blue-royal: 226 76% 45%; /* #1B45CC */
+    --gold-primary: 46 72% 45%; /* #C8A020 */
     --gold-light: 46 75% 56%; /* #E2BA3A */
-    --royal-hover: 225 72% 49%; /* #2350D4 */
   }
 }
 
@@ -39,31 +40,22 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    @apply font-playfair;
   }
 }
 
 @layer utilities {
-  .font-playfair {
-    font-family: 'Playfair Display', serif;
-  }
-  .font-inter {
-    font-family: 'Inter', sans-serif;
-  }
-  .text-navy {
-    color: hsl(var(--navy));
-  }
-  .bg-navy {
-    background-color: hsl(var(--navy));
-  }
-  .bg-gold-gradient {
-    background: linear-gradient(135deg, #C8A020, #E2BA3A);
+  .bg-blue-dark {
+    background-color: hsl(var(--blue-dark));
   }
   .bg-navy-gradient {
     background: linear-gradient(135deg, #0D1B3E, #1B45CC);
+  }
+  .bg-gold-gradient {
+    background: linear-gradient(135deg, #C8A020, #E2BA3A);
   }
   .animate-marquee {
     display: flex;
@@ -74,12 +66,12 @@
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
   }
-  .reveal {
+  .fade-up {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease-out;
   }
-  .reveal.active {
+  .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
   }

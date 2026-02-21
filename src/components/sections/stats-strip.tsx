@@ -2,14 +2,15 @@
 
 import { useEffect, useState, useRef } from 'react';
 
+const stats = [
+  { target: 50, label: "Export Destinations", suffix: "+" },
+  { target: 1000, label: "Units Shipped Annually", suffix: "K+", scale: 1 },
+  { target: 500, label: "Global Clients", suffix: "+" },
+  { target: 99, label: "On-Time Delivery", suffix: "%" }
+];
+
 export function StatsStrip() {
   const [counts, setCounts] = useState([0, 0, 0, 0]);
-  const stats = [
-    { target: 50, label: "Export Destinations" },
-    { target: 1000, label: "Units Shipped Annually", suffix: "K+" },
-    { target: 500, label: "Global Clients" },
-    { target: 99, label: "On-Time Delivery", suffix: "%" }
-  ];
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -48,14 +49,14 @@ export function StatsStrip() {
   }, [hasStarted]);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-navy-gradient">
+    <section ref={sectionRef} className="py-20 bg-navy-gradient overflow-hidden">
       <div className="container px-4">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
           {stats.map((stat, i) => (
-            <div key={i} className="text-center space-y-4">
+            <div key={i} className="text-center space-y-4 fade-up">
               <div className="inline-block relative">
                 <h3 className="text-5xl md:text-6xl font-playfair font-bold text-[#C8A020]">
-                  {counts[i]}{stat.suffix || '+'}
+                  {counts[i] === 1000 && i === 1 ? '1M' : counts[i]}{stat.suffix}
                 </h3>
                 <div className="mt-2 h-[2px] w-full bg-[#C8A020]/30" />
               </div>

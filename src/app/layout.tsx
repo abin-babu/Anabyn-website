@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import { Toaster } from '@/components/ui/toaster';
 import './globals.css';
 import { FirebaseClientProvider } from '@/firebase';
-import { WhatsappCta } from '@/components/whatsapp-cta';
 import { Playfair_Display, Inter } from 'next/font/google';
-import { ScrollToTop } from '@/components/scroll-to-top';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -42,8 +40,6 @@ export default function RootLayout({
         <FirebaseClientProvider>
             {children}
             <Toaster />
-            <WhatsappCta />
-            <ScrollToTop />
         </FirebaseClientProvider>
       </body>
     </html>

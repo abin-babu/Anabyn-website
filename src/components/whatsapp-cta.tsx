@@ -1,21 +1,30 @@
-
 'use client';
-import { Button } from './ui/button';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export function WhatsappCta() {
-    const whatsappNumber = "+919495613121";
-    const whatsappMessage = `Hi Anabyn. I'd like to make a business enquiry.`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20know%20more%20about%20your%20products.`;
+    
     return (
-        <Button
-            asChild
-            className="fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-lg"
-        >
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-                <FaWhatsapp className="h-8 w-8" />
-                <span className="sr-only">Chat on WhatsApp</span>
-            </a>
-        </Button>
+        <div className="fixed bottom-7 right-7 z-[60]">
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <a 
+                            href={whatsappUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl hover:scale-110 transition-transform duration-300"
+                        >
+                            <FaWhatsapp className="h-9 w-9" />
+                            <span className="sr-only">Chat on WhatsApp</span>
+                        </a>
+                    </TooltipTrigger>
+                    <TooltipContent side="left" className="bg-[#25D366] text-white border-none font-bold">
+                        Chat on WhatsApp
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+        </div>
     )
 }

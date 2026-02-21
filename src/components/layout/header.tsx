@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { AnabynLogo } from '@/components/anabyn-logo';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,17 +13,19 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { label: 'Products', href: '/#products' },
-    { label: 'About Us', href: '/#about' },
-    { label: 'Markets', href: '/#markets' },
-    { label: 'Quality', href: '/quality' },
+    { label: 'Products', href: '#products' },
+    { label: 'About Us', href: '#about' },
+    { label: 'Customization', href: '#customization' },
+    { label: 'Quality', href: '#certifications' },
+    { label: 'Markets', href: '#markets' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   return (
@@ -30,20 +33,12 @@ export function Header() {
       className={cn(
         "fixed top-0 z-50 w-full h-[74px] transition-all duration-300",
         "bg-[#0D1B3E]/90 backdrop-blur-md border-b border-[#C8A020]/20",
-        isScrolled && "shadow-xl"
+        isScrolled && "shadow-xl border-[#C8A020]/40"
       )}
     >
       <div className="container h-full flex items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-3 group">
-          <img 
-            src="/images/logo.png" 
-            alt="Anabyn Logo" 
-            className="h-10 w-auto"
-          />
-          <div className="flex flex-col">
-            <span className="text-white font-playfair text-xl font-bold tracking-tight leading-none">ANABYN</span>
-            <span className="text-[#C8A020] text-[10px] font-bold uppercase tracking-[0.2em] leading-tight mt-0.5">Global Ventures LLP</span>
-          </div>
+        <Link href="/" className="group">
+          <AnabynLogo />
         </Link>
         
         <nav className="hidden lg:flex items-center space-x-8">
@@ -60,7 +55,7 @@ export function Header() {
             asChild
             className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold border-none hover:opacity-90 transition-all px-6"
           >
-            <Link href="/#contact">Get a Quote</Link>
+            <Link href="#contact">Contact Us</Link>
           </Button>
         </nav>
 
@@ -91,7 +86,7 @@ export function Header() {
               className="w-full rounded-full bg-gold-gradient text-[#0D1B3E] font-bold"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Link href="/#contact">Get a Quote</Link>
+              <Link href="#contact">Contact Us</Link>
             </Button>
           </nav>
         </div>

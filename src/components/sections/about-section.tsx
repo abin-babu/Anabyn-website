@@ -2,58 +2,63 @@
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-[#F5F7FA]">
+    <section id="about" className="py-24 bg-[#F5F7FA] overflow-hidden">
       <div className="container px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="relative reveal">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="relative fade-up">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <img 
-                src="https://images.unsplash.com/photo-1526290766257-c015850e4629" 
+                src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80" 
                 alt="Manufacturing Excellence" 
                 className="w-full h-full object-cover"
               />
             </div>
             {/* Floating Experience Card */}
-            <div className="absolute bottom-[-30px] right-[-10px] md:right-[-30px] bg-[#0D1B3E] p-8 rounded-xl shadow-2xl flex items-center gap-6">
-              <span className="text-5xl font-playfair font-bold text-[#C8A020]">10+</span>
+            <div className="absolute bottom-[-40px] right-[-10px] md:right-[-40px] bg-[#0D1B3E] p-10 rounded-2xl shadow-2xl flex items-center gap-6 border border-[#C8A020]/30">
+              <span className="text-6xl font-playfair font-bold text-[#C8A020]">10+</span>
               <div className="text-white">
-                <p className="text-xs uppercase tracking-widest font-bold opacity-70">Years of</p>
-                <p className="text-lg font-bold">Excellence</p>
+                <p className="text-xs uppercase tracking-[0.2em] font-bold opacity-70">Years of</p>
+                <p className="text-xl font-bold">Excellence</p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-8 reveal">
+          <div className="space-y-8 fade-up">
             <div>
               <span className="text-[#1B45CC] font-bold text-xs uppercase tracking-widest">Our Story</span>
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#0D1B3E] mt-4 mb-6 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#0D1B3E] mt-4 mb-8 leading-tight">
                 Proudly Made in India, <br /> Trusted Worldwide
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Founded on the principles of trust and transparency, Anabyn Global Ventures LLP has emerged as a leader in exporting premium Indian textiles and medical supplies. We don't just ship products; we build long-term value for our global partners.
-              </p>
-              <p className="text-gray-600 leading-relaxed">
-                By maintaining direct alliances with India's most advanced mills and manufacturing units, we ensure that every thread and every device reflects the high standards of modern Indian industry.
-              </p>
+              <div className="space-y-6 text-gray-600 leading-relaxed">
+                <p>
+                  Anabyn Global Ventures LLP was founded with a single mission: to connect India's vast manufacturing strength with international buyers who demand quality, reliability, and value.
+                </p>
+                <p>
+                  We work directly with vetted manufacturers across India's leading production hubs to source, quality-inspect, and export premium hospitality and medical supplies to buyers in Europe, the Middle East, North America, and beyond.
+                </p>
+              </div>
             </div>
 
             <ul className="space-y-4">
               {[
-                'Direct factory sourcing from India\'s finest mills',
-                'Strict quality audits at every production stage',
-                'Ethical manufacturing and fair trade practices',
-                'Full export documentation support (LC, DP, TT)'
+                'Exclusive alliances with top-tier Indian manufacturers',
+                'Multi-stage product inspections and sample approvals',
+                'Ethical sourcing and fair trade practices',
+                'Full export documentation support (LC, DP, TT)',
+                'Private label and custom branding available'
               ].map((item, i) => (
                 <li key={i} className="flex items-center text-[#0D1B3E] font-medium">
-                  <i className="fa-solid fa-check text-[#C8A020] mr-4" />
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#C8A020]/10 flex items-center justify-center mr-4">
+                    <i className="fa-solid fa-check text-[#C8A020] text-[10px]" />
+                  </div>
                   {item}
                 </li>
               ))}
             </ul>
 
-            <div className="inline-flex items-center bg-white border rounded-full px-4 py-2 gap-3 shadow-sm">
-               <img src="https://flagcdn.com/in.svg" alt="India Flag" className="h-4 w-auto rounded-sm" />
-               <span className="text-xs font-bold uppercase tracking-widest text-[#0D1B3E]">Proudly Made in India 🇮🇳</span>
+            <div className="inline-flex items-center bg-white border border-[#D8E0F0] rounded-full px-5 py-2.5 gap-4 shadow-sm">
+               <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" className="h-5 w-auto rounded-sm" />
+               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#0D1B3E]">Proudly Made in India 🇮🇳</span>
             </div>
           </div>
         </div>
