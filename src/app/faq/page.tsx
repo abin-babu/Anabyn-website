@@ -12,34 +12,43 @@ import {
 const faqs = [
     {
         question: "What is your minimum order quantity (MOQ)?",
-        answer: "Our MOQ varies by product and customization level. For example, standard hotel bed sheet sets typically have an MOQ of 100 sets, while custom-embroidered bathrobes start at 50 units. Please refer to the specific product page for its MOQ or contact us with your requirements for a detailed quote."
+        answer: "Our MOQ varies by product and customization level. For example, standard hotel bed sheet sets typically have an MOQ of 100 sets, while custom-embroidered bathrobes start at 50 units."
     },
     {
         question: "Do you ship internationally?",
-        answer: "Yes, we ship globally from our base in India. We have extensive experience in export documentation and logistics, partnering with leading freight carriers to ensure smooth and timely delivery to your destination port or warehouse. We can handle various incoterms (FOB, CIF, DDP) based on your needs."
+        answer: "Yes, we ship globally from our base in India. We have extensive experience in export documentation and logistics, partnering with leading freight carriers."
     },
     {
         question: "What are your payment terms?",
-        answer: "For new clients, our standard payment terms are typically a 30-50% advance payment to initiate production and the remaining balance against a bill of lading (B/L) copy before delivery. For larger or long-term contracts, we can discuss other options such as Letters of Credit (L/C). We accept international wire transfers."
+        answer: "For new clients, our standard payment terms are typically a 30-50% advance payment to initiate production and the remaining balance against a bill of lading (B/L) copy."
     },
     {
         question: "Can I customize the products with my own branding?",
-        answer: "Absolutely. We specialize in customization. Options include custom logo embroidery, Pantone color matching for dyes, specific fabric weaves, and branded packaging. Please visit our 'Customization' page or contact our team to discuss your branding requirements."
-    },
-    {
-        question: "How can I track my order?",
-        answer: "This feature is coming soon! Once implemented, you will receive an enquiry ID upon order confirmation. You will be able to use this ID on our 'Track Your Order' page to see the real-time status of your shipment from production to final delivery."
-    },
-     {
-        question: "How do you handle quality control and samples?",
-        answer: "We have a multi-stage quality control process, from raw material inspection to final product checks. We can also arrange for third-party inspection (e.g., SGS, Intertek) at the client's request. We offer a sample request program; please contact us to arrange for samples of the products you are interested in."
+        answer: "Absolutely. We specialize in customization. Options include custom logo embroidery, Pantone color matching for dyes, specific fabric weaves, and branded packaging."
     }
 ];
 
 export default function FAQPage() {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+            />
             <main className="flex-1 py-12 md:py-20 bg-secondary/50">
                 <div className="container max-w-4xl mx-auto">
                     <Card>

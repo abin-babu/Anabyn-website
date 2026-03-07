@@ -44,9 +44,64 @@ export default function ProductDetailPage() {
 
   const categoryLabel = product.category === 'hospitality-supplies' ? 'Hospitality' : 'Medical';
 
+  const productSchema = {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.images,
+    "description": product.shortDescription,
+    "sku": product.id,
+    "mpn": product.hsCode,
+    "brand": {
+      "@type": "Brand",
+      "name": "Anabyn Global Ventures"
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": `https://www.anabyn.com/products/${product.slug}`,
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.anabyn.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Catalogue",
+        "item": "https://www.anabyn.com/products"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.name,
+        "item": `https://www.anabyn.com/products/${product.slug}`
+      }
+    ]
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      
       <main className="flex-1 bg-white pt-24 pb-20">
         <div className="container mx-auto px-4">
           
@@ -66,8 +121,9 @@ export default function ProductDetailPage() {
               <div className="relative aspect-square rounded-3xl overflow-hidden border border-gray-100 bg-secondary/10 shadow-sm">
                 <Image 
                   src={product.images[activeImage] || 'https://placehold.co/800'} 
-                  alt={product.name} 
+                  alt={`${product.name} - View ${activeImage + 1}`} 
                   fill 
+                  priority
                   className="object-cover"
                 />
                 <Badge className="absolute top-6 left-6 bg-brand-navy text-white text-xs uppercase font-bold tracking-widest px-3 py-1 border-none shadow-xl">
@@ -82,7 +138,7 @@ export default function ProductDetailPage() {
                       onClick={() => setActiveImage(i)}
                       className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${activeImage === i ? 'border-brand-gold ring-2 ring-brand-gold/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
                     >
-                      <Image src={img} alt={`${product.name} ${i}`} fill className="object-cover" />
+                      <Image src={img} alt={`${product.name} thumbnail ${i}`} fill className="object-cover" />
                     </button>
                   ))}
                 </div>

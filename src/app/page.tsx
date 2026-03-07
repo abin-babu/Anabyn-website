@@ -1,7 +1,9 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { AnabynLogo } from '@/components/anabyn-logo';
 import { 
@@ -14,16 +16,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
-import { TestimonialsCarousel } from '@/components/testimonials-carousel';
-import { StatsSection } from '@/components/stats-section';
 import { products as productCatalog } from '@/lib/products';
 import { initialClients } from '@/lib/clients';
 import Image from 'next/image';
 
+// Dynamically import heavy components
+const TestimonialsCarousel = dynamic(() => import('@/components/testimonials-carousel').then(mod => mod.TestimonialsCarousel), { 
+  loading: () => <div className="h-[400px] w-full bg-secondary/5 animate-pulse rounded-3xl" />,
+  ssr: false 
+});
+
+const StatsSection = dynamic(() => import('@/components/stats-section').then(mod => mod.StatsSection), {
+  ssr: false
+});
+
 export default function MasterpiecePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('all');
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -64,8 +73,33 @@ export default function MasterpiecePage() {
     (e.target as HTMLFormElement).reset();
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Anabyn Global Ventures LLP",
+    "url": "https://www.anabyn.com",
+    "logo": "https://www.anabyn.com/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-94956-13121",
+      "contactType": "sales",
+      "email": "sales@anabyn.com",
+      "areaServed": "Worldwide",
+      "availableLanguage": ["English", "Arabic", "French", "Hindi"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/anabyn-global-ventures/",
+      "https://www.instagram.com/anabyn_global_ventures/",
+      "https://www.facebook.com/people/Anabyn-Global-Ventures-LLP/61581460358902/"
+    ]
+  };
+
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
       
       <nav className={cn(
         "fixed top-0 left-0 w-full h-[74px] z-[100] transition-all duration-300 backdrop-blur-md",
@@ -115,7 +149,7 @@ export default function MasterpiecePage() {
             src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
             fill
             className="object-cover grayscale-[30%] brightness-[0.4]" 
-            alt="Anabyn Hero"
+            alt="Anabyn Hero - Premium Bed Linen"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent" />
