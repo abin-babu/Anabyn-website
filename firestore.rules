@@ -1,69 +1,215 @@
-
 /**
- * @fileOverview Firestore Security Rules for Anabyn Global Ventures.
- *
+ * Anabyn Global Ventures LLP - Firestore Security Rules
+ * 
  * Core Philosophy:
- * This ruleset enforces a role-based access control model.
- * - Public read access for product catalog (products, categories).
- * - Inquiries can be created by anyone, but can only be read and managed by authenticated administrators.
- * - Admin user profiles are private.
+ * This ruleset enforces a centralized "Admin-Managed, Publicly-Consumed" model for the majority of the 
+ * export catalog, combined with a strict "User-Ownership" model for the Buyer Portal. It prioritizes 
+ * authorization independence by relying on UIDs stored in the document paths and denormalized fields 
+ * to minimize cross-document lookups (get() calls).
+ * 
+ * Data Structure:
+ * - Public Collections: Catalog data (products, certifications, blog) are top-level and readable by everyone.
+ * - Private User Tree: All buyer-specific data (orders, samples, profiles) is nested under /users/{userId}.
+ * - Admin Authorization: Elevating permissions is handled via the /roles_admin/{uid} collection.
+ * 
+ * Key Security Decisions:
+ * - Prototyping Flexibility: Data types and full schema shapes are not enforced to allow rapid UI iteration.
+ * - Admin Control: Only users with a record in /roles_admin can modify the public catalog or manage user orders.
+ * - RFQ Integrity: Anonymous users can submit RFQs, but only admins can see or process them to protect business leads.
+ * - Structural Segregation: Private buyer documents are segregated into user-specific paths to ensure query safety.
+ * 
+ * Denormalization for Authorization:
+ * - Orders and their subcollections (OrderItems, Documents) are expected to contain a 'buyerId' or 'userId' 
+ *   field matching the authenticated user's UID to allow for direct, high-performance rule evaluation.
  */
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    /**
-     * @description Publicly readable product and category data. Only admins can write.
-     */
-    match /products/{productId} {
-      allow get, list: if true;
-      allow write: if isAdmin();
-    }
-    match /categories/{categoryId} {
-        allow get, list: if true;
-        allow write: if isAdmin();
-    }
+    // --- GLOBAL HELPER FUNCTIONS ---
 
-    /**
-     * @description Inquiries can be created by anyone. Read/update/delete is restricted to admins.
-     */
-    match /inquiries/{inquiryId} {
-      allow create: if true;
-      allow read, update, delete: if isAdmin();
-    }
-
-    /**
-     * @description Admin user profiles are private and only accessible to the corresponding authenticated user.
-     */
-    match /admin/{userId} {
-      allow get, write: if isOwner(userId);
-    }
-
-    // --- Helper Functions ---
-
-    /**
-     * @description Checks if the request is from an authenticated user.
-     * @return {boolean} True if authenticated, false otherwise.
-     */
+    /** @description Checks if the request is from an authenticated user. */
     function isSignedIn() {
       return request.auth != null;
     }
 
-    /**
-     * @description Checks if the authenticated user is the owner of the document.
-     * @param {string} userId - The user ID to check against.
-     * @return {boolean} True if the authenticated user is the owner.
-     */
+    /** @description Checks if the user has an admin record in the dedicated roles collection. */
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    /** @description Checks if the authenticated UID matches the provided userId. */
     function isOwner(userId) {
       return isSignedIn() && request.auth.uid == userId;
     }
 
-    /**
-     * @description Checks if the authenticated user is an admin by checking for their existence in the /admin collection.
-     * @return {boolean} True if the user is an admin.
-     */
-    function isAdmin() {
-      return isSignedIn() && exists(/databases/$(database)/documents/admin/$(request.auth.uid));
+    /** @description Verifies admin status and ensures the document exists. */
+    function isExistingAdmin() {
+      return isAdmin() && resource != null;
     }
+
+    // --- COLLECTION RULES ---
+
+    /**
+     * @description Publicly readable catalog and company data. Writes restricted to Admins.
+     * @path /company_profile/main, /products/{p}, /blog_posts/{b}, /certifications/{c}, etc.
+     * @allow (get, list) for any visitor.
+     * @deny (create, update, delete) for non-admin users.
+     * @principle Public consumption with centralized admin control.
+     */
+    match /company_profile/{docId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /certifications/{certificationId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /incoterms/{incotermId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /shipping_routes/{routeId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /hs_codes/{hsCodeId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /moq_data/{moqDataId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /packaging_options/{packagingOptionId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /products/{productSlug} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /blog_posts/{blogPostSlug} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /testimonials/{testimonialId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /clients/{clientId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /sustainability_targets/{targetId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /suppliers/{supplierId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /public_documents/{documentId} {
+      allow get, list: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    /**
+     * @description RFQ Submissions allow public/anonymous creation but admin-only visibility.
+     * @path /rfq_submissions/{rfqId}
+     * @allow (create) for any user (including anonymous).
+     * @deny (list, get) for anyone except Admins.
+     * @principle Secure lead generation; protects potential buyer contact info.
+     */
+    match /rfq_submissions/{rfqId} {
+      allow create: if true;
+      allow get, list: if isAdmin();
+      allow update, delete: if isExistingAdmin();
+    }
+
+    /**
+     * @description User Profile management. Users create their own; Admins manage all.
+     * @path /users/{userId}
+     * @allow (get, list, create, update) if isOwner(userId).
+     * @deny (delete) for users; only Admins can delete profiles.
+     * @principle Self-creation and ownership of personal profile data.
+     */
+    match /users/{userId} {
+      allow get, list: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow update: if (isOwner(userId) && request.resource.data.id == resource.data.id) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * @description Orders subcollection. Restricted to the specific buyer and Admins.
+     * @path /users/{userId}/orders/{orderId}
+     * @allow (get, list) if isOwner(userId).
+     * @deny (create, update, delete) for users; Admins handle fulfillment/tracking.
+     * @principle Buyer-only access to transaction history; Admin-managed status updates.
+     */
+    match /users/{userId}/orders/{orderId} {
+      allow get, list: if isOwner(userId) || isAdmin();
+      allow create, update, delete: if isAdmin();
+
+      /**
+       * @description Individual items within an order.
+       * @path /users/{userId}/orders/{orderId}/order_items/{orderItemId}
+       */
+      match /order_items/{orderItemId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+
+      /**
+       * @description Shipping and invoice documents for a specific order.
+       * @path /users/{userId}/orders/{orderId}/documents/{documentId}
+       */
+      match /documents/{documentId} {
+        allow get, list: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isAdmin();
+      }
+    }
+
+    /**
+     * @description Sample requests initiated by the buyer.
+     * @path /users/{userId}/sample_requests/{sampleRequestId}
+     * @allow (create, update) if isOwner(userId).
+     * @deny (delete) for users; Admins manage sample fulfillment.
+     * @principle Owners can request and review samples; Admins track dispatch.
+     */
+    match /users/{userId}/sample_requests/{sampleRequestId} {
+      allow get, list: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && request.resource.data.requesterId == userId;
+      allow update: if (isOwner(userId) && request.resource.data.requesterId == resource.data.requesterId) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    /**
+     * @description Admin role lookup. 
+     * @path /roles_admin/{uid}
+     * @allow (get) for rule validation.
+     * @deny (list, write) for all users. Admin roles should only be set via Admin SDK.
+     * @principle Secure, lookup-based role management.
+     */
+    match /roles_admin/{uid} {
+      allow get: if isSignedIn();
+      allow list, create, update, delete: if false;
+    }
+
   }
 }

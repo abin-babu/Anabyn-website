@@ -1,11 +1,363 @@
-
 {
   "entities": {
+    "CompanyProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CompanyProfile",
+      "type": "object",
+      "description": "Stores general company information, key identifiers, and aggregated statistics for display on various pages like the homepage and about us.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the CompanyProfile entity (e.g., 'main_profile')."
+        },
+        "establishmentYear": {
+          "type": "number",
+          "description": "The year the company was established."
+        },
+        "headquartersLocation": {
+          "type": "string",
+          "description": "The primary physical location of the company's headquarters."
+        },
+        "iecCodeValue": {
+          "type": "string",
+          "description": "The company's Indian Exporter Certificate (IEC) code."
+        },
+        "gstin": {
+          "type": "string",
+          "description": "The company's Goods and Services Tax Identification Number (GSTIN)."
+        },
+        "cin": {
+          "type": "string",
+          "description": "The company's Corporate Identification Number (CIN)."
+        },
+        "msmeRegistered": {
+          "type": "boolean",
+          "description": "Indicates if the company is registered as an MSME (Micro, Small, and Medium Enterprise)."
+        },
+        "exportCountriesCount": {
+          "type": "number",
+          "description": "The number of countries the company exports to."
+        },
+        "ordersFulfilledCount": {
+          "type": "number",
+          "description": "The total number of orders fulfilled globally."
+        },
+        "onTimeDeliveryRate": {
+          "type": "number",
+          "description": "The percentage of orders delivered on time."
+        },
+        "averageBuyerRating": {
+          "type": "number",
+          "description": "The average buyer rating across all reviews."
+        },
+        "googleReviewsRating": {
+          "type": "number",
+          "description": "The company's Google Verified Reviews star rating."
+        },
+        "googleReviewsUrl": {
+          "type": "string",
+          "description": "URL to the company's Google Reviews page.",
+          "format": "uri"
+        },
+        "registeredAddress": {
+          "type": "string",
+          "description": "The full registered address of the company."
+        },
+        "directors": {
+          "type": "array",
+          "description": "A list of directors/founders, each represented as a formatted string (e.g., 'Name (Role) - LinkedIn: [URL] - Photo: [URL]').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registrationTimeline": {
+          "type": "array",
+          "description": "A list of company registration timeline events, each as a formatted string (e.g., '2020: Company incorporated').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bankReferenceStatementUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the bank reference statement PDF.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "establishmentYear",
+        "headquartersLocation",
+        "iecCodeValue",
+        "gstin",
+        "cin",
+        "msmeRegistered",
+        "exportCountriesCount",
+        "ordersFulfilledCount",
+        "onTimeDeliveryRate",
+        "averageBuyerRating",
+        "googleReviewsRating",
+        "registeredAddress"
+      ]
+    },
+    "Certification": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Certification",
+      "type": "object",
+      "description": "Stores details about various quality, export, and compliance certifications obtained by the company.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Certification entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The official name of the certificate (e.g., 'ISO 9001:2015 Quality Management')."
+        },
+        "type": {
+          "type": "string",
+          "description": "The category of the certification (e.g., 'Quality', 'Export Compliance', 'Factory Audit')."
+        },
+        "issuingBody": {
+          "type": "string",
+          "description": "The organization or body that issued the certificate."
+        },
+        "certificateNumber": {
+          "type": "string",
+          "description": "The unique identification number of the certificate."
+        },
+        "validUntil": {
+          "type": "string",
+          "description": "The date until which the certificate is valid.",
+          "format": "date-time"
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the downloadable PDF certificate.",
+          "format": "uri"
+        },
+        "verifyOnlineUrl": {
+          "type": "string",
+          "description": "External URL to verify the certificate online.",
+          "format": "uri"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the certificate (e.g., 'Active', 'Expired')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A short description or summary of the certification."
+        },
+        "isFeatured": {
+          "type": "boolean",
+          "description": "Indicates if the certificate should be highlighted or featured on the homepage."
+        },
+        "auditDate": {
+          "type": "string",
+          "description": "The date of the factory audit, if applicable.",
+          "format": "date-time"
+        },
+        "auditor": {
+          "type": "string",
+          "description": "The name of the auditor for factory audits, if applicable."
+        },
+        "score": {
+          "type": "number",
+          "description": "The score obtained in a factory audit, if applicable."
+        },
+        "flowchartImageUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for a quality control process flowchart image, if applicable.",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "type",
+        "issuingBody",
+        "certificateNumber",
+        "validUntil",
+        "fileUrl",
+        "status",
+        "description"
+      ]
+    },
+    "Incoterm": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Incoterm",
+      "type": "object",
+      "description": "Defines international commercial terms supported by the company for shipping.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Incoterm entity (e.g., 'EXW', 'FOB')."
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the Incoterm (e.g., 'EXW (Ex Works)')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A plain-English explanation of the Incoterm's responsibilities."
+        },
+        "isRecommended": {
+          "type": "boolean",
+          "description": "Indicates if this Incoterm is recommended to buyers."
+        },
+        "sortOrder": {
+          "type": "number",
+          "description": "A numerical value to control the display order of Incoterms."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "sortOrder"
+      ]
+    },
+    "ShippingRoute": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ShippingRoute",
+      "type": "object",
+      "description": "Details shipping information for various destination regions.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ShippingRoute entity."
+        },
+        "destinationRegion": {
+          "type": "string",
+          "description": "The geographical region of the destination (e.g., 'Middle East (UAE, Qatar)')."
+        },
+        "portOfExport": {
+          "type": "string",
+          "description": "The port in India from which products are typically exported for this region."
+        },
+        "typicalTransitTime": {
+          "type": "string",
+          "description": "The estimated typical transit time to the destination region."
+        },
+        "freightMode": {
+          "type": "string",
+          "description": "The common mode of freight used for this route (e.g., 'Sea / Air', 'Sea FCL/LCL')."
+        },
+        "sortOrder": {
+          "type": "number",
+          "description": "A numerical value to control the display order of shipping routes."
+        }
+      },
+      "required": [
+        "id",
+        "destinationRegion",
+        "portOfExport",
+        "typicalTransitTime",
+        "freightMode",
+        "sortOrder"
+      ]
+    },
+    "HSCode": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "HSCode",
+      "type": "object",
+      "description": "Reference data for Harmonized System (HS) codes for main product categories.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the HSCode entity (the HS code itself, e.g., '6302.21')."
+        },
+        "productCategory": {
+          "type": "string",
+          "description": "The broad product category associated with this HS code (e.g., 'Hotel Bed Sheets')."
+        },
+        "code": {
+          "type": "string",
+          "description": "The actual Harmonized System (HS) code."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of the products covered by this HS code."
+        }
+      },
+      "required": [
+        "id",
+        "productCategory",
+        "code",
+        "description"
+      ]
+    },
+    "MOQData": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "MOQData",
+      "type": "object",
+      "description": "General category-level minimum order quantity (MOQ) and lead time information.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the MOQData entity (e.g., 'hospitality-linens')."
+        },
+        "category": {
+          "type": "string",
+          "description": "The product category this MOQ data applies to (e.g., 'Hospitality Supplies')."
+        },
+        "minimumOrderQuantityDescription": {
+          "type": "string",
+          "description": "A descriptive string for minimum order quantities (e.g., 'Minimum 500 pieces for bed sheets, 200 kg for towels.')."
+        },
+        "productionLeadTimeDescription": {
+          "type": "string",
+          "description": "A descriptive string for typical production lead times (e.g., 'Typically 3-5 weeks, depending on order size.')."
+        }
+      },
+      "required": [
+        "id",
+        "category",
+        "minimumOrderQuantityDescription",
+        "productionLeadTimeDescription"
+      ]
+    },
+    "PackagingOption": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PackagingOption",
+      "type": "object",
+      "description": "Details about various packaging and labeling options offered for products.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the PackagingOption entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the packaging option (e.g., 'Export Carton Specifications')."
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the packaging or labeling requirements."
+        },
+        "labelingType": {
+          "type": "string",
+          "description": "The type of labeling, if applicable (e.g., 'OEM', 'Private Label', 'Country-Specific')."
+        },
+        "applicableCountries": {
+          "type": "array",
+          "description": "A list of countries or regions where this packaging/labeling option is relevant (e.g., 'EU', 'US').",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description"
+      ]
+    },
     "Product": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Product",
       "type": "object",
-      "description": "Represents a product in the Anabyn Premium Gallery.",
+      "description": "Represents a single product in the company's catalogue.",
       "properties": {
         "id": {
           "type": "string",
@@ -17,245 +369,1280 @@
         },
         "slug": {
           "type": "string",
-          "description": "The URL-friendly slug for the product."
+          "description": "A URL-friendly string identifier for the product."
         },
-        "categoryId": {
+        "category": {
           "type": "string",
-          "description": "The ID of the category this product belongs to."
+          "description": "The main category of the product (e.g., 'hospitality-supplies', 'medical-supplies')."
         },
-        "description": {
+        "subcategory": {
           "type": "string",
-          "description": "A detailed description of the product."
+          "description": "A more specific subcategory for the product."
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "A brief summary of the product."
+        },
+        "fullDescription": {
+          "type": "string",
+          "description": "A comprehensive description of the product."
+        },
+        "specifications": {
+          "type": "array",
+          "description": "A list of product specifications, each as a formatted string (e.g., 'Material: Cotton', 'Weight: 300 GSM').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "materials": {
+          "type": "array",
+          "description": "A list of primary materials used in the product.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "variants": {
+          "type": "array",
+          "description": "A list of product variants, each as a formatted string (e.g., 'Size: King, GSM: 300, Color: White').",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moqPieces": {
+          "type": "number",
+          "description": "Minimum Order Quantity in pieces for the product."
+        },
+        "moqKg": {
+          "type": "number",
+          "description": "Minimum Order Quantity in kilograms for the product."
+        },
+        "sampleAvailable": {
+          "type": "boolean",
+          "description": "Indicates if samples are available for this product."
+        },
+        "privateLabelAvailable": {
+          "type": "boolean",
+          "description": "Indicates if private label/OEM options are available for this product."
+        },
+        "certifications": {
+          "type": "array",
+          "description": "References to Certification IDs applicable to this product. (Relationship: Product N:N Certification)",
+          "items": {
+            "type": "string"
+          }
         },
         "images": {
           "type": "array",
-          "description": "An array of image URLs for the product.",
+          "description": "Firebase Storage URLs for product images.",
           "items": {
             "type": "string"
           }
         },
-        "specifications": {
-          "type": "object",
-          "properties": {
-            "size": {
-              "type": "string"
-            },
-            "material": {
-              "type": "string"
-            },
-            "gsm": {
-              "type": "string"
-            },
-            "tc": {
-              "type": "string"
-            },
-            "color": {
-              "type": "string"
-            }
-          }
+        "hsCode": {
+          "type": "string",
+          "description": "Reference to the HSCode entity applicable to this product. (Relationship: HSCode 1:N Product)"
         },
-        "customizationOptions": {
+        "tags": {
           "type": "array",
+          "description": "A list of tags for categorization and search.",
           "items": {
             "type": "string"
           }
         },
-        "moq": {
-          "type": "string",
-          "description": "Minimum Order Quantity for the product."
-        },
-        "published": {
+        "featured": {
           "type": "boolean",
-          "description": "Indicates whether the product is published or not."
+          "description": "Indicates if the product should be featured on the homepage or other prominent sections."
         },
-        "shortSpecs": {
+        "active": {
+          "type": "boolean",
+          "description": "Indicates if the product is currently active and visible in the catalogue."
+        },
+        "downloadableSpecSheetUrl": {
           "type": "string",
-          "description": "A short summary of the product's key specifications."
-        }
-      },
-      "required": [
-        "name",
-        "slug",
-        "categoryId",
-        "description",
-        "images",
-        "shortSpecs"
-      ]
-    },
-    "Category": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Category",
-      "type": "object",
-      "description": "Represents a product category or subcategory.",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "slug": {
-          "type": "string"
-        },
-        "parentId": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "description": {
-          "type": "string"
-        },
-        "imageUrl": {
-          "type": "string"
+          "description": "Firebase Storage URL for the auto-generated product spec sheet PDF.",
+          "format": "uri"
         }
       },
       "required": [
         "id",
         "name",
-        "slug"
+        "slug",
+        "category",
+        "subcategory",
+        "shortDescription",
+        "fullDescription",
+        "specifications",
+        "materials",
+        "variants",
+        "moqPieces",
+        "sampleAvailable",
+        "privateLabelAvailable",
+        "images",
+        "hsCode",
+        "active"
       ]
     },
-    "Inquiry": {
+    "RFQSubmission": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Inquiry",
+      "title": "RFQSubmission",
       "type": "object",
-      "description": "Represents an inquiry made by a customer.",
+      "description": "Records details of a Request for Quotation (RFQ) submitted by a potential buyer.",
       "properties": {
-        "name": {
+        "id": {
           "type": "string",
-          "description": "The name of the person making the inquiry."
+          "description": "Unique identifier for the RFQSubmission entity (auto-generated RFQ ID, e.g., 'AGV-2026-XXXX')."
         },
-        "company": {
+        "timestamp": {
           "type": "string",
-          "description": "The company of the person making the inquiry."
+          "description": "The date and time when the RFQ was submitted.",
+          "format": "date-time"
+        },
+        "productCategory": {
+          "type": "string",
+          "description": "The category of the product requested."
+        },
+        "specificProductId": {
+          "type": "string",
+          "description": "Reference to the Product entity requested, if specific. (Relationship: Product 1:N RFQSubmission)"
+        },
+        "quantityRequired": {
+          "type": "number",
+          "description": "The quantity of the product required."
+        },
+        "quantityUnit": {
+          "type": "string",
+          "description": "The unit of measure for the quantity (e.g., 'pieces', 'kg', 'meters')."
+        },
+        "targetDestinationCountry": {
+          "type": "string",
+          "description": "The target country for delivery."
+        },
+        "requiredDeliveryDate": {
+          "type": "string",
+          "description": "The buyer's required delivery date.",
+          "format": "date"
+        },
+        "preferredIncoterm": {
+          "type": "string",
+          "description": "Reference to the Incoterm entity preferred by the buyer. (Relationship: Incoterm 1:N RFQSubmission)"
+        },
+        "oemPrivateLabelNeeded": {
+          "type": "boolean",
+          "description": "Indicates if OEM/Private Labeling is required."
+        },
+        "customSizeRequired": {
+          "type": "string",
+          "description": "Details about custom size requirements."
+        },
+        "customColorBranding": {
+          "type": "string",
+          "description": "Details about custom color or branding requirements."
+        },
+        "specialCertificationsNeeded": {
+          "type": "array",
+          "description": "A list of Certification IDs specifically requested for the destination country (e.g., 'CE', 'FDA', 'SASO'). (Relationship: Certification N:N RFQSubmission)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sampleRequired": {
+          "type": "boolean",
+          "description": "Indicates if a sample is required before a bulk order."
+        },
+        "referenceImageUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for a reference image uploaded by the buyer.",
+          "format": "uri"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "The full name of the person submitting the RFQ."
+        },
+        "companyName": {
+          "type": "string",
+          "description": "The company name of the submitter."
+        },
+        "designation": {
+          "type": "string",
+          "description": "The designation of the submitter within their company."
         },
         "email": {
           "type": "string",
-          "description": "The email address of the person making the inquiry.",
+          "description": "The email address of the submitter.",
           "format": "email"
         },
-        "phone": {
+        "whatsappNumber": {
           "type": "string",
-          "description": "The phone number of the person making the inquiry."
+          "description": "The WhatsApp contact number of the submitter."
         },
-        "message": {
+        "country": {
           "type": "string",
-          "description": "The message included in the inquiry."
+          "description": "The country of residence/operation of the submitter."
         },
-        "products": {
-          "type": "array",
-          "description": "An array of product IDs and quantities included in the inquiry.",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "qty": {
-                "type": "number"
-              }
-            }
-          }
+        "howDidYouFindUs": {
+          "type": "string",
+          "description": "How the submitter found the company (e.g., 'Google Search', 'Referral')."
+        },
+        "additionalNotes": {
+          "type": "string",
+          "description": "Any additional notes or comments from the buyer."
         },
         "status": {
           "type": "string",
-          "description": "The status of the inquiry (Enquired, Under Discussion, Order Confirmed, Shipped, Completed)."
+          "description": "The current status of the RFQ (e.g., 'New', 'In Progress', 'Quoted', 'Closed')."
         },
-        "createdAt": {
+        "adminNotes": {
           "type": "string",
-          "description": "The date and time the inquiry was created.",
+          "description": "Internal notes added by an administrator regarding the RFQ."
+        }
+      },
+      "required": [
+        "id",
+        "timestamp",
+        "productCategory",
+        "quantityRequired",
+        "quantityUnit",
+        "targetDestinationCountry",
+        "requiredDeliveryDate",
+        "preferredIncoterm",
+        "fullName",
+        "companyName",
+        "email",
+        "whatsappNumber",
+        "country",
+        "status"
+      ]
+    },
+    "BlogPost": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "BlogPost",
+      "type": "object",
+      "description": "Represents a single blog post or article on the website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the BlogPost entity (often derived from the slug)."
+        },
+        "slug": {
+          "type": "string",
+          "description": "A URL-friendly string identifier for the blog post."
+        },
+        "title": {
+          "type": "string",
+          "description": "The main title of the blog post."
+        },
+        "metaTitle": {
+          "type": "string",
+          "description": "The meta title for SEO purposes."
+        },
+        "metaDescription": {
+          "type": "string",
+          "description": "The meta description for SEO purposes."
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "A short summary or snippet of the blog post content."
+        },
+        "content": {
+          "type": "string",
+          "description": "The full content of the blog post, typically in Markdown or rich text format."
+        },
+        "category": {
+          "type": "string",
+          "description": "The category of the blog post (e.g., 'Export Guides', 'Industry Insights')."
+        },
+        "tags": {
+          "type": "array",
+          "description": "A list of tags associated with the blog post for categorization and search.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authorName": {
+          "type": "string",
+          "description": "The name of the author of the blog post."
+        },
+        "authorRole": {
+          "type": "string",
+          "description": "The role or designation of the author."
+        },
+        "authorAvatarUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the author's avatar image.",
+          "format": "uri"
+        },
+        "publishedAt": {
+          "type": "string",
+          "description": "The date and time when the blog post was published.",
+          "format": "date-time"
+        },
+        "readingTime": {
+          "type": "number",
+          "description": "Estimated reading time of the article in minutes."
+        },
+        "featuredImageUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the main featured image of the blog post.",
+          "format": "uri"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Indicates if the blog post should be featured prominently."
+        }
+      },
+      "required": [
+        "id",
+        "slug",
+        "title",
+        "metaTitle",
+        "metaDescription",
+        "excerpt",
+        "content",
+        "category",
+        "authorName",
+        "publishedAt",
+        "readingTime",
+        "featuredImageUrl"
+      ]
+    },
+    "Testimonial": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Testimonial",
+      "type": "object",
+      "description": "Stores client testimonials and social proof for the company.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Testimonial entity."
+        },
+        "clientName": {
+          "type": "string",
+          "description": "The name of the client providing the testimonial."
+        },
+        "designation": {
+          "type": "string",
+          "description": "The client's job designation."
+        },
+        "company": {
+          "type": "string",
+          "description": "The client's company name."
+        },
+        "country": {
+          "type": "string",
+          "description": "The client's country of origin."
+        },
+        "countryFlagEmoji": {
+          "type": "string",
+          "description": "Emoji representation of the client's country flag."
+        },
+        "rating": {
+          "type": "number",
+          "description": "The star rating given by the client (1-5)."
+        },
+        "testimonialText": {
+          "type": "string",
+          "description": "The full text of the testimonial."
+        },
+        "productCategory": {
+          "type": "string",
+          "description": "The product category the client purchased (e.g., 'Hospitality', 'Medical')."
+        },
+        "orderYear": {
+          "type": "number",
+          "description": "The year the client's order was placed."
+        },
+        "photoUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the client's profile photo.",
+          "format": "uri"
+        },
+        "linkedinUrl": {
+          "type": "string",
+          "description": "The client's LinkedIn profile URL.",
+          "format": "uri"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Indicates if the testimonial has been verified."
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Indicates if the testimonial should be featured prominently."
+        },
+        "videoEmbedUrl": {
+          "type": "string",
+          "description": "URL for an embedded video testimonial (e.g., YouTube or Firebase Storage).",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "id",
+        "clientName",
+        "designation",
+        "company",
+        "country",
+        "countryFlagEmoji",
+        "rating",
+        "testimonialText",
+        "productCategory",
+        "orderYear",
+        "verified"
+      ]
+    },
+    "Client": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Client",
+      "type": "object",
+      "description": "Stores information about key client companies for display in the logo wall.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Client entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the client company."
+        },
+        "logoUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the client's logo image.",
+          "format": "uri"
+        },
+        "sector": {
+          "type": "string",
+          "description": "The industry sector of the client (e.g., 'Hotels & Resorts', 'Hospitals & Clinics')."
+        },
+        "websiteUrl": {
+          "type": "string",
+          "description": "The client company's official website URL.",
+          "format": "uri"
+        },
+        "isFeatured": {
+          "type": "boolean",
+          "description": "Indicates if the client logo should be prominently featured."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "logoUrl",
+        "sector"
+      ]
+    },
+    "UserProfile": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "UserProfile",
+      "type": "object",
+      "description": "Stores custom profile information for authenticated buyers, complementing Firebase Authentication data.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the UserProfile entity, corresponding to Firebase Auth UID."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email address of the user.",
+          "format": "email"
+        },
+        "companyName": {
+          "type": "string",
+          "description": "The company name associated with the buyer."
+        },
+        "designation": {
+          "type": "string",
+          "description": "The user's job designation within their company."
+        },
+        "country": {
+          "type": "string",
+          "description": "The country of the user's company."
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "description": "The WhatsApp contact number of the user."
+        },
+        "status": {
+          "type": "string",
+          "description": "The approval status of the buyer portal access (e.g., 'Pending Approval', 'Approved', 'Deactivated')."
+        },
+        "lastLoginAt": {
+          "type": "string",
+          "description": "The date and time of the user's last login.",
           "format": "date-time"
         }
       },
       "required": [
-        "name",
+        "id",
         "email",
-        "message",
-        "status",
-        "createdAt"
+        "companyName",
+        "designation",
+        "country",
+        "status"
       ]
     },
-    "Admin": {
+    "Order": {
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "Admin",
+      "title": "Order",
       "type": "object",
-      "description": "Represents an admin user with access to the dashboard.",
+      "description": "Represents a buyer's placed order, containing high-level details and references to individual order items.",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Unique identifier for the Admin entity. This matches the Firebase Auth UID."
+          "description": "Unique identifier for the Order entity (Order ID)."
+        },
+        "buyerId": {
+          "type": "string",
+          "description": "Reference to the UserProfile entity of the buyer. (Relationship: UserProfile 1:N Order)"
+        },
+        "orderDate": {
+          "type": "string",
+          "description": "The date and time when the order was placed.",
+          "format": "date-time"
+        },
+        "orderItemIds": {
+          "type": "array",
+          "description": "References to OrderItem entities belonging to this order. (Relationship: Order 1:N OrderItem)",
+          "items": {
+            "type": "string"
+          }
+        },
+        "totalAmount": {
+          "type": "number",
+          "description": "The total monetary amount of the order."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency of the total amount (e.g., 'USD', 'EUR')."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the order (e.g., 'Processing', 'Shipped', 'Delivered', 'Cancelled')."
+        },
+        "trackingNumber": {
+          "type": "string",
+          "description": "The shipment tracking number, if the order has been shipped."
+        },
+        "carrierName": {
+          "type": "string",
+          "description": "The name of the shipping carrier."
+        },
+        "trackingUrl": {
+          "type": "string",
+          "description": "URL to the carrier's tracking page.",
+          "format": "uri"
+        },
+        "shippingAddress": {
+          "type": "string",
+          "description": "The full shipping address for the order."
+        },
+        "billingAddress": {
+          "type": "string",
+          "description": "The full billing address for the order."
+        },
+        "documentsFolderUrl": {
+          "type": "string",
+          "description": "Firebase Storage folder path where documents related to this order are stored."
+        },
+        "rfqId": {
+          "type": "string",
+          "description": "Reference to the RFQSubmission entity if this order originated from an RFQ. (Relationship: RFQSubmission 1:1 Order)"
+        }
+      },
+      "required": [
+        "id",
+        "buyerId",
+        "orderDate",
+        "orderItemIds",
+        "totalAmount",
+        "currency",
+        "status",
+        "shippingAddress",
+        "billingAddress"
+      ]
+    },
+    "OrderItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "OrderItem",
+      "type": "object",
+      "description": "Represents an individual product item within a larger order.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the OrderItem entity."
+        },
+        "orderId": {
+          "type": "string",
+          "description": "Reference to the parent Order entity. (Relationship: Order 1:N OrderItem)"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to the Product entity ordered. (Relationship: Product 1:N OrderItem)"
+        },
+        "productName": {
+          "type": "string",
+          "description": "Denormalized name of the product for easier display."
+        },
+        "quantity": {
+          "type": "number",
+          "description": "The quantity of this product in the order."
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure for the quantity (e.g., 'pieces', 'kg')."
+        },
+        "pricePerUnit": {
+          "type": "number",
+          "description": "The price of a single unit of the product at the time of order."
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "The total cost for this specific order item (quantity * pricePerUnit)."
+        },
+        "variantDescription": {
+          "type": "string",
+          "description": "A descriptive string for the specific product variant ordered (e.g., 'King Size, White, 300 GSM')."
+        }
+      },
+      "required": [
+        "id",
+        "orderId",
+        "productId",
+        "productName",
+        "quantity",
+        "unit",
+        "pricePerUnit",
+        "subtotal"
+      ]
+    },
+    "OrderDocument": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "OrderDocument",
+      "type": "object",
+      "description": "Stores references to documents associated with a specific order for buyer access.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the OrderDocument entity."
+        },
+        "orderId": {
+          "type": "string",
+          "description": "Reference to the parent Order entity. (Relationship: Order 1:N OrderDocument)"
+        },
+        "type": {
+          "type": "string",
+          "description": "The type of document (e.g., 'Commercial Invoice', 'Packing List', 'Certificate of Origin')."
         },
         "name": {
           "type": "string",
-          "description": "The name of the admin user."
+          "description": "The display name of the document."
         },
-        "email": {
+        "fileUrl": {
           "type": "string",
-          "description": "The email address of the admin user.",
-          "format": "email"
+          "description": "Firebase Storage URL for the downloadable document file.",
+          "format": "uri"
         },
-        "role": {
+        "uploadedAt": {
           "type": "string",
-          "description": "The role of the admin user."
+          "description": "The date and time when the document was uploaded.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "orderId",
+        "type",
+        "name",
+        "fileUrl",
+        "uploadedAt"
+      ]
+    },
+    "SampleRequest": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SampleRequest",
+      "type": "object",
+      "description": "Records details of sample requests made by buyers through the portal.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the SampleRequest entity."
+        },
+        "requesterId": {
+          "type": "string",
+          "description": "Reference to the UserProfile entity of the requester. (Relationship: UserProfile 1:N SampleRequest)"
+        },
+        "productId": {
+          "type": "string",
+          "description": "Reference to the Product entity for which a sample is requested. (Relationship: Product 1:N SampleRequest)"
+        },
+        "productName": {
+          "type": "string",
+          "description": "Denormalized name of the product for easier display."
+        },
+        "requestDate": {
+          "type": "string",
+          "description": "The date and time when the sample request was made.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the sample request (e.g., 'Requested', 'Dispatched', 'Delivered', 'Reviewed')."
+        },
+        "dispatchDate": {
+          "type": "string",
+          "description": "The date and time when the sample was dispatched.",
+          "format": "date-time"
+        },
+        "trackingNumber": {
+          "type": "string",
+          "description": "The tracking number for the sample shipment."
+        },
+        "carrierName": {
+          "type": "string",
+          "description": "The name of the carrier used for sample dispatch."
+        },
+        "trackingUrl": {
+          "type": "string",
+          "description": "URL to the carrier's tracking page for the sample shipment.",
+          "format": "uri"
+        },
+        "reviewRating": {
+          "type": "number",
+          "description": "The rating (1-5 stars) given by the buyer for the received sample."
+        },
+        "reviewComment": {
+          "type": "string",
+          "description": "Any comments or feedback provided by the buyer after reviewing the sample."
+        },
+        "companyName": {
+          "type": "string",
+          "description": "The company name of the requester (denormalized)."
+        },
+        "destinationCountry": {
+          "type": "string",
+          "description": "The country to which the sample is requested to be sent."
+        },
+        "additionalNotes": {
+          "type": "string",
+          "description": "Any additional notes or specific requirements for the sample request."
+        }
+      },
+      "required": [
+        "id",
+        "requesterId",
+        "productId",
+        "productName",
+        "requestDate",
+        "status",
+        "companyName",
+        "destinationCountry"
+      ]
+    },
+    "SustainabilityTarget": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "SustainabilityTarget",
+      "type": "object",
+      "description": "Defines the company's sustainability and ESG targets and their progress.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the SustainabilityTarget entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "A concise title for the sustainability target (e.g., 'Reduce packaging plastic by 50%')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description of the target and its context."
+        },
+        "targetValue": {
+          "type": "string",
+          "description": "The desired target value or goal (e.g., '50% reduction', '100% certified cotton')."
+        },
+        "achievedValue": {
+          "type": "string",
+          "description": "The current achieved value or progress towards the target (e.g., '30% achieved', '45% achieved')."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the target (e.g., 'On Track', 'Planning Stage', 'Completed')."
+        },
+        "category": {
+          "type": "string",
+          "description": "The ESG pillar category this target belongs to (e.g., 'Environmental', 'Social', 'Governance')."
+        },
+        "sortOrder": {
+          "type": "number",
+          "description": "A numerical value to control the display order of targets."
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "targetValue",
+        "achievedValue",
+        "status",
+        "category",
+        "sortOrder"
+      ]
+    },
+    "Supplier": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Supplier",
+      "type": "object",
+      "description": "Stores information about the company's supply chain partners for transparency initiatives.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Supplier entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the supplier company."
+        },
+        "location": {
+          "type": "string",
+          "description": "The city, state, and country of the supplier's primary location."
+        },
+        "latitude": {
+          "type": "number",
+          "description": "The geographical latitude of the supplier's location for map display."
+        },
+        "longitude": {
+          "type": "number",
+          "description": "The geographical longitude of the supplier's location for map display."
+        },
+        "productsSupplied": {
+          "type": "array",
+          "description": "A list of products or raw materials supplied by this vendor.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastAuditDate": {
+          "type": "string",
+          "description": "The date of the last audit conducted on this supplier.",
+          "format": "date-time"
+        },
+        "auditScore": {
+          "type": "number",
+          "description": "The score obtained in the last supplier audit."
+        },
+        "auditReportUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the supplier's audit report PDF, if publicly available or requestable.",
+          "format": "uri"
         }
       },
       "required": [
         "id",
         "name",
-        "email",
-        "role"
+        "location",
+        "latitude",
+        "longitude",
+        "productsSupplied"
+      ]
+    },
+    "PublicDocument": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "PublicDocument",
+      "type": "object",
+      "description": "Stores references to general downloadable public documents like policies and reports.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the PublicDocument entity."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title of the document (e.g., 'Sustainability Policy PDF')."
+        },
+        "description": {
+          "type": "string",
+          "description": "A brief description of what the document contains."
+        },
+        "type": {
+          "type": "string",
+          "description": "The category or type of the document (e.g., 'Policy', 'Report', 'Code of Conduct')."
+        },
+        "fileUrl": {
+          "type": "string",
+          "description": "Firebase Storage URL for the downloadable PDF file.",
+          "format": "uri"
+        },
+        "publishedDate": {
+          "type": "string",
+          "description": "The date when the document was published or last updated.",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "type",
+        "fileUrl",
+        "publishedDate"
       ]
     }
   },
   "auth": {
     "providers": [
       "password",
-      "google.com"
+      "anonymous"
     ]
   },
   "firestore": {
     "structure": [
       {
-        "path": "/products/{productId}",
+        "path": "company_profile/main",
+        "definition": {
+          "entityName": "CompanyProfile",
+          "schema": {
+            "$ref": "#/backend/entities/CompanyProfile"
+          },
+          "description": "Stores a single, singleton document for Anabyn Global Venture's main company profile and aggregated statistics. Publicly readable. Admin write access required."
+        }
+      },
+      {
+        "path": "certifications/{certificationId}",
+        "definition": {
+          "entityName": "Certification",
+          "schema": {
+            "$ref": "#/backend/entities/Certification"
+          },
+          "description": "Stores details about all company certifications and compliance documents. Publicly readable for display on /certifications and other trust sections. Admin write access required.",
+          "params": [
+            {
+              "name": "certificationId",
+              "description": "The unique identifier for a specific certification."
+            }
+          ]
+        }
+      },
+      {
+        "path": "incoterms/{incotermId}",
+        "definition": {
+          "entityName": "Incoterm",
+          "schema": {
+            "$ref": "#/backend/entities/Incoterm"
+          },
+          "description": "Defines supported international commercial terms (Incoterms) for shipping. Publicly readable for the /how-we-export page. Admin write access required.",
+          "params": [
+            {
+              "name": "incotermId",
+              "description": "The unique identifier for an Incoterm (e.g., EXW, FOB)."
+            }
+          ]
+        }
+      },
+      {
+        "path": "shipping_routes/{routeId}",
+        "definition": {
+          "entityName": "ShippingRoute",
+          "schema": {
+            "$ref": "#/backend/entities/ShippingRoute"
+          },
+          "description": "Contains information about typical shipping routes, transit times, and ports of export. Publicly readable for the /how-we-export page. Admin write access required.",
+          "params": [
+            {
+              "name": "routeId",
+              "description": "The unique identifier for a specific shipping route."
+            }
+          ]
+        }
+      },
+      {
+        "path": "hs_codes/{hsCodeId}",
+        "definition": {
+          "entityName": "HSCode",
+          "schema": {
+            "$ref": "#/backend/entities/HSCode"
+          },
+          "description": "Reference data for Harmonized System (HS) codes for product categories. Publicly readable for the /how-we-export page. Admin write access required.",
+          "params": [
+            {
+              "name": "hsCodeId",
+              "description": "The unique identifier for an HS code."
+            }
+          ]
+        }
+      },
+      {
+        "path": "moq_data/{moqDataId}",
+        "definition": {
+          "entityName": "MOQData",
+          "schema": {
+            "$ref": "#/backend/entities/MOQData"
+          },
+          "description": "General category-level Minimum Order Quantity (MOQ) and lead time information. Publicly readable for the /how-we-export page. Admin write access required.",
+          "params": [
+            {
+              "name": "moqDataId",
+              "description": "The unique identifier for a set of MOQ data (e.g., 'hospitality-linens')."
+            }
+          ]
+        }
+      },
+      {
+        "path": "packaging_options/{packagingOptionId}",
+        "definition": {
+          "entityName": "PackagingOption",
+          "schema": {
+            "$ref": "#/backend/entities/PackagingOption"
+          },
+          "description": "Details about various packaging and labeling options offered for products. Publicly readable for the /how-we-export page. Admin write access required.",
+          "params": [
+            {
+              "name": "packagingOptionId",
+              "description": "The unique identifier for a packaging option."
+            }
+          ]
+        }
+      },
+      {
+        "path": "products/{productSlug}",
         "definition": {
           "entityName": "Product",
           "schema": {
-            "$ref": "#/entities/Product"
+            "$ref": "#/backend/entities/Product"
           },
-          "description": "Stores individual product details."
+          "description": "Stores all product catalogue items. The document ID is the `slug` for SEO-friendly URLs. Publicly readable for product listings and detail pages. Admin write access required.",
+          "params": [
+            {
+              "name": "productSlug",
+              "description": "The URL-friendly slug identifier for the product, used as the document ID."
+            }
+          ]
         }
       },
       {
-        "path": "/categories/{categoryId}",
+        "path": "rfq_submissions/{rfqId}",
         "definition": {
-          "entityName": "Category",
+          "entityName": "RFQSubmission",
           "schema": {
-            "$ref": "#/entities/Category"
+            "$ref": "#/backend/entities/RFQSubmission"
           },
-          "description": "Stores product categories and subcategories."
+          "description": "Records all Request for Quotation submissions. Public (anonymous) write access for creating new RFQs. Admin read/update access for processing RFQs.",
+          "params": [
+            {
+              "name": "rfqId",
+              "description": "The unique, auto-generated ID for an RFQ submission (e.g., 'AGV-2026-XXXX')."
+            }
+          ]
         }
       },
       {
-        "path": "/inquiries/{inquiryId}",
+        "path": "blog_posts/{blogPostSlug}",
         "definition": {
-          "entityName": "Inquiry",
+          "entityName": "BlogPost",
           "schema": {
-            "$ref": "#/entities/Inquiry"
+            "$ref": "#/backend/entities/BlogPost"
           },
-          "description": "Stores customer inquiries and quote requests."
+          "description": "Stores all blog articles and content marketing posts. The document ID is the `slug` for SEO-friendly URLs. Publicly readable for blog listing and detail pages. Admin write access required.",
+          "params": [
+            {
+              "name": "blogPostSlug",
+              "description": "The URL-friendly slug identifier for the blog post, used as the document ID."
+            }
+          ]
         }
       },
       {
-        "path": "/admin/{uid}",
+        "path": "testimonials/{testimonialId}",
         "definition": {
-          "entityName": "Admin",
+          "entityName": "Testimonial",
           "schema": {
-            "$ref": "#/entities/Admin"
+            "$ref": "#/backend/entities/Testimonial"
           },
-          "description": "Stores admin user profiles. The document ID is the Firebase Auth UID."
+          "description": "Stores client testimonials and social proof. Publicly readable for the homepage and /testimonials page. Admin write access required.",
+          "params": [
+            {
+              "name": "testimonialId",
+              "description": "The unique identifier for a testimonial."
+            }
+          ]
+        }
+      },
+      {
+        "path": "clients/{clientId}",
+        "definition": {
+          "entityName": "Client",
+          "schema": {
+            "$ref": "#/backend/entities/Client"
+          },
+          "description": "Stores information about key client companies for the logo wall. Publicly readable for the /clients page. Admin write access required.",
+          "params": [
+            {
+              "name": "clientId",
+              "description": "The unique identifier for a client company."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}",
+        "definition": {
+          "entityName": "UserProfile",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Stores custom profile information for authenticated buyers, using the Firebase Auth UID as the document ID. Only the user themselves (`request.auth.uid == userId`) and admins can read/write this. Includes denormalized 'status' for portal access approval.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication User ID (UID) of the buyer, used as the document ID."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/orders/{orderId}",
+        "definition": {
+          "entityName": "Order",
+          "schema": {
+            "$ref": "#/backend/entities/Order"
+          },
+          "description": "Stores orders placed by a specific buyer. Access is restricted to the owning user (`request.auth.uid == userId`) and admins. Includes denormalized 'buyerId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication User ID (UID) of the buyer."
+            },
+            {
+              "name": "orderId",
+              "description": "The unique identifier for a specific order."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/orders/{orderId}/order_items/{orderItemId}",
+        "definition": {
+          "entityName": "OrderItem",
+          "schema": {
+            "$ref": "#/backend/entities/OrderItem"
+          },
+          "description": "Stores individual product items within a buyer's order. Access is restricted to the owning user (`request.auth.uid == userId`) and admins. This document MUST include a denormalized 'buyerId' field (inherited from its parent 'Order') for authorization independence, even though it's not explicitly in the provided schema.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication User ID (UID) of the buyer."
+            },
+            {
+              "name": "orderId",
+              "description": "The unique identifier for the parent order."
+            },
+            {
+              "name": "orderItemId",
+              "description": "The unique identifier for a specific order item."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/orders/{orderId}/documents/{documentId}",
+        "definition": {
+          "entityName": "OrderDocument",
+          "schema": {
+            "$ref": "#/backend/entities/OrderDocument"
+          },
+          "description": "Stores references to documents (invoices, packing lists, etc.) related to a specific buyer's order. Access is restricted to the owning user (`request.auth.uid == userId`) and admins. This document MUST include a denormalized 'buyerId' field (inherited from its parent 'Order') for authorization independence, even though it's not explicitly in the provided schema.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication User ID (UID) of the buyer."
+            },
+            {
+              "name": "orderId",
+              "description": "The unique identifier for the parent order."
+            },
+            {
+              "name": "documentId",
+              "description": "The unique identifier for a specific order document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "users/{userId}/sample_requests/{sampleRequestId}",
+        "definition": {
+          "entityName": "SampleRequest",
+          "schema": {
+            "$ref": "#/backend/entities/SampleRequest"
+          },
+          "description": "Records requests for product samples made by a specific buyer. Access is restricted to the owning user (`request.auth.uid == userId`) and admins. Includes 'requesterId' (matching `userId`) for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The Firebase Authentication User ID (UID) of the buyer."
+            },
+            {
+              "name": "sampleRequestId",
+              "description": "The unique identifier for a specific sample request."
+            }
+          ]
+        }
+      },
+      {
+        "path": "sustainability_targets/{targetId}",
+        "definition": {
+          "entityName": "SustainabilityTarget",
+          "schema": {
+            "$ref": "#/backend/entities/SustainabilityTarget"
+          },
+          "description": "Defines the company's sustainability and ESG targets and their progress. Publicly readable for the /sustainability page. Admin write access required.",
+          "params": [
+            {
+              "name": "targetId",
+              "description": "The unique identifier for a sustainability target."
+            }
+          ]
+        }
+      },
+      {
+        "path": "suppliers/{supplierId}",
+        "definition": {
+          "entityName": "Supplier",
+          "schema": {
+            "$ref": "#/backend/entities/Supplier"
+          },
+          "description": "Stores information about supply chain partners for transparency initiatives. Publicly readable for the /sustainability page. Admin write access required.",
+          "params": [
+            {
+              "name": "supplierId",
+              "description": "The unique identifier for a supplier."
+            }
+          ]
+        }
+      },
+      {
+        "path": "public_documents/{documentId}",
+        "definition": {
+          "entityName": "PublicDocument",
+          "schema": {
+            "$ref": "#/backend/entities/PublicDocument"
+          },
+          "description": "Stores references to general downloadable public documents (e.g., policies, reports). Publicly readable for the /sustainability page and other relevant sections. Admin write access required.",
+          "params": [
+            {
+              "name": "documentId",
+              "description": "The unique identifier for a public document."
+            }
+          ]
+        }
+      },
+      {
+        "path": "roles_admin/{uid}",
+        "definition": {
+          "entityName": "admin_role",
+          "schema": {
+            "$ref": "#/backend/entities/UserProfile"
+          },
+          "description": "Manages administrator roles using Database Access Control (DBAC). A document's existence at this path signifies admin status for the corresponding UID. Used for security rules to grant elevated permissions. Only Firebase Admin SDK should create/delete these documents. Read access is restricted to authenticated users for rule validation, but content is minimal/empty. The schema reference here is a placeholder as no specific 'admin_role' entity was provided, but 'UserProfile' can conceptually represent the user associated with the role."
         }
       }
-    ]
+    ],
+    "reasoning": "The Firestore data structure is designed with a strong emphasis on Authorization Independence, Structural Segregation, and Access Modeling, adhering strictly to the provided schemas and core design principles. The primary goal is to create a secure, scalable, and debuggable system for Anabyn Global Ventures LLP.\n\n**Authorization Independence via Denormalization:**\nThis principle is critical and is implemented by denormalizing authorization context into documents where access needs to be restricted without requiring a `get()` call to a parent document. For instance:\n*   The `/users/{userId}/orders/{orderId}` collection explicitly includes `buyerId` (matching `userId`) within each `Order` document. This allows security rules to directly verify `request.auth.uid == resource.data.buyerId` for read/write access to individual orders.\n*   For subcollections like `/users/{userId}/orders/{orderId}/order_items/{orderItemId}` and `/users/{userId}/orders/{orderId}/documents/{documentId}`, the `OrderItem` and `OrderDocument` documents will also include the `buyerId` (denormalized from their parent `Order`). This ensures that a user can only access their specific order items or documents without needing to read the parent `Order` document first, which would break atomic operations and complicate rules. The schemas for `OrderItem` and `OrderDocument` do not explicitly include `buyerId`, but for robust Authorization Independence, these documents **must** store the `buyerId` field during creation.\n*   `SampleRequest` documents, stored at `/users/{userId}/sample_requests/{sampleRequestId}`, already include `requesterId` in their schema, which aligns with `userId`, making authorization straightforward.\n*   Global admin roles are managed via a dedicated top-level collection `/roles_admin/{uid}`. Authorization is determined by the *existence* of a document with the user's UID, allowing a simple `exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid))` check without relying on `get()` on user-specific data.\n\n**QAPs (Rules are not Filters) and Structural Segregation:**\n\n*   **Public Content (Homogeneous Security Posture):** Collections like `/products`, `/blog_posts`, `/certifications`, `/incoterms`, `/shipping_routes`, `/hs_codes`, `/moq_data`, `/packaging_options`, `/testimonials`, `/clients`, `/sustainability_targets`, `/suppliers`, and `/public_documents` are designed for public read access. All documents within these collections share the same security posture (read-only for public, write-only for admins). This simplifies security rules, making `list` operations inherently secure as they only return publicly accessible data. Complexity is moved from rule logic to data structure, ensuring queries do not expose unauthorized data.\n*   **Private User Data:** For buyer-specific data, such as orders, order items, documents, and sample requests, a hierarchical path structure under `/users/{userId}` is used. This segregates private data, ensuring that `list` operations on `/users/$(request.auth.uid)/orders` will only return orders belonging to the authenticated user. The denormalized `buyerId` in subcollection documents further solidifies this, preventing unauthorized access even if the parent path were somehow compromised or a rule misconfigured.\n*   **RFQ Submissions:** The `/rfq_submissions` collection allows anonymous/public write access (for new submissions) but restricts read/update to administrators. This distinct security posture warrants its own top-level collection, preventing mixing with other public or private data. Admin rules will utilize the `roles_admin` collection for verification.\n\n**Multilingual Support (next-intl):**\nThe provided entity schemas define fields like `name`, `title`, `description`, and `content` as `string`. While a truly multilingual Firestore structure often stores language-specific fields (e.g., `name_en`, `name_ar`) or uses a subcollection per language, the existing schema prevents this direct implementation. Therefore, the strategy assumes that the `next-intl` library will handle the *display* translation by either: \n1.  Storing translation keys in these string fields, which `next-intl` then resolves against `/messages/{locale}.json` files.\n2.  Utilizing a default language in Firestore, with the application logic providing translations on the fly or through a pre-translation layer to generate `/messages/{locale}.json` files for static content, and potentially fetching dynamic content's translations from an external service or a more complex admin process for content in the database. For dynamic content such as `Product` and `BlogPost` fields, the developer would need to ensure content is translated and stored appropriately in these single string fields or implement a custom content management layer that integrates with `next-intl` to map these strings to translations. This design choice adheres to the given schemas but places the burden of dynamic content translation on the application layer rather than the Firestore structure itself.\n\nOverall, this structure prioritizes security and maintainability, making authorization rules simpler and less prone to errors, while supporting efficient data retrieval for both public and authenticated user experiences."
   }
 }
