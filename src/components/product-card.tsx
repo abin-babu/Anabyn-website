@@ -1,65 +1,81 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Search, ShieldCheck } from 'lucide-react';
 import { Badge } from './ui/badge';
-import { categories } from '@/lib/products';
-import { FaWhatsapp } from 'react-icons/fa';
 
 export function ProductCard({ product }: { product: Product }) {
-  const category = categories.find(c => c.id === product.categoryId);
-  const parentCategory = category?.parentId ? categories.find(c => c.id === category.parentId) : category;
-
-  const whatsappNumber = "+919495613121";
-  const whatsappMessage = `Hi Anabyn — I’d like to inquire about ${product.name}.`;
-  const whatsappUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(whatsappMessage)}`;
-
+  const categoryLabel = product.category === 'hospitality-supplies' ? 'Hospitality' : 'Medical';
+  
   return (
-    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col">
-      <Link href={`/products/${product.slug}`} className="block">
-        <div className="aspect-[4/3] relative">
-          <Image
-            src={product.images[0]}
-            alt={product.name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
-            data-ai-hint="product photo"
-          />
+    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border-t-0 hover:border-t-4 border-brand-gold">
+      <Link href={`/products/${product.slug}`} className="block overflow-hidden relative aspect-[4/3]">
+        <Image
+          src={product.images[0] || 'https://placehold.co/600x400'}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          <Badge className="bg-brand-navy text-white text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 border-none">
+            {categoryLabel}
+          </Badge>
+          {product.featured && (
+            <Badge className="bg-brand-gold text-brand-navy text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 border-none">
+              Featured
+            </Badge>
+          )}
         </div>
       </Link>
-      <CardContent className="p-4 bg-card flex-grow flex flex-col">
-        <h3 className="font-bold font-headline text-lg truncate">{product.name}</h3>
-        <p className="text-sm text-muted-foreground flex-grow mb-4">{product.shortSpecs}</p>
-        <div className="mt-auto flex flex-col gap-2">
-            <div className="flex justify-between items-center">
-                {parentCategory && <Badge variant="secondary">{parentCategory.name}</Badge>}
-                 <Button asChild variant="secondary" size="sm">
-                    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                        <FaWhatsapp className="mr-2 h-4 w-4" /> Chat
-                    </a>
-                </Button>
+      
+      <CardContent className="p-5 flex-grow flex flex-col bg-white">
+        <h3 className="font-bold text-lg text-brand-navy group-hover:text-brand-gold transition-colors line-clamp-1">
+          {product.name}
+        </h3>
+        <p className="text-sm text-brand-gold font-bold uppercase tracking-wider mb-2 mt-1">
+          {product.subcategory}
+        </p>
+        <p className="text-xs text-muted-foreground line-clamp-2 mb-4 flex-grow">
+          {product.shortDescription}
+        </p>
+        
+        <div className="space-y-2 mb-4">
+          {product.specifications.slice(0, 2).map((spec, i) => (
+            <div key={i} className="flex justify-between text-[11px] border-b border-gray-50 pb-1">
+              <span className="text-gray-400">{spec.key}</span>
+              <span className="font-semibold text-brand-navy">{spec.value}</span>
             </div>
+          ))}
         </div>
       </CardContent>
 
-      <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-        <Search className="text-white h-12 w-12 mb-4" />
-        <h3 className="font-bold font-headline text-2xl text-white mb-2">{product.name}</h3>
-        <p className="text-sm text-gray-300 mb-6">{product.shortSpecs}</p>
-        <div className="flex flex-col gap-2 w-full max-w-xs">
-          <Button asChild>
-            <Link href={`/products/${product.slug}`}>
-              View Details <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-           <Button asChild variant="outline">
-            <Link href={`/inquiry?productId=${product.id}`}>Contact Us</Link>
-          </Button>
+      <CardFooter className="p-5 pt-0 bg-white grid grid-cols-2 gap-2">
+        <Button asChild variant="outline" size="sm" className="w-full text-xs font-bold border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white">
+          <Link href={`/products/${product.slug}`}>View Details</Link>
+        </Button>
+        <Button asChild size="sm" className="w-full text-xs font-bold bg-brand-gold text-brand-navy hover:bg-brand-gold/90">
+          <Link href={`/request-quote?product=${encodeURIComponent(product.name)}`}>Request Quote</Link>
+        </Button>
+      </CardFooter>
+
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-brand-navy/80 flex flex-col items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        <Search className="text-brand-gold h-10 w-10 mb-4 animate-in zoom-in duration-300" />
+        <h4 className="text-white font-bold text-xl mb-2">{product.name}</h4>
+        <div className="flex flex-wrap justify-center gap-1 mb-4">
+          {product.certifications.map(c => (
+            <Badge key={c} variant="outline" className="text-[9px] text-brand-gold border-brand-gold py-0 h-4">{c}</Badge>
+          ))}
         </div>
+        <p className="text-white/70 text-xs line-clamp-3">
+          MOQ: {product.moqPieces} Pieces
+        </p>
       </div>
     </Card>
   );

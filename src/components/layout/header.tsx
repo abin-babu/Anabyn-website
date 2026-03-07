@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -26,7 +27,7 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { label: 'Products', href: '/#products' },
+    { label: 'Products', href: '/products' },
     { label: 'About Us', href: '/about-us' },
     { label: 'Certifications', href: '/certifications' },
     { label: 'How We Export', href: '/how-we-export' },
@@ -61,17 +62,17 @@ export function Header() {
           <div className="flex items-center gap-4 border-l border-white/10 pl-8">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 text-white/80 hover:text-white text-xs font-bold uppercase tracking-widest">
+                <button className="flex items-center gap-2 text-white/80 hover:text-white text-xs font-bold uppercase tracking-widest outline-none">
                   <Globe className="w-4 h-4 text-brand-gold" /> EN <ChevronDown className="w-3 h-3" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white">
                 <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">English</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Arabic</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">French</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Spanish</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">German</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Hindi</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-right" dir="rtl">العربية</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Français</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Español</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Deutsch</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">हिन्दी</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -79,7 +80,7 @@ export function Header() {
               asChild
               className="rounded-full bg-gold-gradient text-brand-navy font-bold border-none hover:scale-105 transition-all px-6"
             >
-              <Link href="/inquiry">Get a Quote</Link>
+              <Link href="/request-quote">Request Quote</Link>
             </Button>
           </div>
         </nav>
@@ -116,7 +117,7 @@ export function Header() {
                 className="w-full rounded-full bg-gold-gradient text-brand-navy font-bold py-6"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Link href="/inquiry">Request Quote</Link>
+                <Link href="/request-quote">Request Quote</Link>
               </Button>
             </div>
           </nav>

@@ -1,578 +1,581 @@
 
-import type { Product, Category } from './types';
-import { PlaceHolderImages } from './placeholder-images';
-
-const getImageUrl = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || 'https://placehold.co/800x600/e2e8f0/e2e8f0';
-
-export const categories: Category[] = [
-    // Main Categories
-    { id: 'hospitality', name: 'Hospitality Supplies', slug: 'hospitality-supplies', parentId: null, imageUrl: getImageUrl('hero-1') },
-    { id: 'medical', name: 'Medical Supplies', slug: 'medical-supplies', parentId: null, imageUrl: getImageUrl('chemical-cleaning') },
-
-    // Hospitality Sub-categories
-    { id: 'hotel-room-linen', name: 'Hotel Room Linen & Bedding', slug: 'hotel-room-linen', parentId: 'hospitality', imageUrl: getImageUrl('bedding-sheets') },
-    { id: 'hotel-towels', name: 'Hotel Towels & Bath Linen', slug: 'hotel-towels', parentId: 'hospitality', imageUrl: getImageUrl('towel-terry-stack') },
-    { id: 'hotel-furnishings', name: 'Curtains, Upholstery & Soft Furnishings', slug: 'hotel-furnishings', parentId: 'hospitality', imageUrl: getImageUrl('bedding-pillows') },
-    { id: 'guest-amenities', name: 'Guest Amenities & Toiletries', slug: 'guest-amenities', parentId: 'hospitality', imageUrl: getImageUrl('chemical-laundry') },
-    { id: 'hotel-accessories', name: 'Hotel Room Accessories', slug: 'hotel-accessories', parentId: 'hospitality', imageUrl: getImageUrl('hotel-kettle') },
-    { id: 'hotel-furniture', name: 'Hotel Furniture', slug: 'hotel-furniture', parentId: 'hospitality', imageUrl: getImageUrl('hotel-sofa') },
-    { id: 'restaurant-supplies', name: 'Restaurant & F&B Supplies', slug: 'restaurant-supplies', parentId: 'hospitality', imageUrl: getImageUrl('dining-linen') },
-    { id: 'housekeeping-supplies', name: 'Housekeeping & Laundry Supplies', slug: 'housekeeping-supplies', parentId: 'hospitality', imageUrl: getImageUrl('cleaning-cart') },
-    { id: 'hospitality-uniforms', name: 'Uniforms & Workwear (Hospitality)', slug: 'hospitality-uniforms', parentId: 'hospitality', imageUrl: getImageUrl('uniform-corporate') },
-
-    // Medical Sub-categories
-    { id: 'medical-consumables', name: 'Medical Consumables & Disposables', slug: 'medical-consumables', parentId: 'medical', imageUrl: getImageUrl('medical-syringe') },
-    { id: 'medical-devices', name: 'Medical Devices & Equipment', slug: 'medical-devices', parentId: 'medical', imageUrl: getImageUrl('medical-monitor') },
-    { id: 'surgical-instruments', name: 'Surgical Instruments', slug: 'surgical-instruments', parentId: 'medical', imageUrl: getImageUrl('surgical-forceps') },
-    { id: 'orthopedic-rehab', name: 'Orthopedic & Rehabilitation Products', slug: 'orthopedic-rehab', parentId: 'medical', imageUrl: getImageUrl('knee-brace') },
-    { id: 'hospital-furniture', name: 'Hospital Furniture', slug: 'hospital-furniture', parentId: 'medical', imageUrl: getImageUrl('hospital-bed') },
-    { id: 'infection-control', name: 'Infection Control & Sterilization', slug: 'infection-control', parentId: 'medical', imageUrl: getImageUrl('disinfectant-spray') },
-    { id: 'medical-textiles', name: 'Medical Textiles & Hospital Linens', slug: 'medical-textiles', parentId: 'medical', imageUrl: getImageUrl('blue-scrubs') },
-    { id: 'lab-supplies', name: 'Laboratory Supplies', slug: 'lab-supplies', parentId: 'medical', imageUrl: getImageUrl('lab-beaker') },
-    { id: 'emergency-first-aid', name: 'Emergency & First Aid', slug: 'emergency-first-aid', parentId: 'medical', imageUrl: getImageUrl('first-aid-kit') },
-];
-
+import type { Product } from './types';
 
 export const products: Product[] = [
-    // --- HOSPITALITY SUPPLIES ---
+  // --- HOSPITALITY SUPPLIES ---
+  {
+    id: 'h-1',
+    name: 'Premium Hotel Bed Sheets',
+    slug: 'premium-hotel-bed-sheets',
+    category: 'hospitality-supplies',
+    subcategory: 'Bed Linen',
+    shortDescription: '100% Cotton Percale & Sateen Sheets, 200-600 TC.',
+    fullDescription: 'Our hotel-grade bed sheets are crafted from premium long-staple Indian cotton. Designed for durability and luxury, these sheets withstand industrial laundering while maintaining a crisp, soft feel.',
+    specifications: [
+      { key: 'Material', value: '100% Long-Staple Cotton' },
+      { key: 'Thread Count', value: '200, 300, 400, 600 TC' },
+      { key: 'Weave', value: 'Percale or Sateen' },
+      { key: 'Finish', value: 'Mercerized, Anti-pilling' }
+    ],
+    materials: ['Cotton', 'Cotton-Poly Blends'],
+    variants: [
+      { size: 'Single', tc: '300', color: 'White' },
+      { size: 'Queen', tc: '300', color: 'White' },
+      { size: 'King', tc: '400', color: 'White' }
+    ],
+    moqPieces: 100,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 9001', 'OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1617744257724-6fafec25442f?w=800&q=80'],
+    hsCode: '6302.21',
+    tags: ['luxury', 'bedding', 'hotel'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'h-2',
+    name: 'Luxury Bath Towels',
+    slug: 'luxury-bath-towels',
+    category: 'hospitality-supplies',
+    subcategory: 'Bath Linen',
+    shortDescription: 'High-absorbency 100% Terry Cotton Towels, 500-800 GSM.',
+    fullDescription: 'Experience spa-like luxury with our ultra-plush bath towels. Made from ring-spun cotton loops for superior absorbency and quick-drying properties.',
+    specifications: [
+      { key: 'Material', value: '100% Ring-Spun Cotton' },
+      { key: 'Weight', value: '500, 600, 800 GSM' },
+      { key: 'Hems', value: 'Double-stitched reinforced' }
+    ],
+    materials: ['Cotton'],
+    variants: [
+      { size: '70x140cm', gsm: '600', color: 'White' },
+      { size: '90x150cm', gsm: '800', color: 'Cream' }
+    ],
+    moqPieces: 200,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 9001', 'OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80'],
+    hsCode: '6302.60',
+    tags: ['bath', 'luxury', 'towel'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'h-3',
+    name: 'Hospitality Scrub Suits',
+    slug: 'hospitality-scrub-suits',
+    category: 'hospitality-supplies',
+    subcategory: 'Uniforms',
+    shortDescription: 'Anti-microbial, stain-resistant scrub suits for medical & hospitality staff.',
+    fullDescription: 'Durable and professional scrub suits designed for movement and comfort. Features multiple pockets and reinforced seams.',
+    specifications: [
+      { key: 'Fabric', value: 'Poly-Cotton Twill' },
+      { key: 'Treatment', value: 'Stain-resistant, Anti-microbial' },
+      { key: 'Pockets', value: '3-Pocket Top, 2-Pocket Pant' }
+    ],
+    materials: ['Polyester', 'Cotton'],
+    variants: [
+      { size: 'S', color: 'Navy Blue' },
+      { size: 'M', color: 'Navy Blue' },
+      { size: 'L', color: 'Sky Blue' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?w=800&q=80'],
+    hsCode: '6211.32',
+    tags: ['staff', 'workwear', 'medical'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-4',
+    name: 'Plush Guest Slippers',
+    slug: 'plush-guest-slippers',
+    category: 'hospitality-supplies',
+    subcategory: 'Amenities',
+    shortDescription: 'Closed-toe velour slippers with non-slip EVA sole.',
+    fullDescription: 'Soft and comfortable velour slippers for premium guest comfort. Available in disposable and reusable qualities.',
+    specifications: [
+      { key: 'Upper', value: 'Velour' },
+      { key: 'Sole', value: '5mm Non-slip EVA' },
+      { key: 'Style', value: 'Closed-toe' }
+    ],
+    materials: ['Velour', 'EVA'],
+    variants: [
+      { size: 'Universal Adult', color: 'White' }
+    ],
+    moqPieces: 500,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: [],
+    images: ['https://images.unsplash.com/photo-1571139627661-cf707929f465?w=800&q=80'],
+    hsCode: '6405.20',
+    tags: ['amenity', 'comfort'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-5',
+    name: 'Quilted Duvet Inserts',
+    slug: 'quilted-duvet-inserts',
+    category: 'hospitality-supplies',
+    subcategory: 'Bed Linen',
+    shortDescription: 'All-season microfiber duvet inserts with box stitching.',
+    fullDescription: 'Hypoallergenic duvet inserts designed for hotel use. The box stitch pattern prevents shifting of the microfiber fill.',
+    specifications: [
+      { key: 'Filling', value: '300 GSM Microfiber' },
+      { key: 'Outer Shell', value: 'Cotton-Poly Blend' },
+      { key: 'Stitching', value: 'Box-quilted' }
+    ],
+    materials: ['Microfiber', 'Cotton'],
+    variants: [
+      { size: 'Queen', gsm: '300', color: 'White' },
+      { size: 'King', gsm: '300', color: 'White' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1698746044340-ae5559412fd5?w=800&q=80'],
+    hsCode: '9404.90',
+    tags: ['bedding', 'warmth'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-6',
+    name: 'Executive Chef Coats',
+    slug: 'executive-chef-coats',
+    category: 'hospitality-supplies',
+    subcategory: 'Uniforms',
+    shortDescription: 'Double-breasted cotton-rich chef coats with breathable panels.',
+    fullDescription: 'Professional chef attire designed for high-heat kitchen environments. Includes thermometer pockets and underarm vents.',
+    specifications: [
+      { key: 'Fabric', value: '65/35 Poly-Cotton' },
+      { key: 'Buttons', value: 'Removable Studs' },
+      { key: 'Weight', value: '240 GSM' }
+    ],
+    materials: ['Poly-Cotton'],
+    variants: [
+      { size: 'M', color: 'White' },
+      { size: 'L', color: 'White' },
+      { size: 'XL', color: 'Black' }
+    ],
+    moqPieces: 25,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: [],
+    images: ['https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80'],
+    hsCode: '6211.32',
+    tags: ['kitchen', 'chef', 'staff'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-7',
+    name: 'Damask Table Linens',
+    slug: 'damask-table-linens',
+    category: 'hospitality-supplies',
+    subcategory: 'F&B Linen',
+    shortDescription: 'Elegant patterned table cloths and napkins for fine dining.',
+    fullDescription: 'High-quality damask weave linens that add a touch of sophistication to any banquet or restaurant setting.',
+    specifications: [
+      { key: 'Material', value: '100% Polyester or Cotton' },
+      { key: 'Pattern', value: 'Damask / Jacquard' },
+      { key: 'Edge', value: 'Hemstitched or Overlocked' }
+    ],
+    materials: ['Polyester', 'Cotton'],
+    variants: [
+      { size: '180x180cm', color: 'White' },
+      { size: 'Napkin 50x50cm', color: 'Burgundy' }
+    ],
+    moqPieces: 100,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: [],
+    images: ['https://images.unsplash.com/photo-1600294421265-c354b772e790?w=800&q=80'],
+    hsCode: '6302.51',
+    tags: ['dining', 'banquet'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-8',
+    name: 'Cotton Hand Towels',
+    slug: 'cotton-hand-towels',
+    category: 'hospitality-supplies',
+    subcategory: 'Bath Linen',
+    shortDescription: 'Durable 400 GSM hand towels for public areas and guest rooms.',
+    fullDescription: 'Standard hotel hand towels designed for high-frequency use and durability.',
+    specifications: [
+      { key: 'Material', value: '100% Cotton' },
+      { key: 'GSM', value: '400' },
+      { key: 'Size', value: '40x60cm' }
+    ],
+    materials: ['Cotton'],
+    variants: [
+      { size: '40x60cm', gsm: '400', color: 'White' }
+    ],
+    moqPieces: 500,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 9001'],
+    images: ['https://images.unsplash.com/photo-1523471826770-c437b4636fe6?w=800&q=80'],
+    hsCode: '6302.60',
+    tags: ['bath', 'amenity'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-9',
+    name: 'Waffle Weave Bathrobes',
+    slug: 'waffle-weave-bathrobes',
+    category: 'hospitality-supplies',
+    subcategory: 'Bath Linen',
+    shortDescription: 'Lightweight, absorbent waffle-weave robes for spas and resorts.',
+    fullDescription: 'A classic resort-style bathrobe. Lightweight and breathable, perfect for warm climates or spa environments.',
+    specifications: [
+      { key: 'Pattern', value: 'Large Waffle' },
+      { key: 'GSM', value: '250' },
+      { key: 'Style', value: 'Kimono Collar' }
+    ],
+    materials: ['Cotton', 'Poly-Cotton'],
+    variants: [
+      { size: 'L', color: 'White' },
+      { size: 'XL', color: 'White' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 9001'],
+    images: ['https://images.unsplash.com/photo-1737061467396-39aac10feb47?w=800&q=80'],
+    hsCode: '6208.91',
+    tags: ['spa', 'luxury'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-10',
+    name: 'Hotel Pillow Protectors',
+    slug: 'hotel-pillow-protectors',
+    category: 'hospitality-supplies',
+    subcategory: 'Bed Linen',
+    shortDescription: 'Zippered cotton protectors to keep pillows hygienic.',
+    fullDescription: 'Breathable and machine-washable protectors that extend the life of your hotel pillows.',
+    specifications: [
+      { key: 'Material', value: 'Cotton Jersey or Quilted' },
+      { key: 'Closure', value: 'Nylon Zipper' }
+    ],
+    materials: ['Cotton'],
+    variants: [
+      { size: 'Standard 50x70cm', color: 'White' }
+    ],
+    moqPieces: 200,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1652161853855-005106816b9f?w=800&q=80'],
+    hsCode: '6302.31',
+    tags: ['hygiene', 'protection'],
+    featured: false,
+    active: true
+  },
 
-    // 1. Hotel Room Linen & Bedding
-    {
-        id: 'hotel-bed-sheets',
-        slug: 'hotel-bed-sheets',
-        name: 'Hotel Bed Sheets (Flat/Fitted)',
-        categoryId: 'hotel-room-linen',
-        description: 'Export-quality hotel bed sheets available in flat or fitted styles. Made from 100% cotton, cotton-rich, or microfiber fabrics with thread counts ranging from 144 to 600 for budget to luxury needs.',
-        images: [getImageUrl('bedding-sheets')],
-        shortSpecs: '144-600 TC, Cotton/Blends, Percale/Sateen',
-        specifications: {
-            fabric: '100% cotton / cotton-rich / microfiber; combed or ring-spun yarn',
-            tc: '144–600 TC',
-            gsm: '110–180 GSM',
-            construction: 'Percale or sateen weave; double-stitched hems; shrinkage controlled',
-            finishing: 'Anti-pilling, mercerised (optional), soft hand-feel, azo-free dyes',
-            colorFastness: 'Grade 4+ to washing and rubbing',
-            packaging: 'Folded, polybag with labels; export cartons, custom branding',
-        },
-        customizationOptions: ['Thread Count', 'Fabric Blend', 'Size', 'Packaging'],
-        moq: '100 sets',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-duvet-covers',
-        slug: 'hotel-duvet-covers',
-        name: 'Hotel Duvet Covers & Duvets',
-        categoryId: 'hotel-room-linen',
-        description: 'Durable and elegant duvet covers designed for the hospitality industry. Available in various fabrics and thread counts, with strong zippers, buttons, or envelope closures. Duvets with various fillings also available.',
-        images: [getImageUrl('duvet-cover')],
-        shortSpecs: 'Percale/Sateen Weave, Strong Fasteners, Various Fillings',
-        specifications: {
-            fabric: '100% cotton / cotton-rich / microfiber',
-            tc: '144–600 TC',
-            gsm: '350–800 GSM (duvet filling dependent)',
-            construction: 'Percale or sateen weave; double-stitched hems',
-            fasteners: 'Strong zippers, buttons or envelope closures',
-            finishing: 'Soft hand-feel, azo-free dyes',
-        },
-        customizationOptions: ['Fabric', 'Thread Count', 'Closure Type', 'Size', 'Duvet Filling'],
-        moq: '100 units',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-pillows-protectors',
-        slug: 'hotel-pillows-protectors',
-        name: 'Pillows, Protectors & Toppers',
-        categoryId: 'hotel-room-linen',
-        description: 'A range of pillows with different fillings, plus protective covers and mattress toppers to enhance guest comfort and prolong mattress life.',
-        images: [getImageUrl('bedding-pillows')],
-        shortSpecs: 'Microfiber/Down Fillings, Quilted Protectors',
-        specifications: {
-            features: 'Pillows with microfiber, hollow-fiber, or down fillings. Quilted or waterproof mattress protectors and toppers.',
-            fabric: 'Cotton or polyester outer fabrics',
-            size: 'Standard and custom sizes available'
-        },
-        customizationOptions: ['Pillow Firmness', 'Topper Thickness', 'Size'],
-        moq: '100 units',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-
-    // 2. Hotel Towels & Bath Linen
-    {
-        id: 'hotel-bath-towels',
-        slug: 'hotel-bath-towels',
-        name: 'Hotel Towels (Bath, Hand, Face)',
-        categoryId: 'hotel-towels',
-        description: 'Premium 100% cotton hotel towels, crafted for high absorbency and low linting. Available in terry or velour, with weights from 400 to 800 GSM to suit economy to luxury hotel grades.',
-        images: [getImageUrl('towel-terry-stack')],
-        shortSpecs: '400-800 GSM, 100% Cotton, Terry/Velour',
-        specifications: {
-            material: '100% cotton / zero-twist cotton / blended yarn; terry or velour',
-            gsm: '400–800 GSM',
-            absorbency: 'High-absorbency; low linting',
-            construction: 'Double-stitched or triple-stitched hems',
-            shrinkage: 'Controlled to within 3–5% after wash',
-            colorFastness: 'Suitable for hot water industrial laundering',
-        },
-        customizationOptions: ['GSM', 'Yarn Type', 'Size', 'Embroidery'],
-        moq: '200 units',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-pool-towels',
-        slug: 'hotel-pool-towels',
-        name: 'Pool Towels',
-        categoryId: 'hotel-towels',
-        description: 'Durable and vibrant pool towels designed to withstand sun, chlorine, and frequent washing. Often features colored stripes.',
-        images: [getImageUrl('towel-waffle')],
-        shortSpecs: 'Chlorine-Resistant Dyes, 450-600 GSM',
-        specifications: {
-            material: '100% Cotton or Cotton-Poly Blend',
-            gsm: '450-600 GSM',
-            features: 'Chlorine-resistant dyes, high durability',
-            construction: 'Robust double-stitched hems'
-        },
-        customizationOptions: ['Color', 'Stripe Pattern', 'Embroidery'],
-        moq: '200 units',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-bathrobes-slippers',
-        slug: 'hotel-bathrobes-slippers',
-        name: 'Hotel Bathrobes & Slippers',
-        categoryId: 'hotel-towels',
-        description: 'Luxurious hotel bathrobes available in knit, waffle, or terry cotton. Offered in standard sizes with options for custom fits, belt loops, and hanger loops. Slippers are available in open/closed-toe styles with non-slip soles.',
-        images: [getImageUrl('towel-velour')],
-        shortSpecs: 'Knit/Waffle/Terry, Multiple Sizes, Non-Slip Slippers',
-        specifications: {
-            material: '100% Cotton or Blends',
-            construction: 'Knit, Waffle, or Terry weave',
-            bathrobes: 'S/M/L/XL; belt loops + hanger loop; unisex or gendered fits',
-            slippers: 'Non-slip sole, closed or open toe; disposable or reusable',
-        },
-        customizationOptions: ['Fabric Type', 'Embroidery', 'Piping', 'Slipper Style'],
-        moq: '50 units',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-    
-    // 3. Curtains, Upholstery & Soft Furnishings
-    {
-        id: 'blackout-curtains-hotel',
-        slug: 'blackout-curtains-hotel',
-        name: 'Hotel Blackout & Sheer Curtains',
-        categoryId: 'hotel-furnishings',
-        description: 'High-quality blackout and sheer curtains. Blackout options offer 70-100% light blocking with a 3-pass coating. Made from polyester, cotton, or FR-treated fabrics, compliant with international safety standards.',
-        images: [getImageUrl('room-curtains')],
-        shortSpecs: '70-100% Blackout, FR-Treated Options',
-        specifications: {
-            fabric: 'Polyester, cotton, blends or FR-treated fabrics',
-            blackout: '70–100% light block (3-pass coating for full blackout)',
-            frStandards: 'BS 5867, NFPA 701, or local equivalents (optional)',
-            colorFastness: 'Good to light, rubbing, and washing',
-            stitching: 'Overlocked edges, uniform pleats, reinforced hooks/eyelets',
-        },
-        customizationOptions: ['Fabric', 'Color', 'Size', 'Pleat Style', 'Light Blocking %'],
-        moq: '50 pairs',
-        safetyInfo: 'FR certification available on request',
-        specSheetUrl: '#'
-    },
-     {
-        id: 'upholstery-cushions-throws',
-        slug: 'upholstery-cushions-throws',
-        name: 'Upholstery, Cushion Covers & Throws',
-        categoryId: 'hotel-furnishings',
-        description: 'Durable upholstery fabrics and decorative soft furnishings like cushion covers and throws to complement hotel interiors.',
-        images: [getImageUrl('hotel-cushion')],
-        shortSpecs: 'High Martindale Rating, Custom Designs',
-        specifications: {
-            fabric: 'Wide range of commercial-grade fabrics',
-            durability: 'High abrasion resistance (Martindale rating)',
-            design: 'Custom designs, colors, and sizes available for cushions and throws',
-        },
-        customizationOptions: ['Fabric Type', 'Design', 'Color'],
-        moq: '100 meters (fabric), 100 units (covers/throws)',
-        specSheetUrl: '#'
-    },
-
-    // 4. Guest Amenities & Toiletries
-    {
-        id: 'hotel-guest-amenities-kit',
-        slug: 'hotel-guest-amenities-kit',
-        name: 'Guest Amenity Kits',
-        categoryId: 'guest-amenities',
-        description: 'Complete range of guest amenities including shampoo, conditioner, lotion, soap, dental kits, and shaving kits. All formulations are skin-safe, dermatologically tested, and meet destination country cosmetic regulations.',
-        images: [getImageUrl('chemical-laundry')],
-        shortSpecs: 'Paraben-Free, Custom Fragrance, Full Kits',
-        specifications: {
-            formulation: 'Skin-safe, dermatologically tested; paraben-free/SLS-free (optional)',
-            compliance: 'Meets destination country cosmetic regulations',
-            fragrance: 'Mild, hotel-grade; hypoallergenic optional',
-            packaging: 'Bottles/tubes/sachets; leak-proof, tamper-evident seals',
-            labeling: 'INCI ingredients, batch no., Mfg/Exp dates, country of origin',
-            soaps: 'TFM as per requirement; vegetable-based; non-irritant',
-            kitContents: 'Dental Kit, Shaving Kit, Vanity Kit, Sewing Kit, Shower Caps, Loofahs, Combs',
-        },
-        customizationOptions: ['Fragrance', 'Packaging Design', 'Kit Contents', 'Private Labeling'],
-        moq: '1000 kits',
-        specSheetUrl: '#'
-    },
-
-    // 5. Hotel Room Accessories
-    {
-        id: 'hotel-room-trays-bins',
-        slug: 'hotel-room-trays-bins',
-        name: 'Room Trays, Bins & Kettles',
-        categoryId: 'hotel-accessories',
-        description: 'A selection of durable and stylish in-room accessories including service trays, waste bins, and electric kettles, designed for heavy hotel use.',
-        images: [getImageUrl('hotel-kettle')],
-        shortSpecs: 'Faux Leather, SS, Wood; Scratch-Resistant',
-        specifications: {
-            material: 'Faux leather, stainless steel, wood, melamine, ABS',
-            finish: 'Scratch-resistant, stain-resistant, easy to clean',
-            hardware: 'Rust-free metal parts; smooth edges; no sharp corners',
-            durability: 'Designed for heavy hotel use; impact-resistant where needed',
-        },
-        customizationOptions: ['Material', 'Color', 'Logo Branding'],
-        moq: '100 units',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-desk-accessories',
-        slug: 'hotel-desk-accessories',
-        name: 'Desk Accessories & Folders',
-        categoryId: 'hotel-accessories',
-        description: 'Coordinated desk accessories including tissue box covers, welcome trays, folder sets, and more to create a professional and organized guest experience.',
-        images: [getImageUrl('hotel-desk-set')],
-        shortSpecs: 'Faux Leather, Wood; Embossed Logos',
-        specifications: {
-            material: 'Faux leather, wood, or other custom materials',
-            finish: 'High-quality stitching and finish',
-            color: 'PMS color matching available',
-            branding: 'Embossed/debossed or printed logos',
-        },
-        customizationOptions: ['Material', 'Set Composition', 'Logo Branding'],
-        moq: '100 sets',
-        specSheetUrl: '#'
-    },
-    
-    // 6. Hotel Furniture
-    {
-        id: 'hotel-beds-mattresses',
-        slug: 'hotel-beds-mattresses',
-        name: 'Hotel Beds, Headboards & Mattresses',
-        categoryId: 'hotel-furniture',
-        description: 'Commercial-grade beds, headboards, and mattresses (spring, foam, hybrid) designed for hotel durability and guest comfort. Fire-retardant options available.',
-        images: [getImageUrl('mattress-spring-2')],
-        shortSpecs: 'Spring/Foam/Hybrid, FR Options',
-        specifications: {
-            frame: 'Solid wood/engineered wood/metal; kiln-dried wood; joints reinforced',
-            foam: 'High-density foam, appropriate ILD; fire-retardant optional',
-            upholstery: 'Fabric or faux leather; abrasion resistance >25,000 rubs (Martindale)',
-            mattresses: 'Bonnell/spring/foam/hybrid; GSM of quilting fabric; fire-retardant options',
-            compliance: 'FR, structural stability, weight limits clearly stated',
-        },
-        customizationOptions: ['Size', 'Mattress Type', 'Headboard Design', 'Upholstery'],
-        moq: '10 units',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'hotel-case-goods',
-        slug: 'hotel-case-goods',
-        name: 'Hotel Case Goods (Tables, Desks, Chairs)',
-        categoryId: 'hotel-furniture',
-        description: 'A wide range of case goods including bedside tables, desks, chairs, and sofas. Built with durable frames and high-resistance upholstery for lobby, lounge, and room use.',
-        images: [getImageUrl('mattress-foam')],
-        shortSpecs: 'Solid Wood/Metal Frames, High-Durability Upholstery',
-        specifications: {
-            frame: 'Solid wood/engineered wood/metal; kiln-dried wood',
-            finish: 'Stain, laminate, veneer or powder coating; low VOC finishes where required',
-            upholstery: 'Commercial-grade fabric or faux leather with high abrasion resistance',
-        },
-        customizationOptions: ['Design', 'Finish', 'Upholstery Fabric'],
-        moq: '10 units',
-        specSheetUrl: '#'
-    },
-
-    // 7. Restaurant & F&B Supplies
-    {
-        id: 'restaurant-tableware-cutlery',
-        slug: 'restaurant-tableware-cutlery',
-        name: 'Tableware & Cutlery',
-        categoryId: 'restaurant-supplies',
-        description: 'Hotel-grade porcelain/ceramic tableware that is chip-resistant and dishwasher safe. Paired with 18/10 or 18/8 stainless steel cutlery for corrosion resistance and lasting shine.',
-        images: [getImageUrl('dining-linen')],
-        shortSpecs: 'Chip-Resistant Porcelain, 18/10 SS Cutlery',
-        specifications: {
-            porcelain: 'Hotel-grade, chip-resistant, glazed; dishwasher and microwave safe',
-            cutlery: '18/10 or 18/8 stainless steel; corrosion-resistant; mirror or satin finish',
-            certifications: 'Food contact safety compliant (EU/US standards where applicable)',
-        },
-        customizationOptions: ['Design Pattern', 'Cutlery Finish', 'Logo on Porcelain'],
-        moq: '100 sets',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'restaurant-buffetware',
-        slug: 'restaurant-buffetware',
-        name: 'Buffetware & Kitchenware',
-        categoryId: 'restaurant-supplies',
-        description: 'Comprehensive range of buffet and kitchen supplies, including food-grade SS 304 chafing dishes, standard GN pans, and serving trays.',
-        images: [getImageUrl('buffet-food')],
-        shortSpecs: 'SS 304 Chafing Dishes, GN Pans',
-        specifications: {
-            chafingDishes: 'Food-grade SS 304, robust hinges, fuel/electric compatible',
-            gnPans: 'GN standard sizing; SS 304, rolled edges, stackable',
-            glassware: 'Tempered or toughened for hotel use; clarity and break resistance',
-        },
-        customizationOptions: ['Chafing Dish Capacity', 'GN Pan Sizes'],
-        moq: '10 units',
-        specSheetUrl: '#'
-    },
-
-    // 8. Housekeeping & Laundry Supplies
-    {
-        id: 'housekeeping-trolleys-carts',
-        slug: 'housekeeping-trolleys-carts',
-        name: 'Housekeeping Trolleys & Laundry Carts',
-        categoryId: 'housekeeping-supplies',
-        description: 'Heavy-duty housekeeping trolleys and laundry carts with rust-resistant frames, smooth-rolling wheels, and multiple compartments for efficient operations.',
-        images: [getImageUrl('cleaning-cart')],
-        shortSpecs: 'Heavy-Duty, Rust-Resistant, Multiple Shelves',
-        specifications: {
-            trolleys: 'Heavy-duty wheels, rust-resistant frames, multiple shelves; load rating indicated',
-            cleaningTools: 'Durable plastics; ergonomic handles for mops, buckets, brooms',
-            chemicals: 'Concentrates or ready-to-use; clear dilution ratios; MSDS available',
-            compliance: 'Biodegradable/eco certifications if applicable; non-corrosive where needed',
-        },
-        customizationOptions: ['Trolley Configuration', 'Color'],
-        moq: '5 units',
-        specSheetUrl: '#'
-    },
-
-    // 9. Uniforms & Workwear (Hospitality)
-    {
-        id: 'hospitality-uniforms-workwear',
-        slug: 'hospitality-uniforms-workwear',
-        name: 'Hospitality Uniforms & Workwear',
-        categoryId: 'hospitality-uniforms',
-        description: 'Customizable uniforms for all hotel departments, including chef coats, aprons, front office suits, and housekeeping attire. Made from durable, stain-resistant, and breathable fabrics.',
-        images: [getImageUrl('uniform-corporate')],
-        shortSpecs: 'Poly-Cotton/Stretch, Stain-Resistant',
-        specifications: {
-            fabric: 'Blended poly-cotton or stretch fabric; stain-resistant, breathable',
-            gsm: '160–250 GSM depending on garment and climate',
-            construction: 'Double-stitching at stress points; bar-tacking on pockets',
-            colorFastness: 'Suitable for commercial laundry',
-            design: 'Custom branding, piping, embroidery options',
-        },
-        customizationOptions: ['Fabric Blend', 'Color', 'Logo Embroidery', 'Design'],
-        moq: '50 sets',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-
-    // --- MEDICAL SUPPLIES ---
-
-    // 1. Medical Consumables & Disposables
-    {
-        id: 'medical-syringes-needles',
-        slug: 'medical-syringes-needles',
-        name: 'Syringes, Needles & IV Sets',
-        categoryId: 'medical-consumables',
-        description: 'Sterile, single-use syringes, needles, IV cannula, and infusion sets. Manufactured in ISO 13485 facilities, CE marked and/or USFDA registered where applicable for utmost safety.',
-        images: [getImageUrl('medical-syringe')],
-        shortSpecs: 'Sterile, ISO 13485, CE/FDA Marked',
-        specifications: {
-            standards: 'ISO 13485 manufacturer, CE marking / USFDA registration where applicable',
-            sterility: 'EO/Gamma sterilized; sterility assurance level documented',
-            shelfLife: 'Clearly marked; validated stability',
-            packaging: 'Sterile pouches, peelable, with clear IFUs',
-        },
-        customizationOptions: ['Gauge Size', 'Length', 'Packaging Volume'],
-        moq: '10,000 units',
-        specSheetUrl: '#'
-    },
-    {
-        id: 'surgical-examination-gloves',
-        slug: 'surgical-examination-gloves',
-        name: 'Surgical & Examination Gloves',
-        categoryId: 'medical-consumables',
-        description: 'High-quality latex, nitrile, or vinyl gloves for surgical and examination purposes. Available powdered or powder-free with low-protein content to minimize allergic reactions.',
-        images: [getImageUrl('surgical-gloves')],
-        shortSpecs: 'Latex/Nitrile/Vinyl, Powder-Free Options',
-        specifications: {
-            material: 'Latex/Nitrile/Vinyl',
-            features: 'Powdered / powder-free; low-protein, low-allergen',
-            standards: 'ISO 13485, CE marking / USFDA registration',
-            biocompatibility: 'Tested as per ISO 10993',
-        },
-        customizationOptions: ['Material', 'Size', 'Powdered/Powder-Free'],
-        moq: '1 case',
-        specSheetUrl: '#'
-    },
-
-    // 2. Medical Devices & Equipment
-    {
-        id: 'patient-monitors-ecg',
-        slug: 'patient-monitors-ecg',
-        name: 'Patient Monitors, ECG & Diagnostic Devices',
-        categoryId: 'medical-devices',
-        description: 'Reliable patient monitors, ECG machines, nebulizers, and diagnostic devices (BP apparatus, thermometers) with CE/USFDA approvals. Factory calibrated with clear user manuals and warranty.',
-        images: [getImageUrl('medical-monitor')],
-        shortSpecs: 'CE/USFDA Approved, Calibrated, Warranty',
-        specifications: {
-            regulatory: 'CE / USFDA / local approvals as per target market',
-            electricalSafety: 'IEC 60601 or equivalent',
-            calibration: 'Factory calibrated; documentation provided',
-            userManual: 'English + local language (if required)',
-            warranty: 'Typically 1–2 years; service support assurances',
-        },
-        customizationOptions: ['Language Support', 'Accessory Packs'],
-        moq: '1 unit',
-        specSheetUrl: '#'
-    },
-
-    // 3. Surgical Instruments
-    {
-        id: 'surgical-instruments-sets',
-        slug: 'surgical-instruments-sets',
-        name: 'Surgical Instruments',
-        categoryId: 'surgical-instruments',
-        description: 'General and specialized surgical instruments made from high-grade stainless steel. Corrosion-resistant with controlled hardness for sharpness and durability. Sourced from ISO 13485 facilities.',
-        images: [getImageUrl('surgical-set')],
-        shortSpecs: 'High-Grade SS, ISO 7153-1',
-        specifications: {
-            material: 'High-grade stainless steel (e.g., 410/420/440 or as required)',
-            finish: 'Matt / satin / mirror; corrosion-resistant',
-            hardness: 'Controlled per instrument type; retains sharpness; no burrs',
-            standards: 'ISO 7153-1, ISO 13485 facility',
-            packaging: 'Individually packed or set packed in trays; labeled with lot/batch no.',
-        },
-        customizationOptions: ['Instrument Set Composition', 'Finish'],
-        moq: '1 set',
-        specSheetUrl: '#'
-    },
-
-    // 4. Orthopedic & Rehabilitation Products
-    {
-        id: 'orthopedic-rehab-aids',
-        slug: 'orthopedic-rehab-aids',
-        name: 'Orthopedic & Rehabilitation Aids',
-        categoryId: 'orthopedic-rehab',
-        description: 'A range of external supports (braces, splints), walking aids (crutches, walkers), and wheelchairs. Designed with medical-grade, hypoallergenic materials for patient comfort and safety.',
-        images: [getImageUrl('wheelchair')],
-        shortSpecs: 'Medical-Grade Materials, Ergonomic Design',
-        specifications: {
-            material: 'Medical-grade metals & polymers; hypoallergenic materials for contact surfaces',
-            loadCapacity: 'Clearly stated and tested (e.g. 100–120 kg)',
-            design: 'Adjustable, ergonomic, padded where required',
-        },
-        customizationOptions: ['Size', 'Adjustability Features'],
-        moq: '10 units',
-        specSheetUrl: '#'
-    },
-
-    // 5. Hospital Furniture
-    {
-        id: 'hospital-icu-beds',
-        slug: 'hospital-icu-beds',
-        name: 'Hospital Beds (ICU, Fowler)',
-        categoryId: 'hospital-furniture',
-        description: 'Durable ICU and Fowler beds with MS/SS framework and epoxy powder coating. Load capacity tested for 150-250 kg, featuring smooth crank or electric motor mechanisms.',
-        images: [getImageUrl('hospital-bed')],
-        shortSpecs: '150-250kg Capacity, Crank/Electric',
-        specifications: {
-            frame: 'MS/SS framework; epoxy powder-coated or SS 304/202',
-            loadCapacity: 'Typically 150–250 kg for adult beds; tested',
-            mechanism: 'Crank or electric motors; smooth, low-noise movement',
-            mattressPlatform: 'Perforated/solid; radiolucent for certain models',
-            casters: 'Lockable, anti-rust, smooth movement',
-        },
-        customizationOptions: ['Mechanism Type', 'Mattress Type', 'Side Rails'],
-        moq: '5 units',
-        specSheetUrl: '#'
-    },
-
-    // 6. Infection Control & Sterilization
-    {
-        id: 'infection-control-disinfectants',
-        slug: 'infection-control-disinfectants',
-        name: 'Disinfectants & Sterilization Products',
-        categoryId: 'infection-control',
-        description: 'Broad-spectrum disinfectants (surface, instrument, hand rubs) and sterilization supplies like pouches and wraps. Efficacy tested to international standards, with MSDS available.',
-        images: [getImageUrl('disinfectant-bottles')],
-        shortSpecs: 'Broad-Spectrum, Efficacy Tested, MSDS Available',
-        specifications: {
-            chemicalComposition: 'Clearly declared; broad-spectrum efficacy (bacteria, virus, fungi)',
-            testing: 'Efficacy tested as per accepted microbiological standards',
-            handling: 'Clear safety and dilution instructions; MSDS available',
-            packaging: 'Leak-proof; compatible with shipping regulations for chemicals',
-        },
-        customizationOptions: ['Concentration', 'Packaging Size'],
-        moq: '100 Liters',
-        specSheetUrl: '#'
-    },
-
-    // 7. Medical Textiles & Hospital Linens
-    {
-        id: 'medical-textiles-scrubs-gowns',
-        slug: 'medical-textiles-scrubs-gowns',
-        name: 'Medical Textiles (Scrubs, Gowns, Drapes)',
-        categoryId: 'medical-textiles',
-        description: 'Reusable and disposable medical textiles including scrub suits, patient gowns, and OT drapes. Reusable fabrics are tested for high wash durability, while disposable options offer fluid resistance.',
-        images: [getImageUrl('blue-scrubs')],
-        shortSpecs: 'High Wash Durability, Fluid-Resistant',
-        specifications: {
-            reusableTextiles: 'Fabric: Cotton, poly-cotton, or barrier fabrics; GSM: 120–200 GSM; High wash durability (50–100+ cycles); color fastness; low lint',
-            disposableTextiles: 'SMS/SMMS non-woven with specified GSM; Fluid-resistant or fluid-impervious grades for OT',
-            infectionControl: 'Optional antibacterial/antimicrobial finishes',
-        },
-        customizationOptions: ['Color', 'Fabric Type', 'Logo Embroidery'],
-        moq: '100 sets',
-        safetyInfo: 'OEKO-TEX STANDARD 100 Certified',
-        specSheetUrl: '#'
-    },
-
-    // 8. Laboratory Supplies
-    {
-        id: 'lab-glassware-plasticware',
-        slug: 'lab-glassware-plasticware',
-        name: 'Lab Glassware & Plasticware',
-        categoryId: 'lab-supplies',
-        description: 'A range of laboratory supplies including borosilicate glassware (beakers, flasks) and virgin medical-grade plasticware (pipette tips, petri dishes). Packaged for cleanliness with lot traceability.',
-        images: [getImageUrl('lab-beaker')],
-        shortSpecs: 'Borosilicate Glass, Medical-Grade Plastic',
-        specifications: {
-            glassware: 'Borosilicate glass; thermal shock resistance; calibration marks where applicable',
-            plasticware: 'Virgin medical-grade polymers; DNase/RNase-free where relevant',
-            packaging: 'Clean, dust-free packing; lot traceability',
-        },
-        customizationOptions: ['Volume/Size', 'Sterilization (for plasticware)'],
-        moq: '1 case',
-        specSheetUrl: '#'
-    },
-
-    // 9. Emergency & First Aid
-    {
-        id: 'emergency-first-aid-kits',
-        slug: 'emergency-first-aid-kits',
-        name: 'Emergency & First Aid Kits',
-        categoryId: 'emergency-first-aid',
-        description: 'Comprehensive first aid kits for workplace, vehicle, or home use. Contents can be customized to meet specific country regulations. Also includes stretchers, spine boards, and splints.',
-        images: [getImageUrl('first-aid-kit')],
-        shortSpecs: 'Customizable Contents, Durable Cases',
-        specifications: {
-            kitContents: 'As per client/country regulation (e.g. workplace, vehicle, home kits)',
-            durableCases: 'Weather-resistant; easy-to-carry',
-            labeling: 'Clear, multilingual where required',
-        },
-        customizationOptions: ['Kit Contents', 'Case Type', 'Branding'],
-        moq: '50 kits',
-        specSheetUrl: '#'
-    },
+  // --- MEDICAL SUPPLIES ---
+  {
+    id: 'm-1',
+    name: 'Sterile Disposable Syringes',
+    slug: 'sterile-disposable-syringes',
+    category: 'medical-supplies',
+    subcategory: 'Consumables',
+    shortDescription: 'Single-use, non-toxic, non-pyrogenic syringes with needles.',
+    fullDescription: 'Hospital-grade sterile syringes designed for precision and safety. Available in Luer lock and Luer slip versions.',
+    specifications: [
+      { key: 'Volume', value: '2ml, 5ml, 10ml, 50ml' },
+      { key: 'Sterility', value: 'E.O. Gas Sterilized' },
+      { key: 'Safety', value: 'Needle retraction / safety cap' }
+    ],
+    materials: ['Medical-Grade PP', 'Stainless Steel'],
+    variants: [
+      { size: '2ml', color: 'Clear' },
+      { size: '5ml', color: 'Clear' }
+    ],
+    moqPieces: 10000,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: false,
+    certifications: ['ISO 13485', 'CE', 'FDA'],
+    images: ['https://images.unsplash.com/photo-1631804959147-75a1b5a837e4?w=800&q=80'],
+    hsCode: '9018.31',
+    tags: ['sterile', 'hospital', 'injections'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'm-2',
+    name: 'Nitrile Examination Gloves',
+    slug: 'nitrile-examination-gloves',
+    category: 'medical-supplies',
+    subcategory: 'Consumables',
+    shortDescription: 'Powder-free, latex-free blue nitrile gloves.',
+    fullDescription: 'High-tensile strength nitrile gloves offering excellent tactile sensitivity and protection against chemicals.',
+    specifications: [
+      { key: 'Material', value: 'Synthetic Nitrile' },
+      { key: 'Finish', value: 'Powder-Free, Textured' },
+      { key: 'AQL', value: '1.5 / 2.5' }
+    ],
+    materials: ['Nitrile'],
+    variants: [
+      { size: 'S', color: 'Blue' },
+      { size: 'M', color: 'Blue' },
+      { size: 'L', color: 'Blue' }
+    ],
+    moqPieces: 1000,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['CE', 'FDA'],
+    images: ['https://images.unsplash.com/photo-1606950669720-5f4b34856f6c?w=800&q=80'],
+    hsCode: '4015.19',
+    tags: ['ppe', 'gloves', 'protection'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'm-3',
+    name: 'ICU Hospital Bed (Electric)',
+    slug: 'icu-hospital-bed-electric',
+    category: 'medical-supplies',
+    subcategory: 'Furniture',
+    shortDescription: '5-Function electric bed with ABS side rails and remote control.',
+    fullDescription: 'Advanced ICU bed with adjustable height, backrest, and knee-rest. Includes Trendelenburg and Reverse Trendelenburg positions.',
+    specifications: [
+      { key: 'Control', value: 'Electric Remote' },
+      { key: 'Load', value: '250kg Capacity' },
+      { key: 'Casters', value: 'Central Locking System' }
+    ],
+    materials: ['Steel', 'ABS Plastic'],
+    variants: [
+      { size: 'Standard ICU', color: 'White/Blue' }
+    ],
+    moqPieces: 5,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: false,
+    certifications: ['ISO 13485', 'CE'],
+    images: ['https://images.unsplash.com/photo-1584983191144-7734c3527a6e?w=800&q=80'],
+    hsCode: '9402.90',
+    tags: ['icu', 'ward', 'furniture'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'm-4',
+    name: 'IV Infusion Sets',
+    slug: 'iv-infusion-sets',
+    category: 'medical-supplies',
+    subcategory: 'Consumables',
+    shortDescription: 'Sterile IV sets with air vent and flow regulator.',
+    fullDescription: 'Standard gravity-fed infusion sets for hospital use. Kink-resistant tubing ensures consistent fluid delivery.',
+    specifications: [
+      { key: 'Drip Rate', value: '20 Drops/ml' },
+      { key: 'Tube Length', value: '150cm' },
+      { key: 'Safety', value: 'Latex-free Y-Site' }
+    ],
+    materials: ['Medical-Grade PVC'],
+    variants: [
+      { size: 'Standard Adult', color: 'Transparent' }
+    ],
+    moqPieces: 5000,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: false,
+    certifications: ['CE', 'ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1579684385127-6c17937c4635?w=800&q=80'],
+    hsCode: '9018.39',
+    tags: ['infusion', 'iv', 'sterile'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-5',
+    name: 'Medical Scrub Suit (SMS)',
+    slug: 'medical-scrub-suit-sms',
+    category: 'medical-supplies',
+    subcategory: 'Textiles',
+    shortDescription: 'Disposable SMS non-woven scrub suit for surgical staff.',
+    fullDescription: 'Fluid-resistant and breathable disposable scrubs. Ideal for high-risk surgical environments.',
+    specifications: [
+      { key: 'Material', value: '45 GSM SMS Non-Woven' },
+      { key: 'Sterility', value: 'Non-Sterile' },
+      { key: 'Features', value: 'Elastic cuffs, pocketed pants' }
+    ],
+    materials: ['SMS Non-woven'],
+    variants: [
+      { size: 'M', color: 'Blue' },
+      { size: 'L', color: 'Blue' }
+    ],
+    moqPieces: 500,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['CE'],
+    images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?w=800&q=80'],
+    hsCode: '6210.10',
+    tags: ['ppe', 'surgical', 'theatre'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-6',
+    name: 'Digital Patient Monitor',
+    slug: 'digital-patient-monitor',
+    category: 'medical-supplies',
+    subcategory: 'Devices',
+    shortDescription: 'Multi-parameter monitor for SpO2, ECG, NIBP, and Temp.',
+    fullDescription: 'Portable 12-inch patient monitor suitable for bedside or transport monitoring.',
+    specifications: [
+      { key: 'Display', value: '12.1" Color TFT' },
+      { key: 'Battery', value: '4 Hour Backup' },
+      { key: 'Storage', value: '720 Hour Trend Data' }
+    ],
+    materials: ['Electronics', 'ABS'],
+    variants: [
+      { size: '12-inch Screen', color: 'White' }
+    ],
+    moqPieces: 1,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: false,
+    certifications: ['CE', 'FDA'],
+    images: ['https://images.unsplash.com/photo-1579684385127-6c17937c4635?w=800&q=80'],
+    hsCode: '9018.19',
+    tags: ['diagnostics', 'icu', 'monitor'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-7',
+    name: 'Surgical Gowns (Sterile)',
+    slug: 'surgical-gowns-sterile',
+    category: 'medical-supplies',
+    subcategory: 'Textiles',
+    shortDescription: 'Reinforced AAMI Level 3 surgical gowns.',
+    fullDescription: 'High-protection surgical gowns with sonic-welded seams for maximum barrier protection.',
+    specifications: [
+      { key: 'Protection', value: 'AAMI Level 3' },
+      { key: 'Closure', value: 'Velcro Neck, Knit Cuffs' },
+      { key: 'Sterility', value: 'EO Sterilized' }
+    ],
+    materials: ['Spunbond', 'Meltblown'],
+    variants: [
+      { size: 'L', color: 'Blue' },
+      { size: 'XL', color: 'Blue' }
+    ],
+    moqPieces: 200,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['CE', 'FDA'],
+    images: ['https://images.unsplash.com/photo-1588776848048-c8543b3bfa34?w=800&q=80'],
+    hsCode: '6210.10',
+    tags: ['surgical', 'protection', 'aami'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-8',
+    name: 'Hospital Orthopedic Braces',
+    slug: 'hospital-orthopedic-braces',
+    category: 'medical-supplies',
+    subcategory: 'Rehab',
+    shortDescription: 'Adjustable knee and ankle braces for post-op recovery.',
+    fullDescription: 'Medical-grade orthopedic supports with breathable fabric and adjustable straps.',
+    specifications: [
+      { key: 'Material', value: 'Neoprene / Spandex' },
+      { key: 'Hinge', value: 'Dual-axial Metal' }
+    ],
+    materials: ['Neoprene'],
+    variants: [
+      { size: 'Universal', color: 'Black' }
+    ],
+    moqPieces: 100,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1620295116790-a7d0130089e9?w=800&q=80'],
+    hsCode: '9021.10',
+    tags: ['ortho', 'rehab'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-9',
+    name: 'Advanced First Aid Kit',
+    slug: 'advanced-first-aid-kit',
+    category: 'medical-supplies',
+    subcategory: 'Emergency',
+    shortDescription: 'Workplace-compliant 100-piece first aid kit in ABS case.',
+    fullDescription: 'Comprehensive first aid solution for industrial and office settings.',
+    specifications: [
+      { key: 'Pieces', value: '100 Items' },
+      { key: 'Case', value: 'ABS Wall-mountable' }
+    ],
+    materials: ['ABS Case'],
+    variants: [
+      { size: 'Industrial', color: 'Orange' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['CE'],
+    images: ['https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'],
+    hsCode: '3006.50',
+    tags: ['safety', 'emergency'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-10',
+    name: 'Anti-Bacterial Bed Mattress',
+    slug: 'anti-bacterial-bed-mattress',
+    category: 'medical-supplies',
+    subcategory: 'Furniture',
+    shortDescription: 'PU covered high-density foam mattress for ward beds.',
+    fullDescription: 'Waterproof and fire-retardant mattress designed for prolonged patient stays and easy cleaning.',
+    specifications: [
+      { key: 'Core', value: 'High-Density Foam' },
+      { key: 'Cover', value: 'Anti-bacterial PU' },
+      { key: 'Thickness', value: '100mm' }
+    ],
+    materials: ['PU', 'Foam'],
+    variants: [
+      { size: 'Hospital Single', color: 'Blue' }
+    ],
+    moqPieces: 20,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?w=800&q=80'],
+    hsCode: '9404.21',
+    tags: ['ward', 'patient-comfort'],
+    featured: false,
+    active: true
+  }
 ];

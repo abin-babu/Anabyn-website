@@ -1,5 +1,53 @@
+
 {
   "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Comprehensive product information for the catalogue.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string", "enum": ["hospitality-supplies", "medical-supplies"] },
+        "subcategory": { "type": "string" },
+        "shortDescription": { "type": "string" },
+        "fullDescription": { "type": "string" },
+        "specifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        },
+        "materials": { "type": "array", "items": { "type": "string" } },
+        "variants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "size": { "type": "string" },
+              "gsm": { "type": "string" },
+              "tc": { "type": "string" },
+              "color": { "type": "string" }
+            }
+          }
+        },
+        "moqPieces": { "type": "number" },
+        "moqKg": { "type": "number" },
+        "sampleAvailable": { "type": "boolean" },
+        "privateLabelAvailable": { "type": "boolean" },
+        "certifications": { "type": "array", "items": { "type": "string" } },
+        "images": { "type": "array", "items": { "type": "string", "format": "uri" } },
+        "hsCode": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "featured": { "type": "boolean" },
+        "active": { "type": "boolean" }
+      }
+    },
     "Certificate": {
       "title": "Certificate",
       "description": "Company compliance and verification documents.",
@@ -99,6 +147,10 @@
     "providers": ["password", "anonymous"]
   },
   "firestore": {
+    "/products/{productId}": {
+      "schema": "#/backend/entities/Product",
+      "description": "Product catalog data."
+    },
     "/certificates/{certificateId}": {
       "schema": "#/backend/entities/Certificate",
       "description": "Publicly readable company certificates."
