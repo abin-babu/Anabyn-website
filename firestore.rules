@@ -19,11 +19,15 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    match /audit_requests/{requestId} {
+      allow create: if true;
+      allow read, write: if isAdmin();
+    }
+
     match /roles_admin/{uid} {
       allow get: if isSignedIn();
     }
     
-    // Existing rules...
     match /{path=**} {
       allow read, write: if false;
     }

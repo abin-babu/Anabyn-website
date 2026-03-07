@@ -13,7 +13,10 @@
         "validUntil": { "type": "string", "format": "date-time" },
         "verified": { "type": "boolean" },
         "icon": { "type": "string", "description": "Lucide icon name" },
-        "code": { "type": "string", "description": "Identifier like IEC or GSTIN" }
+        "code": { "type": "string", "description": "Identifier like IEC or GSTIN" },
+        "category": { "type": "string", "enum": ["quality", "compliance"] },
+        "number": { "type": "string" },
+        "verifyUrl": { "type": "string", "format": "uri" }
       },
       "required": ["name", "fileUrl", "issuedBy", "verified"]
     },
@@ -53,6 +56,17 @@
           }
         }
       }
+    },
+    "AuditRequest": {
+      "title": "AuditRequest",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "country": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
     }
   },
   "auth": {
@@ -66,6 +80,10 @@
     "/company_profile/main": {
       "schema": "#/backend/entities/CompanyProfile",
       "description": "Main company profile information."
+    },
+    "/audit_requests/{requestId}": {
+      "schema": "#/backend/entities/AuditRequest",
+      "description": "Requests for full audit reports."
     }
   }
 }

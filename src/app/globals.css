@@ -13,16 +13,16 @@
     --popover-foreground: 217 64% 14%;
     
     /* Brand Colors */
-    --primary: 217 64% 14%; /* #0D1F3C Navy */
+    --primary: 217 64% 14%; /* #0D1F3C brand-navy */
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 45 61% 90%; /* #F5EDD6 Light Gold */
+    --secondary: 45 61% 90%; /* #F5EDD6 brand-gold-light */
     --secondary-foreground: 217 64% 14%;
     
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     
-    --accent: 44 54% 54%; /* #C9A84C Gold */
+    --accent: 44 54% 54%; /* #C9A84C brand-gold */
     --accent-foreground: 210 40% 98%;
     
     --destructive: 0 84.2% 60.2%;
@@ -33,7 +33,7 @@
     --ring: 217 64% 14%;
     --radius: 0.75rem;
 
-    --success: 150 65% 29%; /* #1A7A4A Success Green */
+    --success: 150 65% 29%; /* #1A7A4A Success Green / brand-green */
   }
 }
 
@@ -42,7 +42,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-inter antialiased;
+    @apply bg-background text-foreground font-body antialiased;
   }
 }
 

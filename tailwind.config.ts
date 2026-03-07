@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -10,13 +11,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)', 'sans-serif'],
+        body: ['var(--font-body)', 'sans-serif'],
         playfair: ['var(--font-playfair)', 'serif'],
         headline: ['var(--font-playfair)', 'serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        'brand-navy': '#0D1F3C',
+        'brand-gold': '#C9A84C',
+        'brand-gold-light': '#F5EDD6',
+        'brand-green': '#1A7A4A',
+        'brand-grey': '#8892A4',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -40,6 +47,9 @@ export default {
         accent: {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
+        },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
