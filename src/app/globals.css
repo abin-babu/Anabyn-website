@@ -4,34 +4,28 @@
 
 @layer base {
   :root {
-    --background: 210 32% 98%;
+    --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    /* Primary Royal Blue #1B45CC */
-    --primary: 226 76% 45%;
+    /* Primary: Royal Blue #0B3D91 */
+    --primary: 218 86% 31%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    /* Accent Gold #C8A020 */
-    --accent: 46 72% 45%;
+    /* Accent: Subtle Gold #C9A84B */
+    --accent: 45 54% 54%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 226 76% 45%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 218 86% 31%;
     --radius: 0.75rem;
-
-    /* Brand Colors */
-    --blue-dark: 223 65% 15%; /* #0D1B3E */
-    --blue-royal: 226 76% 45%; /* #1B45CC */
-    --gold-primary: 46 72% 45%; /* #C8A020 */
-    --gold-light: 46 75% 56%; /* #E2BA3A */
   }
 }
 
@@ -42,20 +36,14 @@
   body {
     @apply bg-background text-foreground font-inter antialiased;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
-  }
 }
 
 @layer utilities {
-  .bg-blue-dark {
-    background-color: hsl(var(--blue-dark));
-  }
   .bg-navy-gradient {
-    background: linear-gradient(135deg, #0D1B3E, #1B45CC);
+    background: linear-gradient(135deg, #0D1B3E, #0B3D91);
   }
   .bg-gold-gradient {
-    background: linear-gradient(135deg, #C8A020, #E2BA3A);
+    background: linear-gradient(135deg, #C9A84B, #E2BA3A);
   }
   .animate-marquee {
     display: flex;
