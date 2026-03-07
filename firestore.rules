@@ -2,52 +2,47 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Helper functions
     function isSignedIn() {
       return request.auth != null;
     }
     function isAdmin() {
       return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
-
-    match /blog_posts/{postId} {
-      allow read: if true;
-      allow write: if isAdmin();
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
     }
 
-    match /testimonials/{id} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
+    // Publicly readable collections
+    match /products/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /blog_posts/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /testimonials/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /certifications/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /clients/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /shipping_routes/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /hs_codes/{id} { allow read: if true; allow write: if isAdmin(); }
 
-    match /clients/{id} {
-      allow read: if true;
-      allow write: if isAdmin();
+    // Forms: Public create, Admin read/write
+    match /rfq_submissions/{id} {
+      allow create: if true;
+      allow read, write: if isAdmin();
     }
-
-    match /certificates/{certificateId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-
-    match /products/{productId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-
-    match /rfq_submissions/{rfqId} {
+    match /audit_requests/{id} {
       allow create: if true;
       allow read, write: if isAdmin();
     }
 
-    match /audit_requests/{requestId} {
-      allow create: if true;
-      allow read, write: if isAdmin();
+    // Orders: Owner read, Admin read/write
+    match /orders/{id} {
+      allow read: if isOwner(resource.data.buyerUid) || isAdmin();
+      allow write: if isAdmin();
     }
 
+    // Internal roles
     match /roles_admin/{uid} {
       allow get: if isSignedIn();
     }
-    
+
     match /{path=**} {
       allow read, write: if false;
     }

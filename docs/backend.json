@@ -73,62 +73,49 @@
         "readingTime": { "type": "number" },
         "featuredImage": { "type": "string", "format": "uri" },
         "featured": { "type": "boolean" }
-      },
-      "required": ["slug", "title", "content", "category", "author"]
-    },
-    "Testimonial": {
-      "title": "Testimonial",
-      "type": "object",
-      "description": "Verified customer reviews and social proof.",
-      "properties": {
-        "clientName": { "type": "string" },
-        "designation": { "type": "string" },
-        "company": { "type": "string" },
-        "country": { "type": "string" },
-        "countryFlag": { "type": "string" },
-        "rating": { "type": "number" },
-        "testimonialText": { "type": "string" },
-        "productCategory": { "type": "string" },
-        "orderYear": { "type": "number" },
-        "photoUrl": { "type": "string", "format": "uri" },
-        "linkedinUrl": { "type": "string", "format": "uri" },
-        "verified": { "type": "boolean" },
-        "featured": { "type": "boolean" }
       }
     },
-    "Client": {
-      "title": "Client",
+    "Order": {
+      "title": "Order",
       "type": "object",
-      "description": "Partner logos and corporate clients.",
+      "description": "Buyer orders and shipment tracking.",
       "properties": {
-        "name": { "type": "string" },
-        "logoUrl": { "type": "string", "format": "uri" },
-        "sector": { "type": "string", "enum": ["Hotels & Resorts", "Hospitals & Clinics", "Distributors"] },
-        "featured": { "type": "boolean" }
+        "orderId": { "type": "string" },
+        "buyerUid": { "type": "string" },
+        "product": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "status": { "type": "string", "enum": ["Processing", "Shipped", "Delivered"] },
+        "trackingNumber": { "type": "string" },
+        "carrier": { "type": "string" },
+        "documents": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
       }
     },
-    "Certificate": {
-      "title": "Certificate",
-      "description": "Company compliance and verification documents.",
+    "RFQSubmission": {
+      "title": "RFQ Submission",
       "type": "object",
       "properties": {
-        "id": { "type": "string" },
-        "name": { "type": "string" },
-        "fileUrl": { "type": "string", "format": "uri" },
-        "issuedBy": { "type": "string" },
-        "validUntil": { "type": "string", "format": "date-time" },
-        "verified": { "type": "boolean" },
-        "icon": { "type": "string", "description": "Lucide icon name" },
-        "code": { "type": "string", "description": "Identifier like IEC or GSTIN" },
-        "category": { "type": "string", "enum": ["quality", "compliance"] },
-        "number": { "type": "string" },
-        "verifyUrl": { "type": "string", "format": "uri" }
-      },
-      "required": ["name", "fileUrl", "issuedBy", "verified"]
+        "rfqId": { "type": "string" },
+        "category": { "type": "string" },
+        "product": { "type": "string" },
+        "quantity": { "type": "number" },
+        "destinationCountry": { "type": "string" },
+        "status": { "type": "string", "enum": ["New", "In Progress", "Quoted", "Closed"] }
+      }
     }
   },
   "auth": {
-    "providers": ["password", "anonymous"]
+    "providers": ["password", "google"]
   },
   "firestore": {
     "/products/{productId}": {
@@ -139,25 +126,35 @@
       "schema": "#/backend/entities/BlogPost",
       "description": "Articles and news."
     },
-    "/testimonials/{testimonialId}": {
-      "schema": "#/backend/entities/Testimonial",
+    "/testimonials/{id}": {
       "description": "Customer reviews."
     },
-    "/clients/{clientId}": {
-      "schema": "#/backend/entities/Client",
-      "description": "Partner and client logos."
+    "/certifications/{id}": {
+      "description": "Compliance certificates."
     },
-    "/certificates/{certificateId}": {
-      "schema": "#/backend/entities/Certificate",
-      "description": "Publicly readable company certificates."
-    },
-    "/rfq_submissions/{rfqId}": {
+    "/rfq_submissions/{id}": {
       "schema": "#/backend/entities/RFQSubmission",
       "description": "Buyer quote requests."
     },
-    "/audit_requests/{requestId}": {
-      "schema": "#/backend/entities/AuditRequest",
-      "description": "Requests for full audit reports."
+    "/orders/{orderId}": {
+      "schema": "#/backend/entities/Order",
+      "description": "Customer orders."
+    },
+    "/clients/{id}": {
+      "description": "Partner logos."
+    },
+    "/shipping_routes/{id}": {
+      "description": "Logistics data."
+    },
+    "/hs_codes/{id}": {
+      "description": "Harmonized System codes."
     }
+  },
+  "storage": {
+    "/certificates/": { "description": "PDF certificates for public viewing." },
+    "/products/images/": { "description": "High-res product photography." },
+    "/client-logos/": { "description": "Partner corporate logos." },
+    "/buyer-portal/documents/": { "description": "Confidential order documents per buyer." },
+    "/blog/images/": { "description": "Article featured images." }
   }
 }

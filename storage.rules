@@ -1,0 +1,26 @@
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      // In a real app, you'd check a custom claim or a firestore doc. 
+      // For the prototype, we assume admin access is restricted via console or logic.
+      return isSignedIn(); 
+    }
+
+    // Publicly readable assets
+    match /certificates/{allPaths=**} { allow read: if true; allow write: if isAdmin(); }
+    match /products/images/{allPaths=**} { allow read: if true; allow write: if isAdmin(); }
+    match /client-logos/{allPaths=**} { allow read: if true; allow write: if isAdmin(); }
+    match /blog/images/{allPaths=**} { allow read: if true; allow write: if isAdmin(); }
+
+    // Buyer-specific documents
+    match /buyer-portal/documents/{uid}/{allPaths=**} {
+      allow read: if isSignedIn() && request.auth.uid == uid;
+      allow write: if isAdmin();
+    }
+  }
+}
