@@ -1,4 +1,3 @@
-
 {
   "entities": {
     "Product": {
@@ -156,5 +155,31 @@
     "/client-logos/": { "description": "Partner corporate logos." },
     "/buyer-portal/documents/": { "description": "Confidential order documents per buyer." },
     "/blog/images/": { "description": "Article featured images." }
-  }
+  },
+  "extensions": [
+    {
+      "name": "firestore-send-email",
+      "description": "Trigger Email: Automatically sends confirmation emails when an RFQ is submitted to the rfq_submissions collection.",
+      "config": {
+        "collection": "rfq_submissions",
+        "emailField": "mail"
+      }
+    },
+    {
+      "name": "storage-resize-images",
+      "description": "Resize Images: Automatically generates optimized thumbnails for product images uploaded to /products/images/.",
+      "config": {
+        "sizes": "200x200,800x800",
+        "bucket": "studio-9297553856-4efc0.firebasestorage.app"
+      }
+    },
+    {
+      "name": "firestore-algolia-search",
+      "description": "Search with Algolia: Syncs the products collection to Algolia for high-performance, typo-tolerant search across the catalogue.",
+      "config": {
+        "collection": "products",
+        "indexName": "products_index"
+      }
+    }
+  ]
 }
