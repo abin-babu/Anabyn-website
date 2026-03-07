@@ -1,4 +1,3 @@
-
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -65,6 +64,10 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
         'fade-in-up': {
           '0%': {
             opacity: '0',
@@ -75,9 +78,15 @@ export default {
             transform: 'translateY(0)',
           },
         },
+        'marquee': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        }
       },
       animation: {
+        'fade-in': 'fade-in 0.2s ease-out',
         'fade-in-up': 'fade-in-up 0.5s ease-out',
+        'marquee': 'marquee 30s linear infinite',
       },
     },
   },

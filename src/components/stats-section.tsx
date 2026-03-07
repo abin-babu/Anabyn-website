@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -59,22 +58,22 @@ export function StatsSection() {
   }, [hasStarted]);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-brand-navy text-white overflow-hidden relative">
+    <section ref={sectionRef} className="py-24 bg-brand-navy text-white overflow-hidden relative">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold to-transparent opacity-30" />
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
           {stats.map((stat, i) => (
-            <div key={stat.label} className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-6 group-hover:bg-brand-gold group-hover:border-brand-gold transition-all duration-500">
-                <stat.icon className="w-8 h-8 text-brand-gold group-hover:text-brand-navy" />
+            <div key={stat.label} className="text-center group fade-up visible">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/5 border border-white/10 mb-8 group-hover:bg-brand-gold group-hover:border-brand-gold transition-all duration-500 shadow-xl">
+                <stat.icon className="w-10 h-10 text-brand-gold group-hover:text-brand-navy" />
               </div>
               <div className="flex items-center justify-center gap-1">
-                <span className="text-5xl md:text-6xl font-bold font-playfair tabular-nums">
+                <span className="text-5xl md:text-7xl font-bold font-playfair tabular-nums">
                   {stat.value % 1 === 0 ? Math.floor(counts[i]) : counts[i].toFixed(1)}
                 </span>
                 <span className="text-3xl md:text-4xl font-bold text-brand-gold">{stat.suffix}</span>
               </div>
-              <p className="mt-2 text-white/60 font-body font-bold uppercase tracking-[0.2em] text-[10px]">
+              <p className="mt-4 text-white/60 font-body font-bold uppercase tracking-[0.3em] text-[10px]">
                 {stat.label}
               </p>
             </div>

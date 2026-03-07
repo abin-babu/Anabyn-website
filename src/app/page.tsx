@@ -1,24 +1,18 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
-import { AnabynLogo } from '@/components/anabyn-logo';
 import { 
-  Menu, X, CircleCheck, Star, MessageSquare, Phone, Mail, 
-  MapPin, ChevronUp, ArrowRight, ShieldCheck, Globe, Award, 
-  Eye, Palette, Headphones, Tag, Ruler, Box, FlaskConical, Trophy
+  ShieldCheck, MessageSquare, ArrowRight, Trophy, ChevronUp
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
 import { products as productCatalog } from '@/lib/products';
-import { initialClients } from '@/lib/clients';
 import { CountrySelector } from '@/components/country-selector';
 import { TrustMarquee } from '@/components/trust-marquee';
 import { HowItWorks } from '@/components/sections/how-it-works';
@@ -72,13 +66,12 @@ export default function MasterpiecePage() {
   };
 
   return (
-    <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
+    <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white animate-fade-in">
       <CountrySelector />
       <Header />
       
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
-        {/* Background Placeholder for Video Loop */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-brand-navy/60 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent z-10" />
@@ -89,7 +82,6 @@ export default function MasterpiecePage() {
             alt="Anabyn Hero - Premium Bed Linen"
             priority
           />
-          {/* Animated Gradient Accent */}
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-gold/10 blur-[120px] rounded-full animate-pulse z-10" />
         </div>
 
@@ -97,7 +89,7 @@ export default function MasterpiecePage() {
           <div className="max-w-[840px] space-y-8 fade-up visible">
             <div className="inline-flex items-center gap-3 border border-brand-gold/40 rounded-full px-5 py-2 bg-white/5 backdrop-blur-md">
               <ShieldCheck className="text-brand-gold w-5 h-5" />
-              <span className="text-brand-gold text-[10px] font-black tracking-[0.2em] uppercase">
+              <span className="text-brand-gold text-[10px] font-black tracking-[0.3em] uppercase">
                 {targetCountry ? `Dedicated Export Partner for ${targetCountry}` : "India's Trusted Global Export Partner"}
               </span>
             </div>
@@ -127,21 +119,16 @@ export default function MasterpiecePage() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/40 animate-bounce">
-          <span className="text-[10px] font-bold uppercase tracking-widest">Scroll to Explore</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll to Explore</span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-brand-gold/50 to-transparent" />
         </div>
       </section>
 
-      {/* 2. Trust & Verification bar */}
       <TrustMarquee />
       <VerifiedExporterBar />
-
-      {/* 3. Why Choose Us (Stats Section) */}
       <StatsSection />
 
-      {/* 4. Product Categories */}
       <section className="py-24 bg-white px-4 relative overflow-hidden">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
@@ -156,20 +143,19 @@ export default function MasterpiecePage() {
                 We bridge India's manufacturing excellence with global procurement standards, ensuring rigorous compliance for healthcare and hospitality sectors.
               </p>
               <div className="flex gap-4">
-                <Button asChild variant="outline" className="border-brand-navy text-brand-navy rounded-xl px-8 h-14 font-black hover:bg-brand-navy hover:text-white transition-all">
+                <Button asChild variant="secondary" className="rounded-xl px-8 h-14 font-black transition-all">
                   <Link href="/products?category=hospitality-supplies">🏨 Hospitality</Link>
                 </Button>
-                <Button asChild variant="outline" className="border-brand-navy text-brand-navy rounded-xl px-8 h-14 font-black hover:bg-brand-navy hover:text-white transition-all">
+                <Button asChild variant="secondary" className="rounded-xl px-8 h-14 font-black transition-all">
                   <Link href="/products?category=medical-supplies">🏥 Medical</Link>
                 </Button>
               </div>
             </div>
           </div>
 
-          {/* 5. Featured Products (6 cards) */}
           <div className="grid md:grid-cols-3 gap-8">
             {productCatalog.filter(p => p.featured).slice(0, 6).map((p) => (
-              <Card key={p.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-500 bg-white rounded-[2.5rem]">
+              <Card key={p.id} className="fade-up">
                 <div className="relative h-72 overflow-hidden">
                   <Image src={p.images[0]} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute top-6 left-6">
@@ -190,26 +176,18 @@ export default function MasterpiecePage() {
           </div>
           
           <div className="mt-20 text-center">
-            <Button asChild size="lg" className="rounded-2xl border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white px-12 h-16 font-black" variant="outline">
+            <Button asChild size="lg" className="rounded-2xl" variant="secondary">
               <Link href="/products">Browse Full Export Catalogue</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* 6. How It Works (4-step process) */}
       <HowItWorks />
-
-      {/* 7. Certifications Preview */}
       <CertificationsPreview />
-
-      {/* 8. Testimonials Carousel */}
       <TestimonialsCarousel />
-
-      {/* 9. Latest Blog Articles */}
       <LatestBlog />
 
-      {/* Final CTA */}
       <section className="py-24 bg-brand-navy text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-gold/5 blur-[120px] rounded-full translate-x-1/2" />
         <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
@@ -218,29 +196,9 @@ export default function MasterpiecePage() {
             <p className="text-xl text-brand-gold-light/70 mb-12 max-w-lg leading-relaxed">
               From technical dossiers to door-to-door logistics, we manage the entire supply chain so you can focus on scale.
             </p>
-            <div className="space-y-8">
-              <div className="flex items-center gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:bg-brand-gold group-hover:border-brand-gold">
-                  <Mail className="text-brand-gold group-hover:text-brand-navy" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-brand-gold uppercase tracking-[0.2em] mb-1">Direct Line</p>
-                  <p className="text-xl font-bold">sales@anabyn.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all group-hover:bg-brand-gold group-hover:border-brand-gold">
-                  <Phone className="text-brand-gold group-hover:text-brand-navy" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-brand-gold uppercase tracking-[0.2em] mb-1">24/7 Hotline</p>
-                  <p className="text-xl font-bold">+91 94956 13121</p>
-                </div>
-              </div>
-            </div>
           </div>
-          <Card className="bg-white p-12 rounded-[3rem] shadow-2xl border-none fade-up relative">
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-gold rounded-full flex items-center justify-center text-brand-navy rotate-12 shadow-xl">
+          <Card className="bg-white p-12 rounded-[3rem] shadow-2xl border-none fade-up relative group">
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-brand-gold rounded-full flex items-center justify-center text-brand-navy rotate-12 shadow-xl group-hover:rotate-0 transition-transform duration-500">
               <Trophy className="w-10 h-10" />
             </div>
             <form onSubmit={handleInquirySubmit} className="space-y-6">
@@ -248,22 +206,22 @@ export default function MasterpiecePage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-1">Full Name</label>
-                  <input type="text" placeholder="John Doe" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all" />
+                  <input type="text" placeholder="John Doe" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all outline-none" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-1">Company</label>
-                  <input type="text" placeholder="Global Sourcing" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all" />
+                  <input type="text" placeholder="Global Sourcing" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all outline-none" />
                 </div>
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-1">Work Email</label>
-                <input type="email" placeholder="procurement@company.com" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all" />
+                <input type="email" placeholder="procurement@company.com" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy font-bold focus:ring-2 ring-brand-gold transition-all outline-none" />
               </div>
               <div className="space-y-2">
                 <label className="text-[10px] font-black text-muted-foreground uppercase tracking-widest ml-1">Requirement Overview</label>
-                <textarea placeholder="Products, Quantities, Target Country..." required className="bg-secondary/10 border-none h-40 rounded-xl p-6 w-full text-brand-navy font-bold resize-none focus:ring-2 ring-brand-gold transition-all" />
+                <textarea placeholder="Products, Quantities, Target Country..." required className="bg-secondary/10 border-none h-40 rounded-xl p-6 w-full text-brand-navy font-bold resize-none focus:ring-2 ring-brand-gold transition-all outline-none" />
               </div>
-              <Button type="submit" className="w-full h-16 bg-brand-navy text-white font-black rounded-2xl text-lg hover:bg-brand-navy/90 transition-all shadow-2xl">Send Request</Button>
+              <Button type="submit" className="w-full h-16 rounded-2xl text-lg shadow-2xl" variant="navy">Send Request</Button>
             </form>
           </Card>
         </div>
@@ -279,7 +237,6 @@ export default function MasterpiecePage() {
           <ChevronUp size={28} strokeWidth={3} />
         </button>
       )}
-
     </div>
   );
 }

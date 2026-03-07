@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,28 +11,28 @@
     --popover: 0 0% 100%;
     --popover-foreground: 217 64% 14%;
     
-    /* Brand Colors */
-    --primary: 217 64% 14%; /* #0D1F3C brand-navy */
+    /* Brand Colors mapped to HSL */
+    --primary: 217 64% 14%; /* brand-navy #0D1F3C */
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 45 61% 90%; /* #F5EDD6 brand-gold-light */
+    --secondary: 45 61% 90%; /* brand-gold-light #F5EDD6 */
     --secondary-foreground: 217 64% 14%;
     
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     
-    --accent: 44 54% 54%; /* #C9A84C brand-gold */
+    --accent: 44 54% 54%; /* brand-gold #C9A84C */
     --accent-foreground: 210 40% 98%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 220 30% 90%; /* #D8E0F0 */
+    --border: 220 30% 90%;
     --input: 220 30% 90%;
-    --ring: 217 64% 14%;
+    --ring: 44 54% 54%;
     --radius: 0.75rem;
 
-    --success: 150 65% 29%; /* #1A7A4A Success Green / brand-green */
+    --success: 150 65% 29%; /* brand-green #1A7A4A */
   }
 }
 
@@ -43,6 +42,9 @@
   }
   body {
     @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
   }
 }
 
@@ -68,5 +70,8 @@
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  .card-hover {
+    @apply transition-all duration-150 ease-out hover:-translate-y-1 hover:shadow-lg border-t-0 hover:border-t-4 border-brand-gold;
   }
 }
