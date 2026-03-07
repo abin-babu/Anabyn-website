@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { AnabynLogo } from '@/components/anabyn-logo';
@@ -44,11 +44,11 @@ export default function MasterpiecePage() {
 
   const navLinks = [
     { name: 'Products', href: '#products' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Customization', href: '#customization' },
-    { name: 'Quality', href: '#certifications' },
+    { name: 'About Us', href: '/about-us' },
+    { name: 'Customization', href: '/customization' },
+    { name: 'Quality', href: '/quality' },
     { name: 'Markets', href: '#markets' },
-    { name: 'FAQ', href: '#faq' }
+    { name: 'FAQ', href: '/faq' }
   ];
 
   const products = [
@@ -134,7 +134,7 @@ export default function MasterpiecePage() {
               </Link>
             ))}
             <Button asChild className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold px-6 border-none hover:scale-105 transition-transform">
-              <Link href="#contact">Contact Us</Link>
+              <Link href="/inquiry">Contact Us</Link>
             </Button>
           </div>
 
@@ -153,7 +153,7 @@ export default function MasterpiecePage() {
                 </Link>
               ))}
               <Button asChild className="w-full rounded-full bg-gold-gradient text-[#0D1B3E] font-bold py-6">
-                <Link href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+                <Link href="/inquiry" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
               </Button>
             </div>
           </div>
@@ -196,7 +196,7 @@ export default function MasterpiecePage() {
 
             <div className="flex flex-wrap gap-4 pt-4">
               <Button asChild size="lg" className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold px-8 hover:scale-105 transition-all shadow-xl shadow-gold/20 border-none">
-                <Link href="#contact">Start Sourcing</Link>
+                <Link href="/inquiry">Start Sourcing</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full border-white text-white hover:bg-white hover:text-[#0D1B3E] px-8 bg-transparent">
                 <Link href="#products">Explore Product Range</Link>
@@ -333,13 +333,13 @@ export default function MasterpiecePage() {
               </p>
             </div>
             <Button asChild size="lg" className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold px-10 hover:scale-105 transition-all border-none">
-              <Link href="#contact">Start a Partnership <ArrowRight size={18} className="ml-2" /></Link>
+              <Link href="/inquiry">Start a Partnership <ArrowRight size={18} className="ml-2" /></Link>
             </Button>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { icon: <Handshake className="text-[#C8A020]" />, title: 'Exclusive Manufacturer Access', desc: 'Better pricing and quality than dealing directly with factories.' },
+              { icon: <HandshakeIcon className="text-[#C8A020]" />, title: 'Exclusive Manufacturer Access', desc: 'Better pricing and quality than dealing directly with factories.' },
               { icon: <Globe className="text-[#C8A020]" />, title: 'Global Shipping Expertise', desc: 'Hassle-free logistics with strong freight and cargo partners worldwide.' },
               { icon: <Award className="text-[#C8A020]" />, title: 'Quality That Speaks for Itself', desc: 'Product inspections, certifications, and sample approvals on every order.' },
               { icon: <Eye className="text-[#C8A020]" />, title: 'Transparent & Reliable', desc: 'Real-time updates, ethical sourcing, and clear communication throughout.' },
@@ -434,7 +434,7 @@ export default function MasterpiecePage() {
             ))}
           </div>
 
-          <Button asChild variant="outline" className="mt-16 rounded-full border-white text-white hover:bg-white hover:text-[#0D1B3E] px-10 h-14 font-bold">
+          <Button asChild variant="outline" className="mt-16 rounded-full border-white text-white hover:bg-white hover:text-[#0D1B3E] px-10 h-14 font-bold bg-transparent">
             <Link href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank">Read More Reviews on Google</Link>
           </Button>
         </div>
@@ -521,7 +521,7 @@ export default function MasterpiecePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
               { flag: '🇬🇧', name: 'United Kingdom' }, { flag: '🇺🇸', name: 'United States' }, 
-              { flag: '🇩🇪', name: 'Germany' }, { flag: '🇦mV', name: 'UAE' }, 
+              { flag: '🇩🇪', name: 'Germany' }, { flag: '🇦🇪', name: 'UAE' }, 
               { flag: '🇸🇦', name: 'Saudi Arabia' }, { flag: '🇦🇺', name: 'Australia' }, 
               { flag: '🇨🇦', name: 'Canada' }, { flag: '🇫🇷', name: 'France' }, 
               { flag: '🇸🇬', name: 'Singapore' }, { flag: '🇯🇵', name: 'Japan' }
@@ -638,9 +638,9 @@ export default function MasterpiecePage() {
               </p>
               <div className="flex gap-4">
                 {[
-                  { icon: <Star size={18} />, href: 'https://share.google/Icw2FF4giN0LJdQcz' },
+                  { icon: <LinkIcon size={18} />, href: 'https://www.linkedin.com/company/anabyn-global-ventures/' },
                   { icon: <MessageSquare size={18} />, href: 'https://wa.me/919495613121' },
-                  { icon: <Globe size={18} />, href: 'https://www.linkedin.com/company/anabyn-global-ventures/' },
+                  { icon: <Globe size={18} />, href: 'https://share.google/Icw2FF4giN0LJdQcz' },
                   { icon: <Mail size={18} />, href: 'mailto:sales@anabyn.com' }
                 ].map((s, i) => (
                   <a key={i} href={s.href} target="_blank" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#C8A020] hover:text-[#0D1B3E] transition-all">
@@ -665,11 +665,11 @@ export default function MasterpiecePage() {
             <div>
               <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
               <ul className="space-y-5 text-sm">
-                <li><Link href="#about" className="hover:text-[#C8A020] transition-colors">About Us</Link></li>
-                <li><Link href="#customization" className="hover:text-[#C8A020] transition-colors">Customization</Link></li>
-                <li><Link href="#certifications" className="hover:text-[#C8A020] transition-colors">Quality & Certifications</Link></li>
+                <li><Link href="/about-us" className="hover:text-[#C8A020] transition-colors">About Us</Link></li>
+                <li><Link href="/customization" className="hover:text-[#C8A020] transition-colors">Customization</Link></li>
+                <li><Link href="/quality" className="hover:text-[#C8A020] transition-colors">Quality & Certifications</Link></li>
                 <li><Link href="#markets" className="hover:text-[#C8A020] transition-colors">Global Markets</Link></li>
-                <li><Link href="#faq" className="hover:text-[#C8A020] transition-colors">FAQ</Link></li>
+                <li><Link href="/faq" className="hover:text-[#C8A020] transition-colors">FAQ</Link></li>
                 <li><Link href="/careers" className="hover:text-[#C8A020] transition-colors">Careers</Link></li>
               </ul>
             </div>
@@ -726,11 +726,19 @@ export default function MasterpiecePage() {
   );
 }
 
-// Simple Icon Components for Turn 11 mapping
-function Handshake(props: any) {
+// Simple Icon Components for Mapping
+function HandshakeIcon(props: any) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
       <path d="m11 17 2 2 6-6" /><path d="m18 10 1-1a2 2 0 0 0-3-3l-4 4" /><path d="m14 11 3 3" /><path d="m5 15-3-3a2 2 0 0 1 3-3l4 4" /><path d="m7 12 3 3" /><path d="m11 17-2 2a2 2 0 0 1-3-3l4-4" />
+    </svg>
+  )
+}
+
+function LinkIcon(props: any) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
     </svg>
   )
 }

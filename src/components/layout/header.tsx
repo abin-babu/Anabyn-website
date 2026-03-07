@@ -20,12 +20,12 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { label: 'Products', href: '#products' },
-    { label: 'About Us', href: '#about' },
-    { label: 'Customization', href: '#customization' },
-    { label: 'Quality', href: '#certifications' },
-    { label: 'Markets', href: '#markets' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Products', href: '/#products' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Customization', href: '/customization' },
+    { label: 'Quality', href: '/quality' },
+    { label: 'Markets', href: '/#markets' },
+    { label: 'FAQ', href: '/faq' },
   ];
 
   return (
@@ -55,7 +55,7 @@ export function Header() {
             asChild
             className="rounded-full bg-gold-gradient text-[#0D1B3E] font-bold border-none hover:opacity-90 transition-all px-6"
           >
-            <Link href="#contact">Contact Us</Link>
+            <Link href="/inquiry">Contact Us</Link>
           </Button>
         </nav>
 
@@ -86,7 +86,7 @@ export function Header() {
               className="w-full rounded-full bg-gold-gradient text-[#0D1B3E] font-bold"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Link href="#contact">Contact Us</Link>
+              <Link href="/inquiry">Contact Us</Link>
             </Button>
           </nav>
         </div>
