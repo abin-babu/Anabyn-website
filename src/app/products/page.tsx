@@ -17,7 +17,7 @@ import {
   SelectValue 
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Filter, Search, X, Package, ShieldCheck, Factory } from 'lucide-react';
+import { Filter, Search, X, Package, ShieldCheck } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const categories = [
@@ -86,17 +86,16 @@ export default function ProductListingPage() {
       <main className="flex-1 bg-secondary/20 pt-24 pb-20">
         <div className="container mx-auto px-4">
           
-          {/* Page Header */}
           <div className="mb-12 text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-brand-navy mb-4">Product Catalogue</h1>
+            <h1 className="text-4xl md:text-5xl font-bold font-playfair text-brand-navy mb-4">Export Catalogue</h1>
             <p className="text-muted-foreground text-lg">
-              Explore our range of export-grade hospitality and medical supplies. Sourced directly from India's leading production units.
+              High-quality hospitality and medical supplies sourced directly from India's premier manufacturing hubs.
             </p>
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8">
             
-            {/* Sidebar Filters (Desktop) */}
+            {/* Sidebar Filters */}
             <aside className="hidden lg:block w-72 shrink-0 space-y-8">
               <div className="bg-white rounded-2xl p-6 shadow-sm border border-brand-gold/10">
                 <div className="flex items-center justify-between mb-6">
@@ -106,7 +105,6 @@ export default function ProductListingPage() {
                   <button onClick={clearFilters} className="text-xs text-brand-gold hover:underline">Clear All</button>
                 </div>
 
-                {/* Category */}
                 <div className="space-y-4 mb-8">
                   <Label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Category</Label>
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
@@ -120,7 +118,6 @@ export default function ProductListingPage() {
                   </Select>
                 </div>
 
-                {/* Subcategory */}
                 <div className="space-y-4 mb-8">
                   <Label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Subcategories</Label>
                   <div className="space-y-2 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
@@ -139,7 +136,6 @@ export default function ProductListingPage() {
                   </div>
                 </div>
 
-                {/* Certifications */}
                 <div className="space-y-4 mb-8">
                   <Label className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Certifications</Label>
                   <div className="space-y-2">
@@ -158,7 +154,6 @@ export default function ProductListingPage() {
                   </div>
                 </div>
 
-                {/* Options */}
                 <div className="space-y-4 pt-4 border-t border-gray-100">
                   <div className="flex items-center space-x-2">
                     <Checkbox id="sample" checked={sampleFilter} onCheckedChange={(val) => setSampleFilter(!!val)} />
@@ -171,12 +166,11 @@ export default function ProductListingPage() {
                 </div>
               </div>
 
-              {/* Help Box */}
               <div className="bg-brand-navy rounded-2xl p-6 text-white">
                 <ShieldCheck className="w-8 h-8 text-brand-gold mb-4" />
-                <h4 className="font-bold mb-2">Need Help?</h4>
+                <h4 className="font-bold mb-2">Verified Sourcing</h4>
                 <p className="text-xs text-white/70 leading-relaxed mb-4">
-                  Our sourcing experts can help you find specific products or coordinate custom manufacturing.
+                  Every product listed is verified for quality and compliance with global export standards.
                 </p>
                 <Button asChild variant="outline" className="w-full text-xs font-bold border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-navy">
                   <a href="/inquiry">Speak to an Expert</a>
@@ -184,7 +178,7 @@ export default function ProductListingPage() {
               </div>
             </aside>
 
-            {/* Main Content */}
+            {/* Content Area */}
             <div className="flex-1 space-y-6">
               
               {/* Toolbar */}
@@ -192,7 +186,7 @@ export default function ProductListingPage() {
                 <div className="relative w-full md:w-96">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input 
-                    placeholder="Search by name, tag, or spec..." 
+                    placeholder="Search products, HS codes, tags..." 
                     className="pl-10 h-11 border-brand-gold/20 focus:ring-brand-gold"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -202,7 +196,7 @@ export default function ProductListingPage() {
                 <div className="flex items-center gap-4 w-full md:w-auto">
                   <Button 
                     variant="outline" 
-                    className="lg:hidden flex-1 md:flex-none border-brand-gold/30"
+                    className="lg:hidden flex-1 border-brand-gold/30"
                     onClick={() => setShowMobileFilters(true)}
                   >
                     <Filter className="w-4 h-4 mr-2" /> Filters
@@ -219,31 +213,6 @@ export default function ProductListingPage() {
                   </Select>
                 </div>
               </div>
-
-              {/* Active Filter Badges */}
-              {(selectedCategory !== 'all' || selectedSubcategories.length > 0 || selectedCerts.length > 0 || searchTerm) && (
-                <div className="flex flex-wrap gap-2 items-center">
-                  <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground mr-2">Active:</span>
-                  {selectedCategory !== 'all' && (
-                    <Badge variant="secondary" className="bg-brand-gold/10 text-brand-gold hover:bg-brand-gold/20">
-                      {categories.find(c => c.id === selectedCategory)?.name}
-                      <X className="w-3 h-3 ml-1 cursor-pointer" onClick={() => setSelectedCategory('all')} />
-                    </Badge>
-                  )}
-                  {selectedSubcategories.map(sub => (
-                    <Badge key={sub} variant="secondary" className="bg-brand-navy/10 text-brand-navy">
-                      {sub}
-                      <X className="w-3 h-3 ml-1 cursor-pointer" onClick={() => toggleSubcategory(sub)} />
-                    </Badge>
-                  ))}
-                  {searchTerm && (
-                    <Badge variant="outline" className="border-brand-gold text-brand-gold">
-                      "{searchTerm}"
-                      <X className="w-3 h-3 ml-1 cursor-pointer" onClick={() => setSearchTerm('')} />
-                    </Badge>
-                  )}
-                </div>
-              )}
 
               {/* Grid */}
               {filteredProducts.length > 0 ? (
@@ -263,7 +232,6 @@ export default function ProductListingPage() {
                 </div>
               )}
 
-              {/* Summary */}
               <p className="text-sm text-muted-foreground text-center">
                 Showing {filteredProducts.length} of {products.length} products
               </p>
@@ -272,45 +240,6 @@ export default function ProductListingPage() {
         </div>
       </main>
       <Footer />
-
-      {/* Mobile Filters Drawer Placeholder (In a real app, use Sheet from shadcn) */}
-      {showMobileFilters && (
-        <div className="fixed inset-0 z-[100] lg:hidden bg-white overflow-y-auto p-6 animate-in slide-in-from-bottom duration-300">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-2xl font-bold font-playfair">Filters</h2>
-            <Button variant="ghost" size="icon" onClick={() => setShowMobileFilters(false)}>
-              <X className="w-6 h-6" />
-            </Button>
-          </div>
-          <div className="space-y-8 pb-20">
-             {/* Repeat filters logic here or extract to a shared component */}
-             <div className="space-y-4">
-                <Label>Category</Label>
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    {categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
-                  </SelectContent>
-                </Select>
-             </div>
-             <div className="space-y-4">
-                <Label>Subcategories</Label>
-                <div className="grid grid-cols-2 gap-2">
-                  {allSubcategories.map(sub => (
-                    <div key={sub} className="flex items-center space-x-2">
-                      <Checkbox id={`m-sub-${sub}`} checked={selectedSubcategories.includes(sub)} onCheckedChange={() => toggleSubcategory(sub)} />
-                      <label htmlFor={`m-sub-${sub}`} className="text-sm">{sub}</label>
-                    </div>
-                  ))}
-                </div>
-             </div>
-             <Button className="w-full h-12 bg-brand-gold text-brand-navy font-bold" onClick={() => setShowMobileFilters(false)}>
-               Show {filteredProducts.length} Results
-             </Button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

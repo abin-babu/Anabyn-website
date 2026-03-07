@@ -1,34 +1,36 @@
-
 import type { Product } from './types';
 
 export const products: Product[] = [
   // --- HOSPITALITY SUPPLIES ---
   {
     id: 'h-1',
-    name: 'Premium Hotel Bed Sheets',
-    slug: 'premium-hotel-bed-sheets',
+    name: 'Premium Percale Bed Sheets',
+    slug: 'premium-percale-bed-sheets',
     category: 'hospitality-supplies',
     subcategory: 'Bed Linen',
-    shortDescription: '100% Cotton Percale & Sateen Sheets, 200-600 TC.',
-    fullDescription: 'Our hotel-grade bed sheets are crafted from premium long-staple Indian cotton. Designed for durability and luxury, these sheets withstand industrial laundering while maintaining a crisp, soft feel.',
+    shortDescription: '300 Thread Count 100% Long-Staple Indian Cotton.',
+    fullDescription: 'Our hotel-grade percale bed sheets are crafted from premium long-staple Indian cotton. Designed for extreme durability and a crisp, cool feel, these sheets are ideal for high-end resorts and city hotels.',
     specifications: [
-      { key: 'Material', value: '100% Long-Staple Cotton' },
-      { key: 'Thread Count', value: '200, 300, 400, 600 TC' },
-      { key: 'Weave', value: 'Percale or Sateen' },
-      { key: 'Finish', value: 'Mercerized, Anti-pilling' }
+      { key: 'Material', value: '100% Cotton' },
+      { key: 'Thread Count', value: '300 TC' },
+      { key: 'Weave', value: 'Percale' },
+      { key: 'Finish', value: 'Mercerized' }
     ],
-    materials: ['Cotton', 'Cotton-Poly Blends'],
+    materials: ['Cotton'],
     variants: [
       { size: 'Single', tc: '300', color: 'White' },
       { size: 'Queen', tc: '300', color: 'White' },
-      { size: 'King', tc: '400', color: 'White' }
+      { size: 'King', tc: '300', color: 'White' }
     ],
     moqPieces: 100,
     moqKg: 0,
     sampleAvailable: true,
     privateLabelAvailable: true,
     certifications: ['ISO 9001', 'OEKO-TEX'],
-    images: ['https://images.unsplash.com/photo-1617744257724-6fafec25442f?w=800&q=80'],
+    images: [
+      'https://images.unsplash.com/photo-1617744257724-6fafec25442f?w=800&q=80',
+      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80'
+    ],
     hsCode: '6302.21',
     tags: ['luxury', 'bedding', 'hotel'],
     featured: true,
@@ -36,128 +38,70 @@ export const products: Product[] = [
   },
   {
     id: 'h-2',
-    name: 'Luxury Bath Towels',
-    slug: 'luxury-bath-towels',
+    name: 'Royal Sateen Striped Sheets',
+    slug: 'royal-sateen-striped-sheets',
     category: 'hospitality-supplies',
-    subcategory: 'Bath Linen',
-    shortDescription: 'High-absorbency 100% Terry Cotton Towels, 500-800 GSM.',
-    fullDescription: 'Experience spa-like luxury with our ultra-plush bath towels. Made from ring-spun cotton loops for superior absorbency and quick-drying properties.',
+    subcategory: 'Bed Linen',
+    shortDescription: '400 Thread Count Sateen with 1cm Satin Stripes.',
+    fullDescription: 'The classic 5-star hotel look. Our sateen striped sheets offer a silky-smooth texture and a brilliant sheen that stays vibrant after industrial washing.',
     specifications: [
-      { key: 'Material', value: '100% Ring-Spun Cotton' },
-      { key: 'Weight', value: '500, 600, 800 GSM' },
-      { key: 'Hems', value: 'Double-stitched reinforced' }
+      { key: 'Material', value: '100% Long-Staple Cotton' },
+      { key: 'Thread Count', value: '400 TC' },
+      { key: 'Pattern', value: '1cm Satin Stripe' }
     ],
     materials: ['Cotton'],
     variants: [
-      { size: '70x140cm', gsm: '600', color: 'White' },
-      { size: '90x150cm', gsm: '800', color: 'Cream' }
+      { size: 'Queen', tc: '400', color: 'White' },
+      { size: 'King', tc: '400', color: 'White' }
     ],
-    moqPieces: 200,
+    moqPieces: 100,
     moqKg: 0,
     sampleAvailable: true,
     privateLabelAvailable: true,
     certifications: ['ISO 9001', 'OEKO-TEX'],
-    images: ['https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80'],
-    hsCode: '6302.60',
-    tags: ['bath', 'luxury', 'towel'],
+    images: ['https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80'],
+    hsCode: '6302.21',
+    tags: ['luxury', 'striped', '5-star'],
     featured: true,
     active: true
   },
   {
     id: 'h-3',
-    name: 'Hospitality Scrub Suits',
-    slug: 'hospitality-scrub-suits',
+    name: 'Heavy-Duty Terry Bath Towels',
+    slug: 'heavy-duty-terry-bath-towels',
     category: 'hospitality-supplies',
-    subcategory: 'Uniforms',
-    shortDescription: 'Anti-microbial, stain-resistant scrub suits for medical & hospitality staff.',
-    fullDescription: 'Durable and professional scrub suits designed for movement and comfort. Features multiple pockets and reinforced seams.',
+    subcategory: 'Bath Linen',
+    shortDescription: '600 GSM 100% Ring-Spun Cotton, Double-Stitched.',
+    fullDescription: 'Designed for the rigors of institutional laundry. These 600 GSM towels provide superior absorbency and remain soft through hundreds of wash cycles.',
     specifications: [
-      { key: 'Fabric', value: 'Poly-Cotton Twill' },
-      { key: 'Treatment', value: 'Stain-resistant, Anti-microbial' },
-      { key: 'Pockets', value: '3-Pocket Top, 2-Pocket Pant' }
+      { key: 'Material', value: '100% Ring-Spun Cotton' },
+      { key: 'Weight', value: '600 GSM' },
+      { key: 'Border', value: 'Dobby Border' }
     ],
-    materials: ['Polyester', 'Cotton'],
+    materials: ['Cotton'],
     variants: [
-      { size: 'S', color: 'Navy Blue' },
-      { size: 'M', color: 'Navy Blue' },
-      { size: 'L', color: 'Sky Blue' }
+      { size: '70x140cm', gsm: '600', color: 'White' },
+      { size: '90x150cm', gsm: '600', color: 'White' }
     ],
-    moqPieces: 50,
+    moqPieces: 200,
     moqKg: 0,
     sampleAvailable: true,
     privateLabelAvailable: true,
-    certifications: ['ISO 13485'],
-    images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?w=800&q=80'],
-    hsCode: '6211.32',
-    tags: ['staff', 'workwear', 'medical'],
-    featured: false,
+    certifications: ['ISO 9001'],
+    images: ['https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=800&q=80'],
+    hsCode: '6302.60',
+    tags: ['bath', 'absorbent', 'institution'],
+    featured: true,
     active: true
   },
   {
     id: 'h-4',
-    name: 'Plush Guest Slippers',
-    slug: 'plush-guest-slippers',
-    category: 'hospitality-supplies',
-    subcategory: 'Amenities',
-    shortDescription: 'Closed-toe velour slippers with non-slip EVA sole.',
-    fullDescription: 'Soft and comfortable velour slippers for premium guest comfort. Available in disposable and reusable qualities.',
-    specifications: [
-      { key: 'Upper', value: 'Velour' },
-      { key: 'Sole', value: '5mm Non-slip EVA' },
-      { key: 'Style', value: 'Closed-toe' }
-    ],
-    materials: ['Velour', 'EVA'],
-    variants: [
-      { size: 'Universal Adult', color: 'White' }
-    ],
-    moqPieces: 500,
-    moqKg: 0,
-    sampleAvailable: true,
-    privateLabelAvailable: true,
-    certifications: [],
-    images: ['https://images.unsplash.com/photo-1571139627661-cf707929f465?w=800&q=80'],
-    hsCode: '6405.20',
-    tags: ['amenity', 'comfort'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'h-5',
-    name: 'Quilted Duvet Inserts',
-    slug: 'quilted-duvet-inserts',
-    category: 'hospitality-supplies',
-    subcategory: 'Bed Linen',
-    shortDescription: 'All-season microfiber duvet inserts with box stitching.',
-    fullDescription: 'Hypoallergenic duvet inserts designed for hotel use. The box stitch pattern prevents shifting of the microfiber fill.',
-    specifications: [
-      { key: 'Filling', value: '300 GSM Microfiber' },
-      { key: 'Outer Shell', value: 'Cotton-Poly Blend' },
-      { key: 'Stitching', value: 'Box-quilted' }
-    ],
-    materials: ['Microfiber', 'Cotton'],
-    variants: [
-      { size: 'Queen', gsm: '300', color: 'White' },
-      { size: 'King', gsm: '300', color: 'White' }
-    ],
-    moqPieces: 50,
-    moqKg: 0,
-    sampleAvailable: false,
-    privateLabelAvailable: true,
-    certifications: ['OEKO-TEX'],
-    images: ['https://images.unsplash.com/photo-1698746044340-ae5559412fd5?w=800&q=80'],
-    hsCode: '9404.90',
-    tags: ['bedding', 'warmth'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'h-6',
     name: 'Executive Chef Coats',
     slug: 'executive-chef-coats',
     category: 'hospitality-supplies',
     subcategory: 'Uniforms',
-    shortDescription: 'Double-breasted cotton-rich chef coats with breathable panels.',
-    fullDescription: 'Professional chef attire designed for high-heat kitchen environments. Includes thermometer pockets and underarm vents.',
+    shortDescription: 'Poly-Cotton Blend with Breathable Mesh Panels.',
+    fullDescription: 'A professional coat for culinary leaders. Made from a durable stain-resistant twill with underarm vents for heat management.',
     specifications: [
       { key: 'Fabric', value: '65/35 Poly-Cotton' },
       { key: 'Buttons', value: 'Removable Studs' },
@@ -169,34 +113,63 @@ export const products: Product[] = [
       { size: 'L', color: 'White' },
       { size: 'XL', color: 'Black' }
     ],
-    moqPieces: 25,
+    moqPieces: 50,
     moqKg: 0,
     sampleAvailable: true,
     privateLabelAvailable: true,
     certifications: [],
     images: ['https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80'],
     hsCode: '6211.32',
-    tags: ['kitchen', 'chef', 'staff'],
+    tags: ['chef', 'kitchen', 'apparel'],
     featured: false,
     active: true
   },
   {
-    id: 'h-7',
-    name: 'Damask Table Linens',
-    slug: 'damask-table-linens',
+    id: 'h-5',
+    name: 'Velour Spa Bathrobes',
+    slug: 'velour-spa-bathrobes',
+    category: 'hospitality-supplies',
+    subcategory: 'Bath Linen',
+    shortDescription: 'Dual-Layer Velour and Terry, 400 GSM.',
+    fullDescription: 'The ultimate luxury for spa guests. A soft velour exterior for a premium look and a looped terry interior for maximum water absorption.',
+    specifications: [
+      { key: 'Outer', value: 'Soft Velour' },
+      { key: 'Inner', value: 'Absorbent Terry' },
+      { key: 'Weight', value: '400 GSM' }
+    ],
+    materials: ['Cotton'],
+    variants: [
+      { size: 'L', color: 'White' },
+      { size: 'XL', color: 'White' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1571139627661-cf707929f465?w=800&q=80'],
+    hsCode: '6208.91',
+    tags: ['spa', 'robe', 'luxury'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-6',
+    name: 'Dobby Weave Table Linens',
+    slug: 'dobby-weave-table-linens',
     category: 'hospitality-supplies',
     subcategory: 'F&B Linen',
-    shortDescription: 'Elegant patterned table cloths and napkins for fine dining.',
-    fullDescription: 'High-quality damask weave linens that add a touch of sophistication to any banquet or restaurant setting.',
+    shortDescription: '100% Polyester Damask Finish for Commercial Use.',
+    fullDescription: 'Elegant and indestructible. Our 100% polyester table linens offer a soft cotton-like feel with the durability and stain-release properties of synthetic fibers.',
     specifications: [
-      { key: 'Material', value: '100% Polyester or Cotton' },
-      { key: 'Pattern', value: 'Damask / Jacquard' },
-      { key: 'Edge', value: 'Hemstitched or Overlocked' }
+      { key: 'Material', value: '100% Spun Polyester' },
+      { key: 'Weight', value: '250 GSM' },
+      { key: 'Finish', value: 'Soil Release' }
     ],
-    materials: ['Polyester', 'Cotton'],
+    materials: ['Polyester'],
     variants: [
       { size: '180x180cm', color: 'White' },
-      { size: 'Napkin 50x50cm', color: 'Burgundy' }
+      { size: 'Napkin 50x50', color: 'Burgundy' }
     ],
     moqPieces: 100,
     moqKg: 0,
@@ -205,21 +178,108 @@ export const products: Product[] = [
     certifications: [],
     images: ['https://images.unsplash.com/photo-1600294421265-c354b772e790?w=800&q=80'],
     hsCode: '6302.51',
-    tags: ['dining', 'banquet'],
+    tags: ['dining', 'banquet', 'linen'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-7',
+    name: 'Quilted Mattress Protectors',
+    slug: 'quilted-mattress-protectors',
+    category: 'hospitality-supplies',
+    subcategory: 'Bed Linen',
+    shortDescription: 'Waterproof PU Membrane with Cotton Top.',
+    fullDescription: 'Protect your mattress investment. Our protectors feature a breathable, noiseless waterproof layer and a quilted cotton top for guest comfort.',
+    specifications: [
+      { key: 'Top', value: '100% Cotton Jersey' },
+      { key: 'Backing', value: 'Waterproof PU Membrane' },
+      { key: 'Skirting', value: 'Fully Elasticated' }
+    ],
+    materials: ['Cotton', 'Polyurethane'],
+    variants: [
+      { size: 'King', color: 'White' },
+      { size: 'Queen', color: 'White' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['ISO 9001'],
+    hsCode: '6302.31',
+    images: ['https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?w=800&q=80'],
+    tags: ['protection', 'hygiene'],
     featured: false,
     active: true
   },
   {
     id: 'h-8',
-    name: 'Cotton Hand Towels',
-    slug: 'cotton-hand-towels',
+    name: 'Plush Microfiber Duvet Inserts',
+    slug: 'plush-microfiber-duvet-inserts',
+    category: 'hospitality-supplies',
+    subcategory: 'Bed Linen',
+    shortDescription: 'All-Season 350 GSM Siliconized Fiber Fill.',
+    fullDescription: 'A hypoallergenic alternative to down. Our duvet inserts feature a box-stitch construction to keep the fill evenly distributed, providing consistent warmth.',
+    specifications: [
+      { key: 'Filling', value: 'Siliconized Microfiber' },
+      { key: 'Outer Shell', value: 'Cotton-Poly Twill' },
+      { key: 'Weight', value: '350 GSM' }
+    ],
+    materials: ['Microfiber', 'Cotton'],
+    variants: [
+      { size: 'Queen', gsm: '350', color: 'White' },
+      { size: 'King', gsm: '350', color: 'White' }
+    ],
+    moqPieces: 50,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: true,
+    certifications: ['OEKO-TEX'],
+    images: ['https://images.unsplash.com/photo-1698746044340-ae5559412fd5?w=800&q=80'],
+    hsCode: '9404.90',
+    tags: ['warmth', 'hypoallergenic'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-9',
+    name: 'Reception Uniform Sets',
+    slug: 'reception-uniform-sets',
+    category: 'hospitality-supplies',
+    subcategory: 'Uniforms',
+    shortDescription: 'Tailored Poly-Viscose Sets for Front Desk Staff.',
+    fullDescription: 'Create a lasting first impression. Our tailored front-desk uniforms are made from a breathable poly-viscose blend that resists wrinkles through long shifts.',
+    specifications: [
+      { key: 'Fabric', value: 'Poly-Viscose' },
+      { key: 'Style', value: 'Slim Fit' },
+      { key: 'Durability', value: 'Industrial Launderable' }
+    ],
+    materials: ['Polyester', 'Viscose'],
+    variants: [
+      { size: 'S', color: 'Navy' },
+      { size: 'M', color: 'Charcoal' }
+    ],
+    moqPieces: 20,
+    moqKg: 0,
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: [],
+    images: ['https://images.unsplash.com/photo-1566827886031-7d0f288f76ed?w=800&q=80'],
+    hsCode: '6203.11',
+    tags: ['front-desk', 'corporate'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'h-10',
+    name: 'Cotton Hand Towel Pack',
+    slug: 'cotton-hand-towel-pack',
     category: 'hospitality-supplies',
     subcategory: 'Bath Linen',
-    shortDescription: 'Durable 400 GSM hand towels for public areas and guest rooms.',
-    fullDescription: 'Standard hotel hand towels designed for high-frequency use and durability.',
+    shortDescription: 'Set of 12, 400 GSM Quick-Dry Towels.',
+    fullDescription: 'Value-oriented hand towels for high-traffic gym or spa areas. Dries quickly and maintains its shape over time.',
     specifications: [
       { key: 'Material', value: '100% Cotton' },
-      { key: 'GSM', value: '400' },
+      { key: 'Weight', value: '400 GSM' },
       { key: 'Size', value: '40x60cm' }
     ],
     materials: ['Cotton'],
@@ -233,63 +293,7 @@ export const products: Product[] = [
     certifications: ['ISO 9001'],
     images: ['https://images.unsplash.com/photo-1523471826770-c437b4636fe6?w=800&q=80'],
     hsCode: '6302.60',
-    tags: ['bath', 'amenity'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'h-9',
-    name: 'Waffle Weave Bathrobes',
-    slug: 'waffle-weave-bathrobes',
-    category: 'hospitality-supplies',
-    subcategory: 'Bath Linen',
-    shortDescription: 'Lightweight, absorbent waffle-weave robes for spas and resorts.',
-    fullDescription: 'A classic resort-style bathrobe. Lightweight and breathable, perfect for warm climates or spa environments.',
-    specifications: [
-      { key: 'Pattern', value: 'Large Waffle' },
-      { key: 'GSM', value: '250' },
-      { key: 'Style', value: 'Kimono Collar' }
-    ],
-    materials: ['Cotton', 'Poly-Cotton'],
-    variants: [
-      { size: 'L', color: 'White' },
-      { size: 'XL', color: 'White' }
-    ],
-    moqPieces: 50,
-    moqKg: 0,
-    sampleAvailable: true,
-    privateLabelAvailable: true,
-    certifications: ['ISO 9001'],
-    images: ['https://images.unsplash.com/photo-1737061467396-39aac10feb47?w=800&q=80'],
-    hsCode: '6208.91',
-    tags: ['spa', 'luxury'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'h-10',
-    name: 'Hotel Pillow Protectors',
-    slug: 'hotel-pillow-protectors',
-    category: 'hospitality-supplies',
-    subcategory: 'Bed Linen',
-    shortDescription: 'Zippered cotton protectors to keep pillows hygienic.',
-    fullDescription: 'Breathable and machine-washable protectors that extend the life of your hotel pillows.',
-    specifications: [
-      { key: 'Material', value: 'Cotton Jersey or Quilted' },
-      { key: 'Closure', value: 'Nylon Zipper' }
-    ],
-    materials: ['Cotton'],
-    variants: [
-      { size: 'Standard 50x70cm', color: 'White' }
-    ],
-    moqPieces: 200,
-    moqKg: 0,
-    sampleAvailable: false,
-    privateLabelAvailable: true,
-    certifications: ['OEKO-TEX'],
-    images: ['https://images.unsplash.com/photo-1652161853855-005106816b9f?w=800&q=80'],
-    hsCode: '6302.31',
-    tags: ['hygiene', 'protection'],
+    tags: ['gym', 'hand-towel', 'value'],
     featured: false,
     active: true
   },
@@ -297,16 +301,16 @@ export const products: Product[] = [
   // --- MEDICAL SUPPLIES ---
   {
     id: 'm-1',
-    name: 'Sterile Disposable Syringes',
-    slug: 'sterile-disposable-syringes',
+    name: 'Sterile Safety Syringes',
+    slug: 'sterile-safety-syringes',
     category: 'medical-supplies',
     subcategory: 'Consumables',
-    shortDescription: 'Single-use, non-toxic, non-pyrogenic syringes with needles.',
-    fullDescription: 'Hospital-grade sterile syringes designed for precision and safety. Available in Luer lock and Luer slip versions.',
+    shortDescription: 'Retractable Needles, Luer Lock, E.O. Sterilized.',
+    fullDescription: 'High-precision safety syringes with auto-retractable needles to prevent accidental needle-stick injuries. Fully compliant with international healthcare standards.',
     specifications: [
-      { key: 'Volume', value: '2ml, 5ml, 10ml, 50ml' },
-      { key: 'Sterility', value: 'E.O. Gas Sterilized' },
-      { key: 'Safety', value: 'Needle retraction / safety cap' }
+      { key: 'Volume', value: '2ml, 5ml, 10ml' },
+      { key: 'Sterility', value: 'E.O. Gas' },
+      { key: 'Tip Type', value: 'Luer Lock' }
     ],
     materials: ['Medical-Grade PP', 'Stainless Steel'],
     variants: [
@@ -320,22 +324,22 @@ export const products: Product[] = [
     certifications: ['ISO 13485', 'CE', 'FDA'],
     images: ['https://images.unsplash.com/photo-1631804959147-75a1b5a837e4?w=800&q=80'],
     hsCode: '9018.31',
-    tags: ['sterile', 'hospital', 'injections'],
+    tags: ['safety', 'hospital', 'injections'],
     featured: true,
     active: true
   },
   {
     id: 'm-2',
-    name: 'Nitrile Examination Gloves',
-    slug: 'nitrile-examination-gloves',
+    name: 'Nitrile Exam Gloves (Powder-Free)',
+    slug: 'nitrile-exam-gloves-powder-free',
     category: 'medical-supplies',
     subcategory: 'Consumables',
-    shortDescription: 'Powder-free, latex-free blue nitrile gloves.',
-    fullDescription: 'High-tensile strength nitrile gloves offering excellent tactile sensitivity and protection against chemicals.',
+    shortDescription: 'Latex-Free, Blue, Textured Fingertips.',
+    fullDescription: 'Medical-grade nitrile examination gloves offering superior puncture resistance and chemical protection. Hypoallergenic and powder-free.',
     specifications: [
       { key: 'Material', value: 'Synthetic Nitrile' },
-      { key: 'Finish', value: 'Powder-Free, Textured' },
-      { key: 'AQL', value: '1.5 / 2.5' }
+      { key: 'Thickness', value: '4.0 mil' },
+      { key: 'AQL', value: '1.5' }
     ],
     materials: ['Nitrile'],
     variants: [
@@ -350,54 +354,55 @@ export const products: Product[] = [
     certifications: ['CE', 'FDA'],
     images: ['https://images.unsplash.com/photo-1606950669720-5f4b34856f6c?w=800&q=80'],
     hsCode: '4015.19',
-    tags: ['ppe', 'gloves', 'protection'],
+    tags: ['ppe', 'protection', 'latex-free'],
     featured: true,
     active: true
   },
   {
     id: 'm-3',
-    name: 'ICU Hospital Bed (Electric)',
-    slug: 'icu-hospital-bed-electric',
+    name: 'SMS Surgical Gowns (Level 3)',
+    slug: 'sms-surgical-gowns-level-3',
     category: 'medical-supplies',
-    subcategory: 'Furniture',
-    shortDescription: '5-Function electric bed with ABS side rails and remote control.',
-    fullDescription: 'Advanced ICU bed with adjustable height, backrest, and knee-rest. Includes Trendelenburg and Reverse Trendelenburg positions.',
+    subcategory: 'Apparel',
+    shortDescription: 'AAMI Level 3 Protection, Fluid Resistant.',
+    fullDescription: 'Reinforced surgical gowns for high-fluid surgical procedures. Made from breathable SMS non-woven fabric with sonic-welded seams.',
     specifications: [
-      { key: 'Control', value: 'Electric Remote' },
-      { key: 'Load', value: '250kg Capacity' },
-      { key: 'Casters', value: 'Central Locking System' }
+      { key: 'Protection', value: 'AAMI Level 3' },
+      { key: 'Closure', value: 'Velcro Neck' },
+      { key: 'Cuffs', value: 'Soft Knit' }
     ],
-    materials: ['Steel', 'ABS Plastic'],
+    materials: ['SMS Non-woven'],
     variants: [
-      { size: 'Standard ICU', color: 'White/Blue' }
+      { size: 'L', color: 'Blue' },
+      { size: 'XL', color: 'Blue' }
     ],
-    moqPieces: 5,
+    moqPieces: 500,
     moqKg: 0,
-    sampleAvailable: false,
-    privateLabelAvailable: false,
-    certifications: ['ISO 13485', 'CE'],
-    images: ['https://images.unsplash.com/photo-1584983191144-7734c3527a6e?w=800&q=80'],
-    hsCode: '9402.90',
-    tags: ['icu', 'ward', 'furniture'],
+    sampleAvailable: true,
+    privateLabelAvailable: true,
+    certifications: ['CE', 'ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?w=800&q=80'],
+    hsCode: '6210.10',
+    tags: ['surgical', 'theatre', 'barrier'],
     featured: true,
     active: true
   },
   {
     id: 'm-4',
-    name: 'IV Infusion Sets',
-    slug: 'iv-infusion-sets',
+    name: 'IV Infusion Administration Sets',
+    slug: 'iv-infusion-administration-sets',
     category: 'medical-supplies',
     subcategory: 'Consumables',
-    shortDescription: 'Sterile IV sets with air vent and flow regulator.',
-    fullDescription: 'Standard gravity-fed infusion sets for hospital use. Kink-resistant tubing ensures consistent fluid delivery.',
+    shortDescription: 'Vented Spike, 20 Drops/ml, Flow Regulator.',
+    fullDescription: 'Hospital-standard IV infusion sets with air vents and precise flow regulators. Kink-resistant PVC tubing for reliable delivery.',
     specifications: [
-      { key: 'Drip Rate', value: '20 Drops/ml' },
-      { key: 'Tube Length', value: '150cm' },
-      { key: 'Safety', value: 'Latex-free Y-Site' }
+      { key: 'Drip Rate', value: '20 drops/ml' },
+      { key: 'Tubing', value: '150cm PVC' },
+      { key: 'Site', value: 'Y-Injection Port' }
     ],
-    materials: ['Medical-Grade PVC'],
+    materials: ['Medical PVC'],
     variants: [
-      { size: 'Standard Adult', color: 'Transparent' }
+      { size: 'Adult', color: 'Transparent' }
     ],
     moqPieces: 5000,
     moqKg: 0,
@@ -406,51 +411,106 @@ export const products: Product[] = [
     certifications: ['CE', 'ISO 13485'],
     images: ['https://images.unsplash.com/photo-1579684385127-6c17937c4635?w=800&q=80'],
     hsCode: '9018.39',
-    tags: ['infusion', 'iv', 'sterile'],
+    tags: ['infusion', 'clinical', 'sterile'],
     featured: false,
     active: true
   },
   {
     id: 'm-5',
-    name: 'Medical Scrub Suit (SMS)',
-    slug: 'medical-scrub-suit-sms',
+    name: '3-Ply Medical Face Masks',
+    slug: '3-ply-medical-face-masks',
     category: 'medical-supplies',
-    subcategory: 'Textiles',
-    shortDescription: 'Disposable SMS non-woven scrub suit for surgical staff.',
-    fullDescription: 'Fluid-resistant and breathable disposable scrubs. Ideal for high-risk surgical environments.',
+    subcategory: 'Consumables',
+    shortDescription: 'BFE > 98%, Melt-Blown Filter Layer.',
+    fullDescription: 'High-filtration medical masks with comfortable ear loops and an adjustable nose wire. Type IIR compliant.',
     specifications: [
-      { key: 'Material', value: '45 GSM SMS Non-Woven' },
-      { key: 'Sterility', value: 'Non-Sterile' },
-      { key: 'Features', value: 'Elastic cuffs, pocketed pants' }
+      { key: 'BFE', value: '> 98%' },
+      { key: 'PFE', value: '> 95%' },
+      { key: 'Style', value: 'Ear-loop' }
     ],
-    materials: ['SMS Non-woven'],
+    materials: ['Spunbond', 'Melt-blown'],
     variants: [
-      { size: 'M', color: 'Blue' },
-      { size: 'L', color: 'Blue' }
+      { size: 'Standard Adult', color: 'Blue' }
     ],
-    moqPieces: 500,
+    moqPieces: 10000,
     moqKg: 0,
     sampleAvailable: true,
     privateLabelAvailable: true,
-    certifications: ['CE'],
-    images: ['https://images.unsplash.com/photo-1628068311627-0f5abce65050?w=800&q=80'],
-    hsCode: '6210.10',
-    tags: ['ppe', 'surgical', 'theatre'],
+    certifications: ['CE', 'FDA'],
+    images: ['https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=80'],
+    hsCode: '6307.90',
+    tags: ['ppe', 'respiratory', 'hygiene'],
     featured: false,
     active: true
   },
   {
     id: 'm-6',
-    name: 'Digital Patient Monitor',
-    slug: 'digital-patient-monitor',
+    name: 'Semi-Fowler Hospital Bed',
+    slug: 'semi-fowler-hospital-bed',
+    category: 'medical-supplies',
+    subcategory: 'Furniture',
+    shortDescription: 'Manual Backrest Adjustment, ABS Side Rails.',
+    fullDescription: 'A durable and cost-effective ward bed. Featuring a high-quality carbon steel frame and smooth manual crank mechanism.',
+    specifications: [
+      { key: 'Frame', value: 'Carbon Steel' },
+      { key: 'Function', value: 'Manual Backrest' },
+      { key: 'Side Rails', value: 'Collapsible ABS' }
+    ],
+    materials: ['Steel', 'ABS'],
+    variants: [
+      { size: 'Standard Ward', color: 'White' }
+    ],
+    moqPieces: 10,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: false,
+    certifications: ['ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80'],
+    hsCode: '9402.90',
+    tags: ['ward', 'furniture', 'clinical'],
+    featured: false,
+    active: true
+  },
+  {
+    id: 'm-7',
+    name: 'Electric ICU Hospital Bed',
+    slug: 'electric-icu-hospital-bed',
+    category: 'medical-supplies',
+    subcategory: 'Furniture',
+    shortDescription: '5-Function Electric Control, Trendelenburg.',
+    fullDescription: 'Advanced ICU bed with 5 electric functions including height, backrest, knee-rest, Trendelenburg and Reverse Trendelenburg.',
+    specifications: [
+      { key: 'Motor', value: 'Linak/Dewert' },
+      { key: 'Load', value: '250kg' },
+      { key: 'Safety', value: 'Central Locking' }
+    ],
+    materials: ['Steel', 'ABS'],
+    variants: [
+      { size: 'Standard ICU', color: 'White/Blue' }
+    ],
+    moqPieces: 5,
+    moqKg: 0,
+    sampleAvailable: false,
+    privateLabelAvailable: false,
+    certifications: ['CE', 'ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1584983191144-7734c3527a6e?w=800&q=80'],
+    hsCode: '9402.90',
+    tags: ['icu', 'electric', 'advanced'],
+    featured: true,
+    active: true
+  },
+  {
+    id: 'm-8',
+    name: 'Multi-Parameter Patient Monitor',
+    slug: 'multi-parameter-patient-monitor',
     category: 'medical-supplies',
     subcategory: 'Devices',
-    shortDescription: 'Multi-parameter monitor for SpO2, ECG, NIBP, and Temp.',
-    fullDescription: 'Portable 12-inch patient monitor suitable for bedside or transport monitoring.',
+    shortDescription: '12.1" Display, SpO2, ECG, NIBP, Temp.',
+    fullDescription: 'Portable parameter monitor suitable for adult, pediatric and neonatal patients. High-resolution color screen with 2-hour battery backup.',
     specifications: [
       { key: 'Display', value: '12.1" Color TFT' },
-      { key: 'Battery', value: '4 Hour Backup' },
-      { key: 'Storage', value: '720 Hour Trend Data' }
+      { key: 'Battery', value: '4 Hours' },
+      { key: 'Alarms', value: 'Audio & Visual' }
     ],
     materials: ['Electronics', 'ABS'],
     variants: [
@@ -463,81 +523,26 @@ export const products: Product[] = [
     certifications: ['CE', 'FDA'],
     images: ['https://images.unsplash.com/photo-1579684385127-6c17937c4635?w=800&q=80'],
     hsCode: '9018.19',
-    tags: ['diagnostics', 'icu', 'monitor'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'm-7',
-    name: 'Surgical Gowns (Sterile)',
-    slug: 'surgical-gowns-sterile',
-    category: 'medical-supplies',
-    subcategory: 'Textiles',
-    shortDescription: 'Reinforced AAMI Level 3 surgical gowns.',
-    fullDescription: 'High-protection surgical gowns with sonic-welded seams for maximum barrier protection.',
-    specifications: [
-      { key: 'Protection', value: 'AAMI Level 3' },
-      { key: 'Closure', value: 'Velcro Neck, Knit Cuffs' },
-      { key: 'Sterility', value: 'EO Sterilized' }
-    ],
-    materials: ['Spunbond', 'Meltblown'],
-    variants: [
-      { size: 'L', color: 'Blue' },
-      { size: 'XL', color: 'Blue' }
-    ],
-    moqPieces: 200,
-    moqKg: 0,
-    sampleAvailable: true,
-    privateLabelAvailable: true,
-    certifications: ['CE', 'FDA'],
-    images: ['https://images.unsplash.com/photo-1588776848048-c8543b3bfa34?w=800&q=80'],
-    hsCode: '6210.10',
-    tags: ['surgical', 'protection', 'aami'],
-    featured: false,
-    active: true
-  },
-  {
-    id: 'm-8',
-    name: 'Hospital Orthopedic Braces',
-    slug: 'hospital-orthopedic-braces',
-    category: 'medical-supplies',
-    subcategory: 'Rehab',
-    shortDescription: 'Adjustable knee and ankle braces for post-op recovery.',
-    fullDescription: 'Medical-grade orthopedic supports with breathable fabric and adjustable straps.',
-    specifications: [
-      { key: 'Material', value: 'Neoprene / Spandex' },
-      { key: 'Hinge', value: 'Dual-axial Metal' }
-    ],
-    materials: ['Neoprene'],
-    variants: [
-      { size: 'Universal', color: 'Black' }
-    ],
-    moqPieces: 100,
-    moqKg: 0,
-    sampleAvailable: true,
-    privateLabelAvailable: true,
-    certifications: ['ISO 13485'],
-    images: ['https://images.unsplash.com/photo-1620295116790-a7d0130089e9?w=800&q=80'],
-    hsCode: '9021.10',
-    tags: ['ortho', 'rehab'],
+    tags: ['diagnostics', 'icu', 'electronics'],
     featured: false,
     active: true
   },
   {
     id: 'm-9',
-    name: 'Advanced First Aid Kit',
-    slug: 'advanced-first-aid-kit',
+    name: 'Industrial First Aid Kit',
+    slug: 'industrial-first-aid-kit',
     category: 'medical-supplies',
     subcategory: 'Emergency',
-    shortDescription: 'Workplace-compliant 100-piece first aid kit in ABS case.',
-    fullDescription: 'Comprehensive first aid solution for industrial and office settings.',
+    shortDescription: 'Wall-Mountable ABS Case, 100+ Pieces.',
+    fullDescription: 'Compliant with workplace safety regulations. Contains everything needed for immediate injury response in a factory or hotel setting.',
     specifications: [
       { key: 'Pieces', value: '100 Items' },
-      { key: 'Case', value: 'ABS Wall-mountable' }
+      { key: 'Case', value: 'Impact Resistant ABS' },
+      { key: 'Mounting', value: 'Wall-brackets Included' }
     ],
-    materials: ['ABS Case'],
+    materials: ['Various', 'ABS Case'],
     variants: [
-      { size: 'Industrial', color: 'Orange' }
+      { size: 'Large Industrial', color: 'Orange' }
     ],
     moqPieces: 50,
     moqKg: 0,
@@ -546,35 +551,35 @@ export const products: Product[] = [
     certifications: ['CE'],
     images: ['https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'],
     hsCode: '3006.50',
-    tags: ['safety', 'emergency'],
+    tags: ['emergency', 'safety', 'workplace'],
     featured: false,
     active: true
   },
   {
     id: 'm-10',
-    name: 'Anti-Bacterial Bed Mattress',
-    slug: 'anti-bacterial-bed-mattress',
+    name: 'Folding Lightweight Wheelchair',
+    slug: 'folding-lightweight-wheelchair',
     category: 'medical-supplies',
-    subcategory: 'Furniture',
-    shortDescription: 'PU covered high-density foam mattress for ward beds.',
-    fullDescription: 'Waterproof and fire-retardant mattress designed for prolonged patient stays and easy cleaning.',
+    subcategory: 'Rehab',
+    shortDescription: 'Aluminum Frame, 12kg Total Weight.',
+    fullDescription: 'A versatile and highly portable wheelchair for transit. Breathable mesh upholstery and ergonomic hand-brakes.',
     specifications: [
-      { key: 'Core', value: 'High-Density Foam' },
-      { key: 'Cover', value: 'Anti-bacterial PU' },
-      { key: 'Thickness', value: '100mm' }
+      { key: 'Frame', value: 'Aircraft Grade Aluminum' },
+      { key: 'Weight', value: '12kg' },
+      { key: 'Capacity', value: '100kg' }
     ],
-    materials: ['PU', 'Foam'],
+    materials: ['Aluminum', 'Nylon'],
     variants: [
-      { size: 'Hospital Single', color: 'Blue' }
+      { size: 'Standard 18"', color: 'Silver/Black' }
     ],
     moqPieces: 20,
     moqKg: 0,
     sampleAvailable: false,
-    privateLabelAvailable: true,
-    certifications: ['ISO 13485'],
-    images: ['https://images.unsplash.com/photo-1669663628141-e4c9ed41100b?w=800&q=80'],
-    hsCode: '9404.21',
-    tags: ['ward', 'patient-comfort'],
+    privateLabelAvailable: false,
+    certifications: ['CE', 'ISO 13485'],
+    images: ['https://images.unsplash.com/photo-1616422285852-2430335f6a90?w=800&q=80'],
+    hsCode: '8713.10',
+    tags: ['mobility', 'rehab', 'hospital'],
     featured: false,
     active: true
   }

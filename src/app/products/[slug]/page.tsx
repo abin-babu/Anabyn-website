@@ -7,20 +7,18 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import Image from 'next/image';
 import { 
-  BadgeCheck, 
   ChevronRight, 
   Download, 
   MessageSquare, 
   ShieldCheck, 
   Box, 
-  ArrowLeft,
   Info,
-  CheckCircle2
+  CheckCircle2,
+  FileText
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { 
   Tabs, 
   TabsContent, 
@@ -67,7 +65,7 @@ export default function ProductDetailPage() {
             <div className="space-y-4">
               <div className="relative aspect-square rounded-3xl overflow-hidden border border-gray-100 bg-secondary/10 shadow-sm">
                 <Image 
-                  src={product.images[activeImage]} 
+                  src={product.images[activeImage] || 'https://placehold.co/800'} 
                   alt={product.name} 
                   fill 
                   className="object-cover"
@@ -76,17 +74,19 @@ export default function ProductDetailPage() {
                   {categoryLabel}
                 </Badge>
               </div>
-              <div className="grid grid-cols-4 gap-4">
-                {product.images.map((img, i) => (
-                  <button 
-                    key={i} 
-                    onClick={() => setActiveImage(i)}
-                    className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${activeImage === i ? 'border-brand-gold ring-2 ring-brand-gold/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
-                  >
-                    <Image src={img} alt={`${product.name} ${i}`} fill className="object-cover" />
-                  </button>
-                ))}
-              </div>
+              {product.images.length > 1 && (
+                <div className="grid grid-cols-4 gap-4">
+                  {product.images.map((img, i) => (
+                    <button 
+                      key={i} 
+                      onClick={() => setActiveImage(i)}
+                      className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${activeImage === i ? 'border-brand-gold ring-2 ring-brand-gold/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                    >
+                      <Image src={img} alt={`${product.name} ${i}`} fill className="object-cover" />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Info */}
@@ -114,19 +114,19 @@ export default function ProductDetailPage() {
                   <p className="text-xl font-bold text-brand-navy">{product.moqPieces} <span className="text-sm font-medium text-gray-400">Pieces</span></p>
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Lead Time</p>
-                  <p className="text-xl font-bold text-brand-navy">3–4 <span className="text-sm font-medium text-gray-400">Weeks</span></p>
-                </div>
-                <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">HS Code</p>
                   <p className="text-sm font-mono font-bold text-brand-gold">{product.hsCode}</p>
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Sample Status</p>
                   <p className="flex items-center gap-1 text-sm font-bold text-brand-navy">
-                    {product.sampleAvailable ? <CheckCircle2 className="w-4 h-4 text-success" /> : <Info className="w-4 h-4 text-gray-300" />}
+                    {product.sampleAvailable ? <CheckCircle2 className="w-4 h-4 text-brand-green" /> : <Info className="w-4 h-4 text-gray-300" />}
                     {product.sampleAvailable ? 'Available for Request' : 'Contact for Availability'}
                   </p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">OEM / Private Label</p>
+                  <p className="text-sm font-bold text-brand-navy">{product.privateLabelAvailable ? 'Fully Supported' : 'Standard Product Only'}</p>
                 </div>
               </div>
 
@@ -146,40 +146,40 @@ export default function ProductDetailPage() {
               <div className="bg-secondary/20 p-6 rounded-2xl border border-brand-gold/10">
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="font-bold text-brand-navy flex items-center gap-2">
-                    <Download className="w-4 h-4 text-brand-gold" /> Technical Data Sheet
+                    <FileText className="w-4 h-4 text-brand-gold" /> Technical Spec Sheet
                   </h4>
                   <Badge className="bg-brand-gold text-brand-navy">PDF</Badge>
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">
-                  Download the full technical specifications, testing standards, and compliance certifications for this product.
+                  Contains detailed material composition, laboratory test results, and compliance documentation.
                 </p>
                 <Button variant="secondary" className="w-full bg-white border border-gray-200 text-brand-navy font-bold text-xs uppercase tracking-widest shadow-sm">
-                  Download Spec Sheet
+                  <Download className="w-3 h-3 mr-2" /> Download Specification
                 </Button>
               </div>
             </div>
           </div>
 
           <Tabs defaultValue="details" className="mb-20">
-            <TabsList className="bg-secondary/20 p-1 h-14 rounded-xl border border-gray-100">
-              <TabsTrigger value="details" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy data-[state=active]:shadow-sm rounded-lg">Product Details</TabsTrigger>
-              <TabsTrigger value="specs" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy data-[state=active]:shadow-sm rounded-lg">Specifications</TabsTrigger>
-              <TabsTrigger value="variants" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy data-[state=active]:shadow-sm rounded-lg">Available Variants</TabsTrigger>
+            <TabsList className="bg-secondary/20 p-1 h-14 rounded-xl border border-gray-100 mb-8">
+              <TabsTrigger value="details" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy rounded-lg">Product Overview</TabsTrigger>
+              <TabsTrigger value="specs" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy rounded-lg">Technical Specs</TabsTrigger>
+              <TabsTrigger value="variants" className="px-8 font-bold data-[state=active]:bg-white data-[state=active]:text-brand-navy rounded-lg">Variants</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="details" className="pt-8 animate-in fade-in slide-in-from-bottom-2 duration-500">
+            <TabsContent value="details" className="animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div className="prose max-w-none text-muted-foreground leading-relaxed">
-                <h3 className="text-2xl font-bold font-playfair text-brand-navy mb-4">Overview</h3>
-                <p className="mb-6">{product.fullDescription}</p>
-                <div className="grid md:grid-cols-2 gap-8 mt-10">
+                <h3 className="text-2xl font-bold font-playfair text-brand-navy mb-4">Description</h3>
+                <p className="mb-10 text-lg">{product.fullDescription}</p>
+                <div className="grid md:grid-cols-2 gap-8">
                   <div className="bg-secondary/10 p-8 rounded-3xl border border-brand-gold/10">
                     <h4 className="font-bold text-brand-navy mb-4 flex items-center gap-2">
-                      <ShieldCheck className="text-success w-5 h-5" /> Quality Assurance
+                      <ShieldCheck className="text-brand-green w-5 h-5" /> Quality Assurance
                     </h4>
                     <ul className="space-y-3 text-sm">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                        Multi-stage quality inspection at 50% & 100% production marks.
+                        Rigorous 3-stage inspection before dispatch.
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
@@ -187,32 +187,31 @@ export default function ProductDetailPage() {
                       </li>
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-brand-gold shrink-0 mt-0.5" />
-                        Verified azo-free and non-toxic materials.
+                        Certified non-toxic and skin-friendly materials.
                       </li>
                     </ul>
                   </div>
                   <div className="bg-brand-navy text-white p-8 rounded-3xl">
                     <h4 className="font-bold text-brand-gold mb-4 flex items-center gap-2">
-                      <Box className="w-5 h-5" /> Sourcing Benefits
+                      <Box className="w-5 h-5" /> Logistics Support
                     </h4>
                     <ul className="space-y-3 text-sm text-white/70">
-                      <li>Competitive direct-factory pricing without middlemen.</li>
-                      <li>Custom branding and private labeling (OEM) options.</li>
-                      <li>Comprehensive export documentation and logistics support.</li>
-                      <li>Secure payment terms via LC or TT.</li>
+                      <li>Competitive sea and air freight rates to 20+ countries.</li>
+                      <li>Full export documentation (Commercial Invoice, Packing List, CO).</li>
+                      <li>Secure export packaging: 7-ply boxes + moisture wrapping.</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </TabsContent>
 
-            <TabsContent value="specs" className="pt-8">
+            <TabsContent value="specs">
               <div className="rounded-2xl border border-gray-100 overflow-hidden shadow-sm">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-brand-navy text-white">
-                      <th className="px-6 py-4 text-left font-bold uppercase tracking-widest">Attribute</th>
-                      <th className="px-6 py-4 text-left font-bold uppercase tracking-widest">Detail</th>
+                      <th className="px-6 py-4 text-left font-bold uppercase tracking-widest">Parameter</th>
+                      <th className="px-6 py-4 text-left font-bold uppercase tracking-widest">Specification</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-50">
@@ -223,31 +222,27 @@ export default function ProductDetailPage() {
                       </tr>
                     ))}
                     <tr>
-                      <td className="px-6 py-4 font-bold text-brand-navy bg-secondary/10">Material Base</td>
+                      <td className="px-6 py-4 font-bold text-brand-navy bg-secondary/10">Base Materials</td>
                       <td className="px-6 py-4 text-muted-foreground">{product.materials.join(', ')}</td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4 font-bold text-brand-navy bg-secondary/10">HS Code</td>
-                      <td className="px-6 py-4 text-brand-gold font-mono font-bold">{product.hsCode}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </TabsContent>
 
-            <TabsContent value="variants" className="pt-8">
+            <TabsContent value="variants">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {product.variants.map((v, i) => (
                   <div key={i} className="p-6 rounded-2xl border border-brand-gold/20 bg-white hover:shadow-md transition-shadow">
                     <h4 className="font-bold text-brand-navy mb-4 text-lg border-b pb-2">Variant #{i + 1}</h4>
                     <div className="space-y-2">
                       <div className="flex justify-between text-xs">
-                        <span className="text-gray-400 font-bold uppercase tracking-widest">Size</span>
+                        <span className="text-gray-400 font-bold uppercase tracking-widest">Dimensions</span>
                         <span className="font-bold text-brand-navy">{v.size}</span>
                       </div>
                       {v.gsm && (
                         <div className="flex justify-between text-xs">
-                          <span className="text-gray-400 font-bold uppercase tracking-widest">Weight (GSM)</span>
+                          <span className="text-gray-400 font-bold uppercase tracking-widest">Density (GSM)</span>
                           <span className="font-bold text-brand-navy">{v.gsm}</span>
                         </div>
                       )}
@@ -258,7 +253,7 @@ export default function ProductDetailPage() {
                         </div>
                       )}
                       <div className="flex justify-between text-xs">
-                        <span className="text-gray-400 font-bold uppercase tracking-widest">Color</span>
+                        <span className="text-gray-400 font-bold uppercase tracking-widest">Standard Color</span>
                         <span className="font-bold text-brand-navy">{v.color}</span>
                       </div>
                     </div>
@@ -270,7 +265,7 @@ export default function ProductDetailPage() {
 
           {/* Related */}
           <div>
-            <h3 className="text-3xl font-bold font-playfair text-brand-navy mb-8">Related Products</h3>
+            <h3 className="text-3xl font-bold font-playfair text-brand-navy mb-8">Related Products in {categoryLabel}</h3>
             <div className="grid md:grid-cols-3 gap-8">
               {relatedProducts.map(p => (
                 <ProductCard key={p.id} product={p} />
