@@ -10,22 +10,31 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    /* Primary: Royal Blue #0B3D91 */
-    --primary: 218 86% 31%;
+    
+    /* Brand Colors */
+    --primary: 226 76% 45%; /* #1B45CC Royal Blue */
     --primary-foreground: 210 40% 98%;
+    
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
+    
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    /* Accent: Subtle Gold #C9A84B */
-    --accent: 45 54% 54%;
+    
+    --accent: 47 72% 46%; /* #C8A020 Gold */
     --accent-foreground: 210 40% 98%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+    
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 218 86% 31%;
+    --ring: 226 76% 45%;
     --radius: 0.75rem;
+
+    /* Custom Colors */
+    --blue-dark: 222 65% 15%; /* #0D1B3E */
+    --gold-light: 45 75% 56%; /* #E2BA3A */
   }
 }
 
@@ -40,14 +49,12 @@
 
 @layer utilities {
   .bg-navy-gradient {
-    background: linear-gradient(135deg, #0D1B3E, #0B3D91);
+    background: linear-gradient(135deg, #0D1B3E, #163AA8);
   }
   .bg-gold-gradient {
-    background: linear-gradient(135deg, #C9A84B, #E2BA3A);
+    background: linear-gradient(135deg, #C8A020, #E2BA3A);
   }
   .animate-marquee {
-    display: flex;
-    white-space: nowrap;
     animation: marquee 30s linear infinite;
   }
   @keyframes marquee {
@@ -57,10 +64,13 @@
   .fade-up {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+  .text-shadow-gold {
+    text-shadow: 0 2px 10px rgba(200, 160, 32, 0.3);
   }
 }
