@@ -67,41 +67,45 @@
       },
       "required": ["name", "fileUrl", "issuedBy", "verified"]
     },
-    "CompanyProfile": {
-      "title": "CompanyProfile",
+    "RFQSubmission": {
+      "title": "RFQSubmission",
       "type": "object",
-      "description": "Stores general company information.",
+      "description": "Multi-step quote request from potential buyers.",
       "properties": {
-        "id": { "type": "string" },
-        "establishmentYear": { "type": "number" },
-        "headquartersLocation": { "type": "string" },
-        "iecCode": { "type": "string" },
-        "gstin": { "type": "string" },
-        "cin": { "type": "string" },
-        "msmeRegistered": { "type": "boolean" },
-        "registeredAddress": { "type": "string" },
-        "directors": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": { "type": "string" },
-              "role": { "type": "string" },
-              "linkedin": { "type": "string" },
-              "photo": { "type": "string" }
-            }
+        "rfqId": { "type": "string", "description": "Format: AGV-2026-XXXX" },
+        "category": { "type": "string" },
+        "product": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "destinationCountry": { "type": "string" },
+        "deliveryDate": { "type": "string" },
+        "incoterm": { "type": "string" },
+        "customization": {
+          "type": "object",
+          "properties": {
+            "oem": { "type": "boolean" },
+            "customSize": { "type": "string" },
+            "customColor": { "type": "string" },
+            "certifications": { "type": "array", "items": { "type": "string" } },
+            "sampleRequired": { "type": "boolean" },
+            "referenceImageUrl": { "type": "string" }
           }
         },
-        "timeline": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "year": { "type": "string" },
-              "event": { "type": "string" }
-            }
+        "userDetails": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "company": { "type": "string" },
+            "designation": { "type": "string" },
+            "email": { "type": "string" },
+            "whatsapp": { "type": "string" },
+            "country": { "type": "string" },
+            "source": { "type": "string" },
+            "notes": { "type": "string" }
           }
-        }
+        },
+        "status": { "type": "string", "enum": ["New", "In Progress", "Quoted", "Closed"] },
+        "createdAt": { "type": "string", "format": "date-time" }
       }
     },
     "AuditRequest": {
@@ -113,33 +117,6 @@
         "email": { "type": "string", "format": "email" },
         "country": { "type": "string" },
         "timestamp": { "type": "string", "format": "date-time" }
-      }
-    },
-    "ShippingRoute": {
-      "title": "ShippingRoute",
-      "type": "object",
-      "properties": {
-        "region": { "type": "string" },
-        "port": { "type": "string" },
-        "transitTime": { "type": "string" },
-        "mode": { "type": "string" }
-      }
-    },
-    "HSCode": {
-      "title": "HSCode",
-      "type": "object",
-      "properties": {
-        "product": { "type": "string" },
-        "code": { "type": "string" }
-      }
-    },
-    "MOQData": {
-      "title": "MOQData",
-      "type": "object",
-      "properties": {
-        "product": { "type": "string" },
-        "moq": { "type": "string" },
-        "leadTime": { "type": "string" }
       }
     }
   },
@@ -155,25 +132,13 @@
       "schema": "#/backend/entities/Certificate",
       "description": "Publicly readable company certificates."
     },
-    "/company_profile/main": {
-      "schema": "#/backend/entities/CompanyProfile",
-      "description": "Main company profile information."
+    "/rfq_submissions/{rfqId}": {
+      "schema": "#/backend/entities/RFQSubmission",
+      "description": "Buyer quote requests."
     },
     "/audit_requests/{requestId}": {
       "schema": "#/backend/entities/AuditRequest",
       "description": "Requests for full audit reports."
-    },
-    "/shipping_routes/{routeId}": {
-      "schema": "#/backend/entities/ShippingRoute",
-      "description": "Information about global shipping routes."
-    },
-    "/hs_codes/{codeId}": {
-      "schema": "#/backend/entities/HSCode",
-      "description": "Harmonized System codes for products."
-    },
-    "/moq_data/{dataId}": {
-      "schema": "#/backend/entities/MOQData",
-      "description": "MOQ and lead time information per product."
     }
   }
 }

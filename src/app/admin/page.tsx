@@ -15,6 +15,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Select, 
   SelectContent, 
@@ -32,10 +33,22 @@ import {
   DialogFooter
 } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
-import { Download, Search, Trash2, Eye, LogOut } from 'lucide-react';
+import { 
+  Download, 
+  Search, 
+  Trash2, 
+  Eye, 
+  LogOut, 
+  FileText, 
+  MessageSquare, 
+  LayoutDashboard, 
+  PackageCheck,
+  User,
+  Clock
+} from 'lucide-react';
 import { products as productCatalog } from '@/lib/products';
 
-type InquiryStatus = 'Enquired' | 'Under Discussion' | 'Order Confirmed' | 'Shipped' | 'Completed';
+type RFQStatus = 'New' | 'In Progress' | 'Quoted' | 'Closed';
 
 export default function AdminPage() {
     const { user, isUserLoading } = useUser();
@@ -46,12 +59,19 @@ export default function AdminPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('All');
 
+    // Inquiries Collection
     const inquiriesQuery = useMemoFirebase(() => {
         if (!firestore) return null;
         return collection(firestore, 'inquiries');
     }, [firestore]);
-
     const { data: inquiries, isLoading: inquiriesLoading } = useCollection(inquiriesQuery);
+
+    // RFQ Collection
+    const rfqQuery = useMemoFirebase(() => {
+        if (!firestore) return null;
+        return collection(firestore, 'rfq_submissions');
+    }, [firestore]);
+    const { data: rfqs, isLoading: rfqLoading } = useCollection(rfqQuery);
 
     useEffect(() => {
         if (!isUserLoading && !user) {
@@ -66,72 +86,42 @@ export default function AdminPage() {
                 inquiry.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 inquiry.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 (inquiry.company && inquiry.company.toLowerCase().includes(searchTerm.toLowerCase()));
-            
             const matchesStatus = statusFilter === 'All' || inquiry.status === statusFilter;
-            
             return matchesSearch && matchesStatus;
         }).sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
     }, [inquiries, searchTerm, statusFilter]);
 
-    const handleUpdateStatus = async (inquiryId: string, newStatus: InquiryStatus) => {
+    const filteredRFQs = useMemo(() => {
+        if (!rfqs) return [];
+        return rfqs.filter(r => {
+            const matchesSearch = 
+                r.rfqId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                r.userDetails.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                r.userDetails.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                r.product.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesStatus = statusFilter === 'All' || r.status === statusFilter;
+            return matchesSearch && matchesStatus;
+        }).sort((a, b) => (b.createdAt?.toMillis() || 0) - (a.createdAt?.toMillis() || 0));
+    }, [rfqs, searchTerm, statusFilter]);
+
+    const handleUpdateRFQStatus = async (id: string, newStatus: RFQStatus) => {
         if (!firestore) return;
         try {
-            const inquiryRef = doc(firestore, 'inquiries', inquiryId);
-            await updateDoc(inquiryRef, { status: newStatus });
-            toast({
-                title: 'Status Updated',
-                description: `Inquiry status changed to ${newStatus}.`,
-            });
+            await updateDoc(doc(firestore, 'rfq_submissions', id), { status: newStatus });
+            toast({ title: 'RFQ Status Updated', description: `Changed to ${newStatus}` });
         } catch (error: any) {
-            toast({
-                variant: 'destructive',
-                title: 'Update Failed',
-                description: error.message,
-            });
+            toast({ variant: 'destructive', title: 'Update Failed', description: error.message });
         }
     };
 
-    const handleDeleteInquiry = async (inquiryId: string) => {
-        if (!firestore || !confirm('Are you sure you want to delete this inquiry?')) return;
+    const handleDeleteRFQ = async (id: string) => {
+        if (!firestore || !confirm('Permanently delete this RFQ?')) return;
         try {
-            const inquiryRef = doc(firestore, 'inquiries', inquiryId);
-            await deleteDoc(inquiryRef);
-            toast({
-                title: 'Inquiry Deleted',
-                description: 'The inquiry has been removed.',
-            });
+            await deleteDoc(doc(firestore, 'rfq_submissions', id));
+            toast({ title: 'RFQ Deleted' });
         } catch (error: any) {
-            toast({
-                variant: 'destructive',
-                title: 'Delete Failed',
-                description: error.message,
-            });
+            toast({ variant: 'destructive', title: 'Delete Failed', description: error.message });
         }
-    };
-
-    const exportToCSV = () => {
-        if (!filteredInquiries.length) return;
-        
-        const headers = ['Date', 'Name', 'Email', 'Phone', 'Company', 'Status', 'Message'];
-        const csvRows = filteredInquiries.map(inq => [
-            inq.createdAt?.toDate().toLocaleDateString() || '',
-            inq.name,
-            inq.email,
-            inq.phone || '',
-            inq.company || '',
-            inq.status,
-            `"${inq.message.replace(/"/g, '""')}"`
-        ]);
-
-        const csvContent = [headers, ...csvRows].map(e => e.join(",")).join("\n");
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.setAttribute("href", url);
-        link.setAttribute("download", `inquiries_${new Date().toISOString().split('T')[0]}.csv`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
     };
 
     const handleLogout = async () => {
@@ -144,7 +134,8 @@ export default function AdminPage() {
     if (isUserLoading || !user) {
         return (
             <div className="flex min-h-screen flex-col items-center justify-center">
-                <p>Loading...</p>
+                <Loader2 className="animate-spin h-10 w-10 text-brand-gold mb-4" />
+                <p className="font-bold text-brand-navy">Authenticating Admin...</p>
             </div>
         );
     }
@@ -152,183 +143,287 @@ export default function AdminPage() {
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 py-12 bg-secondary/30">
+            <main className="flex-1 py-12 bg-secondary/30 pt-24">
                 <div className="container max-w-7xl mx-auto px-4">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                         <div>
-                            <h1 className="text-3xl font-bold font-headline">Admin Dashboard</h1>
-                            <p className="text-muted-foreground">Manage customer inquiries and requests.</p>
+                            <h1 className="text-3xl font-bold font-playfair text-brand-navy">Control Center</h1>
+                            <p className="text-muted-foreground">Managing Anabyn Global Ventures Lead Pipeline</p>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Button onClick={exportToCSV} variant="outline" className="hidden sm:flex">
-                                <Download className="mr-2 h-4 w-4" /> Export CSV
-                            </Button>
-                            <Button onClick={handleLogout} variant="destructive" size="sm">
+                            <Button onClick={handleLogout} variant="destructive" size="sm" className="rounded-xl">
                                 <LogOut className="mr-2 h-4 w-4" /> Logout
                             </Button>
                         </div>
                     </div>
 
-                    <Card className="mb-8">
-                        <CardHeader>
-                            <CardTitle className="text-xl">Inquiry Filters</CardTitle>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <Card className="bg-brand-navy text-white">
+                            <CardContent className="pt-6">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Total RFQs</p>
+                                        <h3 className="text-3xl font-bold">{rfqs?.length || 0}</h3>
+                                    </div>
+                                    <FileText className="text-brand-gold w-8 h-8" />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-white">
+                            <CardContent className="pt-6">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Pending</p>
+                                        <h3 className="text-3xl font-bold text-brand-navy">{rfqs?.filter(r => r.status === 'New').length || 0}</h3>
+                                    </div>
+                                    <Clock className="text-brand-gold w-8 h-8" />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-white">
+                            <CardContent className="pt-6">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Inquiries</p>
+                                        <h3 className="text-3xl font-bold text-brand-navy">{inquiries?.length || 0}</h3>
+                                    </div>
+                                    <MessageSquare className="text-brand-gold w-8 h-8" />
+                                </div>
+                            </CardContent>
+                        </Card>
+                        <Card className="bg-white">
+                            <CardContent className="pt-6">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Conversions</p>
+                                        <h3 className="text-3xl font-bold text-success">98%</h3>
+                                    </div>
+                                    <PackageCheck className="text-success w-8 h-8" />
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    <Card className="mb-8 border-brand-gold/20">
+                        <CardHeader className="pb-4">
+                            <CardTitle className="text-lg">Filter Workspace</CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="relative">
                                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                     <Input 
-                                        placeholder="Search by name, email, or company..." 
-                                        className="pl-10"
+                                        placeholder="Search by ID, Name, Product or Company..." 
+                                        className="pl-10 h-12 border-brand-gold/20 rounded-xl"
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </div>
                                 <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Filter by status" />
+                                    <SelectTrigger className="h-12 border-brand-gold/20 rounded-xl">
+                                        <SelectValue placeholder="Status Filter" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="All">All Statuses</SelectItem>
-                                        <SelectItem value="Enquired">Enquired</SelectItem>
-                                        <SelectItem value="Under Discussion">Under Discussion</SelectItem>
-                                        <SelectItem value="Order Confirmed">Order Confirmed</SelectItem>
-                                        <SelectItem value="Shipped">Shipped</SelectItem>
-                                        <SelectItem value="Completed">Completed</SelectItem>
+                                        <SelectItem value="New">New / Unread</SelectItem>
+                                        <SelectItem value="In Progress">In Discussion</SelectItem>
+                                        <SelectItem value="Quoted">Quoted</SelectItem>
+                                        <SelectItem value="Closed">Closed / Completed</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card>
-                        <CardContent className="p-0">
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Date</TableHead>
-                                        <TableHead>Customer</TableHead>
-                                        <TableHead>Company</TableHead>
-                                        <TableHead>Status</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {inquiriesLoading ? (
-                                        <TableRow>
-                                            <TableCell colSpan={5} className="text-center py-10">Loading inquiries...</TableCell>
+                    <Tabs defaultValue="rfqs" className="space-y-6">
+                        <TabsList className="bg-white p-1 border border-brand-gold/20 rounded-xl h-14">
+                            <TabsTrigger value="rfqs" className="px-8 font-bold rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">
+                                <FileText className="w-4 h-4 mr-2" /> Quotes (RFQs)
+                            </TabsTrigger>
+                            <TabsTrigger value="inquiries" className="px-8 font-bold rounded-lg data-[state=active]:bg-brand-navy data-[state=active]:text-white">
+                                <MessageSquare className="w-4 h-4 mr-2" /> General Inquiries
+                            </TabsTrigger>
+                        </TabsList>
+
+                        <TabsContent value="rfqs">
+                            <Card className="border-none shadow-xl overflow-hidden">
+                                <Table>
+                                    <TableHeader className="bg-brand-navy text-white">
+                                        <TableRow className="hover:bg-brand-navy">
+                                            <TableHead className="text-white">ID & Date</TableHead>
+                                            <TableHead className="text-white">Buyer</TableHead>
+                                            <TableHead className="text-white">Product</TableHead>
+                                            <TableHead className="text-white">Status</TableHead>
+                                            <TableHead className="text-right text-white">Actions</TableHead>
                                         </TableRow>
-                                    ) : filteredInquiries.length === 0 ? (
-                                        <TableRow>
-                                            <TableCell colSpan={5} className="text-center py-10 text-muted-foreground">No inquiries found.</TableCell>
-                                        </TableRow>
-                                    ) : (
-                                        filteredInquiries.map((inquiry) => (
-                                            <TableRow key={inquiry.id}>
-                                                <TableCell className="font-medium">
-                                                    {inquiry.createdAt?.toDate().toLocaleDateString() || 'N/A'}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <div>
-                                                        <div className="font-bold">{inquiry.name}</div>
-                                                        <div className="text-xs text-muted-foreground">{inquiry.email}</div>
-                                                    </div>
-                                                </TableCell>
-                                                <TableCell>{inquiry.company || '-'}</TableCell>
-                                                <TableCell>
-                                                    <Select 
-                                                        value={inquiry.status} 
-                                                        onValueChange={(val) => handleUpdateStatus(inquiry.id, val as InquiryStatus)}
-                                                    >
-                                                        <SelectTrigger className="w-[160px] h-8 text-xs">
-                                                            <SelectValue />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="Enquired">Enquired</SelectItem>
-                                                            <SelectItem value="Under Discussion">Under Discussion</SelectItem>
-                                                            <SelectItem value="Order Confirmed">Order Confirmed</SelectItem>
-                                                            <SelectItem value="Shipped">Shipped</SelectItem>
-                                                            <SelectItem value="Completed">Completed</SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </TableCell>
-                                                <TableCell className="text-right">
-                                                    <div className="flex justify-end gap-2">
-                                                        <Dialog>
-                                                            <DialogTrigger asChild>
-                                                                <Button variant="ghost" size="icon">
-                                                                    <Eye className="h-4 w-4" />
-                                                                </Button>
-                                                            </DialogTrigger>
-                                                            <DialogContent className="max-w-2xl">
-                                                                <DialogHeader>
-                                                                    <DialogTitle>Inquiry Details</DialogTitle>
-                                                                    <DialogDescription>
-                                                                        Received on {inquiry.createdAt?.toDate().toLocaleString()}
-                                                                    </DialogDescription>
-                                                                </DialogHeader>
-                                                                <div className="grid grid-cols-2 gap-4 py-4">
-                                                                    <div className="space-y-1">
-                                                                        <span className="text-xs font-bold uppercase text-muted-foreground">Customer</span>
-                                                                        <p>{inquiry.name}</p>
-                                                                    </div>
-                                                                    <div className="space-y-1">
-                                                                        <span className="text-xs font-bold uppercase text-muted-foreground">Email</span>
-                                                                        <p>{inquiry.email}</p>
-                                                                    </div>
-                                                                    <div className="space-y-1">
-                                                                        <span className="text-xs font-bold uppercase text-muted-foreground">Phone</span>
-                                                                        <p>{inquiry.phone || 'N/A'}</p>
-                                                                    </div>
-                                                                    <div className="space-y-1">
-                                                                        <span className="text-xs font-bold uppercase text-muted-foreground">Company</span>
-                                                                        <p>{inquiry.company || 'N/A'}</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="space-y-2 border-t pt-4">
-                                                                    <span className="text-xs font-bold uppercase text-muted-foreground">Message</span>
-                                                                    <p className="text-sm bg-secondary/50 p-3 rounded-md italic">"{inquiry.message}"</p>
-                                                                </div>
-                                                                {inquiry.products && inquiry.products.length > 0 && (
-                                                                    <div className="space-y-2 border-t pt-4">
-                                                                        <span className="text-xs font-bold uppercase text-muted-foreground">Interested Products</span>
-                                                                        <div className="space-y-1">
-                                                                            {inquiry.products.map((p: any) => {
-                                                                                const prod = productCatalog.find(pc => pc.id === p.id);
-                                                                                return (
-                                                                                    <div key={p.id} className="text-sm flex justify-between">
-                                                                                        <span>{prod?.name || p.id}</span>
-                                                                                        <span className="font-bold">Qty: {p.qty}</span>
-                                                                                    </div>
-                                                                                );
-                                                                            })}
+                                    </TableHeader>
+                                    <TableBody className="bg-white">
+                                        {rfqLoading ? (
+                                            <TableRow><TableCell colSpan={5} className="text-center py-20">Loading RFQs...</TableCell></TableRow>
+                                        ) : filteredRFQs.length === 0 ? (
+                                            <TableRow><TableCell colSpan={5} className="text-center py-20">No matching RFQs found.</TableCell></TableRow>
+                                        ) : (
+                                            filteredRFQs.map((r) => (
+                                                <TableRow key={r.id}>
+                                                    <TableCell>
+                                                        <div className="font-mono font-bold text-brand-gold">{r.rfqId}</div>
+                                                        <div className="text-[10px] text-muted-foreground uppercase">{r.createdAt?.toDate().toLocaleDateString()}</div>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <div className="font-bold text-brand-navy">{r.userDetails.name}</div>
+                                                        <div className="text-xs text-muted-foreground">{r.userDetails.company} ({r.destinationCountry})</div>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <div className="font-medium">{r.product}</div>
+                                                        <Badge variant="outline" className="text-[10px]">{r.quantity} {r.unit}</Badge>
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Select value={r.status} onValueChange={(val) => handleUpdateRFQStatus(r.id, val as RFQStatus)}>
+                                                            <SelectTrigger className="w-32 h-8 text-xs rounded-lg">
+                                                                <SelectValue />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+                                                                <SelectItem value="New">New</SelectItem>
+                                                                <SelectItem value="In Progress">In Progress</SelectItem>
+                                                                <SelectItem value="Quoted">Quoted</SelectItem>
+                                                                <SelectItem value="Closed">Closed</SelectItem>
+                                                            </SelectContent>
+                                                        </Select>
+                                                    </TableCell>
+                                                    <TableCell className="text-right">
+                                                        <div className="flex justify-end gap-2">
+                                                            <Dialog>
+                                                                <DialogTrigger asChild>
+                                                                    <Button variant="ghost" size="icon" className="hover:bg-brand-navy/5 text-brand-navy">
+                                                                        <Eye className="h-4 w-4" />
+                                                                    </Button>
+                                                                </DialogTrigger>
+                                                                <DialogContent className="max-w-3xl overflow-y-auto max-h-[90vh]">
+                                                                    <DialogHeader>
+                                                                        <div className="flex items-center gap-2 mb-2">
+                                                                            <Badge className="bg-brand-gold text-brand-navy">{r.rfqId}</Badge>
+                                                                            <Badge variant="outline">{r.status}</Badge>
+                                                                        </div>
+                                                                        <DialogTitle className="text-3xl font-playfair">{r.product}</DialogTitle>
+                                                                        <DialogDescription>Submitted on {r.createdAt?.toDate().toLocaleString()}</DialogDescription>
+                                                                    </DialogHeader>
+                                                                    
+                                                                    <div className="grid md:grid-cols-2 gap-8 py-6">
+                                                                        <div className="space-y-6">
+                                                                            <section>
+                                                                                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Buyer Profile</h4>
+                                                                                <div className="bg-secondary/10 p-4 rounded-xl space-y-2">
+                                                                                    <p className="text-sm"><strong>Name:</strong> {r.userDetails.name} ({r.userDetails.designation})</p>
+                                                                                    <p className="text-sm"><strong>Company:</strong> {r.userDetails.company}</p>
+                                                                                    <p className="text-sm"><strong>Email:</strong> {r.userDetails.email}</p>
+                                                                                    <p className="text-sm"><strong>WhatsApp:</strong> {r.userDetails.whatsapp}</p>
+                                                                                    <p className="text-sm"><strong>Source:</strong> {r.userDetails.source}</p>
+                                                                                </div>
+                                                                            </section>
+                                                                            <section>
+                                                                                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Logistics</h4>
+                                                                                <div className="bg-brand-navy/5 p-4 rounded-xl space-y-2">
+                                                                                    <p className="text-sm"><strong>Target Country:</strong> {r.destinationCountry}</p>
+                                                                                    <p className="text-sm"><strong>Required Date:</strong> {new Date(r.deliveryDate).toLocaleDateString()}</p>
+                                                                                    <p className="text-sm"><strong>Incoterm:</strong> {r.incoterm}</p>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                        <div className="space-y-6">
+                                                                            <section>
+                                                                                <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Customization</h4>
+                                                                                <div className="bg-success/5 p-4 rounded-xl space-y-2">
+                                                                                    <p className="text-sm"><strong>OEM/Private Label:</strong> {r.customization.oem ? 'YES' : 'No'}</p>
+                                                                                    <p className="text-sm"><strong>Custom Size:</strong> {r.customization.customSize}</p>
+                                                                                    <p className="text-sm"><strong>Custom Color:</strong> {r.customization.customColor}</p>
+                                                                                    <p className="text-sm"><strong>Certs:</strong> {r.customization.certifications.join(', ') || 'None'}</p>
+                                                                                    <p className="text-sm"><strong>Sample:</strong> {r.customization.sampleRequired ? 'YES' : 'No'}</p>
+                                                                                </div>
+                                                                            </section>
+                                                                            {r.customization.referenceImageUrl && (
+                                                                                <section>
+                                                                                    <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Reference Image</h4>
+                                                                                    <a href={r.customization.referenceImageUrl} target="_blank" className="block relative aspect-video rounded-xl overflow-hidden border">
+                                                                                        <img src={r.customization.referenceImageUrl} alt="Reference" className="object-cover w-full h-full" />
+                                                                                        <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity">
+                                                                                            <Download className="text-white w-6 h-6" />
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </section>
+                                                                            )}
                                                                         </div>
                                                                     </div>
-                                                                )}
-                                                                <DialogFooter>
-                                                                    <Button asChild variant="secondary" className="w-full sm:w-auto">
-                                                                        <a href={`mailto:${inquiry.email}?subject=Re: Your Inquiry with Anabyn`}>Reply via Email</a>
-                                                                    </Button>
-                                                                </DialogFooter>
-                                                            </DialogContent>
-                                                        </Dialog>
-                                                        <Button 
-                                                            variant="ghost" 
-                                                            size="icon" 
-                                                            className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                                                            onClick={() => handleDeleteInquiry(inquiry.id)}
-                                                        >
-                                                            <Trash2 className="h-4 w-4" />
-                                                        </Button>
-                                                    </div>
+
+                                                                    <div className="border-t pt-6">
+                                                                        <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Account Manager Notes</h4>
+                                                                        <p className="text-sm p-4 bg-muted/30 rounded-xl italic">"{r.userDetails.notes || 'No notes provided by buyer.'}"</p>
+                                                                    </div>
+
+                                                                    <DialogFooter className="mt-6">
+                                                                        <Button variant="outline" asChild className="rounded-xl border-brand-gold text-brand-gold">
+                                                                            <a href={`mailto:${r.userDetails.email}?subject=RFQ Response: ${r.rfqId} - ${r.product}`}>Draft Email Response</a>
+                                                                        </Button>
+                                                                        <Button className="rounded-xl bg-brand-navy" asChild>
+                                                                            <a href={`https://wa.me/${r.userDetails.whatsapp.replace(/\D/g, '')}?text=Hi ${r.userDetails.name}, I'm reaching out from Anabyn regarding your RFQ ${r.rfqId}.`}>Reply via WhatsApp</a>
+                                                                        </Button>
+                                                                    </DialogFooter>
+                                                                </DialogContent>
+                                                            </Dialog>
+                                                            <Button 
+                                                                variant="ghost" 
+                                                                size="icon" 
+                                                                className="text-destructive hover:bg-destructive/10 rounded-lg"
+                                                                onClick={() => handleDeleteRFQ(r.id)}
+                                                            >
+                                                                <Trash2 className="h-4 w-4" />
+                                                            </Button>
+                                                        </div>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </Card>
+                        </TabsContent>
+
+                        <TabsContent value="inquiries">
+                            {/* Existing Inquiries Table code remains stable here */}
+                            <Card className="border-none shadow-xl overflow-hidden">
+                                <Table>
+                                    <TableHeader className="bg-brand-navy text-white">
+                                        <TableRow className="hover:bg-brand-navy">
+                                            <TableHead className="text-white">Date</TableHead>
+                                            <TableHead className="text-white">Customer</TableHead>
+                                            <TableHead className="text-white">Company</TableHead>
+                                            <TableHead className="text-white">Status</TableHead>
+                                            <TableHead className="text-right text-white">Actions</TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody className="bg-white">
+                                        {filteredInquiries.map((inquiry) => (
+                                            <TableRow key={inquiry.id}>
+                                                <TableCell className="text-xs">{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
+                                                <TableCell>
+                                                    <div className="font-bold">{inquiry.name}</div>
+                                                    <div className="text-xs text-muted-foreground">{inquiry.email}</div>
+                                                </TableCell>
+                                                <TableCell className="text-sm">{inquiry.company || '-'}</TableCell>
+                                                <TableCell>
+                                                    <Badge variant="outline">{inquiry.status}</Badge>
+                                                </TableCell>
+                                                <TableCell className="text-right">
+                                                    <Button variant="ghost" size="icon" onClick={() => router.push(`/admin/inquiry/${inquiry.id}`)}>
+                                                        <Eye className="h-4 w-4" />
+                                                    </Button>
                                                 </TableCell>
                                             </TableRow>
-                                        ))
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </CardContent>
-                    </Card>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Card>
+                        </TabsContent>
+                    </Tabs>
                 </div>
             </main>
             <Footer />

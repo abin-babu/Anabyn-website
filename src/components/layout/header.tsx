@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnabynLogo } from '@/components/anabyn-logo';
 import {
@@ -31,7 +31,6 @@ export function Header() {
     { label: 'About Us', href: '/about-us' },
     { label: 'Certifications', href: '/certifications' },
     { label: 'How We Export', href: '/how-we-export' },
-    { label: 'Markets', href: '/#markets' },
     { label: 'FAQ', href: '/faq' },
   ];
 
@@ -40,7 +39,7 @@ export function Header() {
       className={cn(
         "fixed top-0 z-50 w-full h-[74px] transition-all duration-300",
         "bg-[#0D1F3C]/90 backdrop-blur-md border-b border-[#C8A020]/20",
-        isScrolled && "shadow-xl border-[#C8A020]/40"
+        isScrolled && "shadow-xl border-[#C8A020]/40 bg-[#0D1F3C]/95"
       )}
     >
       <div className="container h-full flex items-center justify-between px-4 mx-auto">
@@ -78,7 +77,7 @@ export function Header() {
 
             <Button 
               asChild
-              className="rounded-full bg-gold-gradient text-brand-navy font-bold border-none hover:scale-105 transition-all px-6"
+              className="rounded-full bg-gold-gradient text-brand-navy font-bold border-none hover:scale-105 transition-all px-6 shadow-lg shadow-brand-gold/20"
             >
               <Link href="/request-quote">Request Quote</Link>
             </Button>
@@ -95,26 +94,26 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute top-[74px] left-0 w-full bg-[#0D1F3C] border-b border-[#C8A020]/20 lg:hidden animate-in slide-in-from-top duration-300">
+        <div className="absolute top-[74px] left-0 w-full bg-[#0D1F3C] border-b border-[#C8A020]/20 lg:hidden animate-in slide-in-from-top duration-300 shadow-2xl">
           <nav className="flex flex-col p-6 space-y-4">
             {navLinks.map((link) => (
               <Link 
                 key={link.label} 
                 href={link.href}
-                className="text-white text-lg font-medium"
+                className="text-white text-lg font-medium py-2 border-b border-white/5"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="pt-4 border-t border-white/10 space-y-4">
+            <div className="pt-4 space-y-4">
                <div className="flex justify-between items-center text-white/60">
                   <span className="text-sm font-bold uppercase tracking-widest">Language</span>
                   <span className="text-brand-gold font-bold">English (EN)</span>
                </div>
                <Button 
                 asChild
-                className="w-full rounded-full bg-gold-gradient text-brand-navy font-bold py-6"
+                className="w-full rounded-full bg-gold-gradient text-brand-navy font-bold py-6 text-lg"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Link href="/request-quote">Request Quote</Link>
