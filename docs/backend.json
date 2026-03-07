@@ -76,6 +76,37 @@
       },
       "required": ["slug", "title", "content", "category", "author"]
     },
+    "Testimonial": {
+      "title": "Testimonial",
+      "type": "object",
+      "description": "Verified customer reviews and social proof.",
+      "properties": {
+        "clientName": { "type": "string" },
+        "designation": { "type": "string" },
+        "company": { "type": "string" },
+        "country": { "type": "string" },
+        "countryFlag": { "type": "string" },
+        "rating": { "type": "number" },
+        "testimonialText": { "type": "string" },
+        "productCategory": { "type": "string" },
+        "orderYear": { "type": "number" },
+        "photoUrl": { "type": "string", "format": "uri" },
+        "linkedinUrl": { "type": "string", "format": "uri" },
+        "verified": { "type": "boolean" },
+        "featured": { "type": "boolean" }
+      }
+    },
+    "Client": {
+      "title": "Client",
+      "type": "object",
+      "description": "Partner logos and corporate clients.",
+      "properties": {
+        "name": { "type": "string" },
+        "logoUrl": { "type": "string", "format": "uri" },
+        "sector": { "type": "string", "enum": ["Hotels & Resorts", "Hospitals & Clinics", "Distributors"] },
+        "featured": { "type": "boolean" }
+      }
+    },
     "Certificate": {
       "title": "Certificate",
       "description": "Company compliance and verification documents.",
@@ -94,58 +125,6 @@
         "verifyUrl": { "type": "string", "format": "uri" }
       },
       "required": ["name", "fileUrl", "issuedBy", "verified"]
-    },
-    "RFQSubmission": {
-      "title": "RFQSubmission",
-      "type": "object",
-      "description": "Multi-step quote request from potential buyers.",
-      "properties": {
-        "rfqId": { "type": "string" },
-        "category": { "type": "string" },
-        "product": { "type": "string" },
-        "quantity": { "type": "number" },
-        "unit": { "type": "string" },
-        "destinationCountry": { "type": "string" },
-        "deliveryDate": { "type": "string" },
-        "incoterm": { "type": "string" },
-        "customization": {
-          "type": "object",
-          "properties": {
-            "oem": { "type": "boolean" },
-            "customSize": { "type": "string" },
-            "customColor": { "type": "string" },
-            "certifications": { "type": "array", "items": { "type": "string" } },
-            "sampleRequired": { "type": "boolean" },
-            "referenceImageUrl": { "type": "string" }
-          }
-        },
-        "userDetails": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "company": { "type": "string" },
-            "designation": { "type": "string" },
-            "email": { "type": "string" },
-            "whatsapp": { "type": "string" },
-            "country": { "type": "string" },
-            "source": { "type": "string" },
-            "notes": { "type": "string" }
-          }
-        },
-        "status": { "type": "string", "enum": ["New", "In Progress", "Quoted", "Closed"] },
-        "createdAt": { "type": "string", "format": "date-time" }
-      }
-    },
-    "AuditRequest": {
-      "title": "AuditRequest",
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "company": { "type": "string" },
-        "email": { "type": "string", "format": "email" },
-        "country": { "type": "string" },
-        "timestamp": { "type": "string", "format": "date-time" }
-      }
     }
   },
   "auth": {
@@ -159,6 +138,14 @@
     "/blog_posts/{postId}": {
       "schema": "#/backend/entities/BlogPost",
       "description": "Articles and news."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": "#/backend/entities/Testimonial",
+      "description": "Customer reviews."
+    },
+    "/clients/{clientId}": {
+      "schema": "#/backend/entities/Client",
+      "description": "Partner and client logos."
     },
     "/certificates/{certificateId}": {
       "schema": "#/backend/entities/Certificate",

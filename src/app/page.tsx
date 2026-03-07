@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -12,7 +11,14 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
+import { TestimonialsCarousel } from '@/components/testimonials-carousel';
+import { StatsSection } from '@/components/stats-section';
+import { products as productCatalog } from '@/lib/products';
+import { initialClients } from '@/lib/clients';
+import Image from 'next/image';
 
 export default function MasterpiecePage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,97 +50,40 @@ export default function MasterpiecePage() {
   }, []);
 
   const navLinks = [
-    { name: 'Products', href: '#products' },
+    { name: 'Products', href: '/products' },
     { name: 'About Us', href: '/about-us' },
-    { name: 'Customization', href: '/customization' },
-    { name: 'Quality', href: '/quality' },
-    { name: 'Markets', href: '#markets' },
-    { name: 'FAQ', href: '/faq' }
-  ];
-
-  const products = [
-    {
-      id: 'bed-linen',
-      cat: 'hospitality',
-      title: 'Hotel Bed Sheets (Flat/Fitted)',
-      spec: '144–600 TC · Cotton/Blends · Percale/Sateen',
-      description: 'Premium quality flat and fitted sheets designed for luxury hotels, resorts, and serviced apartments. Available in a wide range of thread counts and weaves.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Hotel%20Bed%20Sheets.',
-      image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80'
-    },
-    {
-      id: 'towels',
-      cat: 'hospitality',
-      title: 'Hotel Towels (Bath, Hand, Face)',
-      spec: '400–800 GSM · 100% Cotton · Terry/Velour',
-      description: 'Luxuriously soft and highly absorbent towels for bath, hand, and face use. Crafted from premium 100% cotton with superior durability for high-volume laundry cycles.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Hotel%20Towels.',
-      image: 'https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=600&q=80'
-    },
-    {
-      id: 'uniforms',
-      cat: 'hospitality',
-      title: 'Hospitality Uniforms & Workwear',
-      spec: 'Poly-Cotton/Stretch · Stain-Resistant',
-      description: 'Professional uniforms and workwear for hotel staff, restaurant teams, and hospitality professionals. Designed for comfort, durability, and brand consistency.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Hospitality%20Uniforms.',
-      image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80'
-    },
-    {
-      id: 'syringes',
-      cat: 'medical',
-      title: 'Syringes, Needles & IV Sets',
-      spec: 'Sterile · ISO 13485 · CE/FDA Marked',
-      description: 'Hospital-grade sterile syringes, needles, and IV administration sets. Fully certified for international healthcare standards and available in bulk export quantities.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Syringes%20and%20IV%20Sets.',
-      image: 'https://images.unsplash.com/photo-1585837146751-a44117f3a6fd?w=600&q=80'
-    },
-    {
-      id: 'gloves',
-      cat: 'medical',
-      title: 'Surgical & Examination Gloves',
-      spec: 'Latex/Nitrile/Vinyl · Powder-Free Options',
-      description: 'High-quality surgical and examination gloves available in latex, nitrile, and vinyl. Powder-free options available. Meets international safety and sterility standards.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Surgical%20Gloves.',
-      image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80'
-    },
-    {
-      id: 'beds',
-      cat: 'medical',
-      title: 'Hospital Beds (ICU, Fowler)',
-      spec: '150–250kg Capacity · Crank/Electric',
-      description: 'Heavy-duty ICU and Fowler hospital beds available in manual crank and electric configurations. Designed for patient safety, caregiver convenience, and clinical durability.',
-      link: 'https://wa.me/919495613121?text=Hi%2C%20I%27m%20interested%20in%20Hospital%20Beds.',
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80'
-    }
+    { name: 'Certifications', href: '/certifications' },
+    { name: 'Logistics', href: '/how-we-export' },
+    { name: 'Insights', href: '/blog' },
+    { name: 'Clients', href: '/clients' }
   ];
 
   const handleInquirySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you! Your enquiry has been received. Anabyn Global Ventures LLP will respond within 24 hours. You can also reach us directly: 📧 sales@anabyn.com 📱 +91 94956 13121");
+    alert("Thank you! Your enquiry has been received. Anabyn Global Ventures LLP will respond within 24 hours.");
     (e.target as HTMLFormElement).reset();
   };
 
   return (
-    <div className="relative min-h-screen font-inter selection:bg-accent selection:text-white">
+    <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white">
       
       <nav className={cn(
         "fixed top-0 left-0 w-full h-[74px] z-[100] transition-all duration-300 backdrop-blur-md",
-        isScrolled ? "bg-brand-navy/95 shadow-2xl border-b border-accent/40" : "bg-brand-navy/80 border-b border-accent/20"
+        isScrolled ? "bg-brand-navy/95 shadow-2xl border-b border-brand-gold/40" : "bg-brand-navy/80 border-b border-brand-gold/20"
       )}>
-        <div className="container h-full flex items-center justify-between px-4 lg:px-8">
+        <div className="container h-full flex items-center justify-between px-4 lg:px-8 mx-auto">
           <Link href="/" className="hover:opacity-90 transition-opacity">
             <AnabynLogo />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">
             {navLinks.map(link => (
-              <Link key={link.name} href={link.href} className="text-white/90 hover:text-accent text-sm font-medium transition-colors">
+              <Link key={link.name} href={link.href} className="text-white/90 hover:text-brand-gold text-sm font-medium transition-colors">
                 {link.name}
               </Link>
             ))}
-            <Button asChild className="rounded-full bg-gold-gradient text-brand-navy font-bold px-6 border-none hover:scale-105 transition-transform">
-              <Link href="/inquiry">Contact Us</Link>
+            <Button asChild className="rounded-full bg-brand-gold text-brand-navy font-bold px-6 border-none hover:scale-105 transition-transform">
+              <Link href="/request-quote">Request Quote</Link>
             </Button>
           </div>
 
@@ -144,99 +93,80 @@ export default function MasterpiecePage() {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="absolute top-[74px] left-0 w-full bg-brand-navy border-b border-accent/20 lg:hidden animate-in slide-in-from-top duration-300">
+          <div className="absolute top-[74px] left-0 w-full bg-brand-navy border-b border-brand-gold/20 lg:hidden animate-in slide-in-from-top duration-300">
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map(link => (
                 <Link key={link.name} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-white text-lg font-medium border-b border-white/5 pb-2">
                   {link.name}
                 </Link>
               ))}
-              <Button asChild className="w-full rounded-full bg-gold-gradient text-brand-navy font-bold py-6">
-                <Link href="/inquiry" onClick={() => setIsMobileMenuOpen(false)}>Contact Us</Link>
+              <Button asChild className="w-full rounded-full bg-brand-gold text-brand-navy font-bold py-6">
+                <Link href="/request-quote" onClick={() => setIsMobileMenuOpen(false)}>Request Quote</Link>
               </Button>
             </div>
           </div>
         )}
       </nav>
 
+      {/* Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
-            className="w-full h-full object-cover grayscale-[30%] brightness-[0.4]" 
+            fill
+            className="object-cover grayscale-[30%] brightness-[0.4]" 
             alt="Anabyn Hero"
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent" />
-          <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-accent/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent" />
         </div>
 
-        <div className="container relative z-10 px-4 lg:px-8">
+        <div className="container relative z-10 px-4 lg:px-8 mx-auto">
           <div className="max-w-[720px] space-y-8 fade-up visible">
-            <div className="inline-flex items-center gap-2 border border-accent rounded-full px-4 py-1.5">
-              <ShieldCheck className="text-accent w-4 h-4" />
-              <span className="text-accent text-xs font-bold tracking-[0.1em] uppercase">Trusted Global Export Partner from India</span>
+            <div className="inline-flex items-center gap-2 border border-brand-gold rounded-full px-4 py-1.5 bg-brand-gold/10">
+              <ShieldCheck className="text-brand-gold w-4 h-4" />
+              <span className="text-brand-gold text-xs font-bold tracking-[0.1em] uppercase">Trusted Global Export Partner from India</span>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-playfair font-bold text-white leading-[1.1]">
-              Connecting India's Manufacturing <br />
-              <span className="text-accent">Power to Global Markets</span>
+              India's Trusted Export Partner for <br />
+              <span className="text-brand-gold">Hospitality & Medical Supplies</span>
             </h1>
 
-            <div className="space-y-4">
-              <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
-                High-quality products. On-time delivery. World-class logistics.
-              </p>
-              <p className="text-gray-400 text-base max-w-lg leading-relaxed">
-                Backed by exclusive alliances with top manufacturers, we deliver verified quality with unbeatable cost efficiency.
-              </p>
-            </div>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+              Quality-verified products. On-time delivery. Seamless logistics to 20+ countries.
+            </p>
 
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button asChild size="lg" className="rounded-full bg-gold-gradient text-brand-navy font-bold px-8 hover:scale-105 transition-all shadow-xl shadow-accent/20 border-none">
-                <Link href="/inquiry">Start Sourcing</Link>
+              <Button asChild size="lg" className="rounded-full bg-brand-gold text-brand-navy font-bold px-8 hover:scale-105 transition-all shadow-xl shadow-brand-gold/20 border-none">
+                <Link href="/request-quote">Request a Quote</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full border-white text-white hover:bg-white hover:text-brand-navy px-8 bg-transparent">
-                <Link href="#products">Explore Product Range</Link>
+                <Link href="/products">Browse Products</Link>
               </Button>
               <Button asChild size="lg" className="rounded-full bg-[#25D366] text-white font-bold px-8 hover:opacity-90 transition-opacity border-none">
-                <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20know%20more%20about%20your%20products." target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/919495613121" target="_blank">
                   <MessageSquare className="mr-2" size={20} /> Chat on WhatsApp
                 </a>
               </Button>
-            </div>
-
-            <div className="pt-12 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-8">
-              {[
-                { label: 'Countries Served', val: '50+' },
-                { label: 'Years Experience', val: '10+' },
-                { label: 'Happy Clients', val: '500+' },
-                { label: 'Google Reviews', val: '4.9★' }
-              ].map(stat => (
-                <div key={stat.label} className="space-y-1">
-                  <p className="text-2xl font-bold text-white">{stat.val}</p>
-                  <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust & Company Verification Section */}
-      <VerifiedExporterBar />
-
-      <div className="bg-brand-navy py-6 border-y border-accent/20 overflow-hidden select-none">
+      {/* Trust Ticker */}
+      <div className="bg-brand-navy py-6 border-y border-brand-gold/20 overflow-hidden select-none">
         <div className="animate-marquee whitespace-nowrap flex gap-12">
           {[1, 2].map(i => (
             <div key={i} className="flex gap-12 items-center">
               {[
-                "ISO Certified Quality", "Hospitality Supplies", "Medical Supplies", 
-                "Global Shipping", "Custom Branding", "Bulk Orders Welcome", 
-                "Made in India", "OEM / Private Label"
+                "ISO 9001 Certified", "CE Marked Products", "IEC Registered", 
+                "500+ Global Orders", "4.9★ Google Rating", "FDA Registered Facility", 
+                "Export to 20+ Countries", "Verified Indian Exporter"
               ].map(item => (
                 <div key={item} className="flex items-center gap-3">
-                  <CircleCheck className="text-accent" size={18} />
+                  <CircleCheck size={18} className="text-brand-gold" />
                   <span className="text-white font-bold text-sm tracking-widest uppercase">{item}</span>
                 </div>
               ))}
@@ -245,203 +175,150 @@ export default function MasterpiecePage() {
         </div>
       </div>
 
-      <section id="products" className="py-24 bg-white px-4">
+      <VerifiedExporterBar />
+
+      <StatsSection />
+
+      {/* Categories / Showcase Section */}
+      <section className="py-24 bg-white px-4">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16 fade-up">
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-brand-navy mb-6">
-              Premium Products for Hospitality & Healthcare
+              World-Class Supplies for Healthcare & Hospitality
             </h2>
+            <p className="text-muted-foreground text-lg mb-8">
+              We source directly from India's premier manufacturing hubs, ensuring the highest compliance and cost efficiency for your supply chain.
+            </p>
             <div className="flex flex-wrap justify-center gap-4">
-              {['all', 'hospitality', 'medical'].map(cat => (
-                <button 
-                  key={cat}
-                  onClick={() => setActiveTab(cat)}
-                  className={cn(
-                    "px-6 py-2 rounded-full font-bold text-sm transition-all capitalize border-2",
-                    activeTab === cat 
-                      ? "bg-brand-navy border-brand-navy text-white shadow-lg" 
-                      : "border-brand-navy/20 text-brand-navy hover:bg-brand-navy/5"
-                  )}
-                >
-                  {cat === 'all' ? 'All Products' : cat === 'hospitality' ? '🏨 Hospitality Supplies' : '🏥 Medical Supplies'}
-                </button>
-              ))}
+              <Button asChild variant="outline" className="border-brand-navy text-brand-navy rounded-full px-8 py-6 font-bold text-lg hover:bg-brand-navy hover:text-white transition-all">
+                <Link href="/products?category=hospitality-supplies">🏨 Hospitality Solutions</Link>
+              </Button>
+              <Button asChild variant="outline" className="border-brand-navy text-brand-navy rounded-full px-8 py-6 font-bold text-lg hover:bg-brand-navy hover:text-white transition-all">
+                <Link href="/products?category=medical-supplies">🏥 Medical Solutions</Link>
+              </Button>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.filter(p => activeTab === 'all' || p.cat === activeTab).map(product => (
-              <div key={product.id} className="group flex flex-col bg-off-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 fade-up">
-                <div className="relative h-[240px] overflow-hidden">
-                  <img 
-                    src={product.image} 
-                    alt={product.title} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                  />
-                  <div className="absolute top-4 left-4 bg-brand-navy text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
-                    {product.cat === 'hospitality' ? 'Hospitality' : 'Medical'}
+          <div className="grid md:grid-cols-3 gap-8">
+            {productCatalog.filter(p => p.featured).slice(0, 6).map((p) => (
+              <Card key={p.id} className="overflow-hidden group border-none shadow-lg hover:shadow-2xl transition-all duration-500 bg-white">
+                <div className="relative h-60 overflow-hidden">
+                  <Image src={p.images[0]} alt={p.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-brand-navy/80 text-white border-none uppercase text-[10px] tracking-widest px-3 py-1">{p.subcategory}</Badge>
                   </div>
                 </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-brand-navy mb-2">{product.title}</h3>
-                  <p className="text-accent text-xs font-bold uppercase tracking-wider mb-4">{product.spec}</p>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">{product.description}</p>
-                  <Link 
-                    href={product.link}
-                    target="_blank"
-                    className="inline-flex items-center font-bold text-brand-navy group/link border-b-2 border-transparent hover:border-accent transition-all w-fit"
-                  >
-                    Enquire Now <ArrowRight size={16} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-brand-navy mb-2">{p.name}</h3>
+                  <p className="text-muted-foreground text-sm line-clamp-2 mb-6">{p.shortDescription}</p>
+                  <Button asChild variant="link" className="p-0 text-brand-gold font-bold h-auto hover:no-underline group/link">
+                    <Link href={`/products/${p.slug}`}>
+                      Explore Product <ArrowRight size={16} className="ml-2 group-hover/link:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How it Works */}
+      <section className="py-24 bg-brand-gold-light/20 px-4">
+        <div className="container mx-auto">
+          <div className="text-center mb-16 fade-up">
+            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-brand-navy">Streamlined Export Process</h2>
+            <p className="text-muted-foreground mt-4">Simple, transparent, and efficient from inquiry to delivery.</p>
+          </div>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: '01', title: 'Submit Inquiry', desc: 'Detail your requirements via our RFQ builder or WhatsApp.' },
+              { step: '02', title: 'Sample Approval', desc: 'We ship verified samples for your technical evaluation.' },
+              { step: '03', title: 'Contract & QC', desc: 'Secure payment via LC/TT followed by 3-stage production QC.' },
+              { step: '04', title: 'Global Dispatch', desc: 'Full logistics handling with door-to-door tracking.' }
+            ].map((s, i) => (
+              <div key={i} className="relative group p-8 bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500 fade-up">
+                <span className="text-6xl font-playfair font-bold text-brand-gold/10 absolute top-4 right-4 group-hover:text-brand-gold/20 transition-colors">{s.step}</span>
+                <h4 className="text-xl font-bold text-brand-navy mb-4 relative z-10">{s.title}</h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-navy-gradient text-white">
-        <div className="container mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
-          {[
-            { label: 'Export Destinations', val: '50+' },
-            { label: 'Units Shipped Annually', val: '1M+' },
-            { label: 'Global Clients', val: '500+' },
-            { label: 'On-Time Delivery', val: '99%' }
-          ].map(stat => (
-            <div key={stat.label} className="fade-up">
-              <h3 className="text-5xl md:text-6xl font-playfair font-bold text-accent mb-4">{stat.val}</h3>
-              <div className="h-0.5 w-16 bg-accent/40 mx-auto mb-4" />
-              <p className="text-white/70 text-xs font-bold uppercase tracking-widest">{stat.label}</p>
-            </div>
-          ))}
+      <TestimonialsCarousel />
+
+      {/* Client Wall Preview */}
+      <section className="py-20 bg-white border-y">
+        <div className="container mx-auto px-4">
+          <p className="text-center text-[10px] font-bold text-muted-foreground uppercase tracking-[0.4em] mb-12">Authorized Supply Partner For</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 opacity-40 hover:opacity-100 transition-opacity">
+            {initialClients.slice(0, 6).map((c) => (
+              <div key={c.id} className="flex items-center justify-center grayscale">
+                <Image src={c.logoUrl} alt={c.name} width={120} height={60} className="object-contain" />
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/clients" className="text-xs font-bold text-brand-navy hover:text-brand-gold uppercase tracking-widest border-b-2 border-brand-gold pb-1 transition-all">View Our Global Client Base</Link>
+          </div>
         </div>
       </section>
 
-      <section id="why" className="py-24 bg-white overflow-hidden px-4">
-        <div className="container mx-auto grid lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8 fade-up">
+      {/* Latest Blog */}
+      <section className="py-24 bg-white px-4">
+        <div className="container mx-auto">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-brand-navy font-bold text-xs uppercase tracking-widest mb-4 block">Efficiency & Trust</span>
-              <h2 className="text-4xl md:text-5xl font-playfair font-bold text-brand-navy leading-[1.2]">
-                The Partner Your <br className="hidden md:block" /> Business Deserves
-              </h2>
-              <p className="text-gray-500 text-lg leading-relaxed mt-6 max-w-lg">
-                We remove the complexities of international sourcing, providing a transparent and reliable bridge between India's manufacturing excellence and your warehouse.
-              </p>
+              <h2 className="text-4xl font-playfair font-bold text-brand-navy">Export Intelligence</h2>
+              <p className="text-muted-foreground mt-2">Technical guides and market updates for international buyers.</p>
             </div>
-            <Button asChild size="lg" className="rounded-full bg-gold-gradient text-brand-navy font-bold px-10 hover:scale-105 transition-all border-none">
-              <Link href="/inquiry">Start a Partnership <ArrowRight size={18} className="ml-2" /></Link>
+            <Button asChild variant="outline" className="hidden md:flex border-brand-navy rounded-xl">
+              <Link href="/blog">View All Insights</Link>
             </Button>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {[
-              { icon: <HandshakeIcon className="text-accent" />, title: 'Exclusive Manufacturer Access', desc: 'Better pricing and quality than dealing directly with factories.' },
-              { icon: <Globe className="text-accent" />, title: 'Global Shipping Expertise', desc: 'Hassle-free logistics with strong freight and cargo partners worldwide.' },
-              { icon: <Award className="text-accent" />, title: 'Quality That Speaks for Itself', desc: 'Product inspections, certifications, and sample approvals on every order.' },
-              { icon: <Eye className="text-accent" />, title: 'Transparent & Reliable', desc: 'Real-time updates, ethical sourcing, and clear communication throughout.' },
-              { icon: <Palette className="text-accent" />, title: 'Tailored Solutions', desc: 'We support retail chains, wholesalers, private labels, and distributors.' },
-              { icon: <Headphones className="text-accent" />, title: 'Dedicated Account Manager', desc: 'One dedicated contact for every client — responsive, expert, proactive.' }
-            ].map((card, i) => (
-              <div key={i} className="p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 fade-up group">
-                <div className="w-14 h-14 rounded-xl bg-brand-navy/5 group-hover:bg-brand-navy transition-colors flex items-center justify-center mb-6">
-                  {card.icon}
-                </div>
-                <h4 className="font-bold text-brand-navy mb-3 leading-tight">{card.title}</h4>
-                <p className="text-gray-500 text-sm leading-relaxed">{card.desc}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center py-20 col-span-3 border-2 border-dashed rounded-3xl">
+              <p className="text-muted-foreground font-bold uppercase tracking-widest">Visit the /blog section for latest insights</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="faq" className="py-24 bg-white px-4">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16 fade-up">
-            <h2 className="text-4xl md:text-5xl font-playfair font-bold text-brand-navy mb-6">Frequently Asked Questions</h2>
-            <div className="h-1 w-20 bg-accent mx-auto" />
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-4 fade-up">
-            {[
-              { q: "What is the minimum order quantity (MOQ)?", a: "MOQ varies by product category. We support both small trial orders and large bulk shipments. Contact us and we'll work out the best arrangement for your volume." },
-              { q: "Do you offer samples before bulk orders?", a: "Yes. We provide product samples for evaluation before any bulk commitment. Sample costs are typically credited against your first full order." },
-              { q: "What payment terms do you accept?", a: "We accept Letter of Credit (LC), Documents against Payment (DP), and Telegraphic Transfer (TT). Payment terms are discussed case by case based on order volume and client history." },
-              { q: "Can you handle custom branding and private labels?", a: "Absolutely. We offer full OEM and private label services — your branding on the products, tags, and packaging. Minimum quantities apply for custom tooling." },
-              { q: "Which certifications do your products carry?", a: "Our products carry ISO 9001, ISO 13485, CE Marking, FDA, OEKO-TEX®, and GOTS certifications depending on the product category and target market requirements." }
-            ].map((faq, i) => (
-              <AccordionItem key={i} value={`item-${i}`} className="border rounded-2xl px-6 bg-off-white">
-                <AccordionTrigger className="text-brand-navy font-bold text-lg hover:no-underline py-6">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 text-base leading-relaxed pb-6">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      <section id="contact" className="py-24 bg-white px-4">
-        <div className="container mx-auto grid lg:grid-cols-2 gap-20">
-          <div className="space-y-12 fade-up">
-            <div>
-              <span className="text-brand-navy font-bold text-xs uppercase tracking-widest block mb-4">Connect With Us</span>
-              <h2 className="text-5xl font-playfair font-bold text-brand-navy leading-tight">Ready to Source? <br /> Let's Talk.</h2>
-              <p className="text-gray-500 text-lg leading-relaxed mt-6 max-w-lg">Whether you need a price list, product samples, or a full export proposal — our team at Anabyn Global Ventures LLP responds within 24 hours.</p>
-            </div>
-
-            <div className="space-y-8">
-              {[
-                { icon: <Mail className="text-brand-navy" />, label: 'Email Address', val: 'sales@anabyn.com', href: 'mailto:sales@anabyn.com' },
-                { icon: <Phone className="text-brand-navy" />, label: 'Phone / Call', val: '+91 94956 13121', href: 'tel:+919495613121' },
-                { icon: <MessageSquare className="text-[#25D366]" />, label: 'WhatsApp', val: '+91 94956 13121', href: 'https://wa.me/919495613121' },
-                { icon: <MapPin className="text-accent" />, label: 'Location', val: 'India — Exporting Worldwide', href: '#' }
-              ].map((item, i) => (
-                <div key={i} className="flex items-start gap-6 group">
-                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0 group-hover:bg-white group-hover:shadow-xl transition-all">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-brand-navy mb-1 uppercase text-[10px] tracking-widest">{item.label}</h4>
-                    <a href={item.href} className="text-gray-600 font-medium hover:text-brand-navy transition-colors">{item.val}</a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
+      {/* Contact CTA */}
+      <section className="py-24 bg-brand-navy text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand-gold/5 blur-3xl rounded-full translate-x-1/2" />
+        <div className="container mx-auto px-4 relative z-10 grid lg:grid-cols-2 gap-20 items-center">
           <div className="fade-up">
-            <div className="bg-off-white p-10 rounded-[2.5rem] shadow-2xl border border-white">
-              <h3 className="text-2xl font-playfair font-bold text-brand-navy mb-8">Request a Quote</h3>
-              <form onSubmit={handleInquirySubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input type="text" placeholder="Your Name*" required className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none" />
-                  <input type="text" placeholder="Company Name*" required className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none" />
+            <h2 className="text-5xl font-playfair font-bold mb-8">Ready to Optimize Your Sourcing?</h2>
+            <p className="text-xl text-white/70 mb-12">Whether you need a full export proposal or simple product samples — our experts respond within 24 business hours.</p>
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                  <Mail className="text-brand-gold" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input type="email" placeholder="Email Address*" required className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none" />
-                  <input type="text" placeholder="Phone / WhatsApp" className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none" />
+                <p className="text-lg">sales@anabyn.com</p>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                  <Phone className="text-brand-gold" />
                 </div>
-                <input type="text" placeholder="Country*" required className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none" />
-                <select required className="bg-white border-none h-14 rounded-2xl px-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none text-gray-500 appearance-none">
-                  <option value="">Product Category*</option>
-                  <option value="bed-linen">Hotel Bed Linen</option>
-                  <option value="bath-linen">Hotel Bath Linen</option>
-                  <option value="uniforms">Uniforms & Workwear</option>
-                  <option value="syringes">Syringes & IV Sets</option>
-                  <option value="gloves">Surgical Gloves</option>
-                  <option value="beds">Hospital Beds</option>
-                  <option value="multiple">Multiple / Other</option>
-                </select>
-                <textarea placeholder="Tell us about your requirements (Sizes, Quantities, Customization)..." required className="bg-white border-none min-h-[150px] rounded-2xl p-6 w-full shadow-sm focus:ring-2 ring-brand-navy outline-none"></textarea>
-                <Button type="submit" className="w-full h-16 bg-brand-navy hover:bg-brand-navy/90 text-white font-bold rounded-2xl text-lg transition-all shadow-xl">
-                  Send Enquiry
-                </Button>
-              </form>
+                <p className="text-lg">+91 94956 13121</p>
+              </div>
             </div>
           </div>
+          <Card className="bg-white p-10 rounded-[2.5rem] shadow-2xl border-none fade-up">
+            <form onSubmit={handleInquirySubmit} className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                <input type="text" placeholder="Name*" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy" />
+                <input type="text" placeholder="Company*" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy" />
+              </div>
+              <input type="email" placeholder="Email*" required className="bg-secondary/10 border-none h-14 rounded-xl px-6 w-full text-brand-navy" />
+              <textarea placeholder="Requirements (Products, Quantities, Target Country)*" required className="bg-secondary/10 border-none h-40 rounded-xl p-6 w-full text-brand-navy resize-none" />
+              <Button type="submit" className="w-full h-16 bg-brand-navy text-white font-bold rounded-xl text-lg hover:bg-brand-navy/90 transition-all shadow-xl">Send Quote Request</Button>
+            </form>
+          </Card>
         </div>
       </section>
 
@@ -454,56 +331,44 @@ export default function MasterpiecePage() {
                 India's trusted export partner for hospitality and medical supplies — serving buyers in 50+ countries with quality, reliability, and every handshake honoured.
               </p>
               <div className="flex gap-4">
-                {[
-                  { icon: <LinkIcon size={18} />, href: 'https://www.linkedin.com/company/anabyn-global-ventures/' },
-                  { icon: <MessageSquare size={18} />, href: 'https://wa.me/919495613121' },
-                  { icon: <Globe size={18} />, href: 'https://share.google/Icw2FF4giN0LJdQcz' },
-                  { icon: <Mail size={18} />, href: 'mailto:sales@anabyn.com' }
-                ].map((s, i) => (
-                  <a key={i} href={s.href} target="_blank" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent hover:text-brand-navy transition-all">
-                    {s.icon}
-                  </a>
-                ))}
+                <a href="#" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all">
+                  <Globe size={18} />
+                </a>
+                <a href="#" className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all">
+                  <Globe size={18} />
+                </a>
               </div>
             </div>
 
             <div>
-              <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Products</h4>
+              <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Offerings</h4>
               <ul className="space-y-5 text-sm">
-                <li><Link href="#products" className="hover:text-accent transition-colors">Hotel Bed Sheets</Link></li>
-                <li><Link href="#products" className="hover:text-accent transition-colors">Hotel Towels</Link></li>
-                <li><Link href="#products" className="hover:text-accent transition-colors">Hospitality Uniforms</Link></li>
-                <li><Link href="#products" className="hover:text-accent transition-colors">Syringes & IV Sets</Link></li>
-                <li><Link href="#products" className="hover:text-accent transition-colors">Surgical Gloves</Link></li>
-                <li><Link href="#products" className="hover:text-accent transition-colors">Hospital Beds</Link></li>
+                <li><Link href="/products?category=hospitality-supplies" className="hover:text-brand-gold transition-colors">Hospitality Linens</Link></li>
+                <li><Link href="/products?category=hospitality-supplies" className="hover:text-brand-gold transition-colors">Staff Uniforms</Link></li>
+                <li><Link href="/products?category=medical-supplies" className="hover:text-brand-gold transition-colors">Medical Consumables</Link></li>
+                <li><Link href="/products?category=medical-supplies" className="hover:text-brand-gold transition-colors">Hospital Furniture</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
+              <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Quick Links</h4>
               <ul className="space-y-5 text-sm">
-                <li><Link href="/about-us" className="hover:text-accent transition-colors">About Us</Link></li>
-                <li><Link href="/customization" className="hover:text-accent transition-colors">Customization</Link></li>
-                <li><Link href="/quality" className="hover:text-accent transition-colors">Quality & Certifications</Link></li>
-                <li><Link href="#markets" className="hover:text-accent transition-colors">Global Markets</Link></li>
-                <li><Link href="/faq" className="hover:text-accent transition-colors">FAQ</Link></li>
-                <li><Link href="/careers" className="hover:text-accent transition-colors">Careers</Link></li>
+                <li><Link href="/about-us" className="hover:text-brand-gold transition-colors">Company Profile</Link></li>
+                <li><Link href="/certifications" className="hover:text-brand-gold transition-colors">Compliance Hub</Link></li>
+                <li><Link href="/how-we-export" className="hover:text-brand-gold transition-colors">Logistics Guide</Link></li>
+                <li><Link href="/testimonials" className="hover:text-brand-gold transition-colors">Buyer Reviews</Link></li>
+                <li><Link href="/clients" className="hover:text-brand-gold transition-colors">Client Network</Link></li>
               </ul>
             </div>
 
             <div>
               <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Get in Touch</h4>
               <ul className="space-y-6 text-sm">
-                <li className="flex items-center gap-3"><Mail size={16} className="text-accent" /> sales@anabyn.com</li>
-                <li className="flex items-center gap-3"><Phone size={16} className="text-accent" /> +91 94956 13121</li>
+                <li className="flex items-center gap-3"><Mail size={16} className="text-brand-gold" /> sales@anabyn.com</li>
+                <li className="flex items-center gap-3"><Phone size={16} className="text-brand-gold" /> +91 94956 13121</li>
                 <li>
-                  <Button asChild variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 rounded-xl py-6 bg-transparent">
-                    <a href="https://wa.me/919495613121" target="_blank">WhatsApp Us</a>
-                  </Button>
-                </li>
-                <li>
-                  <Button asChild className="w-full bg-accent text-brand-navy hover:bg-accent/90 rounded-xl py-6 font-bold border-none">
-                    <a href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank">⭐ Google Reviews</a>
+                  <Button asChild className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold/90 rounded-xl py-6 font-bold border-none">
+                    <a href="https://wa.me/919495613121" target="_blank">WhatsApp Hotline</a>
                   </Button>
                 </li>
               </ul>
@@ -523,7 +388,7 @@ export default function MasterpiecePage() {
       {showScrollTop && (
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-28 right-7 w-12 h-12 bg-navy-gradient text-accent border border-accent/40 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-[90]"
+          className="fixed bottom-10 right-10 w-12 h-12 bg-brand-gold text-brand-navy rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform z-[90]"
         >
           <ChevronUp size={24} />
         </button>
@@ -531,20 +396,4 @@ export default function MasterpiecePage() {
 
     </div>
   );
-}
-
-function HandshakeIcon(props: any) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="m11 17 2 2 6-6" /><path d="m18 10 1-1a2 2 0 0 0-3-3l-4 4" /><path d="m14 11 3 3" /><path d="m5 15-3-3a2 2 0 0 1 3-3l4 4" /><path d="m7 12 3 3" /><path d="m11 17-2 2a2 2 0 0 1-3-3l4-4" />
-    </svg>
-  )
-}
-
-function LinkIcon(props: any) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-    </svg>
-  )
 }
