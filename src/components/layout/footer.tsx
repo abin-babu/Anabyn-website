@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -10,7 +11,7 @@ export function Footer() {
 
   return (
     <footer className="bg-[#0D1B3E] pt-24 pb-12 text-white/70 overflow-hidden">
-      <div className="container px-4">
+      <div className="container px-4 mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           <div className="lg:col-span-1.5 space-y-8">
             <AnabynLogo />
@@ -41,23 +42,23 @@ export function Footer() {
           <div>
             <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Products</h4>
             <ul className="space-y-5 text-sm">
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Hotel Bed Sheets</Link></li>
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Hotel Towels</Link></li>
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Hospitality Uniforms</Link></li>
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Syringes & IV Sets</Link></li>
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Surgical Gloves</Link></li>
-              <li><Link href="#products" className="hover:text-[#C8A020] transition-colors">Hospital Beds</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hotel Bed Sheets</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hotel Towels</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hospitality Uniforms</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Syringes & IV Sets</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Surgical Gloves</Link></li>
+              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hospital Beds</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
+            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Intelligence</h4>
             <ul className="space-y-5 text-sm">
-              <li><Link href="#about" className="hover:text-[#C8A020] transition-colors">About Us</Link></li>
-              <li><Link href="#customization" className="hover:text-[#C8A020] transition-colors">Customization</Link></li>
-              <li><Link href="#certifications" className="hover:text-[#C8A020] transition-colors">Quality & Certifications</Link></li>
-              <li><Link href="#markets" className="hover:text-[#C8A020] transition-colors">Global Markets</Link></li>
-              <li><Link href="#faq" className="hover:text-[#C8A020] transition-colors">FAQ</Link></li>
+              <li><Link href="/blog" className="hover:text-[#C8A020] transition-colors">Expert Insights</Link></li>
+              <li><Link href="/how-we-export" className="hover:text-[#C8A020] transition-colors">Import Guide</Link></li>
+              <li><Link href="/certifications" className="hover:text-[#C8A020] transition-colors">Quality Standards</Link></li>
+              <li><Link href="/sustainability" className="hover:text-[#C8A020] transition-colors">Sustainability</Link></li>
+              <li><Link href="/about-us" className="hover:text-[#C8A020] transition-colors">Company Profile</Link></li>
               <li><Link href="/careers" className="hover:text-[#C8A020] transition-colors">Careers</Link></li>
             </ul>
           </div>

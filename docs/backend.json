@@ -48,6 +48,34 @@
         "active": { "type": "boolean" }
       }
     },
+    "BlogPost": {
+      "title": "BlogPost",
+      "type": "object",
+      "description": "SEO-optimized articles for content marketing.",
+      "properties": {
+        "slug": { "type": "string" },
+        "title": { "type": "string" },
+        "metaTitle": { "type": "string" },
+        "metaDescription": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "category": { "type": "string", "enum": ["Export Guides", "Industry Insights", "Product Updates", "Trade News"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "author": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "avatar": { "type": "string" }
+          }
+        },
+        "publishedAt": { "type": "string", "format": "date-time" },
+        "readingTime": { "type": "number" },
+        "featuredImage": { "type": "string", "format": "uri" },
+        "featured": { "type": "boolean" }
+      },
+      "required": ["slug", "title", "content", "category", "author"]
+    },
     "Certificate": {
       "title": "Certificate",
       "description": "Company compliance and verification documents.",
@@ -72,7 +100,7 @@
       "type": "object",
       "description": "Multi-step quote request from potential buyers.",
       "properties": {
-        "rfqId": { "type": "string", "description": "Format: AGV-2026-XXXX" },
+        "rfqId": { "type": "string" },
         "category": { "type": "string" },
         "product": { "type": "string" },
         "quantity": { "type": "number" },
@@ -127,6 +155,10 @@
     "/products/{productId}": {
       "schema": "#/backend/entities/Product",
       "description": "Product catalog data."
+    },
+    "/blog_posts/{postId}": {
+      "schema": "#/backend/entities/BlogPost",
+      "description": "Articles and news."
     },
     "/certificates/{certificateId}": {
       "schema": "#/backend/entities/Certificate",

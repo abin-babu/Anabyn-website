@@ -28,9 +28,10 @@ export function Header() {
 
   const navLinks = [
     { label: 'Products', href: '/products' },
-    { label: 'About Us', href: '/about-us' },
+    { label: 'About', href: '/about-us' },
     { label: 'Certifications', href: '/certifications' },
-    { label: 'How We Export', href: '/how-we-export' },
+    { label: 'Export Guide', href: '/how-we-export' },
+    { label: 'Insights', href: '/blog' },
     { label: 'FAQ', href: '/faq' },
   ];
 
