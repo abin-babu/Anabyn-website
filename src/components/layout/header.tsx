@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -30,6 +29,7 @@ export function Header() {
     { label: 'Products', href: '/#products' },
     { label: 'About Us', href: '/about-us' },
     { label: 'Certifications', href: '/certifications' },
+    { label: 'How We Export', href: '/how-we-export' },
     { label: 'Markets', href: '/#markets' },
     { label: 'FAQ', href: '/faq' },
   ];
@@ -42,7 +42,7 @@ export function Header() {
         isScrolled && "shadow-xl border-[#C8A020]/40"
       )}
     >
-      <div className="container h-full flex items-center justify-between px-4">
+      <div className="container h-full flex items-center justify-between px-4 mx-auto">
         <Link href="/" className="group">
           <AnabynLogo />
         </Link>
@@ -67,8 +67,11 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white">
                 <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">English</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Arabic (Coming Soon)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">French (Coming Soon)</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Arabic</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">French</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Spanish</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">German</DropdownMenuItem>
+                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer">Hindi</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

@@ -1,4 +1,3 @@
-
 {
   "entities": {
     "Certificate": {
@@ -67,6 +66,33 @@
         "country": { "type": "string" },
         "timestamp": { "type": "string", "format": "date-time" }
       }
+    },
+    "ShippingRoute": {
+      "title": "ShippingRoute",
+      "type": "object",
+      "properties": {
+        "region": { "type": "string" },
+        "port": { "type": "string" },
+        "transitTime": { "type": "string" },
+        "mode": { "type": "string" }
+      }
+    },
+    "HSCode": {
+      "title": "HSCode",
+      "type": "object",
+      "properties": {
+        "product": { "type": "string" },
+        "code": { "type": "string" }
+      }
+    },
+    "MOQData": {
+      "title": "MOQData",
+      "type": "object",
+      "properties": {
+        "product": { "type": "string" },
+        "moq": { "type": "string" },
+        "leadTime": { "type": "string" }
+      }
     }
   },
   "auth": {
@@ -84,6 +110,18 @@
     "/audit_requests/{requestId}": {
       "schema": "#/backend/entities/AuditRequest",
       "description": "Requests for full audit reports."
+    },
+    "/shipping_routes/{routeId}": {
+      "schema": "#/backend/entities/ShippingRoute",
+      "description": "Information about global shipping routes."
+    },
+    "/hs_codes/{codeId}": {
+      "schema": "#/backend/entities/HSCode",
+      "description": "Harmonized System codes for products."
+    },
+    "/moq_data/{dataId}": {
+      "schema": "#/backend/entities/MOQData",
+      "description": "MOQ and lead time information per product."
     }
   }
 }

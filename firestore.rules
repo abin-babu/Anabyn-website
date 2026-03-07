@@ -1,4 +1,3 @@
-
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -22,6 +21,21 @@ service cloud.firestore {
     match /audit_requests/{requestId} {
       allow create: if true;
       allow read, write: if isAdmin();
+    }
+
+    match /shipping_routes/{routeId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /hs_codes/{codeId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /moq_data/{dataId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
     match /roles_admin/{uid} {
