@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -157,7 +156,7 @@ export function Header() {
                   <DropdownMenuItem 
                     key={lang.code}
                     className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold flex items-center justify-between"
-                    onClick={() => handleLanguageChange(lang.code)}
+                    onSelect={() => handleLanguageChange(lang.code)}
                   >
                     <span>{lang.name}</span>
                     <span>{lang.flag}</span>
@@ -232,7 +231,7 @@ export function Header() {
                     {languages.map((lang) => (
                       <DropdownMenuItem 
                         key={lang.code}
-                        onClick={() => handleLanguageChange(lang.code)}
+                        onSelect={() => handleLanguageChange(lang.code)}
                         className="p-4"
                       >
                         {lang.flag} {lang.name}
