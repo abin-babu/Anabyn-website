@@ -64,12 +64,6 @@ export default function HomePage() {
     };
   }, []);
 
-  const handleInquirySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Thank you! Your enquiry has been received. Anabyn Global Ventures LLP will respond within 24 hours.");
-    (e.target as HTMLFormElement).reset();
-  };
-
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white animate-fade-in">
       <CountrySelector />
@@ -101,7 +95,7 @@ export default function HomePage() {
 
             <h1 className="text-5xl md:text-8xl font-playfair font-bold text-white leading-[1.05] tracking-tight">
               {t.rich('headline', {
-                gold: (chunks) => <span className="text-brand-gold">{t('headlineGold')}</span>
+                gold: <span className="text-brand-gold">{t('headlineGold')}</span>
               })}
             </h1>
 
