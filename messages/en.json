@@ -1,0 +1,39 @@
+
+{
+  "Nav": {
+    "products": "Products",
+    "about": "About",
+    "certifications": "Certifications",
+    "howWeExport": "How We Export",
+    "blog": "Blog",
+    "sustainability": "Sustainability",
+    "requestQuote": "Request Quote"
+  },
+  "Hero": {
+    "badge": "India's Trusted Global Export Partner",
+    "headline": "India's Authority in {gold}",
+    "headlineGold": "Exporting Excellence.",
+    "subheadline": "Verified quality across Hospitality & Medical categories. On-time delivery to 20+ countries. Every handshake honoured.",
+    "ctaQuote": "Request a Quote",
+    "ctaCatalogue": "Browse Catalogue",
+    "ctaWhatsApp": "WhatsApp",
+    "scroll": "Scroll to Explore"
+  },
+  "Common": {
+    "loading": "Loading...",
+    "en": "English",
+    "ar": "Arabic",
+    "fr": "French",
+    "es": "Spanish",
+    "de": "German",
+    "hi": "Hindi"
+  },
+  "Footer": {
+    "description": "India's trusted export partner for hospitality and medical supplies — serving buyers in 50+ countries with quality, reliability, and every handshake honoured.",
+    "products": "Products",
+    "intelligence": "Intelligence",
+    "getInTouch": "Get in Touch",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}

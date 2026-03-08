@@ -2,9 +2,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link, useRouter, usePathname } from '@/i18n/routing';
+import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Globe, Package, ShieldCheck, Mail, Phone, ShoppingCart } from 'lucide-react';
+import { Menu, X, ChevronDown, Globe, Package, Mail, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnabynLogo } from '@/components/anabyn-logo';
 import {
@@ -16,6 +17,12 @@ import {
 import { products as catalog } from '@/lib/products';
 
 export function Header() {
+  const t = useTranslations('Nav');
+  const commonT = useTranslations('Common');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
@@ -29,17 +36,32 @@ export function Header() {
   }, []);
 
   const navLinks = [
-    { label: 'About', href: '/about-us' },
-    { label: 'Certifications', href: '/certifications' },
-    { label: 'How We Export', href: '/how-we-export' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Sustainability', href: '/sustainability' },
+    { label: t('about'), href: '/about-us' },
+    { label: t('certifications'), href: '/certifications' },
+    { label: t('howWeExport'), href: '/how-we-export' },
+    { label: t('blog'), href: '/blog' },
+    { label: t('sustainability'), href: '/sustainability' },
   ];
 
   const categories = [
     { name: 'Hospitality Supplies', id: 'hospitality-supplies', desc: 'Premium linens, towels & uniforms' },
     { name: 'Medical Supplies', id: 'medical-supplies', desc: 'Sterile disposables & hospital furniture' }
   ];
+
+  const languages = [
+    { code: 'en', name: commonT('en'), flag: '🇺🇸' },
+    { code: 'ar', name: commonT('ar'), flag: '🇦🇪' },
+    { code: 'fr', name: commonT('fr'), flag: '🇫🇷' },
+    { code: 'es', name: commonT('es'), flag: '🇪🇸' },
+    { code: 'de', name: commonT('de'), flag: '🇩🇪' },
+    { code: 'hi', name: commonT('hi'), flag: '🇮🇳' },
+  ];
+
+  const handleLanguageChange = (newLocale: string) => {
+    router.replace(pathname, { locale: newLocale });
+  };
+
+  const currentLang = languages.find(l => l.code === locale) || languages[0];
 
   return (
     <header 
@@ -63,7 +85,7 @@ export function Header() {
             onMouseLeave={() => setActiveMegaMenu(null)}
           >
             <button className="flex items-center gap-1.5 text-white/90 hover:text-brand-gold text-sm font-bold uppercase tracking-widest transition-colors">
-              Products <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", activeMegaMenu === 'products' && "rotate-180")} />
+              {t('products')} <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", activeMegaMenu === 'products' && "rotate-180")} />
             </button>
 
             {/* Mega Menu Content */}
@@ -71,7 +93,7 @@ export function Header() {
               "absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[600px] transition-all duration-300 transform",
               activeMegaMenu === 'products' ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 pointer-events-none"
             )}>
-              <div className="bg-white rounded-3xl shadow-2xl border border-brand-gold/20 overflow-hidden grid grid-cols-2">
+              <div className="bg-white rounded-3xl shadow-2xl border border-brand-gold/20 overflow-hidden grid grid-cols-2 text-left">
                 <div className="p-8 bg-secondary/10">
                   <h4 className="text-xs font-bold text-brand-navy uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
                     <Package className="w-4 h-4 text-brand-gold" /> Categories
@@ -116,26 +138,31 @@ export function Header() {
           {navLinks.map((link) => (
             <Link 
               key={link.label} 
-              href={link.href}
+              href={link.href as any}
               className="px-4 py-2 text-white/90 hover:text-brand-gold text-sm font-bold uppercase tracking-widest transition-colors"
             >
               {link.label}
             </Link>
           ))}
           
-          <div className="flex items-center gap-4 border-l border-white/10 ml-4 pl-6">
+          <div className={cn("flex items-center gap-4 border-white/10 ml-4 pl-6", locale === 'ar' ? "border-r mr-4 pr-6" : "border-l ml-4 pl-6")}>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center gap-2 text-white/80 hover:text-white text-xs font-bold uppercase tracking-widest outline-none">
-                  <Globe className="w-4 h-4 text-brand-gold" /> EN <ChevronDown className="w-3 h-3" />
+                  <Globe className="w-4 h-4 text-brand-gold" /> {currentLang.code.toUpperCase()} <ChevronDown className="w-3 h-3" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white min-w-[140px]">
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold">English (EN)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold text-right" dir="rtl">العربية (AR)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold">Français (FR)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold">Deutsch (DE)</DropdownMenuItem>
-                <DropdownMenuItem className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold">हिन्दी (HI)</DropdownMenuItem>
+                {languages.map((lang) => (
+                  <DropdownMenuItem 
+                    key={lang.code}
+                    className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold flex items-center justify-between"
+                    onClick={() => handleLanguageChange(lang.code)}
+                  >
+                    <span>{lang.name}</span>
+                    <span>{lang.flag}</span>
+                  </DropdownMenuItem>
+                ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -143,7 +170,7 @@ export function Header() {
               asChild
               className="rounded-full bg-brand-gold text-brand-navy font-black border-none hover:scale-105 transition-all px-8 shadow-xl shadow-brand-gold/20 h-11"
             >
-              <Link href="/request-quote">Request Quote</Link>
+              <Link href="/request-quote">{t('requestQuote')}</Link>
             </Button>
           </div>
         </nav>
@@ -166,8 +193,9 @@ export function Header() {
           onClick={() => setIsMobileMenuOpen(false)}
         />
         <div className={cn(
-          "absolute right-0 top-0 h-full w-[85%] max-w-sm bg-brand-navy border-l border-brand-gold/20 shadow-2xl transition-transform duration-500 transform",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          "absolute top-0 h-full w-[85%] max-w-sm bg-brand-navy border-brand-gold/20 shadow-2xl transition-transform duration-500 transform",
+          locale === 'ar' ? "left-0 border-r" : "right-0 border-l",
+          isMobileMenuOpen ? "translate-x-0" : (locale === 'ar' ? "-translate-x-full" : "translate-x-full")
         )}>
           <div className="p-6 flex flex-col h-full">
             <div className="flex items-center justify-between mb-12">
@@ -178,11 +206,11 @@ export function Header() {
             </div>
 
             <nav className="flex flex-col gap-6">
-              <Link href="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4">Products</Link>
+              <Link href="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4">{t('products')}</Link>
               {navLinks.map((link) => (
                 <Link 
                   key={link.label} 
-                  href={link.href}
+                  href={link.href as any}
                   className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -192,6 +220,27 @@ export function Header() {
             </nav>
 
             <div className="mt-auto pt-12 space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full bg-white/5 border-white/10 text-white justify-between">
+                      <span className="flex items-center gap-2"><Globe className="w-4 h-4" /> {currentLang.name}</span>
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-brand-navy border-brand-gold/20 text-white w-64">
+                    {languages.map((lang) => (
+                      <DropdownMenuItem 
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className="p-4"
+                      >
+                        {lang.flag} {lang.name}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
               <div className="grid grid-cols-2 gap-4">
                 <a href="mailto:sales@anabyn.com" className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/10">
                   <Mail className="w-5 h-5 text-brand-gold mb-2" />
@@ -203,7 +252,7 @@ export function Header() {
                 </a>
               </div>
               <Button asChild className="w-full rounded-2xl bg-brand-gold text-brand-navy font-black py-8 text-lg">
-                <Link href="/request-quote" onClick={() => setIsMobileMenuOpen(false)}>Request Quote</Link>
+                <Link href="/request-quote" onClick={() => setIsMobileMenuOpen(false)}>{t('requestQuote')}</Link>
               </Button>
             </div>
           </div>

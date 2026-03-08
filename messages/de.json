@@ -1,0 +1,39 @@
+
+{
+  "Nav": {
+    "products": "Produkte",
+    "about": "Über uns",
+    "certifications": "Zertifizierungen",
+    "howWeExport": "Wie wir exportieren",
+    "blog": "Blog",
+    "sustainability": "Nachhaltigkeit",
+    "requestQuote": "Angebot anfordern"
+  },
+  "Hero": {
+    "badge": "Indiens vertrauenswürdiger globaler Exportpartner",
+    "headline": "Indiens Autorität für {gold}",
+    "headlineGold": "Export-Exzellenz.",
+    "subheadline": "Geprüfte Qualität in den Kategorien Gastgewerbe und Medizin. Pünktliche Lieferung in über 20 Länder.",
+    "ctaQuote": "Angebot anfordern",
+    "ctaCatalogue": "Katalog durchsuchen",
+    "ctaWhatsApp": "WhatsApp",
+    "scroll": "Scrollen zum Erkunden"
+  },
+  "Common": {
+    "loading": "Laden...",
+    "en": "Englisch",
+    "ar": "Arabisch",
+    "fr": "Französisch",
+    "es": "Spanisch",
+    "de": "Deutsch",
+    "hi": "Hindi"
+  },
+  "Footer": {
+    "description": "Indiens vertrauenswürdiger Exportpartner für Hotel- und Medizinbedarf.",
+    "products": "Produkte",
+    "intelligence": "Wissen",
+    "getInTouch": "Kontakt",
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
+  }
+}

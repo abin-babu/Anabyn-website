@@ -1,0 +1,39 @@
+
+{
+  "Nav": {
+    "products": "Produits",
+    "about": "À propos",
+    "certifications": "Certifications",
+    "howWeExport": "Comment nous exportons",
+    "blog": "Blog",
+    "sustainability": "Durabilité",
+    "requestQuote": "Demander un devis"
+  },
+  "Hero": {
+    "badge": "Partenaire d'exportation mondial de confiance en Inde",
+    "headline": "L'autorité indienne en {gold}",
+    "headlineGold": "Excellence de l'exportation.",
+    "subheadline": "Qualité vérifiée dans les catégories hôtellerie et médicale. Livraison à temps dans plus de 20 pays.",
+    "ctaQuote": "Demander un devis",
+    "ctaCatalogue": "Parcourir le catalogue",
+    "ctaWhatsApp": "WhatsApp",
+    "scroll": "Faire défiler pour explorer"
+  },
+  "Common": {
+    "loading": "Chargement...",
+    "en": "Anglais",
+    "ar": "Arabe",
+    "fr": "Français",
+    "es": "Espagnol",
+    "de": "Allemand",
+    "hi": "Hindi"
+  },
+  "Footer": {
+    "description": "Partenaire d'exportation de confiance de l'Inde pour les fournitures hôtelières et médicales.",
+    "products": "Produits",
+    "intelligence": "Intelligence",
+    "getInTouch": "Contactez-nous",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation"
+  }
+}

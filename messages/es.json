@@ -1,0 +1,39 @@
+
+{
+  "Nav": {
+    "products": "Productos",
+    "about": "Sobre nosotros",
+    "certifications": "Certificaciones",
+    "howWeExport": "Cómo exportamos",
+    "blog": "Blog",
+    "sustainability": "Sostenibilidad",
+    "requestQuote": "Solicitar presupuesto"
+  },
+  "Hero": {
+    "badge": "Socio de exportación global confiable de la India",
+    "headline": "La autoridad de la India en {gold}",
+    "headlineGold": "Excelencia exportadora.",
+    "subheadline": "Calidad verificada en categorías hospitalarias y médicas. Entrega puntual a más de 20 países.",
+    "ctaQuote": "Solicitar presupuesto",
+    "ctaCatalogue": "Ver catálogo",
+    "ctaWhatsApp": "WhatsApp",
+    "scroll": "Deslizar para explorar"
+  },
+  "Common": {
+    "loading": "Cargando...",
+    "en": "Inglés",
+    "ar": "Árabe",
+    "fr": "Francés",
+    "es": "Español",
+    "de": "Alemán",
+    "hi": "Hindi"
+  },
+  "Footer": {
+    "description": "Socio de exportación confiable de la India para suministros de hostelería y médicos.",
+    "products": "Productos",
+    "intelligence": "Inteligencia",
+    "getInTouch": "Póngase en contacto",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio"
+  }
+}
