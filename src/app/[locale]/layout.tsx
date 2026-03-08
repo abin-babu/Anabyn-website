@@ -47,7 +47,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={`light ${playfair.variable} ${dmSans.variable} ${jetbrains.variable}`}>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={`light ${playfair.variable} ${dmSans.variable} ${jetbrains.variable}`} suppressHydrationWarning>
       <head>
         <link 
           rel="stylesheet" 
@@ -56,7 +56,7 @@ export default async function LocaleLayout({
           referrerPolicy="no-referrer" 
         />
       </head>
-      <body className="font-body antialiased animate-fade-in">
+      <body className="font-body antialiased animate-fade-in" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
               {children}
