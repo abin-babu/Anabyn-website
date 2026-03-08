@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -48,7 +49,9 @@ export function Header() {
   ];
 
   const languages = [
-    { code: 'en', name: commonT('en'), flag: '🇺🇸' },
+    { code: 'en', name: commonT('en'), flag: '🌐' },
+    { code: 'en-US', name: commonT('en-US'), flag: '🇺🇸' },
+    { code: 'en-GB', name: commonT('en-GB'), flag: '🇬🇧' },
     { code: 'ar', name: commonT('ar'), flag: '🇦🇪' },
     { code: 'fr', name: commonT('fr'), flag: '🇫🇷' },
     { code: 'es', name: commonT('es'), flag: '🇪🇸' },
@@ -151,11 +154,11 @@ export function Header() {
                   <Globe className="w-4 h-4 text-brand-gold" /> {currentLang.code.toUpperCase()} <ChevronDown className="w-3 h-3" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white min-w-[140px]">
+              <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white min-w-[180px] max-h-[400px] overflow-y-auto custom-scrollbar">
                 {languages.map((lang) => (
                   <DropdownMenuItem 
                     key={lang.code}
-                    className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold flex items-center justify-between"
+                    className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold flex items-center justify-between p-3"
                     onSelect={() => handleLanguageChange(lang.code)}
                   >
                     <span>{lang.name}</span>
@@ -204,7 +207,7 @@ export function Header() {
               </button>
             </div>
 
-            <nav className="flex flex-col gap-6">
+            <nav className="flex flex-col gap-6 overflow-y-auto">
               <Link href="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4">{t('products')}</Link>
               {navLinks.map((link) => (
                 <Link 
@@ -227,7 +230,7 @@ export function Header() {
                       <ChevronDown className="w-4 h-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-brand-navy border-brand-gold/20 text-white w-64">
+                  <DropdownMenuContent className="bg-brand-navy border-brand-gold/20 text-white w-64 max-h-[300px] overflow-y-auto">
                     {languages.map((lang) => (
                       <DropdownMenuItem 
                         key={lang.code}

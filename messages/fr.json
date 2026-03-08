@@ -22,6 +22,8 @@
   "Common": {
     "loading": "Chargement...",
     "en": "Anglais",
+    "en-US": "Anglais (États-Unis)",
+    "en-GB": "Anglais (Royaume-Uni)",
     "ar": "Arabe",
     "fr": "Français",
     "es": "Espagnol",

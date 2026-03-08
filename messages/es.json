@@ -22,6 +22,8 @@
   "Common": {
     "loading": "Cargando...",
     "en": "Inglés",
+    "en-US": "Inglés (EE. UU.)",
+    "en-GB": "Inglés (Reino Unido)",
     "ar": "Árabe",
     "fr": "Francés",
     "es": "Español",
