@@ -210,7 +210,7 @@ export default function AdminPage() {
                                     <PackageCheck className="text-success w-8 h-8" />
                                 </div>
                             </CardContent>
-                        </div>
+                        </Card>
                     </div>
 
                     <Card className="mb-8 border-brand-gold/20">
