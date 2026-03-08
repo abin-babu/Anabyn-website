@@ -44,7 +44,8 @@ import {
   LayoutDashboard, 
   PackageCheck,
   User,
-  Clock
+  Clock,
+  Loader2
 } from 'lucide-react';
 import { products as productCatalog } from '@/lib/products';
 
@@ -388,7 +389,6 @@ export default function AdminPage() {
                         </TabsContent>
 
                         <TabsContent value="inquiries">
-                            {/* Existing Inquiries Table code remains stable here */}
                             <Card className="border-none shadow-xl overflow-hidden">
                                 <Table>
                                     <TableHeader className="bg-brand-navy text-white">

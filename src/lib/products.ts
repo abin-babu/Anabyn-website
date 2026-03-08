@@ -1,4 +1,19 @@
-import type { Product } from './types';
+
+import type { Product, Category } from './types';
+
+export const categories: Category[] = [
+  { id: 'hospitality-supplies', name: 'Hospitality Supplies', slug: 'hospitality-supplies', parentId: null, imageUrl: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80' },
+  { id: 'medical-supplies', name: 'Medical Supplies', slug: 'medical-supplies', parentId: null, imageUrl: 'https://images.unsplash.com/photo-1579684385127-6c17937c4635?w=800&q=80' },
+  { id: 'bed-linen', name: 'Bed Linen', slug: 'bed-linen', parentId: 'hospitality-supplies' },
+  { id: 'bath-linen', name: 'Bath Linen', slug: 'bath-linen', parentId: 'hospitality-supplies' },
+  { id: 'uniforms', name: 'Uniforms', slug: 'uniforms', parentId: 'hospitality-supplies' },
+  { id: 'f-b-linen', name: 'F&B Linen', slug: 'f-b-linen', parentId: 'hospitality-supplies' },
+  { id: 'consumables', name: 'Consumables', slug: 'consumables', parentId: 'medical-supplies' },
+  { id: 'furniture', name: 'Furniture', slug: 'furniture', parentId: 'medical-supplies' },
+  { id: 'devices', name: 'Devices', slug: 'devices', parentId: 'medical-supplies' },
+  { id: 'emergency', name: 'Emergency', slug: 'emergency', parentId: 'medical-supplies' },
+  { id: 'rehab', name: 'Rehab', slug: 'rehab', parentId: 'medical-supplies' },
+];
 
 export const products: Product[] = [
   // --- HOSPITALITY SUPPLIES ---
