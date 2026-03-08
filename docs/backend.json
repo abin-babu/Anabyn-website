@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "Product": {
@@ -47,33 +48,6 @@
         "active": { "type": "boolean" }
       }
     },
-    "BlogPost": {
-      "title": "BlogPost",
-      "type": "object",
-      "description": "SEO-optimized articles for content marketing.",
-      "properties": {
-        "slug": { "type": "string" },
-        "title": { "type": "string" },
-        "metaTitle": { "type": "string" },
-        "metaDescription": { "type": "string" },
-        "excerpt": { "type": "string" },
-        "content": { "type": "string" },
-        "category": { "type": "string", "enum": ["Export Guides", "Industry Insights", "Product Updates", "Trade News"] },
-        "tags": { "type": "array", "items": { "type": "string" } },
-        "author": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "role": { "type": "string" },
-            "avatar": { "type": "string" }
-          }
-        },
-        "publishedAt": { "type": "string", "format": "date-time" },
-        "readingTime": { "type": "number" },
-        "featuredImage": { "type": "string", "format": "uri" },
-        "featured": { "type": "boolean" }
-      }
-    },
     "Order": {
       "title": "Order",
       "type": "object",
@@ -81,18 +55,31 @@
       "properties": {
         "orderId": { "type": "string" },
         "buyerUid": { "type": "string" },
+        "companyName": { "type": "string" },
         "product": { "type": "string" },
         "quantity": { "type": "number" },
         "unit": { "type": "string" },
-        "status": { "type": "string", "enum": ["Processing", "Shipped", "Delivered"] },
+        "status": { "type": "string", "enum": ["Processing", "In Production", "QC Passed", "Shipped", "Delivered"] },
         "trackingNumber": { "type": "string" },
         "carrier": { "type": "string" },
+        "timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "status": { "type": "string" },
+              "date": { "type": "string", "format": "date-time" },
+              "note": { "type": "string" }
+            }
+          }
+        },
         "documents": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "name": { "type": "string" },
+              "type": { "type": "string" },
               "url": { "type": "string", "format": "uri" }
             }
           }
@@ -100,16 +87,16 @@
         "createdAt": { "type": "string", "format": "date-time" }
       }
     },
-    "RFQSubmission": {
-      "title": "RFQ Submission",
+    "SampleRequest": {
+      "title": "Sample Request",
       "type": "object",
       "properties": {
-        "rfqId": { "type": "string" },
-        "category": { "type": "string" },
-        "product": { "type": "string" },
-        "quantity": { "type": "number" },
-        "destinationCountry": { "type": "string" },
-        "status": { "type": "string", "enum": ["New", "In Progress", "Quoted", "Closed"] }
+        "id": { "type": "string" },
+        "buyerUid": { "type": "string" },
+        "productName": { "type": "string" },
+        "status": { "type": "string", "enum": ["Requested", "Dispatched", "Received", "Closed"] },
+        "rating": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
       }
     }
   },
@@ -121,65 +108,19 @@
       "schema": "#/backend/entities/Product",
       "description": "Product catalog data."
     },
-    "/blog_posts/{postId}": {
-      "schema": "#/backend/entities/BlogPost",
-      "description": "Articles and news."
-    },
-    "/testimonials/{id}": {
-      "description": "Customer reviews."
-    },
-    "/certifications/{id}": {
-      "description": "Compliance certificates."
-    },
-    "/rfq_submissions/{id}": {
-      "schema": "#/backend/entities/RFQSubmission",
-      "description": "Buyer quote requests."
-    },
     "/orders/{orderId}": {
       "schema": "#/backend/entities/Order",
       "description": "Customer orders."
     },
-    "/clients/{id}": {
-      "description": "Partner logos."
+    "/sample_requests/{id}": {
+      "schema": "#/backend/entities/SampleRequest",
+      "description": "Product sample requests from portal."
     },
-    "/shipping_routes/{id}": {
-      "description": "Logistics data."
-    },
-    "/hs_codes/{id}": {
-      "description": "Harmonized System codes."
+    "/access_requests/{id}": {
+      "description": "Requests for portal access from new buyers."
     }
   },
   "storage": {
-    "/certificates/": { "description": "PDF certificates for public viewing." },
-    "/products/images/": { "description": "High-res product photography." },
-    "/client-logos/": { "description": "Partner corporate logos." },
-    "/buyer-portal/documents/": { "description": "Confidential order documents per buyer." },
-    "/blog/images/": { "description": "Article featured images." }
-  },
-  "extensions": [
-    {
-      "name": "firestore-send-email",
-      "description": "Trigger Email: Automatically sends confirmation emails when an RFQ is submitted to the rfq_submissions collection.",
-      "config": {
-        "collection": "rfq_submissions",
-        "emailField": "mail"
-      }
-    },
-    {
-      "name": "storage-resize-images",
-      "description": "Resize Images: Automatically generates optimized thumbnails for product images uploaded to /products/images/.",
-      "config": {
-        "sizes": "200x200,800x800",
-        "bucket": "studio-9297553856-4efc0.firebasestorage.app"
-      }
-    },
-    {
-      "name": "firestore-algolia-search",
-      "description": "Search with Algolia: Syncs the products collection to Algolia for high-performance, typo-tolerant search across the catalogue.",
-      "config": {
-        "collection": "products",
-        "indexName": "products_index"
-      }
-    }
-  ]
+    "/buyer-portal/documents/{uid}/": { "description": "Confidential order documents per buyer." }
+  }
 }
