@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -6,18 +5,19 @@ import Link from 'next/link';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import type { Product } from '@/lib/types';
-import { ArrowRight, Search, ShieldCheck } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Badge } from './ui/badge';
 
 export function ProductCard({ product }: { product: Product }) {
   const categoryLabel = product.category === 'hospitality-supplies' ? 'Hospitality' : 'Medical';
+  const altPrefix = product.category === 'hospitality-supplies' ? 'premium cotton fabric export India' : 'medical supplies exporter India';
   
   return (
     <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border-t-0 hover:border-t-4 border-brand-gold">
       <Link href={`/products/${product.slug}`} className="block overflow-hidden relative aspect-[4/3]">
         <Image
           src={product.images[0] || 'https://placehold.co/600x400'}
-          alt={product.name}
+          alt={`${product.name} - ${altPrefix}`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-110"

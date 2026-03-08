@@ -77,16 +77,43 @@ export default function ProductListingPage() {
     setPrivateLabelFilter(false);
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which certifications do your export products carry?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our products are certified by OEKO-TEX, GOTS, ISO 9001, CE, and FDA, ensuring they meet global import standards for the USA, EU, and Middle East."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical minimum order quantity (MOQ)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MOQ varies by category: Hotel linens typically start at 100 sets, towels at 500 pieces, and medical disposables at 10,000 units."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <main className="flex-1 bg-secondary/20 pt-32 pb-20">
         <div className="container mx-auto px-4">
           
           <div className="mb-12 text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold font-playfair text-brand-navy mb-4">Export Catalogue</h1>
             <p className="text-muted-foreground text-lg">
-              High-quality hospitality and medical supplies sourced directly from India's premier manufacturing hubs.
+              High-quality hospitality and medical supplies sourced directly from India's premier manufacturing hubs. Verified for global standards.
             </p>
           </div>
 
@@ -165,12 +192,12 @@ export default function ProductListingPage() {
 
               <div className="bg-brand-navy rounded-2xl p-6 text-white">
                 <ShieldCheck className="w-8 h-8 text-brand-gold mb-4" />
-                <h4 className="font-bold mb-2">Verified Sourcing</h4>
+                <h4 className="font-bold mb-2">Verified Sourcing India</h4>
                 <p className="text-xs text-white/70 leading-relaxed mb-4">
-                  Every product listed is verified for quality and compliance with global export standards.
+                  Every product listed is verified for quality and compliance with global export standards for medical and textile industries.
                 </p>
                 <Button asChild variant="outline" className="w-full text-xs font-bold border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-brand-navy">
-                  <a href="/inquiry">Speak to an Expert</a>
+                  <a href="/inquiry">Speak to an Export Expert</a>
                 </Button>
               </div>
             </aside>

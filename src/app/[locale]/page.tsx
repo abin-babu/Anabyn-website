@@ -13,7 +13,6 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
-import { products as productCatalog } from '@/lib/products';
 import { CountrySelector } from '@/components/country-selector';
 import { TrustMarquee } from '@/components/trust-marquee';
 import { HowItWorks } from '@/components/sections/how-it-works';
@@ -33,7 +32,6 @@ const StatsSection = dynamic(() => import('@/components/stats-section').then(mod
 
 export default function HomePage() {
   const t = useTranslations('Hero');
-  const commonT = useTranslations('Common');
   
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [targetCountry, setTargetCountry] = useState<string | null>(null);
@@ -63,10 +61,125 @@ export default function HomePage() {
     };
   }, []);
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Anabyn Global Ventures LLP",
+    "url": "https://www.anabyn.com",
+    "logo": "https://www.anabyn.com/images/logo.png",
+    "description": "Anabyn Global Ventures is a premium textile and medical exporter from India, specializing in high-quality hospitality linens and sterile medical disposables.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-94956-13121",
+      "contactType": "Sales",
+      "areaServed": ["US", "EU", "AE", "GB"],
+      "availableLanguage": ["English", "Arabic", "French", "Hindi"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/anabyn-global-ventures/",
+      "https://www.indiamart.com/anabyn-global-ventures/"
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the minimum order quantity (MOQ) for hotel linens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our standard MOQ for premium hotel bed sheets is 100 sets, while bath towels start at 500 pieces per size/color."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which countries do you export to?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We serve buyers in over 50 countries, including the USA, UK, UAE, Germany, and Saudi Arabia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are your medical supplies CE and FDA certified?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our medical disposables like syringes and gloves are manufactured in ISO 13485 certified facilities and carry CE and FDA markings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide custom branding or private labels?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We offer full OEM support, including custom embroidery, Pantone color matching, and branded export packaging."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are your standard payment terms for exports?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We typically accept T/T (Wire Transfer) with a 30% advance, or L/C (Letter of Credit) at sight for large containers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the typical lead time for production?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standard production lead times are 3-4 weeks for textiles and 4-6 weeks for medical devices and hospital furniture."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I request product samples before a bulk order?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we encourage sample evaluation. Sample costs are often credited back against your first commercial bulk order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you ensure quality control for international shipments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We implement a 3-stage inspection process and welcome third-party audits from agencies like SGS or Intertek before loading."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What Incoterms do you support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We support EXW, FOB, CIF, and DDP terms, depending on your local logistics and customs preferences."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I get a technical quote for my procurement?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can submit an RFQ via our portal or contact our export desk directly at sales@anabyn.com for a 24-hour response."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white animate-fade-in">
       <CountrySelector />
       <Header />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
@@ -77,7 +190,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
             fill
             className="object-cover" 
-            alt="Anabyn Hero - Premium Bed Linen"
+            alt="Anabyn Global Ventures - Premium Cotton Fabric Export India"
             priority
           />
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-gold/10 blur-[120px] rounded-full animate-pulse z-10" />

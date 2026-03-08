@@ -1,4 +1,3 @@
-
 import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
 import { initialBlogPosts } from '@/lib/blog'
@@ -22,10 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/sustainability',
     '/privacy-policy',
     '/terms-of-service',
+    '/clients',
+    '/testimonials',
+    '/downloads'
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
+    changeFrequency: 'monthly' as const,
     priority: route === '' ? 1 : 0.8,
   }))
 
