@@ -17,7 +17,6 @@ import {
   ChevronRight, 
   Search, 
   ArrowRight, 
-  User,
   BookOpen
 } from 'lucide-react';
 import Link from 'next/link';
@@ -55,7 +54,6 @@ export default function BlogListingPage() {
       <Header />
       <main className="flex-1 bg-secondary/10 pt-24 pb-20">
         
-        {/* Hero Section */}
         <section className="bg-brand-navy text-white py-20 px-4 mb-16 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <BookOpen className="w-full h-full -rotate-12 translate-x-1/2" />
@@ -70,8 +68,6 @@ export default function BlogListingPage() {
         </section>
 
         <div className="container mx-auto px-4">
-          
-          {/* Featured Post */}
           {!searchTerm && activeCategory === "All" && featuredPost && (
             <div className="mb-20">
               <Link href={`/blog/${featuredPost.slug}`}>
@@ -85,7 +81,7 @@ export default function BlogListingPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute top-6 left-6">
-                        <Badge className="bg-brand-gold text-brand-navy font-bold uppercase tracking-widest text-[10px] px-3 py-1">Featured Article</Badge>
+                        <Badge variant="gold">Featured Article</Badge>
                       </div>
                     </div>
                     <div className="p-8 lg:p-16 flex flex-col justify-center bg-white">
@@ -101,8 +97,8 @@ export default function BlogListingPage() {
                         {featuredPost.excerpt}
                       </p>
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold/20">
-                          <Image src={featuredPost.author.avatar} alt={featuredPost.author.name} width={48} height={48} />
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold/20 relative">
+                          <Image src={featuredPost.author.avatar} alt={featuredPost.author.name} fill className="object-cover" />
                         </div>
                         <div>
                           <p className="text-sm font-bold text-brand-navy">{featuredPost.author.name}</p>
@@ -116,7 +112,6 @@ export default function BlogListingPage() {
             </div>
           )}
 
-          {/* Filters & Search */}
           <div className="flex flex-col md:flex-row gap-8 justify-between items-center mb-12">
             <Tabs 
               value={activeCategory} 
@@ -147,7 +142,6 @@ export default function BlogListingPage() {
             </div>
           </div>
 
-          {/* Articles Grid */}
           {isLoading ? (
             <div className="grid md:grid-cols-3 gap-8">
               {[1, 2, 3].map(i => (
@@ -167,7 +161,7 @@ export default function BlogListingPage() {
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-brand-navy/80 backdrop-blur-md text-white border-none text-[9px] uppercase font-bold tracking-widest">
+                        <Badge className="bg-brand-navy/80 backdrop-blur-md text-white border-none">
                           {post.category}
                         </Badge>
                       </div>
@@ -189,8 +183,8 @@ export default function BlogListingPage() {
                     </CardContent>
                     <CardFooter className="p-6 pt-0 flex items-center justify-between border-t border-gray-50 mt-auto">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full overflow-hidden bg-secondary/30">
-                          <Image src={post.author.avatar} alt={post.author.name} width={32} height={32} />
+                        <div className="w-8 h-8 rounded-full overflow-hidden bg-secondary/30 relative">
+                          <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
                         </div>
                         <span className="text-xs font-bold text-brand-navy">{post.author.name}</span>
                       </div>
@@ -215,12 +209,11 @@ export default function BlogListingPage() {
             </div>
           )}
 
-          {/* Newsletter / CTA */}
           <div className="mt-32">
             <Card className="bg-brand-navy border-none rounded-[3rem] overflow-hidden relative">
               <div className="absolute right-0 top-0 w-1/3 h-full bg-brand-gold opacity-10 blur-[100px] rounded-full translate-x-1/2"></div>
               <div className="p-12 md:p-20 text-center relative z-10 max-w-3xl mx-auto">
-                <Badge className="bg-brand-gold text-brand-navy mb-6">Expert Newsletter</Badge>
+                <Badge variant="gold" className="mb-6">Expert Newsletter</Badge>
                 <h2 className="text-3xl md:text-5xl font-bold font-playfair text-white mb-6">Get Global Trade Updates</h2>
                 <p className="text-lg text-white/70 mb-10">
                   Join 5,000+ procurement directors who receive our monthly digest on medical compliance and textile innovations.
@@ -238,7 +231,6 @@ export default function BlogListingPage() {
               </div>
             </Card>
           </div>
-
         </div>
       </main>
       <Footer />

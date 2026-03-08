@@ -1,8 +1,13 @@
+import { FirebaseClientProvider } from '@/firebase';
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <FirebaseClientProvider>
+      {children}
+    </FirebaseClientProvider>
+  );
 }

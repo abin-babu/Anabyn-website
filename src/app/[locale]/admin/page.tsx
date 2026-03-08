@@ -43,7 +43,8 @@ import {
   MessageSquare, 
   PackageCheck,
   Clock,
-  Loader2
+  Loader2,
+  ChevronRight
 } from 'lucide-react';
 
 type RFQStatus = 'New' | 'In Progress' | 'Quoted' | 'Closed';
@@ -57,14 +58,12 @@ export default function AdminPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState('All');
 
-    // Inquiries Collection
     const inquiriesQuery = useMemoFirebase(() => {
         if (!firestore) return null;
         return collection(firestore, 'inquiries');
     }, [firestore]);
     const { data: inquiries, isLoading: inquiriesLoading } = useCollection(inquiriesQuery);
 
-    // RFQ Collection
     const rfqQuery = useMemoFirebase(() => {
         if (!firestore) return null;
         return collection(firestore, 'rfq_submissions');
@@ -109,7 +108,7 @@ export default function AdminPage() {
             .then(() => {
                 toast({ title: 'RFQ Status Updated', description: `Changed to ${newStatus}` });
             })
-            .catch(async (error) => {
+            .catch((serverError) => {
                 errorEmitter.emit('permission-error', new FirestorePermissionError({
                     path: docRef.path,
                     operation: 'update',
@@ -125,7 +124,7 @@ export default function AdminPage() {
             .then(() => {
                 toast({ title: 'RFQ Deleted' });
             })
-            .catch(async (error) => {
+            .catch((serverError) => {
                 errorEmitter.emit('permission-error', new FirestorePermissionError({
                     path: docRef.path,
                     operation: 'delete'
@@ -138,13 +137,13 @@ export default function AdminPage() {
             await signOut(auth);
             router.push('/admin/login');
         }
-    }
+    };
 
     if (isUserLoading || !user) {
         return (
-            <div className="flex min-h-screen flex-col items-center justify-center">
+            <div className="flex min-h-screen flex-col items-center justify-center bg-secondary/10">
                 <Loader2 className="animate-spin h-10 w-10 text-brand-gold mb-4" />
-                <p className="font-bold text-brand-navy">Authenticating Admin...</p>
+                <p className="font-bold text-brand-navy uppercase tracking-widest text-xs">Verifying Admin Access...</p>
             </div>
         );
     }
@@ -205,9 +204,9 @@ export default function AdminPage() {
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <p className="text-muted-foreground text-xs font-bold uppercase tracking-widest">Conversions</p>
-                                        <h3 className="text-3xl font-bold text-success">98%</h3>
+                                        <h3 className="text-3xl font-bold text-brand-green">98%</h3>
                                     </div>
-                                    <PackageCheck className="text-success w-8 h-8" />
+                                    <PackageCheck className="text-brand-green w-8 h-8" />
                                 </div>
                             </CardContent>
                         </Card>
@@ -255,22 +254,22 @@ export default function AdminPage() {
                         </TabsList>
 
                         <TabsContent value="rfqs">
-                            <Card className="border-none shadow-xl overflow-hidden">
+                            <Card className="border-none shadow-xl overflow-hidden bg-white">
                                 <Table>
-                                    <TableHeader className="bg-brand-navy text-white">
-                                        <TableRow className="hover:bg-brand-navy">
-                                            <TableHead className="text-white">ID & Date</TableHead>
-                                            <TableHead className="text-white">Buyer</TableHead>
-                                            <TableHead className="text-white">Product</TableHead>
-                                            <TableHead className="text-white">Status</TableHead>
-                                            <TableHead className="text-right text-white">Actions</TableHead>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>ID & Date</TableHead>
+                                            <TableHead>Buyer</TableHead>
+                                            <TableHead>Product</TableHead>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead className="text-right">Actions</TableHead>
                                         </TableRow>
                                     </TableHeader>
-                                    <TableBody className="bg-white">
+                                    <TableBody>
                                         {rfqLoading ? (
                                             <TableRow><TableCell colSpan={5} className="text-center py-20">Loading RFQs...</TableCell></TableRow>
                                         ) : filteredRFQs.length === 0 ? (
-                                            <TableRow><TableCell colSpan={5} className="text-center py-20">No matching RFQs found.</TableCell></TableRow>
+                                            <TableRow><TableCell colSpan={5} className="text-center py-20 text-muted-foreground">No matching RFQs found.</TableCell></TableRow>
                                         ) : (
                                             filteredRFQs.map((r) => (
                                                 <TableRow key={r.id}>
@@ -288,7 +287,7 @@ export default function AdminPage() {
                                                     </TableCell>
                                                     <TableCell>
                                                         <Select value={r.status} onValueChange={(val) => handleUpdateRFQStatus(r.id, val as RFQStatus)}>
-                                                            <SelectTrigger className="w-32 h-8 text-xs rounded-lg">
+                                                            <SelectTrigger className="w-32 h-8 text-xs rounded-lg border-brand-gold/20">
                                                                 <SelectValue />
                                                             </SelectTrigger>
                                                             <SelectContent>
@@ -372,7 +371,7 @@ export default function AdminPage() {
                                                                         <Button variant="outline" asChild className="rounded-xl border-brand-gold text-brand-gold">
                                                                             <a href={`mailto:${r.userDetails.email}?subject=RFQ Response: ${r.rfqId} - ${r.product}`}>Draft Email Response</a>
                                                                         </Button>
-                                                                        <Button className="rounded-xl bg-brand-navy" asChild>
+                                                                        <Button className="rounded-xl bg-brand-navy text-white" asChild>
                                                                             <a href={`https://wa.me/${r.userDetails.whatsapp.replace(/\D/g, '')}?text=Hi ${r.userDetails.name}, I'm reaching out from Anabyn regarding your RFQ ${r.rfqId}.`}>Reply via WhatsApp</a>
                                                                         </Button>
                                                                     </DialogFooter>
@@ -397,36 +396,42 @@ export default function AdminPage() {
                         </TabsContent>
 
                         <TabsContent value="inquiries">
-                            <Card className="border-none shadow-xl overflow-hidden">
+                            <Card className="border-none shadow-xl overflow-hidden bg-white">
                                 <Table>
-                                    <TableHeader className="bg-brand-navy text-white">
-                                        <TableRow className="hover:bg-brand-navy">
-                                            <TableHead className="text-white">Date</TableHead>
-                                            <TableHead className="text-white">Customer</TableHead>
-                                            <TableHead className="text-white">Company</TableHead>
-                                            <TableHead className="text-white">Status</TableHead>
-                                            <TableHead className="text-right text-white">Actions</TableHead>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead>Date</TableHead>
+                                            <TableHead>Customer</TableHead>
+                                            <TableHead>Company</TableHead>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead className="text-right">Actions</TableHead>
                                         </TableRow>
                                     </TableHeader>
-                                    <TableBody className="bg-white">
-                                        {filteredInquiries.map((inquiry) => (
-                                            <TableRow key={inquiry.id}>
-                                                <TableCell className="text-xs">{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
-                                                <TableCell>
-                                                    <div className="font-bold">{inquiry.name}</div>
-                                                    <div className="text-xs text-muted-foreground">{inquiry.email}</div>
-                                                </TableCell>
-                                                <TableCell className="text-sm">{inquiry.company || '-'}</TableCell>
-                                                <TableCell>
-                                                    <Badge variant="outline">{inquiry.status}</Badge>
-                                                </TableCell>
-                                                <TableCell className="text-right">
-                                                    <Button variant="ghost" size="icon" onClick={() => router.push(`/admin/inquiry/${inquiry.id}`)}>
-                                                        <Eye className="h-4 w-4" />
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
+                                    <TableBody>
+                                        {inquiriesLoading ? (
+                                            <TableRow><TableCell colSpan={5} className="text-center py-20">Loading Inquiries...</TableCell></TableRow>
+                                        ) : filteredInquiries.length === 0 ? (
+                                            <TableRow><TableCell colSpan={5} className="text-center py-20 text-muted-foreground">No inquiries found.</TableCell></TableRow>
+                                        ) : (
+                                            filteredInquiries.map((inquiry) => (
+                                                <TableRow key={inquiry.id}>
+                                                    <TableCell className="text-xs">{inquiry.createdAt?.toDate().toLocaleDateString()}</TableCell>
+                                                    <TableCell>
+                                                        <div className="font-bold">{inquiry.name}</div>
+                                                        <div className="text-xs text-muted-foreground">{inquiry.email}</div>
+                                                    </TableCell>
+                                                    <TableCell className="text-sm">{inquiry.company || '-'}</TableCell>
+                                                    <TableCell>
+                                                        <Badge variant="outline" className="border-brand-gold/30 text-brand-navy">{inquiry.status}</Badge>
+                                                    </TableCell>
+                                                    <TableCell className="text-right">
+                                                        <Button variant="ghost" size="icon" className="text-brand-navy">
+                                                            <Eye className="h-4 w-4" />
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        )}
                                     </TableBody>
                                 </Table>
                             </Card>
