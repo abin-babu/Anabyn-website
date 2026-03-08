@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -95,7 +94,7 @@ export default function HomePage() {
 
             <h1 className="text-5xl md:text-8xl font-playfair font-bold text-white leading-[1.05] tracking-tight">
               {t.rich('headline', {
-                gold: <span className="text-brand-gold">{t('headlineGold')}</span>
+                gold: <span key="gold-span" className="text-brand-gold">{t('headlineGold')}</span>
               })}
             </h1>
 
