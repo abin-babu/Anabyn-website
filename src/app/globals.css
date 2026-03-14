@@ -118,7 +118,17 @@
     transform: translateY(0);
   }
 
-  /* Page Loader Animations */
+  /* Page Loader Animations - Highly optimized for 600ms total visibility */
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes fillShield {
+    to { fill: rgba(27,58,138,0.25); }
+  }
+  @keyframes fadeInDot { 
+    to { opacity: 1; } 
+  }
+
   #loader-container {
     position: fixed;
     inset: 0;
@@ -128,15 +138,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 200ms ease-out; /* 200ms rapid fade out */
+    will-change: opacity;
   }
 
   #loader-container.hidden {
     opacity: 0;
-    transform: translateY(-100%);
     pointer-events: none;
   }
 
+  #shield-path {
+    animation: drawPath 0.3s 0.05s cubic-bezier(0.16,1,0.3,1) forwards,
+               fillShield 0.2s 0.35s ease forwards;
+  }
+  #shake-1 {
+    animation: drawPath 0.15s 0.35s ease forwards;
+    opacity: 1;
+  }
+  #shake-2, #shake-3 {
+    animation: drawPath 0.1s 0.45s ease forwards;
+    opacity: 1;
+  }
+  #dot-1, #dot-2 {
+    animation: fadeInDot 0.1s 0.5s ease forwards;
+  }
   #loader-name {
     margin-top: 1.5rem;
     font-family: var(--font-heading);
@@ -145,32 +170,6 @@
     color: white;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-  }
-
-  @keyframes drawPath {
-    to { stroke-dashoffset: 0; }
-  }
-  @keyframes fillShield {
-    to { fill: rgba(27,58,138,0.35); }
-  }
-  @keyframes fadeInDot { to { opacity: 1; } }
-
-  #shield-path {
-    animation: drawPath 1.4s 0.2s cubic-bezier(0.16,1,0.3,1) forwards,
-               fillShield 0.8s 1.2s ease forwards;
-  }
-  #shake-1 {
-    animation: drawPath 0.5s 1.4s ease forwards;
-    opacity: 1;
-  }
-  #shake-2, #shake-3 {
-    animation: drawPath 0.4s 1.7s ease forwards;
-    opacity: 1;
-  }
-  #dot-1, #dot-2 {
-    animation: fadeInDot 0.3s 1.9s ease forwards;
-  }
-  #loader-name {
-    animation: fadeInDot 0.6s 2.0s ease forwards;
+    animation: fadeInDot 0.2s 0.5s ease forwards;
   }
 }
