@@ -1,4 +1,3 @@
-
 'use server';
 
 import { z } from 'zod';
@@ -16,17 +15,20 @@ const inquirySchema = z.object({
   productId: z.string().optional(),
 });
 
-// Schema for RFQs
+// Schema for RFQs (Matches the 2-step simplified form)
 const rfqSchema = z.object({
   rfqId: z.string(),
+  category: z.string().optional(),
   product: z.string().optional(),
   quantity: z.number().optional(),
   unit: z.string().optional(),
-  destinationCountry: z.string(),
   oem: z.boolean().optional(),
   notes: z.string().optional(),
+  // Mandatory fields
   email: z.string().email(),
   whatsapp: z.string(),
+  destinationCountry: z.string(),
+  // Optional contact info
   name: z.string().optional(),
   company: z.string().optional(),
 });
@@ -78,19 +80,25 @@ async function sendRFQEmails(rfqData: RFQInput) {
     await resend.emails.send({
       from: 'Anabyn RFQ Desk <onboarding@resend.dev>',
       to: 'sales@anabyn.com',
-      subject: `[RFQ ${rfqData.rfqId}] New Quote Request: ${rfqData.product || 'General'}`,
+      subject: `[RFQ ${rfqData.rfqId}] New Quote Request from ${rfqData.destinationCountry}`,
       html: `
-        <div style="font-family: sans-serif; max-width: 600px;">
-          <h2 style="color: #0D1F3C;">New RFQ Received: ${rfqData.rfqId}</h2>
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Product:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.product || 'Not Specified'}</td></tr>
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Quantity:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.quantity} ${rfqData.unit}</td></tr>
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Country:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.destinationCountry}</td></tr>
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>OEM/Private Label:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.oem ? 'YES' : 'No'}</td></tr>
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Contact:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.name} (${rfqData.email})</td></tr>
-            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>WhatsApp:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.whatsapp}</td></tr>
+        <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
+          <h2 style="color: #0D1F3C; border-bottom: 2px solid #C9A84C; padding-bottom: 10px;">New RFQ: ${rfqData.rfqId}</h2>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr><td style="padding: 8px 0; color: #666;"><strong>Product:</strong></td><td>${rfqData.product || 'General Inquiry'}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>Category:</strong></td><td>${rfqData.category || 'N/A'}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>Target Qty:</strong></td><td>${rfqData.quantity || 0} ${rfqData.unit || ''}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>OEM/Private Label:</strong></td><td>${rfqData.oem ? 'YES' : 'No'}</td></tr>
+            <tr style="background: #f9f9f9;"><td style="padding: 8px; color: #0D1F3C;"><strong>Contact Email:</strong></td><td style="padding: 8px;">${rfqData.email}</td></tr>
+            <tr style="background: #f9f9f9;"><td style="padding: 8px; color: #0D1F3C;"><strong>WhatsApp:</strong></td><td style="padding: 8px;">${rfqData.whatsapp}</td></tr>
+            <tr style="background: #f9f9f9;"><td style="padding: 8px; color: #0D1F3C;"><strong>Country:</strong></td><td style="padding: 8px;">${rfqData.destinationCountry}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>Buyer Name:</strong></td><td>${rfqData.name || 'N/A'}</td></tr>
+            <tr><td style="padding: 8px 0; color: #666;"><strong>Company:</strong></td><td>${rfqData.company || 'N/A'}</td></tr>
           </table>
-          <p><strong>Notes:</strong><br/>${rfqData.notes || 'None'}</p>
+          <div style="margin-top: 20px; padding: 15px; background: #fffdf5; border-left: 4px solid #C9A84C;">
+            <p><strong>Requirements & Notes:</strong></p>
+            <p style="white-space: pre-wrap;">${rfqData.notes || 'No extra notes provided.'}</p>
+          </div>
         </div>
       `,
     });
@@ -99,12 +107,14 @@ async function sendRFQEmails(rfqData: RFQInput) {
     await resend.emails.send({
       from: 'Anabyn Global Ventures <onboarding@resend.dev>',
       to: rfqData.email,
-      subject: `Quote Request Received - Ref: ${rfqData.rfqId}`,
+      subject: `RFQ Received - Ref: ${rfqData.rfqId}`,
       html: `
-        <p>Dear ${rfqData.name || 'Partner'},</p>
-        <p>Thank you for requesting a quote from Anabyn Global Ventures. Your request <strong>${rfqData.rfqId}</strong> for <strong>${rfqData.product || 'Textiles'}</strong> has been received by our sourcing desk.</p>
-        <p>Our account manager will review your technical requirements and contact you within 24 business hours with a formal proposal.</p>
-        <p>Best regards,<br/>The Anabyn Sourcing Team</p>
+        <div style="font-family: sans-serif; max-width: 600px;">
+          <p>Dear ${rfqData.name || 'Partner'},</p>
+          <p>Thank you for requesting a quote from Anabyn Global Ventures. Your request <strong>${rfqData.rfqId}</strong> has been successfully received by our sourcing desk.</p>
+          <p>Our account manager will review your requirements for <strong>${rfqData.product || 'textiles'}</strong> and contact you within 24 business hours with a formal proposal and logistics estimate.</p>
+          <p>Best regards,<br/>The Anabyn Sourcing Team<br/><a href="https://www.anabyn.com">www.anabyn.com</a></p>
+        </div>
       `,
     });
   } catch (error) {
@@ -133,7 +143,10 @@ export async function handleInquiry(data: InquiryInput) {
 
 export async function handleRFQSubmissionAction(data: RFQInput) {
   const validation = rfqSchema.safeParse(data);
-  if (!validation.success) return { success: false, error: "Invalid contact details" };
+  if (!validation.success) {
+    console.error("Validation failed:", validation.error.format());
+    return { success: false, error: "Required fields missing (Email, WhatsApp, or Country)" };
+  }
 
   const { firestore } = getSdks();
   try {
