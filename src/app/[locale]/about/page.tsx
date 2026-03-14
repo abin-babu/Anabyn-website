@@ -46,6 +46,7 @@ export default function AboutStoryPage() {
               alt="Anabyn Global Ventures Heritage — Indian Textile Export"
               fill
               className="object-cover opacity-40"
+              sizes="100vw"
               priority
             />
           </div>
@@ -170,6 +171,8 @@ export default function AboutStoryPage() {
                   alt="Modern Textile Manufacturing India" 
                   fill 
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#1B3A8A]/20 to-transparent" />
               </div>

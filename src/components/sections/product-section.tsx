@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const products = [
   {
@@ -112,10 +113,13 @@ export function ProductSection() {
           {filteredProducts.map((p) => (
             <Card key={p.id} className="group overflow-hidden border-none shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white fade-up">
               <div className="relative h-[240px] overflow-hidden">
-                <img 
+                <Image 
                   src={p.image} 
                   alt={p.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  loading="lazy"
                 />
                 <div className="absolute top-4 left-4 bg-[#0D1B3E] text-white px-3 py-1 text-[10px] font-bold uppercase tracking-widest rounded-full">
                   {p.cat === 'hospitality' ? 'Hospitality' : 'Medical'}

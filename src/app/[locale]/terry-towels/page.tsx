@@ -42,6 +42,7 @@ export default function TerryTowelsPage() {
               alt="Premium Terry Towels Exporter India — Wholesale Cotton Bath Towels"
               fill
               className="object-cover"
+              sizes="100vw"
               priority
             />
           </div>
@@ -112,7 +113,14 @@ export default function TerryTowelsPage() {
               ].map((variant, i) => (
                 <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500 product-card">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={variant.image} alt={variant.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <Image 
+                      src={variant.image} 
+                      alt={variant.title} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                    />
                     <div className="absolute top-4 left-4">
                       <Badge className="bg-[#1B3A8A] text-white border-none">{variant.specs}</Badge>
                     </div>
@@ -169,10 +177,12 @@ export default function TerryTowelsPage() {
                   alt="Cotton fibers and weaving quality" 
                   fill 
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-10 left-10 right-10 bg-[#060A14]/80 backdrop-blur-xl p-8 rounded-3xl border border-white/10">
                   <p className="text-sm font-bold uppercase tracking-widest text-[#C9A243] mb-2">Technical Assurance</p>
-                  <p className="text-xs text-white/70 italic">"Our Ring-spun techniques ensure that loops remain intact even after 200+ industrial laundry cycles."</p>
+                  <p className="text-xs text-white/70 italic text-center">"Our Ring-spun techniques ensure that loops remain intact even after 200+ industrial laundry cycles."</p>
                 </div>
               </div>
             </div>

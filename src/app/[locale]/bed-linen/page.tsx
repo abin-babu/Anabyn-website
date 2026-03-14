@@ -41,6 +41,7 @@ export default function BedLinenPage() {
               alt="Luxury Bed Linen Exporter India — Premium Wholesale Cotton Sheets"
               fill
               className="object-cover"
+              sizes="100vw"
               priority
             />
           </div>
@@ -108,7 +109,14 @@ export default function BedLinenPage() {
               ].map((item, i) => (
                 <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500 product-card">
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      fill 
+                      className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                    />
                     <div className="absolute top-4 left-4">
                       <Badge className="bg-[#1B3A8A] text-white border-none px-3">{item.specs}</Badge>
                     </div>
@@ -133,12 +141,14 @@ export default function BedLinenPage() {
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div className="relative order-2 lg:order-1">
-                <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#C9A243]/20">
+                <div className="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-[#C9A243]/20 relative">
                   <Image 
                     src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80" 
                     alt="Luxury bedding arrangement" 
                     fill 
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    loading="lazy"
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 bg-[#C9A243] p-8 rounded-3xl shadow-2xl text-[#060A14] max-w-[240px]">

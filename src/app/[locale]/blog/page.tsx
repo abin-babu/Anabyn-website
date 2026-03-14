@@ -79,6 +79,8 @@ export default function BlogListingPage() {
                         alt={featuredPost.title} 
                         fill 
                         className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority
                       />
                       <div className="absolute top-6 left-6">
                         <Badge variant="gold">Featured Article</Badge>
@@ -98,7 +100,7 @@ export default function BlogListingPage() {
                       </p>
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-gold/20 relative">
-                          <Image src={featuredPost.author.avatar} alt={featuredPost.author.name} fill className="object-cover" />
+                          <Image src={featuredPost.author.avatar} alt={featuredPost.author.name} fill className="object-cover" sizes="48px" />
                         </div>
                         <div>
                           <p className="text-sm font-bold text-brand-navy">{featuredPost.author.name}</p>
@@ -159,6 +161,8 @@ export default function BlogListingPage() {
                         alt={post.title} 
                         fill 
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        loading="lazy"
                       />
                       <div className="absolute top-4 left-4">
                         <Badge className="bg-brand-navy/80 backdrop-blur-md text-white border-none">
@@ -184,7 +188,7 @@ export default function BlogListingPage() {
                     <CardFooter className="p-6 pt-0 flex items-center justify-between border-t border-gray-50 mt-auto">
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8 rounded-full overflow-hidden bg-secondary/30 relative">
-                          <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
+                          <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" sizes="32px" />
                         </div>
                         <span className="text-xs font-bold text-brand-navy">{post.author.name}</span>
                       </div>

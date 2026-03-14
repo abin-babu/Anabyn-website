@@ -168,6 +168,8 @@ export default function ExportProcessPage() {
                   alt="Professional export documentation and compliance" 
                   fill 
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-brand-navy/20 to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/90 backdrop-blur-md rounded-3xl border border-gray-100">
@@ -228,7 +230,14 @@ export default function ExportProcessPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-4">
                     <div className="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden relative shadow-lg">
-                      <Image src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=400&q=80" alt="Shipping port activity" fill className="object-cover" />
+                      <Image 
+                        src="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?w=400&q=80" 
+                        alt="Shipping port activity" 
+                        fill 
+                        className="object-cover" 
+                        sizes="(max-width: 768px) 100vw, 25vw"
+                        loading="lazy"
+                      />
                     </div>
                     <div className="p-6 bg-brand-gold rounded-3xl text-brand-navy text-center">
                       <Anchor className="w-8 h-8 mx-auto mb-2" />
@@ -241,7 +250,14 @@ export default function ExportProcessPage() {
                       <p className="font-bold text-xs uppercase tracking-widest">Global Reach</p>
                     </div>
                     <div className="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden relative shadow-lg">
-                      <Image src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80" alt="Container logistics" fill className="object-cover" />
+                      <Image 
+                        src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&q=80" 
+                        alt="Container logistics" 
+                        fill 
+                        className="object-cover" 
+                        sizes="(max-width: 768px) 100vw, 25vw"
+                        loading="lazy"
+                      />
                     </div>
                   </div>
                 </div>

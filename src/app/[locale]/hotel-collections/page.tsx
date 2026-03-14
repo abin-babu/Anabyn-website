@@ -36,6 +36,7 @@ export default function HotelCollectionsPage() {
               alt="Luxury Hotel Room with Premium Linens - Anabyn Hospitality"
               fill
               className="object-cover"
+              sizes="100vw"
               priority
             />
           </div>
@@ -91,6 +92,8 @@ export default function HotelCollectionsPage() {
                   alt="Hotel Bath Towels" 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 text-white space-y-4">
@@ -109,6 +112,8 @@ export default function HotelCollectionsPage() {
                   alt="Hotel Bed Linen" 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8 text-white space-y-4">

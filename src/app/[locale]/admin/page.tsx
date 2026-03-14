@@ -46,6 +46,7 @@ import {
   Loader2,
   ChevronRight
 } from 'lucide-react';
+import Image from 'next/image';
 
 type RFQStatus = 'New' | 'In Progress' | 'Quoted' | 'Closed';
 
@@ -351,12 +352,19 @@ export default function AdminPage() {
                                                                             {r.customization.referenceImageUrl && (
                                                                                 <section>
                                                                                     <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Reference Image</h4>
-                                                                                    <a href={r.customization.referenceImageUrl} target="_blank" className="block relative aspect-video rounded-xl overflow-hidden border">
-                                                                                        <img src={r.customization.referenceImageUrl} alt="Reference" className="object-cover w-full h-full" />
+                                                                                    <div className="block relative aspect-video rounded-xl overflow-hidden border">
+                                                                                        <Image 
+                                                                                          src={r.customization.referenceImageUrl} 
+                                                                                          alt="Reference" 
+                                                                                          fill
+                                                                                          className="object-cover" 
+                                                                                          sizes="(max-width: 768px) 100vw, 50vw"
+                                                                                          loading="lazy"
+                                                                                        />
                                                                                         <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity">
                                                                                             <Download className="text-white w-6 h-6" />
                                                                                         </div>
-                                                                                    </a>
+                                                                                    </div>
                                                                                 </section>
                                                                             )}
                                                                         </div>

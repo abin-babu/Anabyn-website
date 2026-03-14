@@ -66,6 +66,7 @@ export default function OEMPrivateLabelPage() {
               alt="OEM Private Label Textile Manufacturing India"
               fill
               className="object-cover opacity-40"
+              sizes="100vw"
               priority
             />
           </div>

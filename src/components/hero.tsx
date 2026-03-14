@@ -3,16 +3,20 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { FaWhatsapp } from 'react-icons/fa';
+import Image from 'next/image';
 
 export function Hero() {
   return (
     <section className="relative h-screen w-full flex items-center overflow-hidden">
       {/* Background with Overlays */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80"
           alt="Premium Bed Linen"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B3E]/95 via-[#0D1B3E]/80 to-transparent" />
         <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#C8A020]/10 blur-[120px] rounded-full" />

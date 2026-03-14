@@ -106,8 +106,8 @@ export default function BlogPostPage() {
             </h1>
             <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
-                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-gold/20">
-                  <Image src={post.author.avatar} alt={post.author.name} width={40} height={40} />
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-brand-gold/20 relative">
+                  <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" sizes="40px" />
                 </div>
                 <div className="text-left leading-none">
                   <p className="font-bold text-brand-navy">{post.author.name}</p>
@@ -135,6 +135,7 @@ export default function BlogPostPage() {
               fill 
               priority
               className="object-cover"
+              sizes="100vw"
             />
           </div>
         </div>
@@ -238,7 +239,14 @@ export default function BlogPostPage() {
                   <Link key={p.slug} href={`/blog/${p.slug}`} className="group">
                     <div className="space-y-4">
                       <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg">
-                        <Image src={p.featuredImage} alt={p.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                        <Image 
+                          src={p.featuredImage} 
+                          alt={p.title} 
+                          fill 
+                          className="object-cover group-hover:scale-110 transition-transform duration-700" 
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          loading="lazy"
+                        />
                       </div>
                       <h4 className="font-bold font-playfair text-xl text-brand-navy group-hover:text-brand-gold transition-colors leading-tight line-clamp-2">
                         {p.title}

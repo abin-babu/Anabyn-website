@@ -72,6 +72,7 @@ export default function HomePage() {
             fill
             className="object-cover" 
             alt="Anabyn Global Ventures - Luxury Terry Towel Exporter India & Premium Bed Sheets"
+            sizes="100vw"
             priority
           />
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-gold/10 blur-[120px] rounded-full animate-pulse z-10" />

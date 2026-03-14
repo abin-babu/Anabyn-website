@@ -124,6 +124,7 @@ export default function ProductDetailPage() {
                   fill 
                   priority
                   className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <Badge className="absolute top-6 left-6 bg-brand-navy text-white text-xs uppercase font-bold tracking-widest px-3 py-1 border-none shadow-xl">
                   {categoryLabel}
@@ -137,7 +138,7 @@ export default function ProductDetailPage() {
                       onClick={() => setActiveImage(i)}
                       className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${activeImage === i ? 'border-brand-gold ring-2 ring-brand-gold/20' : 'border-transparent opacity-60 hover:opacity-100'}`}
                     >
-                      <Image src={img} alt={`${product.name} thumbnail ${i}`} fill className="object-cover" />
+                      <Image src={img} alt={`${product.name} thumbnail ${i}`} fill className="object-cover" sizes="(max-width: 768px) 25vw, 12vw" />
                     </button>
                   ))}
                 </div>

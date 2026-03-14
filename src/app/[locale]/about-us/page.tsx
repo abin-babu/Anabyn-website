@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/com
 import { Eye, Target, Globe, Users, Truck, Package, Linkedin, MapPin, Building2, Calendar, Landmark } from 'lucide-react';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 
 const whatWeDo = [
     {
@@ -155,8 +156,15 @@ export default function AboutUsPage() {
                                 <div className="grid md:grid-cols-2 gap-8">
                                     {directors.map((dir) => (
                                         <div key={dir.name} className="flex flex-col items-center p-6 border border-accent/10 rounded-2xl bg-white hover:shadow-xl transition-all">
-                                            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-accent/20">
-                                                <img src={dir.photo} alt={dir.name} className="w-full h-full object-cover" />
+                                            <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-accent/20 relative">
+                                                <Image 
+                                                  src={dir.photo} 
+                                                  alt={dir.name} 
+                                                  fill
+                                                  className="object-cover" 
+                                                  sizes="96px"
+                                                  loading="lazy"
+                                                />
                                             </div>
                                             <h3 className="text-lg font-bold text-brand-navy">{dir.name}</h3>
                                             <p className="text-xs text-accent font-bold uppercase tracking-widest mb-3">{dir.role}</p>
