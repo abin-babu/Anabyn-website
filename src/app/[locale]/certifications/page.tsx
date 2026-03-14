@@ -5,179 +5,207 @@ import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { 
   ShieldCheck, 
-  Download, 
-  ExternalLink, 
   Award, 
   ClipboardCheck, 
   CheckCircle2, 
   FileText, 
   Factory,
-  ArrowRight
+  ArrowRight,
+  FlaskConical,
+  Activity,
+  Layers,
+  SearchCheck
 } from 'lucide-react';
-import { useState } from 'react';
-import { useFirebase } from '@/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { useToast } from '@/hooks/use-toast';
-import { errorEmitter } from '@/firebase/error-emitter';
-import { FirestorePermissionError } from '@/firebase/errors';
+import Link from 'next/link';
 
-const qualityCerts = [
+const certifications = [
+  {
+    name: 'OEKO-TEX® STANDARD 100',
+    description: 'Tested for harmful substances. Ensuring textile safety for skin-contact hospitality products.',
+    status: 'Achieved',
+    variant: 'default' as const
+  },
+  {
+    name: 'GOTS (Global Organic Textile Standard)',
+    description: 'The leading processing standard for organic fibres, including ecological and social criteria.',
+    status: 'Achieved',
+    variant: 'default' as const
+  },
   {
     name: 'ISO 9001:2015',
-    description: 'Quality Management Systems',
-    issuer: 'URS Certification',
-    number: 'AGV/ISO/9001/2024',
-    expiry: '2027-12-31',
-    status: 'Active',
-    verifyUrl: '#'
+    description: 'International standard for quality management systems (QMS) across all export operations.',
+    status: 'Achieved',
+    variant: 'default' as const
   },
   {
-    name: 'ISO 13485:2016',
-    description: 'Medical Devices Quality',
-    issuer: 'Intertek',
-    number: 'AGV/ISO/13485/MD',
-    expiry: '2026-06-30',
-    status: 'Active',
-    verifyUrl: '#'
+    name: 'REACH Compliance',
+    description: 'Compliance with European Union regulations for chemical safety in the EU market.',
+    status: 'In Process',
+    variant: 'secondary' as const,
+    note: 'Final audit documentation undergoing verification for 2026 certification.'
+  }
+];
+
+const qcSteps = [
+  {
+    id: 1,
+    title: 'Raw Material Inspection',
+    desc: 'Verification of GSM, yarn count, and colourfastness before weaving begins.',
+    icon: Layers
   },
   {
-    name: 'CE Marking',
-    description: 'Medical Products Compliance',
-    issuer: 'TÜV SÜD',
-    number: 'CE-EU-2024-XXXX',
-    expiry: '2028-01-15',
-    status: 'Active',
-    verifyUrl: '#'
+    id: 2,
+    title: 'In-Process QC',
+    desc: 'Real-time quality checks during the weaving and finishing stages to catch defects early.',
+    icon: Activity
+  },
+  {
+    id: 3,
+    title: 'Finished Goods Inspection',
+    desc: 'Rigorous final audit using the AQL 2.5 international standard for bulk shipments.',
+    icon: CheckCircle2
+  },
+  {
+    id: 4,
+    title: 'Third-Party Audits',
+    desc: 'Coordination with global agencies (SGS, Intertek) for independent pre-shipment inspections.',
+    icon: SearchCheck
+  },
+  {
+    id: 5,
+    title: 'Full Documentation',
+    desc: 'Issuance of test reports, Certificate of Origin, and detailed packing lists for customs.',
+    icon: FileText
   }
 ];
 
 export default function CertificationsPage() {
-  const { firestore } = useFirebase();
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleRequestAudit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!firestore) return;
-    
-    setIsSubmitting(true);
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      company: formData.get('company') as string,
-      email: formData.get('email') as string,
-      country: formData.get('country') as string,
-      timestamp: serverTimestamp(),
-    };
-
-    const colRef = collection(firestore, 'audit_requests');
-    addDoc(colRef, data)
-      .then(() => {
-        toast({
-          title: 'Request Sent',
-          description: "We've received your request for the full audit report.",
-        });
-        (e.target as HTMLFormElement).reset();
-      })
-      .catch(async (error) => {
-        errorEmitter.emit('permission-error', new FirestorePermissionError({
-          path: colRef.path,
-          operation: 'create',
-          requestResourceData: data
-        }));
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  };
-
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
-      <main className="flex-1 bg-brand-gold-light/20 pt-32">
-        <section className="py-16 md:py-24 border-b bg-white">
-          <div className="container px-4 text-center max-w-4xl mx-auto">
-            <Badge variant="outline" className="text-brand-gold border-brand-gold mb-4 px-4 py-1">Verified Compliance</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold font-playfair text-brand-navy mb-6">Our Certifications</h1>
-            <p className="text-xl text-muted-foreground">Every certificate is third-party verified and available for download.</p>
+      
+      <main className="flex-1">
+        {/* 1. Hero Section */}
+        <section className="relative pt-40 pb-20 overflow-hidden bg-[#060A14] text-white">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-b from-brand-navy via-brand-navy/80 to-brand-navy z-10" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+          </div>
+          <div className="container relative z-20 px-4 mx-auto text-center">
+            <div className="max-w-4xl mx-auto space-y-6">
+              <Badge variant="outline" className="text-brand-gold border-brand-gold px-4 py-1 uppercase tracking-widest font-black">
+                Technical Compliance
+              </Badge>
+              <h1 className="text-4xl md:text-6xl font-playfair font-bold leading-tight">
+                Quality Certifications <br />
+                <span className="text-brand-gold">& Standards</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                Every product leaving our facility meets rigorous international quality standards. We work with certified raw material suppliers and apply multi-point inspection at every stage.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="py-20 container px-4 mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {qualityCerts.map((cert) => (
-              <Card key={cert.name} className="border-accent/20 hover:border-brand-gold transition-all duration-300 group">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-4">
-                    <Badge variant={cert.status === 'Active' ? 'default' : 'secondary'}>
-                      {cert.status}
-                    </Badge>
-                    <ShieldCheck className="text-brand-gold w-6 h-6" />
-                  </div>
-                  <CardTitle className="text-xl font-bold font-playfair">{cert.name}</CardTitle>
-                  <CardDescription>{cert.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-sm font-semibold">{cert.issuer}</p>
-                </CardContent>
-                <CardFooter className="grid grid-cols-2 gap-2 border-t pt-4">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={cert.verifyUrl} target="_blank"><ExternalLink className="w-3 h-3 mr-2" /> Verify</a>
-                  </Button>
-                  <Button variant="secondary" size="sm">
-                    <Download className="w-3 h-3 mr-2" /> Download
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+        {/* 2. Certifications Grid */}
+        <section className="py-24 bg-white">
+          <div className="container px-4 mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {certifications.map((cert) => (
+                <Card key={cert.name} className="flex flex-col border-brand-gold/10 hover:border-brand-gold transition-all duration-300 shadow-lg group">
+                  <CardHeader className="flex-1">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-brand-navy/5 flex items-center justify-center group-hover:bg-brand-navy group-hover:text-white transition-colors duration-500">
+                        <Award className="w-6 h-6 text-brand-gold" />
+                      </div>
+                      <Badge variant={cert.variant} className="text-[9px] uppercase">
+                        {cert.status}
+                      </Badge>
+                    </div>
+                    <CardTitle className="text-lg font-playfair font-bold text-brand-navy">{cert.name}</CardTitle>
+                    <CardDescription className="text-sm mt-2 leading-relaxed">
+                      {cert.description}
+                    </CardDescription>
+                  </CardHeader>
+                  {cert.note && (
+                    <CardFooter className="pt-0 pb-6 italic text-[10px] text-muted-foreground border-t border-dashed mt-4">
+                      * {cert.note}
+                    </CardFooter>
+                  )}
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="py-24 container px-4 mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="space-y-12">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                  <Factory className="text-brand-gold w-6 h-6" />
-                </div>
-                <h2 className="text-3xl font-bold font-playfair text-brand-navy">Factory & Quality Audits</h2>
-              </div>
+        {/* 3. QC Process Section */}
+        <section className="py-24 bg-[#F5EDD6]/30">
+          <div className="container px-4 mx-auto">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-3xl md:text-5xl font-playfair font-bold text-brand-navy">Our Quality Control Process</h2>
+              <p className="text-muted-foreground font-medium max-w-xl mx-auto">Maintaining technical precision from yarn to shipment.</p>
             </div>
 
-            <Card className="sticky top-24 border-brand-gold/30 shadow-2xl">
-              <CardHeader className="text-center bg-brand-gold-light/30">
-                <FileText className="w-12 h-12 text-brand-gold mx-auto mb-4" />
-                <CardTitle className="text-2xl font-playfair text-brand-navy">Request Audit Report</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-8">
-                <form onSubmit={handleRequestAudit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" name="name" required placeholder="John Doe" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Company</Label>
-                      <Input id="company" name="company" required placeholder="Global Hotel Group" />
-                    </div>
+            <div className="max-w-5xl mx-auto space-y-6">
+              {qcSteps.map((step, i) => (
+                <div key={step.id} className="flex gap-6 items-start p-8 rounded-3xl bg-white border border-brand-gold/10 shadow-sm relative overflow-hidden group hover:shadow-xl transition-all">
+                  <div className="text-6xl font-playfair font-bold text-brand-gold/5 absolute right-8 top-1/2 -translate-y-1/2 select-none group-hover:text-brand-gold/10 transition-colors">
+                    0{step.id}
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Work Email</Label>
-                    <Input id="email" name="email" type="email" required placeholder="procurement@company.com" />
+                  <div className="w-14 h-14 rounded-2xl bg-brand-navy/5 flex items-center justify-center text-brand-navy group-hover:bg-brand-navy group-hover:text-white transition-all duration-500 shrink-0">
+                    <step.icon className="w-6 h-6" />
                   </div>
-                  <Button type="submit" className="w-full bg-brand-navy hover:bg-brand-navy/90 h-12 text-lg" disabled={isSubmitting}>
-                    {isSubmitting ? 'Sending Request...' : 'Request Full Report'} <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  <div className="relative z-10">
+                    <h4 className="text-xl font-bold text-brand-navy mb-2">Step {step.id}: {step.title}</h4>
+                    <p className="text-gray-600 max-w-2xl">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Lab Testing Callout */}
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="container px-4 mx-auto">
+            <div className="bg-brand-navy rounded-[3rem] p-12 md:p-20 text-white relative shadow-2xl">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full translate-x-1/2 -translate-y-1/2" />
+              <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                <div className="space-y-8">
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10">
+                    <FlaskConical className="w-8 h-8 text-brand-gold" />
+                  </div>
+                  <h2 className="text-3xl md:text-5xl font-playfair font-bold">Comprehensive <br /><span className="text-brand-gold">Laboratory Testing</span></h2>
+                  <p className="text-white/70 text-lg leading-relaxed">
+                    We maintain alliances with ISO-certified laboratories to provide third-party testing on request. Our technical reports cover critical parameters for high-occupancy markets.
+                  </p>
+                  <ul className="grid grid-cols-2 gap-4">
+                    {['pH Levels', 'Colourfastness', 'Shrinkage Control', 'Tensile Strength'].map(test => (
+                      <li key={test} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-brand-gold-light/80">
+                        <CheckCircle2 size={16} className="text-brand-gold" /> {test}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <Card className="bg-white/5 border-white/10 backdrop-blur-sm p-10 rounded-[2rem] text-center">
+                  <div className="space-y-8">
+                    <ShieldCheck className="w-16 h-16 text-brand-gold mx-auto" />
+                    <h3 className="text-2xl font-playfair font-bold text-white">Verification Center</h3>
+                    <p className="text-white/60">Need a specific technical dossier or laboratory report for your procurement meeting?</p>
+                    <Button asChild size="lg" className="w-full bg-brand-gold text-brand-navy font-black h-14 rounded-xl shadow-xl hover:scale-105 transition-transform border-none">
+                      <Link href="/request-quote">Request Test Reports <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                    </Button>
+                  </div>
+                </Card>
+              </div>
+            </div>
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
