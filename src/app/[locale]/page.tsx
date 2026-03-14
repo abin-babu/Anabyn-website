@@ -113,6 +113,29 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* 2. SEO Intro Section */}
+      <section className="bg-[#0A1220] py-24 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-[820px] mx-auto text-center space-y-10">
+            <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
+              Anabyn Global Ventures LLP is a premium textile export company based in India,
+              specialising in luxury terry towels and high-quality bed linen for discerning
+              buyers worldwide. From 400 GSM cotton bath towels to 1000 thread-count
+              Egyptian cotton bed sheets — every product is crafted with precision
+              and shipped with complete export documentation.
+            </p>
+            <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
+              We supply luxury hotels, retail chains, wholesale distributors and
+              private label brands across the United Kingdom, UAE, Europe, USA,
+              Australia and beyond. Our clients choose Anabyn for consistent quality,
+              reliable timelines, and a partnership built on trust.
+            </p>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
+      </section>
+
       {/* Trust Content */}
       <StatsSection />
       <TrustedBuyers />
