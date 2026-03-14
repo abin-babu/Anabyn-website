@@ -66,18 +66,20 @@ export default function HomePage() {
     "@type": "Organization",
     "name": "Anabyn Global Ventures LLP",
     "url": "https://www.anabyn.com",
-    "logo": "https://www.anabyn.com/images/logo.png",
-    "description": "Anabyn Global Ventures is a premium textile and medical exporter from India, specializing in high-quality hospitality linens and sterile medical disposables.",
+    "logo": "https://www.anabyn.com/logo.png",
+    "description": "Premium luxury textile exporter from India — terry towels and bed linen for hotels, retailers and distributors worldwide.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "IN"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-94956-13121",
-      "contactType": "Sales",
-      "areaServed": ["US", "EU", "AE", "GB"],
-      "availableLanguage": ["English", "Arabic", "French", "Hindi"]
+      "email": "anabyn.group@gmail.com",
+      "contactType": "sales"
     },
     "sameAs": [
-      "https://www.linkedin.com/company/anabyn-global-ventures/",
-      "https://www.indiamart.com/anabyn-global-ventures/"
+      "https://www.linkedin.com/company/anabyn",
+      "https://www.instagram.com/anabynglobal"
     ]
   };
 
