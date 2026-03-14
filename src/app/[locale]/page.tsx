@@ -97,16 +97,16 @@ export default function HomePage() {
               {t('subheadline')}
             </p>
 
-            <div className="flex flex-wrap gap-5 pt-6">
-              <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg">
+            <div className="flex flex-wrap items-center gap-5 pt-6">
+              <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg flex items-center justify-center">
                 <Link href="/terry-towels">{t('ctaCatalogue')}</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold">
+              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center">
                 <Link href="/contact">{t('ctaQuote')}</Link>
               </Button>
-              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg">
+              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg flex items-center justify-center">
                 <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20start%20an%20export%20enquiry." target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp Enquiry
+                  <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp
                 </a>
               </Button>
             </div>
