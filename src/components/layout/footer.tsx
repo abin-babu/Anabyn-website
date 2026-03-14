@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -18,16 +19,16 @@ export function Footer() {
             <div className="flex flex-col gap-4">
               <AnabynLogo className="scale-110 origin-left" />
               <p className="text-[#C9A243] font-bold text-[10px] uppercase tracking-[0.2em] mt-2 leading-relaxed max-w-[280px]">
-                A next-gen AI-first company transformed into global exporting.
+                A next-gen AI-first company transformed into global exporting excellence.
               </p>
             </div>
             <p className="text-sm leading-relaxed max-w-sm">
-              Exporting to 50+ countries — terry towels, bed linen and home textiles for luxury hotels, retail chains and global distributors. Verified quality and documentation at every handshake.
+              Exporting to 50+ countries — luxury terry towels, bed linen and premium textiles for global hospitality chains, retail brands and distributors. Verified quality at every handshake.
             </p>
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-[#C9A243]" />
-                <a href="mailto:info@anabyn.com" className="hover:text-[#C9A243] transition-colors">info@anabyn.com</a>
+                <a href="mailto:sales@anabyn.com" className="hover:text-[#C9A243] transition-colors">sales@anabyn.com</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Globe className="w-4 h-4 text-[#C9A243]" />
@@ -38,7 +39,7 @@ export function Footer() {
 
           {/* Column 2: Products */}
           <div>
-            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Products</h4>
+            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Collections</h4>
             <ul className="space-y-5 text-sm font-medium">
               <li>
                 <Link href="/terry-towels" className="hover:text-[#C9A243] transition-colors">Terry Towels</Link>
@@ -53,7 +54,7 @@ export function Footer() {
                 <Link href="/oem-private-label" className="hover:text-[#C9A243] transition-colors">OEM & Private Label</Link>
               </li>
               <li>
-                <Link href="/certifications" className="hover:text-[#C9A243] transition-colors">Certifications</Link>
+                <Link href="/certifications" className="hover:text-[#C9A243] transition-colors">Compliance & Standards</Link>
               </li>
             </ul>
           </div>
@@ -63,19 +64,19 @@ export function Footer() {
             <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
             <ul className="space-y-5 text-sm font-medium">
               <li>
-                <Link href="/about-us" className="hover:text-[#C9A243] transition-colors">About Us</Link>
+                <Link href="/about-us" className="hover:text-[#C9A243] transition-colors">Our Story</Link>
               </li>
               <li>
-                <Link href="/export-process" className="hover:text-[#C9A243] transition-colors">Export Process</Link>
+                <Link href="/export-process" className="hover:text-[#C9A243] transition-colors">How We Export</Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-[#C9A243] transition-colors">FAQ</Link>
+                <Link href="/faq" className="hover:text-[#C9A243] transition-colors">Technical FAQ</Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-[#C9A243] transition-colors">Blog</Link>
+                <Link href="/blog" className="hover:text-[#C9A243] transition-colors">Export Intelligence</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#C9A243] transition-colors">Contact & Quote</Link>
+                <Link href="/contact" className="hover:text-[#C9A243] transition-colors">Request a Quote</Link>
               </li>
             </ul>
           </div>
@@ -84,10 +85,10 @@ export function Footer() {
         {/* CERTIFICATION BADGES ROW */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pt-12 border-t border-[rgba(201,162,67,0.08)]">
           {[
-            'OEKO-TEX Compliant',
-            'GOTS Cotton Available',
-            'AQL 2.5 Inspected',
-            'ISO Process'
+            'OEKO-TEX STANDARD 100',
+            'GOTS ORGANIC COTTON',
+            'AQL 2.5 INSPECTED',
+            'ISO 9001:2015 CERTIFIED'
           ].map((badge) => (
             <div 
               key={badge}

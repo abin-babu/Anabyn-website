@@ -22,16 +22,16 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendInquiryEmails(inquiryData: any) {
   const adminEmail = {
-    from: 'Anabyn Inquiry <onboarding@resend.dev>', // IMPORTANT: Replace with your verified domain in Resend
+    from: 'Anabyn Inquiry <onboarding@resend.dev>', // Replace with your verified domain in Resend
     to: 'sales@anabyn.com',
     subject: `New Inquiry from ${inquiryData.name} – Anabyn Website`,
     html: `
-      <h1>New Inquiry</h1>
+      <h1>New Inquiry Received</h1>
       <p><strong>Name:</strong> ${inquiryData.name}</p>
       <p><strong>Email:</strong> ${inquiryData.email}</p>
       <p><strong>Phone:</strong> ${inquiryData.phone}</p>
       <p><strong>Company:</strong> ${inquiryData.company || 'N/A'}</p>
-      <p><strong>Product ID:</strong> ${inquiryData.products.length > 0 ? inquiryData.products[0].id : 'General Inquiry'}</p>
+      <p><strong>Reference ID:</strong> ${inquiryData.id}</p>
       <hr>
       <p><strong>Message:</strong></p>
       <p>${inquiryData.message}</p>
@@ -39,29 +39,27 @@ async function sendInquiryEmails(inquiryData: any) {
   };
 
   const userConfirmationEmail = {
-    from: 'Anabyn Global Ventures <onboarding@resend.dev>', // IMPORTANT: Replace with your verified domain in Resend
+    from: 'Anabyn Global Ventures <onboarding@resend.dev>', // Replace with your verified domain in Resend
     to: inquiryData.email,
     subject: 'Thank you for your inquiry with Anabyn',
     html: `
       <h2>Thank You For Your Inquiry</h2>
       <p>Hi ${inquiryData.name},</p>
-      <p>Thank you for reaching Anabyn Global Ventures. Our team has received your inquiry and will respond shortly.</p>
-      <p>Best regards,<br>The Anabyn Team</p>
+      <p>Thank you for reaching Anabyn Global Ventures. Our team has received your inquiry and will respond to you at ${inquiryData.email} within 24 business hours.</p>
+      <p>Best regards,<br>The Anabyn Sourcing Team</p>
     `,
   };
 
   try {
     if (!process.env.RESEND_API_KEY) {
-        console.warn("Resend API key is not set. Skipping email sending. To enable emails, add RESEND_API_KEY to your .env file.");
+        console.warn("Resend API key is not set. Skipping email sending.");
         return;
     }
     await resend.emails.send(adminEmail);
     await resend.emails.send(userConfirmationEmail);
-    console.log('Inquiry emails sent successfully via Resend.');
+    console.log('Inquiry emails sent successfully to sales@anabyn.com');
   } catch (error) {
     console.error('Failed to send emails via Resend:', error);
-    // This failure should not block the user-facing success message.
-    // We log it for debugging, but the primary action (saving to DB) is complete.
   }
 }
 
@@ -69,9 +67,7 @@ export async function handleInquiry(data: InquiryInput) {
   const validation = inquirySchema.safeParse(data);
 
   if (!validation.success) {
-    const errorMessage = "Invalid data provided. Please check the form and try again.";
-    console.error('Invalid inquiry data:', validation.error.flatten().fieldErrors);
-    return { success: false, error: errorMessage };
+    return { success: false, error: "Invalid data provided. Please check the form." };
   }
   
   const { firestore } = getSdks();
@@ -90,16 +86,13 @@ export async function handleInquiry(data: InquiryInput) {
   try {
     const inquiriesRef = collection(firestore, 'inquiries');
     const docRef = await addDoc(inquiriesRef, inquiryData);
-    console.log('Inquiry saved to Firestore with ID:', docRef.id);
-
-    // After saving to DB, send the emails.
-    await sendInquiryEmails({ ...inquiryData, id: docRef.id });
+    
+    // Non-blocking email trigger
+    sendInquiryEmails({ ...inquiryData, id: docRef.id });
 
     return { success: true };
   } catch (error: any) {
-    console.error('Failed to process inquiry:', error);
-    // Return a generic error message to the user for security
-    const userErrorMessage = 'Could not process your inquiry at this time. Please try again later.';
-    return { success: false, error: userErrorMessage };
+    console.error('Firestore Error:', error);
+    return { success: false, error: 'Could not submit your inquiry. Our technical team has been notified.' };
   }
 }

@@ -1,8 +1,8 @@
 
 'use client';
 
-import { Navbar } from '@/components/navbar';
-import { Footer } from '@/components/footer';
+import { Header } from '@/components/layout/header';
+import { Footer } from '@/components/layout/footer';
 import { HeroSection } from '@/components/hero-section';
 import { InquiryForm } from '@/components/inquiry-form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,7 +11,7 @@ import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 export default function ContactPage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <Navbar />
+      <Header />
       
       <main className="flex-1">
         <HeroSection 
