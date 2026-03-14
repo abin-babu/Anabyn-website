@@ -7,6 +7,7 @@ import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { FirebaseClientProvider } from '@/firebase';
 import { TextRevealObserver } from '@/components/text-reveal-observer';
 import { StatsObserver } from '@/components/stats-observer';
+import { ScrollProgress } from '@/components/scroll-progress';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -101,6 +102,7 @@ export default async function LocaleLayout({
       <body className="font-body antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
+            <ScrollProgress />
             <TextRevealObserver />
             <StatsObserver />
             {children}
