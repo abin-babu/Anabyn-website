@@ -100,7 +100,7 @@ export default function HomePage() {
               <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg">
                 <Link href="/terry-towels">{t('ctaCatalogue')}</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 backdrop-blur-sm text-lg font-bold">
+              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold">
                 <Link href="/contact">{t('ctaQuote')}</Link>
               </Button>
             </div>
@@ -117,7 +117,7 @@ export default function HomePage() {
       <section className="bg-[#0A1220] py-24 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-[820px] mx-auto text-center space-y-10">
+          <div className="max-w-820px mx-auto text-center space-y-10">
             <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
               Anabyn Global Ventures LLP is a premium textile export company based in India,
               specialising in luxury terry towels and high-quality bed linen for discerning
