@@ -2,101 +2,111 @@
 
 import Link from 'next/link';
 import { AnabynLogo } from '@/components/anabyn-logo';
-import { Button } from '@/components/ui/button';
-import { FaInstagram, FaLinkedinIn, FaFacebookF, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { Mail, Globe } from 'lucide-react';
 
 export function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer className="bg-[#0D1B3E] pt-24 pb-12 text-white/70 overflow-hidden">
+    <footer className="bg-[#060A14] pt-24 pb-12 text-[rgba(244,240,232,0.55)] border-t border-[rgba(201,162,67,0.12)]">
       <div className="container px-4 mx-auto">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
-          <div className="lg:col-span-1.5 space-y-8">
-            <AnabynLogo />
+        {/* TOP SECTION: 3 Columns */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
+          
+          {/* Column 1: Brand */}
+          <div className="space-y-8">
+            <div className="flex flex-col gap-4">
+              <AnabynLogo className="scale-110 origin-left" />
+              <p className="text-[#C9A243] font-bold text-xs uppercase tracking-[0.2em] mt-2">
+                Premium Textile Exports from India Since 2020
+              </p>
+            </div>
             <p className="text-sm leading-relaxed max-w-sm">
-              Anabyn Global Ventures — India's trusted exporter of premium textiles and medical supplies. Serving buyers across USA, EU, UAE, and UK with verified manufacturing excellence.
+              Exporting to 50+ countries — terry towels, bed linen and home textiles for luxury hotels, retail chains and global distributors. Verified quality and documentation at every handshake.
             </p>
-            <div className="flex items-center gap-4">
-              {[
-                { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/anabyn-global-ventures/', label: 'LinkedIn Profile' },
-                { icon: FaWhatsapp, href: 'https://wa.me/919495613121', label: 'WhatsApp Chat' },
-                { icon: FaInstagram, href: 'https://www.instagram.com/anabyn_global_ventures/', label: 'Instagram Profile' },
-                { icon: FaFacebookF, href: 'https://www.facebook.com/people/Anabyn-Global-Ventures-LLP/61581460358902/', label: 'Facebook Page' },
-                { icon: FaEnvelope, href: 'mailto:sales@anabyn.com', label: 'Email Sales' }
-              ].map((social, i) => (
-                <a 
-                  key={i} 
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="w-11 h-11 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#C8A020] hover:text-[#0D1B3E] hover:border-[#C8A020] transition-all"
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center gap-3 text-sm">
+                <Mail className="w-4 h-4 text-[#C9A243]" />
+                <a href="mailto:anabyn.group@gmail.com" className="hover:text-[#C9A243] transition-colors">anabyn.group@gmail.com</a>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <Globe className="w-4 h-4 text-[#C9A243]" />
+                <a href="https://www.anabyn.com" className="hover:text-[#C9A243] transition-colors">www.anabyn.com</a>
+              </div>
             </div>
           </div>
 
+          {/* Column 2: Products */}
           <div>
             <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Products</h4>
-            <ul className="space-y-5 text-sm">
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hotel Bed Sheets Export</Link></li>
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Indian Bath Towels</Link></li>
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Hospitality Uniforms India</Link></li>
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Medical Syringes & IV Sets</Link></li>
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">Surgical Gloves Supplier</Link></li>
-              <li><Link href="/products" className="hover:text-[#C8A020] transition-colors">ICU Hospital Beds</Link></li>
+            <ul className="space-y-5 text-sm font-medium">
+              <li>
+                <Link href="/terry-towels" className="hover:text-[#C9A243] transition-colors">Terry Towels</Link>
+              </li>
+              <li>
+                <Link href="/bed-linen" className="hover:text-[#C9A243] transition-colors">Bed Linen Collection</Link>
+              </li>
+              <li>
+                <Link href="/hotel-collections" className="hover:text-[#C9A243] transition-colors">Hotel & Hospitality</Link>
+              </li>
+              <li>
+                <Link href="/oem-private-label" className="hover:text-[#C9A243] transition-colors">OEM & Private Label</Link>
+              </li>
+              <li>
+                <Link href="/certifications" className="hover:text-[#C9A243] transition-colors">Certifications</Link>
+              </li>
             </ul>
           </div>
 
+          {/* Column 3: Company */}
           <div>
-            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Intelligence</h4>
-            <ul className="space-y-5 text-sm">
-              <li><Link href="/blog" className="hover:text-[#C8A020] transition-colors">Expert Insights</Link></li>
-              <li><Link href="/how-we-export" className="hover:text-[#C8A020] transition-colors">Import Guide</Link></li>
-              <li><Link href="/certifications" className="hover:text-[#C8A020] transition-colors">Quality Standards</Link></li>
-              <li><Link href="/sustainability" className="hover:text-[#C8A020] transition-colors">Sustainability</Link></li>
-              <li><Link href="/about-us" className="hover:text-[#C8A020] transition-colors">Company Profile</Link></li>
-              <li><Link href="/careers" className="hover:text-[#C8A020] transition-colors">Careers</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Get in Touch</h4>
-            <ul className="space-y-6 text-sm">
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-[#C8A020]" />
-                <a href="mailto:sales@anabyn.com" className="hover:text-[#C8A020]">sales@anabyn.com</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaWhatsapp className="text-[#C8A020]" />
-                <a href="tel:+919495613121" className="hover:text-[#C8A020]">+91 94956 13121</a>
+            <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
+            <ul className="space-y-5 text-sm font-medium">
+              <li>
+                <Link href="/about-us" className="hover:text-[#C9A243] transition-colors">About Us</Link>
               </li>
               <li>
-                <Button asChild variant="outline" className="border-white/20 text-white bg-transparent hover:bg-white/10 w-full rounded-xl">
-                  <a href="https://wa.me/919495613121" target="_blank" rel="noopener noreferrer">
-                    <FaWhatsapp className="mr-2" /> WhatsApp Sourcing Desk
-                  </a>
-                </Button>
+                <Link href="/export-process" className="hover:text-[#C9A243] transition-colors">Export Process</Link>
               </li>
               <li>
-                <Button asChild variant="secondary" className="bg-[#C8A020] text-[#0D1B3E] hover:bg-[#E2BA3A] w-full rounded-xl font-bold">
-                  <a href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank" rel="noopener noreferrer">
-                    ⭐ Google Verified Reviews
-                  </a>
-                </Button>
+                <Link href="/faq" className="hover:text-[#C9A243] transition-colors">FAQ</Link>
+              </li>
+              <li>
+                <Link href="/blog" className="hover:text-[#C9A243] transition-colors opacity-50 cursor-not-allowed">Blog (Coming Soon)</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#C9A243] transition-colors">Contact & Quote</Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
-          <p>© {currentYear} Anabyn Global Ventures LLP. Indian Export Authority.</p>
+        {/* CERTIFICATION BADGES ROW */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pt-12 border-t border-[rgba(201,162,67,0.08)]">
+          {[
+            'OEKO-TEX Compliant',
+            'GOTS Cotton Available',
+            'AQL 2.5 Inspected',
+            'ISO Process'
+          ].map((badge) => (
+            <div 
+              key={badge}
+              className="px-4 py-1.5 rounded-full border border-[#C9A243]/30 text-[10px] font-black uppercase tracking-widest text-[#C9A243]/80 bg-transparent"
+            >
+              {badge}
+            </div>
+          ))}
+        </div>
+
+        {/* BOTTOM BAR */}
+        <div className="pt-10 border-t border-[rgba(201,162,67,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
+          <p>© {currentYear} Anabyn Global Ventures LLP. All rights reserved.</p>
           <div className="flex items-center gap-8">
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+            <span className="text-[#C9A243]">Premium Textile Exports · Made in India</span>
+            <div className="flex gap-6">
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</Link>
+            </div>
           </div>
         </div>
       </div>
