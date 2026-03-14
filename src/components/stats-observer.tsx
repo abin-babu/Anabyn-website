@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect } from 'react';
@@ -12,18 +13,25 @@ export function StatsObserver() {
 
   useEffect(() => {
     function animateCounter(element: HTMLElement) {
-      const target = parseInt(element.dataset.target || '0', 10);
+      const target = parseFloat(element.dataset.target || '0');
       const duration = 2000;
       const startTime = performance.now();
       const suffix = element.dataset.suffix || '';
       const prefix = element.dataset.prefix || '';
+      const isDecimal = target % 1 !== 0;
 
       function update(currentTime: number) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
         const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
-        const current = Math.floor(eased * target);
-        element.textContent = prefix + current.toLocaleString() + suffix;
+        const current = eased * target;
+        
+        const displayValue = isDecimal 
+          ? current.toFixed(1) 
+          : Math.floor(current).toLocaleString();
+
+        element.textContent = prefix + displayValue + suffix;
+        
         if (progress < 1) {
           requestAnimationFrame(update);
         }

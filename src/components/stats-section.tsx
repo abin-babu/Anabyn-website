@@ -1,12 +1,13 @@
+
 'use client';
 
 import * as React from 'react';
 
 const stats = [
   { label: 'Countries Reached', value: 50, suffix: '+' },
-  { label: 'Containers Per Year', value: 500, suffix: '+' },
-  { label: 'Units Exported', value: 5000000, suffix: '' },
-  { label: 'On-Time Delivery Rate', value: 99, suffix: '%' },
+  { label: 'Containers/Year', value: 500, suffix: '+' },
+  { label: 'Units Exported', value: 5, suffix: 'M+' },
+  { label: 'On-Time Delivery', value: 99.2, suffix: '%' },
 ];
 
 export function StatsSection() {
@@ -22,7 +23,7 @@ export function StatsSection() {
                   data-target={stat.value}
                   data-suffix={stat.suffix}
                 >
-                  {stat.value.toLocaleString()}{stat.suffix}
+                  {stat.value}{stat.suffix}
                 </span>
                 <p className="mt-4 text-white/70 font-body font-bold uppercase tracking-[0.2em] text-[10px]">
                   {stat.label}

@@ -98,10 +98,10 @@ export default function HomePage() {
 
             <div className="flex flex-wrap gap-5 pt-6">
               <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg">
-                <Link href="/request-quote">{t('ctaQuote')}</Link>
+                <Link href="/terry-towels">{t('ctaCatalogue')}</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 backdrop-blur-sm text-lg font-bold">
-                <Link href="/products">{t('ctaCatalogue')}</Link>
+                <Link href="/contact">{t('ctaQuote')}</Link>
               </Button>
             </div>
           </div>
