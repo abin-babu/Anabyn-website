@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -18,8 +17,8 @@ export function Footer() {
           <div className="space-y-8">
             <div className="flex flex-col gap-4">
               <AnabynLogo className="scale-110 origin-left" />
-              <p className="text-[#C9A243] font-bold text-xs uppercase tracking-[0.2em] mt-2">
-                Premium Textile Exports from India Since 2020
+              <p className="text-[#C9A243] font-bold text-[10px] uppercase tracking-[0.2em] mt-2 leading-relaxed max-w-[280px]">
+                A next-gen AI-first company transformed into global exporting.
               </p>
             </div>
             <p className="text-sm leading-relaxed max-w-sm">
@@ -28,7 +27,7 @@ export function Footer() {
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-[#C9A243]" />
-                <a href="mailto:sales@anabyn.com" className="hover:text-[#C9A243] transition-colors">sales@anabyn.com</a>
+                <a href="mailto:info@anabyn.com" className="hover:text-[#C9A243] transition-colors">info@anabyn.com</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Globe className="w-4 h-4 text-[#C9A243]" />

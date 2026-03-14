@@ -65,7 +65,6 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
         <div className="absolute inset-0 z-0">
-          {/* Lightened overlays for better image prominence */}
           <div className="absolute inset-0 bg-brand-navy/30 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/60 via-brand-navy/20 to-transparent z-10" />
           <Image 
@@ -98,17 +97,17 @@ export default function HomePage() {
               {t('subheadline')}
             </p>
 
-            <div className="flex flex-wrap items-center gap-5 pt-6">
-              <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg flex items-center justify-center">
+            {/* Structured CTA Group */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-10">
+              <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black h-16 sm:w-auto hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg flex items-center justify-center min-w-[240px]">
                 <Link href="/terry-towels">{t('ctaCatalogue')}</Link>
               </Button>
-              {/* WhatsApp moved to be next to catalogue */}
-              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg flex items-center justify-center">
+              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold h-16 sm:w-auto hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg flex items-center justify-center min-w-[180px]">
                 <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20start%20an%20export%20enquiry." target="_blank" rel="noopener noreferrer">
                   <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center">
+              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy h-16 sm:w-auto bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center min-w-[180px]">
                 <Link href="/contact">{t('ctaQuote')}</Link>
               </Button>
             </div>
@@ -127,7 +126,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-820px mx-auto text-center space-y-10">
             <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
-              Anabyn Global Ventures LLP is a premium textile export company based in India,
+              Anabyn Global Ventures LLP is a next-gen AI-first export company based in India,
               specialising in luxury terry towels and high-quality bed linen for discerning
               buyers worldwide. From 400 GSM cotton bath towels to 1000 thread-count
               Egyptian cotton bed sheets — every product is crafted with precision

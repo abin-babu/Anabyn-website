@@ -35,11 +35,11 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   return {
     metadataBase: new URL('https://www.anabyn.com'),
     title: {
-      default: "Premium Terry Towels & Bed Linen Exporter India | Anabyn Global Ventures",
+      default: "Anabyn Global Ventures | Next-Gen AI-Powered Textile Export from India",
       template: "%s | Anabyn Global Ventures"
     },
-    description: "Anabyn Global Ventures LLP — India's premium luxury terry towel and bed linen exporter. Supplying hotels, retailers and distributors in 50+ countries. Request a quote.",
-    keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
+    description: "Anabyn Global Ventures LLP — A next-gen AI-first company transformed into global exporting. Supplying luxury terry towels and premium bed linen to 50+ countries. Request a quote.",
+    keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B", "AI powered export India"],
     authors: [{ name: "Anabyn Global Ventures LLP" }],
     robots: "index, follow",
     icons: {
@@ -64,15 +64,15 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     openGraph: {
       type: "website",
       url: `https://www.anabyn.com/${locale}`,
-      title: "Anabyn Global Ventures — Premium Indian Textile Exports",
-      description: "India's premium luxury terry towel and bed linen exporter. 50+ countries. Hotels, retail chains and distributors worldwide.",
+      title: "Anabyn Global Ventures — Next-Gen AI-First Textile Export",
+      description: "A next-gen AI-first company transformed into global exporting. India's premium luxury terry towel and bed linen exporter. 50+ countries.",
       siteName: 'Anabyn Global Ventures LLP',
       locale: locale === 'ar' ? 'ar_AR' : 'en_US',
     },
     twitter: {
       card: "summary_large_image",
-      title: "Anabyn Global Ventures — Premium Indian Textile Exports",
-      description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
+      title: "Anabyn Global Ventures — AI-Powered Indian Textile Exports",
+      description: "Next-gen AI-first company transformed into global exporting. India's premium luxury towels and bed linen.",
     },
   };
 }
@@ -85,14 +85,16 @@ const organizationSchema = {
   "url": "https://www.anabyn.com",
   "logo": "https://www.anabyn.com/images/logo.png",
   "image": "https://www.anabyn.com/images/logo.png",
-  "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
+  "description": "A next-gen AI-first company transformed into global exporting. Premium luxury textile exporter from India specialising in terry towels and bed linen.",
+  "foundingDate": "2020",
   "email": "info@anabyn.com",
-  "foundingLocation": {
-    "@type": "Place",
-    "addressCountry": "IN"
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN",
+    "addressRegion": "Kerala"
   },
-  "areaServed": "Worldwide",
-  "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen"],
+  "areaServed": ["GB","AE","DE","US","AU","JP","IT","FR"],
+  "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen", "AI Export Intelligence"],
   "sameAs": [
     "https://www.linkedin.com/company/anabyn-global-ventures",
     "https://www.instagram.com/anabynglobal"
