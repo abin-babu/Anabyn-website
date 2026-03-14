@@ -32,7 +32,7 @@ export function ScrollProgress() {
       id="scroll-progress" 
       role="progressbar" 
       aria-label="Page scroll progress"
-      className="fixed top-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[#C9A243] via-[#E2C060] to-[#C9A243] z-[9999] transition-[width] duration-[0.05s] ease-linear pointer-events-none"
+      className="fixed top-0 left-0 h-[2px] w-0 bg-gradient-to-r from-[#C9A243] via-[#E2C060] to-[#C9A243] z-[9999] transition-[width] duration-75 ease-linear pointer-events-none"
     />
   );
 }

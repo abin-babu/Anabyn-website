@@ -1,5 +1,5 @@
-
-// Redundant after sitemap.ts implementation
+// This route is deprecated in favor of src/app/sitemap.ts
+// Next.js will automatically handle /sitemap.xml if sitemap.ts exists.
 export async function GET() {
-  return new Response("Use /sitemap.xml served via sitemap.ts", { status: 404 });
+  return new Response(null, { status: 404 });
 }
