@@ -19,17 +19,11 @@ import { TrustMarquee } from '@/components/trust-marquee';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { CertificationsPreview } from '@/components/sections/certifications-preview';
 import { LatestBlog } from '@/components/sections/latest-blog';
+import { TrustedBuyers } from '@/components/sections/trusted-buyers';
+import { WhyAnabynHome } from '@/components/sections/why-anabyn-home';
+import { StatsSection } from '@/components/stats-section';
+import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import Image from 'next/image';
-
-// Dynamically import heavy components
-const TestimonialsCarousel = dynamic(() => import('@/components/testimonials-carousel').then(mod => mod.TestimonialsCarousel), { 
-  loading: () => <div className="h-[400px] w-full bg-secondary/5 animate-pulse rounded-3xl" />,
-  ssr: false 
-});
-
-const StatsSection = dynamic(() => import('@/components/stats-section').then(mod => mod.StatsSection), {
-  ssr: false
-});
 
 export default function HomePage() {
   const t = useTranslations('Hero');
@@ -85,93 +79,6 @@ export default function HomePage() {
     ]
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is the minimum order quantity (MOQ) for hotel linens and terry towels?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Our standard MOQ for luxury terry towels is 500 pieces per size/color, while premium hotel bed sheets start at 100 sets. We are a flexible Indian textile export company B2B, supporting trial orders for new partners."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which countries do you export textiles and medical supplies to?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "As a global sourcing partner, we export to over 50 countries, including the USA, UK, UAE, Germany, Saudi Arabia, and Australia. We handle all international logistics and customs documentation."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are your towels and bed linens GOTS or OEKO-TEX certified?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, we specialize in certified sustainable textiles. Our organic cotton range is GOTS certified, and all our hospitality linens carry the OEKO-TEX Standard 100 label, ensuring safety for human use."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you provide private label towels and custom branding OEM India?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Absolutely. We are a leading private label towels manufacturer India. We provide full OEM support, including custom embroidery, Pantone color matching for dyes, and branded retail packaging."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What are your standard payment terms for bulk textile exports from India?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We typically accept T/T (Wire Transfer) with a 30-50% advance, or L/C (Letter of Credit) at sight for container-load shipments. Documents against Payment (DP) is also available for established clients."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the typical production lead time for a 600 GSM towel order?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Standard production lead times are 3-4 weeks for textiles like 600 GSM bath towels and bed linens. Custom OEM orders may require an additional week for sampling and branding approvals."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I request samples before committing to a bulk export order?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, sample evaluation is a key part of our export process. We provide physical samples via courier (DHL/FedEx) for your quality and material approval. Sample costs are often credited back against your bulk contract."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do you ensure the quality of Egyptian cotton bed sheets sourced from India?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We implement a strict 3-stage inspection process (Inline, Mid-line, and Pre-shipment). We also welcome third-party audits from agencies like SGS or Intertek to verify technical specifications before loading."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What Incoterms do you support for international shipping?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We support all standard ICC Incoterms, including EXW, FOB, CIF, and DDP (Delivered Duty Paid). Most of our buyers in the UK and USA prefer DDP for a hassle-free doorstep delivery."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How can I get a technical quote for hospital furniture or medical disposables?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "You can submit an RFQ via our portal or contact our medical export desk at sales@anabyn.com. We provide comprehensive technical dossiers and pricing within 24 business hours."
-        }
-      }
-    ]
-  };
-
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white animate-fade-in">
       <CountrySelector />
@@ -179,10 +86,6 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       
       {/* 1. Hero Section */}
@@ -226,11 +129,6 @@ export default function HomePage() {
               <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 backdrop-blur-sm text-lg font-bold">
                 <Link href="/products">{t('ctaCatalogue')}</Link>
               </Button>
-              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-black px-10 h-16 hover:opacity-90 transition-opacity border-none text-lg shadow-xl">
-                <a href="https://wa.me/919495613121" target="_blank">
-                  <MessageSquare className="mr-2" size={24} /> {t('ctaWhatsApp')}
-                </a>
-              </Button>
             </div>
           </div>
         </div>
@@ -241,13 +139,17 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Trust Content */}
+      <StatsSection />
+      <TrustedBuyers />
+      <WhyAnabynHome />
+      <TestimonialsCarousel />
+      
+      {/* Supporting Sections */}
       <TrustMarquee />
       <VerifiedExporterBar />
-      <StatsSection />
-
       <HowItWorks />
       <CertificationsPreview />
-      <TestimonialsCarousel />
       <LatestBlog />
 
       <Footer />
