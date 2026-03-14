@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -67,7 +68,7 @@ export default function HomePage() {
     "name": "Anabyn Global Ventures LLP",
     "url": "https://www.anabyn.com",
     "logo": "https://www.anabyn.com/logo.png",
-    "description": "Premium luxury textile exporter from India — terry towels and bed linen for hotels, retailers and distributors worldwide.",
+    "description": "Premium luxury textile exporter from India — terry towels and bed linen for hotels, retailers and distributors worldwide. Verified B2B textile exporter India.",
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "IN"
@@ -75,7 +76,8 @@ export default function HomePage() {
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "anabyn.group@gmail.com",
-      "contactType": "sales"
+      "contactType": "sales",
+      "areaServed": ["USA", "EU", "UAE", "UK", "GCC"]
     },
     "sameAs": [
       "https://www.linkedin.com/company/anabyn",
@@ -89,82 +91,82 @@ export default function HomePage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is the minimum order quantity (MOQ) for hotel linens?",
+        "name": "What is the minimum order quantity (MOQ) for hotel linens and terry towels?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our standard MOQ for premium hotel bed sheets is 100 sets, while bath towels start at 500 pieces per size/color."
+          "text": "Our standard MOQ for luxury terry towels is 500 pieces per size/color, while premium hotel bed sheets start at 100 sets. We are a flexible Indian textile export company B2B, supporting trial orders for new partners."
         }
       },
       {
         "@type": "Question",
-        "name": "Which countries do you export to?",
+        "name": "Which countries do you export textiles and medical supplies to?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We serve buyers in over 50 countries, including the USA, UK, UAE, Germany, and Saudi Arabia."
+          "text": "As a global sourcing partner, we export to over 50 countries, including the USA, UK, UAE, Germany, Saudi Arabia, and Australia. We handle all international logistics and customs documentation."
         }
       },
       {
         "@type": "Question",
-        "name": "Are your medical supplies CE and FDA certified?",
+        "name": "Are your towels and bed linens GOTS or OEKO-TEX certified?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, our medical disposables like syringes and gloves are manufactured in ISO 13485 certified facilities and carry CE and FDA markings."
+          "text": "Yes, we specialize in certified sustainable textiles. Our organic cotton range is GOTS certified, and all our hospitality linens carry the OEKO-TEX Standard 100 label, ensuring safety for human use."
         }
       },
       {
         "@type": "Question",
-        "name": "Do you provide custom branding or private labels?",
+        "name": "Do you provide private label towels and custom branding OEM India?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolutely. We offer full OEM support, including custom embroidery, Pantone color matching, and branded export packaging."
+          "text": "Absolutely. We are a leading private label towels manufacturer India. We provide full OEM support, including custom embroidery, Pantone color matching for dyes, and branded retail packaging."
         }
       },
       {
         "@type": "Question",
-        "name": "What are your standard payment terms for exports?",
+        "name": "What are your standard payment terms for bulk textile exports from India?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We typically accept T/T (Wire Transfer) with a 30% advance, or L/C (Letter of Credit) at sight for large containers."
+          "text": "We typically accept T/T (Wire Transfer) with a 30-50% advance, or L/C (Letter of Credit) at sight for container-load shipments. Documents against Payment (DP) is also available for established clients."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the typical lead time for production?",
+        "name": "What is the typical production lead time for a 600 GSM towel order?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Standard production lead times are 3-4 weeks for textiles and 4-6 weeks for medical devices and hospital furniture."
+          "text": "Standard production lead times are 3-4 weeks for textiles like 600 GSM bath towels and bed linens. Custom OEM orders may require an additional week for sampling and branding approvals."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I request product samples before a bulk order?",
+        "name": "Can I request samples before committing to a bulk export order?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we encourage sample evaluation. Sample costs are often credited back against your first commercial bulk order."
+          "text": "Yes, sample evaluation is a key part of our export process. We provide physical samples via courier (DHL/FedEx) for your quality and material approval. Sample costs are often credited back against your bulk contract."
         }
       },
       {
         "@type": "Question",
-        "name": "How do you ensure quality control for international shipments?",
+        "name": "How do you ensure the quality of Egyptian cotton bed sheets sourced from India?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We implement a 3-stage inspection process and welcome third-party audits from agencies like SGS or Intertek before loading."
+          "text": "We implement a strict 3-stage inspection process (Inline, Mid-line, and Pre-shipment). We also welcome third-party audits from agencies like SGS or Intertek to verify technical specifications before loading."
         }
       },
       {
         "@type": "Question",
-        "name": "What Incoterms do you support?",
+        "name": "What Incoterms do you support for international shipping?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We support EXW, FOB, CIF, and DDP terms, depending on your local logistics and customs preferences."
+          "text": "We support all standard ICC Incoterms, including EXW, FOB, CIF, and DDP (Delivered Duty Paid). Most of our buyers in the UK and USA prefer DDP for a hassle-free doorstep delivery."
         }
       },
       {
         "@type": "Question",
-        "name": "How can I get a technical quote for my procurement?",
+        "name": "How can I get a technical quote for hospital furniture or medical disposables?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can submit an RFQ via our portal or contact our export desk directly at sales@anabyn.com for a 24-hour response."
+          "text": "You can submit an RFQ via our portal or contact our medical export desk at sales@anabyn.com. We provide comprehensive technical dossiers and pricing within 24 business hours."
         }
       }
     ]
@@ -192,7 +194,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
             fill
             className="object-cover" 
-            alt="Anabyn Global Ventures - Premium Cotton Fabric Export India"
+            alt="Anabyn Global Ventures - Luxury Terry Towel Exporter India & Premium Bed Sheets"
             priority
           />
           <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-gold/10 blur-[120px] rounded-full animate-pulse z-10" />
