@@ -1,3 +1,4 @@
+
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
@@ -9,6 +10,7 @@ import { TextRevealObserver } from '@/components/text-reveal-observer';
 import { StatsObserver } from '@/components/stats-observer';
 import { TiltEffectObserver } from '@/components/tilt-effect-observer';
 import { ScrollProgress } from '@/components/scroll-progress';
+import { PageLoader } from '@/components/page-loader';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -101,6 +103,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="font-body antialiased" suppressHydrationWarning>
+        <PageLoader />
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
             <ScrollProgress />
