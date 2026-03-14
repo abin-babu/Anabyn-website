@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUser, useFirebase, useCollection, useMemoFirebase } from '@/firebase';
@@ -172,7 +173,7 @@ export default function PortalDashboard() {
               </div>
               <div className="space-y-3">
                 <Button className="w-full bg-white text-brand-navy font-bold rounded-xl h-12" asChild>
-                  <a href="mailto:info@anabyn.com">Email Desk</a>
+                  <a href="mailto:sales@anabyn.com">Email Desk</a>
                 </Button>
                 <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10 rounded-xl h-12" asChild>
                   <a href="https://wa.me/919495613121">WhatsApp Support</a>

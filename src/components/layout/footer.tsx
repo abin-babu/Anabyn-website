@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -27,7 +28,7 @@ export function Footer() {
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-[#C9A243]" />
-                <a href="mailto:info@anabyn.com" className="hover:text-[#C9A243] transition-colors">info@anabyn.com</a>
+                <a href="mailto:sales@anabyn.com" className="hover:text-[#C9A243] transition-colors">sales@anabyn.com</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Globe className="w-4 h-4 text-[#C9A243]" />

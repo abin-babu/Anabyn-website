@@ -1,8 +1,9 @@
+
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
-import { Toaster } from '@/components/ui/toast';
+import { Toaster } from '@/components/ui/toaster';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { FirebaseClientProvider } from '@/firebase';
 import { TextRevealObserver } from '@/components/text-reveal-observer';
@@ -84,7 +85,7 @@ const organizationSchema = {
   "url": "https://www.anabyn.com",
   "logo": "https://www.anabyn.com/images/logo.png",
   "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
-  "email": "info@anabyn.com",
+  "email": "sales@anabyn.com",
   "foundingLocation": { "@type": "Place", "addressCountry": "IN" },
   "areaServed": "Worldwide",
   "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen"],

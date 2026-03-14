@@ -1,3 +1,4 @@
+
 'use server';
 
 import { z } from 'zod';
@@ -22,7 +23,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 async function sendInquiryEmails(inquiryData: any) {
   const adminEmail = {
     from: 'Anabyn Inquiry <onboarding@resend.dev>', // IMPORTANT: Replace with your verified domain in Resend
-    to: 'info@anabyn.com',
+    to: 'sales@anabyn.com',
     subject: `New Inquiry from ${inquiryData.name} – Anabyn Website`,
     html: `
       <h1>New Inquiry</h1>

@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Navbar } from '@/components/navbar';
@@ -38,7 +39,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest mb-1">Email Sales</h4>
-                      <a href="mailto:info@anabyn.com" className="text-lg font-medium hover:text-brand-gold transition-colors">info@anabyn.com</a>
+                      <a href="mailto:sales@anabyn.com" className="text-lg font-medium hover:text-brand-gold transition-colors">sales@anabyn.com</a>
                     </div>
                   </div>
                   <div className="flex gap-6">
