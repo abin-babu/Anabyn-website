@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useParams, notFound } from 'next/navigation';
@@ -6,26 +7,27 @@ import { Footer } from '@/components/layout/footer';
 import { useCollection, useMemoFirebase, useFirestore } from '@/firebase';
 import { collection, query, where, limit } from 'firebase/firestore';
 import { BlogPost, initialBlogPosts } from '@/lib/blog';
+import { products } from '@/lib/products';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { 
   Calendar, 
   Clock, 
-  User, 
   ChevronRight, 
-  Share2, 
   Linkedin, 
   Twitter, 
   MessageCircle,
-  ArrowLeft,
   ArrowRight,
-  BookOpen
+  BookOpen,
+  FlaskConical,
+  ShieldCheck,
+  Globe
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { ProductCard } from '@/components/product-card';
 
 export default function BlogPostPage() {
   const params = useParams();
@@ -51,6 +53,15 @@ export default function BlogPostPage() {
   const relatedPosts = (dbRelated && dbRelated.filter(p => p.slug !== slug)) || 
                        initialBlogPosts.filter(p => p.category === post?.category && p.slug !== slug).slice(0, 3);
 
+  // Recommended products for the blog context
+  const recommendedProducts = useMemo(() => {
+    if (!post) return [];
+    if (post.tags.includes('Hotel Towels') || post.slug.includes('towel')) {
+      return products.filter(p => p.subcategory === 'Bath Linen').slice(0, 3);
+    }
+    return products.filter(p => p.category === 'hospitality-supplies').slice(0, 3);
+  }, [post]);
+
   if (isLoading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center pt-20">
@@ -73,8 +84,16 @@ export default function BlogPostPage() {
     "author": [{
       "@type": "Person",
       "name": post.author.name,
-      "url": "#"
-    }]
+      "url": "https://www.anabyn.com"
+    }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Anabyn Global Ventures LLP",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.anabyn.com/images/logo.png"
+      }
+    }
   };
 
   return (
@@ -146,16 +165,32 @@ export default function BlogPostPage() {
             
             {/* Article Body */}
             <article className="prose prose-lg prose-navy max-w-none prose-headings:font-playfair prose-headings:text-brand-navy prose-a:text-brand-gold prose-img:rounded-3xl">
-              <div dangerouslySetInnerHTML={{ 
+              <div className="text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ 
                 __html: post.content.split('\n').map(line => {
-                  if (line.startsWith('# ')) return `<h1 class="text-4xl mt-12 mb-6">${line.replace('# ', '')}</h1>`;
-                  if (line.startsWith('## ')) return `<h2 class="text-3xl mt-10 mb-4 border-b pb-2">${line.replace('## ', '')}</h2>`;
-                  if (line.startsWith('### ')) return `<h3 class="text-2xl mt-8 mb-3">${line.replace('### ', '')}</h3>`;
-                  if (line.startsWith('- ')) return `<li class="ml-4">${line.replace('- ', '')}</li>`;
+                  if (line.startsWith('# ')) return `<h1 class="text-4xl mt-12 mb-6 font-playfair font-bold text-brand-navy">${line.replace('# ', '')}</h1>`;
+                  if (line.startsWith('## ')) return `<h2 class="text-3xl mt-10 mb-4 border-b pb-2 font-playfair font-bold text-brand-navy">${line.replace('## ', '')}</h2>`;
+                  if (line.startsWith('### ')) return `<h3 class="text-2xl mt-8 mb-3 font-bold text-brand-navy">${line.replace('### ', '')}</h3>`;
+                  if (line.startsWith('- ')) return `<li class="ml-4 mb-2">${line.replace('- ', '')}</li>`;
+                  if (line.startsWith('|')) return `<div class="overflow-x-auto my-8"><table class="w-full border-collapse border border-gray-200 text-sm">${line}</table></div>`;
                   if (line.trim() === '') return '<br/>';
-                  return `<p class="mb-4 leading-relaxed text-gray-600">${line}</p>`;
+                  return `<p class="mb-4 text-lg">${line}</p>`;
                 }).join('')
               }} />
+
+              {/* Sample CTA */}
+              <div className="mt-20 bg-brand-navy text-white p-10 md:p-16 rounded-[3rem] text-center relative overflow-hidden shadow-2xl">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
+                <div className="relative z-10 space-y-8">
+                  <FlaskConical className="w-16 h-16 text-brand-gold mx-auto animate-pulse" />
+                  <h2 className="text-3xl md:text-5xl font-playfair font-bold leading-tight">Verify Our Quality <br /><span className="text-brand-gold">In Your Own Hands</span></h2>
+                  <p className="text-white/70 text-lg max-w-xl mx-auto">
+                    We ship physical sample packs worldwide via DHL/FedEx. Evaluate our GSM density and weave quality before placing a bulk contract.
+                  </p>
+                  <Button asChild size="lg" className="bg-brand-gold text-brand-navy font-black h-16 px-12 rounded-2xl hover:scale-105 transition-transform border-none text-lg">
+                    <Link href="/request-quote">Request a Master Sample <ArrowRight className="ml-2 w-5 h-5" /></Link>
+                  </Button>
+                </div>
+              </div>
 
               {/* Social Sharing */}
               <div className="mt-16 pt-10 border-t border-gray-100">
@@ -187,22 +222,25 @@ export default function BlogPostPage() {
 
             {/* Sidebar */}
             <aside className="space-y-12">
-              {/* Table of Contents Placeholder */}
               <div className="bg-secondary/10 p-8 rounded-3xl sticky top-24">
                 <h4 className="font-bold text-brand-navy uppercase tracking-widest text-xs mb-6 flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-brand-gold" /> Inside this article
+                  <BookOpen className="w-4 h-4 text-brand-gold" /> Quick Facts
                 </h4>
-                <nav className="space-y-4 text-sm font-medium text-muted-foreground">
-                  <p className="hover:text-brand-gold cursor-pointer transition-colors">1. Market Opportunity</p>
-                  <p className="hover:text-brand-gold cursor-pointer transition-colors">2. Sourcing Strategy</p>
-                  <p className="hover:text-brand-gold cursor-pointer transition-colors">3. Regulatory Hurdles</p>
-                  <p className="hover:text-brand-gold cursor-pointer transition-colors">4. Partner Selection</p>
-                </nav>
+                <div className="space-y-6">
+                  <div className="flex gap-3 items-start">
+                    <ShieldCheck className="text-brand-gold w-5 h-5 shrink-0" />
+                    <p className="text-xs text-brand-navy font-bold leading-tight">ISO 9001:2015 Verified Processes</p>
+                  </div>
+                  <div className="flex gap-3 items-start">
+                    <Globe className="text-brand-gold w-5 h-5 shrink-0" />
+                    <p className="text-xs text-brand-navy font-bold leading-tight">Exporting to 50+ Countries</p>
+                  </div>
+                </div>
                 <Separator className="my-8 bg-brand-gold/20" />
                 <div className="space-y-4">
-                  <p className="text-xs text-brand-navy font-bold uppercase tracking-widest">Exporting to</p>
+                  <p className="text-xs text-brand-navy font-bold uppercase tracking-widest">Sourcing Hubs</p>
                   <div className="flex flex-wrap gap-2">
-                    {['EU', 'GCC', 'USA', 'AFRICA'].map(m => (
+                    {['Kerala', 'Tamil Nadu', 'Gujarat'].map(m => (
                       <Badge key={m} className="bg-white text-brand-navy border-brand-gold/30">{m}</Badge>
                     ))}
                   </div>
@@ -212,10 +250,10 @@ export default function BlogPostPage() {
               {/* Related Products Ad */}
               <div className="bg-brand-navy p-8 rounded-3xl text-white relative overflow-hidden group">
                 <div className="relative z-10">
-                  <h4 className="text-brand-gold font-bold uppercase tracking-widest text-[10px] mb-4">Sourcing Partner</h4>
-                  <p className="text-xl font-playfair font-bold mb-6 leading-tight">Need technical support for your medical imports?</p>
+                  <h4 className="text-brand-gold font-bold uppercase tracking-widest text-[10px] mb-4">Direct Sourcing</h4>
+                  <p className="text-xl font-playfair font-bold mb-6 leading-tight">Looking for premium {post.tags.includes('Hotel Towels') ? 'towels' : 'textiles'} from India?</p>
                   <Button asChild className="w-full bg-brand-gold text-brand-navy font-bold rounded-xl group-hover:scale-105 transition-transform">
-                    <Link href="/request-quote">Request Proposal <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                    <Link href="/products">Browse Catalogue <ArrowRight className="ml-2 w-4 h-4" /></Link>
                   </Button>
                 </div>
                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
@@ -224,14 +262,31 @@ export default function BlogPostPage() {
           </div>
         </div>
 
-        {/* Related Articles Section */}
-        <section className="mt-32 pt-20 bg-secondary/10 border-t">
+        {/* Recommended Products Grid */}
+        <section className="mt-32 pt-20 border-t">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="flex items-center justify-between mb-12">
-                <h3 className="text-3xl font-bold font-playfair text-brand-navy">Related Insights</h3>
+                <h3 className="text-3xl font-bold font-playfair text-brand-navy">Related Products</h3>
+                <Link href="/products" className="text-brand-gold font-black text-sm uppercase tracking-widest hover:underline">View All Catalogue →</Link>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8">
+                {recommendedProducts.map(p => (
+                  <ProductCard key={p.id} product={p} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Related Articles Section */}
+        <section className="mt-20 py-20 bg-secondary/10">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="flex items-center justify-between mb-12">
+                <h3 className="text-3xl font-bold font-playfair text-brand-navy">More Insights</h3>
                 <Button asChild variant="link" className="text-brand-gold font-bold">
-                  <Link href="/blog">View all articles <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                  <Link href="/blog">All articles <ArrowRight className="ml-2 w-4 h-4" /></Link>
                 </Button>
               </div>
               <div className="grid md:grid-cols-3 gap-8">
