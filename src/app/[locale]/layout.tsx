@@ -1,4 +1,3 @@
-
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
@@ -114,7 +113,7 @@ export default async function LocaleLayout({
         {/* Google Analytics 4 */}
         <Script
           strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`} // Replace with actual ID
+          src={`https://www.googletagmanager.com/gtag/js?id=G-W4TG29FZLD`}
         />
         <Script
           id="gtag-init"
@@ -124,7 +123,7 @@ export default async function LocaleLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-XXXXXXXXXX', {
+              gtag('config', 'G-W4TG29FZLD', {
                 page_path: window.location.pathname,
               });
             `,
