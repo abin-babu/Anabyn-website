@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -25,6 +24,7 @@ import { StatsSection } from '@/components/stats-section';
 import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import { AnabynDifference } from '@/components/sections/anabyn-difference';
 import Image from 'next/image';
+import { FaWhatsapp } from 'react-icons/fa';
 
 export default function HomePage() {
   const t = useTranslations('Hero');
@@ -102,6 +102,11 @@ export default function HomePage() {
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold">
                 <Link href="/contact">{t('ctaQuote')}</Link>
+              </Button>
+              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg">
+                <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20start%20an%20export%20enquiry." target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp Enquiry
+                </a>
               </Button>
             </div>
           </div>

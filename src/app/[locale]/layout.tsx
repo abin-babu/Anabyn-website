@@ -10,6 +10,7 @@ import { StatsObserver } from '@/components/stats-observer';
 import { TiltEffectObserver } from '@/components/tilt-effect-observer';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { PageLoader } from '@/components/page-loader';
+import { WhatsappCta } from '@/components/whatsapp-cta';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -139,6 +140,7 @@ export default async function LocaleLayout({
             <StatsObserver />
             <TiltEffectObserver />
             {children}
+            <WhatsappCta />
             <Toaster />
           </FirebaseClientProvider>
         </NextIntlClientProvider>
