@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -23,6 +22,7 @@ import { TrustedBuyers } from '@/components/sections/trusted-buyers';
 import { WhyAnabynHome } from '@/components/sections/why-anabyn-home';
 import { StatsSection } from '@/components/stats-section';
 import { TestimonialsCarousel } from '@/components/testimonials-carousel';
+import { AnabynDifference } from '@/components/sections/anabyn-difference';
 import Image from 'next/image';
 
 export default function HomePage() {
@@ -143,6 +143,7 @@ export default function HomePage() {
       <StatsSection />
       <TrustedBuyers />
       <WhyAnabynHome />
+      <AnabynDifference />
       <TestimonialsCarousel />
       
       {/* Supporting Sections */}
