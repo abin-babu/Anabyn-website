@@ -47,7 +47,7 @@ export default function TerryTowelsPage() {
           </div>
           
           <div className="container relative z-20 px-4 mx-auto">
-            <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
+            <div className="max-w-3xl space-y-8">
               <Badge className="bg-[#C9A243] text-[#060A14] font-black uppercase tracking-widest px-4 py-1">
                 Luxury Export Grade
               </Badge>
@@ -137,7 +137,7 @@ export default function TerryTowelsPage() {
         <section className="py-24 bg-[#0D1F3C] text-white overflow-hidden">
           <div className="container mx-auto px-4">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
-              <div className="space-y-10 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+              <div className="space-y-10">
                 <div>
                   <Badge variant="outline" className="border-[#C9A243] text-[#C9A243] mb-4">Material Intelligence</Badge>
                   <h2 className="text-4xl md:text-6xl font-playfair font-bold">The Core of Comfort</h2>

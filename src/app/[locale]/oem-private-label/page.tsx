@@ -70,7 +70,7 @@ export default function OEMPrivateLabelPage() {
             />
           </div>
           <div className="container relative z-20 px-4 mx-auto text-center">
-            <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+            <div className="max-w-4xl mx-auto space-y-8">
               <Badge variant="outline" className="text-[#C9A243] border-[#C9A243] px-4 py-1 uppercase tracking-[0.3em] font-black">
                 Direct Manufacturer Access
               </Badge>

@@ -80,7 +80,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white animate-fade-in">
+    <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
       <CountrySelector />
       <Header />
       <script
@@ -104,7 +104,7 @@ export default function HomePage() {
         </div>
 
         <div className="container relative z-20 px-4 mx-auto">
-          <div className="max-w-[840px] space-y-8 fade-up visible text-left ltr:text-left rtl:text-right">
+          <div className="max-w-[840px] space-y-8 text-left ltr:text-left rtl:text-right">
             <div className="inline-flex items-center gap-3 border border-brand-gold/40 rounded-full px-5 py-2 bg-white/5 backdrop-blur-md">
               <ShieldCheck className="text-brand-gold w-5 h-5" />
               <span className="text-brand-gold text-[10px] font-black tracking-[0.3em] uppercase">

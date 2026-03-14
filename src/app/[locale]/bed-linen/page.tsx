@@ -46,7 +46,7 @@ export default function BedLinenPage() {
           </div>
           
           <div className="container relative z-20 px-4 mx-auto">
-            <div className="max-w-3xl space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
+            <div className="max-w-3xl space-y-8">
               <Badge className="bg-[#C9A243] text-[#060A14] font-black uppercase tracking-widest px-4 py-1">
                 Elite Export Grade
               </Badge>

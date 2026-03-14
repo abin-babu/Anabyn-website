@@ -5,6 +5,7 @@ import {routing} from '@/i18n/routing';
 import { Toaster } from '@/components/ui/toaster';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { FirebaseClientProvider } from '@/firebase';
+import { TextRevealObserver } from '@/components/text-reveal-observer';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -96,9 +97,10 @@ export default async function LocaleLayout({
           }}
         />
       </head>
-      <body className="font-body antialiased animate-fade-in" suppressHydrationWarning>
+      <body className="font-body antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
+            <TextRevealObserver />
             {children}
             <Toaster />
           </FirebaseClientProvider>
