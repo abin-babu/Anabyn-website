@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { FirebaseClientProvider } from '@/firebase';
 import { TextRevealObserver } from '@/components/text-reveal-observer';
+import { StatsObserver } from '@/components/stats-observer';
 import Script from 'next/script';
 import '@/app/globals.css';
 
@@ -101,6 +102,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
             <TextRevealObserver />
+            <StatsObserver />
             {children}
             <Toaster />
           </FirebaseClientProvider>

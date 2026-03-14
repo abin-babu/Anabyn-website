@@ -56,15 +56,15 @@ export function Hero() {
           {/* Stats Bar */}
           <div className="pt-12 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="space-y-1">
-              <p className="text-2xl font-bold text-white">50+</p>
+              <p className="text-2xl font-bold text-white" data-target="50" data-suffix="+">50+</p>
               <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Countries Served</p>
             </div>
             <div className="space-y-1">
-              <p className="text-2xl font-bold text-white">10+</p>
+              <p className="text-2xl font-bold text-white" data-target="10" data-suffix="+">10+</p>
               <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Years Experience</p>
             </div>
             <div className="space-y-1">
-              <p className="text-2xl font-bold text-white">500+</p>
+              <p className="text-2xl font-bold text-white" data-target="500" data-suffix="+">500+</p>
               <p className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Happy Clients</p>
             </div>
             <div className="space-y-1">

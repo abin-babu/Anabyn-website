@@ -17,43 +17,16 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState, useRef } from 'react';
 
-// Reusable Counter Component
-function StatCounter({ target, suffix = "", decimals = 0 }: { target: number, suffix?: string, decimals?: number }) {
-  const [count, setCount] = useState(0);
-  const countRef = useRef<HTMLSpanElement>(null);
-  const [hasStarted, setHasStarted] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) setHasStarted(true);
-    }, { threshold: 0.5 });
-
-    if (countRef.current) observer.observe(countRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-    let start = 0;
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(start);
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [hasStarted, target]);
-
+// Reusable Counter Component leveraging global StatsObserver markup
+function StatCounter({ target, suffix = "" }: { target: number, suffix?: string }) {
   return (
-    <span ref={countRef} className="tabular-nums">
-      {count.toFixed(decimals)}{suffix}
+    <span 
+      className="tabular-nums"
+      data-target={target}
+      data-suffix={suffix}
+    >
+      {target}{suffix}
     </span>
   );
 }
@@ -149,12 +122,12 @@ export default function AboutStoryPage() {
               {[
                 { target: 50, suffix: '+', label: 'Countries Served' },
                 { target: 500, suffix: '+', label: 'Containers / Year' },
-                { target: 99.2, suffix: '%', label: 'On-Time Delivery', decimals: 1 },
+                { target: 99, suffix: '%', label: 'On-Time Delivery' },
                 { target: 100, suffix: '%', label: 'Quality Certified' }
               ].map((stat, i) => (
                 <div key={i} className="text-center space-y-3">
                   <h3 className="text-4xl md:text-6xl font-playfair font-bold text-[#C9A243]">
-                    <StatCounter target={stat.target} suffix={stat.suffix} decimals={stat.decimals} />
+                    <StatCounter target={stat.target} suffix={stat.suffix} />
                   </h3>
                   <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-gray-500">
                     {stat.label}
