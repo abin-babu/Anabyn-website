@@ -29,38 +29,53 @@ const inter = Inter({
   display: 'swap',
 });
 
-export const metadata = {
-  metadataBase: new URL('https://www.anabyn.com'),
-  title: {
-    default: "Premium Terry Towels & Bed Linen Exporter India | Anabyn Global Ventures",
-    template: "%s | Anabyn Global Ventures"
-  },
-  description: "Anabyn Global Ventures LLP — India's premium luxury terry towel and bed linen exporter. Supplying hotels, retailers and distributors in 50+ countries. Request a quote.",
-  keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
-  authors: [{ name: "Anabyn Global Ventures LLP" }],
-  robots: "index, follow",
-  icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
-  },
-  alternates: {
-    canonical: 'https://www.anabyn.com/',
-  },
-  openGraph: {
-    type: "website",
-    url: "https://www.anabyn.com/",
-    title: "Anabyn Global Ventures — Premium Indian Textile Exports",
-    description: "India's premium luxury terry towel and bed linen exporter. 50+ countries. Hotels, retail chains and distributors worldwide.",
-    siteName: 'Anabyn Global Ventures LLP',
-    locale: 'en_US',
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Anabyn Global Ventures — Premium Indian Textile Exports",
-    description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
-  },
-};
+export async function generateMetadata({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
+  
+  return {
+    metadataBase: new URL('https://www.anabyn.com'),
+    title: {
+      default: "Premium Terry Towels & Bed Linen Exporter India | Anabyn Global Ventures",
+      template: "%s | Anabyn Global Ventures"
+    },
+    description: "Anabyn Global Ventures LLP — India's premium luxury terry towel and bed linen exporter. Supplying hotels, retailers and distributors in 50+ countries. Request a quote.",
+    keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
+    authors: [{ name: "Anabyn Global Ventures LLP" }],
+    robots: "index, follow",
+    icons: {
+      icon: '/images/logo.png',
+      shortcut: '/images/logo.png',
+      apple: '/images/logo.png',
+    },
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        "en": "/en",
+        "en-US": "/en-US",
+        "en-GB": "/en-GB",
+        "ar": "/ar",
+        "fr": "/fr",
+        "es": "/es",
+        "de": "/de",
+        "hi": "/hi",
+        "x-default": "/en",
+      },
+    },
+    openGraph: {
+      type: "website",
+      url: `https://www.anabyn.com/${locale}`,
+      title: "Anabyn Global Ventures — Premium Indian Textile Exports",
+      description: "India's premium luxury terry towel and bed linen exporter. 50+ countries. Hotels, retail chains and distributors worldwide.",
+      siteName: 'Anabyn Global Ventures LLP',
+      locale: locale === 'ar' ? 'ar_AR' : 'en_US',
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Anabyn Global Ventures — Premium Indian Textile Exports",
+      description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
+    },
+  };
+}
 
 const organizationSchema = {
   "@context": "https://schema.org",
