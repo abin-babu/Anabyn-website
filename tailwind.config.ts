@@ -11,9 +11,10 @@ export default {
     extend: {
       fontFamily: {
         body: ['var(--font-body)', 'sans-serif'],
-        playfair: ['var(--font-playfair)', 'serif'],
-        headline: ['var(--font-playfair)', 'serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        heading: ['var(--font-heading)', 'serif'],
+        playfair: ['var(--font-heading)', 'serif'], // Map legacy fonts to new system
+        headline: ['var(--font-heading)', 'serif'],
+        mono: ['monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',

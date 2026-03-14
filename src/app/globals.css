@@ -33,6 +33,9 @@
     --radius: 0.75rem;
 
     --success: 150 65% 29%; /* brand-green #1A7A4A */
+
+    --font-heading: var(--font-heading), 'Cormorant Garamond', Georgia, serif;
+    --font-body: var(--font-body), 'Inter', 'Helvetica Neue', Arial, sans-serif;
   }
 }
 
@@ -42,9 +45,20 @@
   }
   body {
     @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
+    font-family: var(--font-heading);
+  }
+  p, span, a, button, input, textarea, select, label, nav {
+    font-family: var(--font-body);
+  }
+}
+
+@layer components {
+  /* Section eyebrow labels: Inter, font-size: 0.65rem, letter-spacing: 0.3em, uppercase */
+  .eyebrow-label {
+    @apply font-body text-[0.65rem] uppercase tracking-[0.3em];
   }
 }
 
