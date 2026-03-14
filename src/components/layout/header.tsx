@@ -1,77 +1,61 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { Link, useRouter, usePathname } from '@/i18n/routing';
 import { useTranslations, useLocale } from 'next-intl';
 import { Button } from '@/components/ui/button';
-import { Menu, X, ChevronDown, Globe, Package, Mail, Phone } from 'lucide-react';
+import { Menu, X, ChevronDown, Package, ShieldCheck, Truck, Droplets, Bed, Settings } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnabynLogo } from '@/components/anabyn-logo';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { products as catalog } from '@/lib/products';
 
 export function Header() {
   const t = useTranslations('Nav');
-  const commonT = useTranslations('Common');
   const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
-  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [activeMegaMenu, setActiveMegaMenu] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: t('about'), href: '/about-us' },
-    { label: t('certifications'), href: '/certifications' },
-    { label: t('howWeExport'), href: '/how-we-export' },
-    { label: t('blog'), href: '/blog' },
-    { label: t('sustainability'), href: '/sustainability' },
-  ];
-
-  const categories = [
-    { name: 'Hospitality Supplies', id: 'hospitality-supplies', desc: 'Premium linens, towels & uniforms' },
-    { name: 'Medical Supplies', id: 'medical-supplies', desc: 'Sterile disposables & hospital furniture' }
-  ];
-
-  const languages = [
-    { code: 'en', name: commonT('en'), flag: '🌐' },
-    { code: 'en-US', name: commonT('en-US'), flag: '🇺🇸' },
-    { code: 'en-GB', name: commonT('en-GB'), flag: '🇬🇧' },
-    { code: 'ar', name: commonT('ar'), flag: '🇦🇪' },
-    { code: 'fr', name: commonT('fr'), flag: '🇫🇷' },
-    { code: 'es', name: commonT('es'), flag: '🇪🇸' },
-    { code: 'de', name: commonT('de'), flag: '🇩🇪' },
-    { code: 'hi', name: commonT('hi'), flag: '🇮🇳' },
-  ];
-
-  const handleLanguageChange = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
+  const productLinks = {
+    terryTowels: [
+      { label: 'Bath Towels', href: '/terry-towels#bath' },
+      { label: 'Hand Towels', href: '/terry-towels#hand' },
+      { label: 'Beach Towels', href: '/terry-towels#beach' },
+      { label: 'Hotel Collections', href: '/hotel-collections' },
+    ],
+    bedLinen: [
+      { label: 'Bed Sheets', href: '/bed-linen#sheets' },
+      { label: 'Duvet Covers', href: '/bed-linen#duvet' },
+      { label: 'Pillowcases', href: '/bed-linen#pillowcases' },
+    ],
+    services: [
+      { label: 'OEM & Private Label', href: '/oem-private-label' },
+      { label: 'Export Process', href: '/export-process' },
+      { label: 'Certifications', href: '/certifications' },
+    ]
   };
 
-  const currentLang = languages.find(l => l.code === locale) || languages[0];
+  const navLinks = [
+    { label: 'About', href: '/about-us' },
+    { label: 'Process', href: '/export-process' },
+    { label: 'Certifications', href: '/certifications' },
+    { label: 'Contact', href: '/inquiry' },
+  ];
 
   return (
     <header 
       className={cn(
-        "fixed top-0 z-[100] w-full transition-all duration-500",
+        "fixed top-0 z-[100] w-full transition-all duration-500 py-4",
         isScrolled 
-          ? "bg-brand-navy/95 backdrop-blur-xl shadow-2xl py-3 border-b border-brand-gold/20" 
-          : "bg-brand-navy/80 backdrop-blur-md py-5 border-b border-white/10"
+          ? "bg-[#060A14]/92 backdrop-blur-[18px] border-b border-[#C9A243]/15 shadow-2xl py-3" 
+          : "bg-transparent"
       )}
     >
       <div className="container px-4 mx-auto flex items-center justify-between">
@@ -79,59 +63,61 @@ export function Header() {
           <AnabynLogo />
         </Link>
         
-        <nav className="hidden lg:flex items-center space-x-1">
+        <nav className="hidden lg:flex items-center space-x-2">
           {/* Products Mega Menu Trigger */}
           <div 
-            className="relative group px-4 py-2"
-            onMouseEnter={() => setActiveMegaMenu('products')}
-            onMouseLeave={() => setActiveMegaMenu(null)}
+            className="relative px-4 py-2"
+            onMouseEnter={() => setActiveMegaMenu(true)}
+            onMouseLeave={() => setActiveMegaMenu(false)}
           >
-            <button className="flex items-center gap-1.5 text-white/90 hover:text-brand-gold text-sm font-bold uppercase tracking-widest transition-colors">
-              {t('products')} <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", activeMegaMenu === 'products' && "rotate-180")} />
+            <button className="flex items-center gap-1.5 text-white/90 hover:text-[#C9A243] text-sm font-bold uppercase tracking-widest transition-colors">
+              Products <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", activeMegaMenu && "rotate-180")} />
             </button>
 
             {/* Mega Menu Content */}
             <div className={cn(
-              "absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[600px] transition-all duration-300 transform",
-              activeMegaMenu === 'products' ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-2 pointer-events-none"
+              "absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[700px] transition-all duration-300 transform",
+              activeMegaMenu ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
             )}>
-              <div className="bg-white rounded-3xl shadow-2xl border border-brand-gold/20 overflow-hidden grid grid-cols-2 text-left">
-                <div className="p-8 bg-secondary/10">
-                  <h4 className="text-xs font-bold text-brand-navy uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
-                    <Package className="w-4 h-4 text-brand-gold" /> Categories
+              <div className="bg-[#060A14] border border-[#C9A243]/20 rounded-3xl shadow-2xl overflow-hidden grid grid-cols-3 p-8">
+                {/* Column 1 */}
+                <div className="space-y-6">
+                  <h4 className="text-[10px] font-black text-[#C9A243] uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                    <Droplets className="w-3 h-3" /> Terry Towels
                   </h4>
-                  <div className="space-y-6">
-                    {categories.map(cat => (
-                      <Link 
-                        key={cat.id} 
-                        href={`/products?category=${cat.id}`}
-                        className="block group/item"
-                      >
-                        <p className="text-brand-navy font-bold text-sm group-hover/item:text-brand-gold transition-colors">{cat.name}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{cat.desc}</p>
-                      </Link>
+                  <ul className="space-y-3">
+                    {productLinks.terryTowels.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href as any} className="text-white/70 hover:text-white text-xs font-bold transition-colors block">{link.label}</Link>
+                      </li>
                     ))}
-                  </div>
-                  <Button asChild variant="link" className="mt-8 p-0 text-brand-gold font-bold text-xs uppercase tracking-widest">
-                    <Link href="/products">View All Products →</Link>
-                  </Button>
+                  </ul>
                 </div>
-                <div className="p-8 bg-white border-l border-gray-100">
-                  <h4 className="text-xs font-bold text-brand-navy uppercase tracking-[0.2em] mb-6">Featured Products</h4>
-                  <div className="space-y-4">
-                    {catalog.filter(p => p.featured).slice(0, 3).map(p => (
-                      <Link 
-                        key={p.id} 
-                        href={`/products/${p.slug}`}
-                        className="flex items-center gap-4 group/prod"
-                      >
-                        <div className="w-12 h-12 rounded-lg bg-secondary/20 overflow-hidden relative flex-shrink-0">
-                          <img src={p.images[0]} alt={p.name} className="object-cover w-full h-full group-hover/prod:scale-110 transition-transform" />
-                        </div>
-                        <p className="text-xs font-bold text-brand-navy line-clamp-2 leading-tight group-hover/prod:text-brand-gold transition-colors">{p.name}</p>
-                      </Link>
+                {/* Column 2 */}
+                <div className="space-y-6 border-x border-white/5 px-8">
+                  <h4 className="text-[10px] font-black text-[#C9A243] uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                    <Bed className="w-3 h-3" /> Bed Linen
+                  </h4>
+                  <ul className="space-y-3">
+                    {productLinks.bedLinen.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href as any} className="text-white/70 hover:text-white text-xs font-bold transition-colors block">{link.label}</Link>
+                      </li>
                     ))}
-                  </div>
+                  </ul>
+                </div>
+                {/* Column 3 */}
+                <div className="space-y-6 pl-8">
+                  <h4 className="text-[10px] font-black text-[#C9A243] uppercase tracking-[0.2em] flex items-center gap-2 mb-4">
+                    <Settings className="w-3 h-3" /> Services
+                  </h4>
+                  <ul className="space-y-3">
+                    {productLinks.services.map((link) => (
+                      <li key={link.href}>
+                        <Link href={link.href as any} className="text-white/70 hover:text-white text-xs font-bold transition-colors block">{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -141,38 +127,21 @@ export function Header() {
             <Link 
               key={link.label} 
               href={link.href as any}
-              className="px-4 py-2 text-white/90 hover:text-brand-gold text-sm font-bold uppercase tracking-widest transition-colors"
+              className="px-4 py-2 text-white/90 hover:text-[#C9A243] text-sm font-bold uppercase tracking-widest transition-colors"
             >
               {link.label}
             </Link>
           ))}
           
-          <div className={cn("flex items-center gap-4 border-white/10 ml-4 pl-6", locale === 'ar' ? "border-r mr-4 pr-6" : "border-l ml-4 pl-6")}>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 text-white/80 hover:text-white text-xs font-bold uppercase tracking-widest outline-none">
-                  <Globe className="w-4 h-4 text-brand-gold" /> {currentLang.code.toUpperCase()} <ChevronDown className="w-3 h-3" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-brand-navy border-brand-gold/20 text-white min-w-[180px] max-h-[400px] overflow-y-auto custom-scrollbar">
-                {languages.map((lang) => (
-                  <DropdownMenuItem 
-                    key={lang.code}
-                    className="hover:bg-brand-gold/20 cursor-pointer text-xs font-bold flex items-center justify-between p-3"
-                    onSelect={() => handleLanguageChange(lang.code)}
-                  >
-                    <span>{lang.name}</span>
-                    <span>{lang.flag}</span>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+          <div className="pl-6 border-l border-white/10 ml-4">
             <Button 
               asChild
-              className="rounded-full bg-brand-gold text-brand-navy font-black border-none hover:scale-105 transition-all px-8 shadow-xl shadow-brand-gold/20 h-11"
+              className="relative overflow-hidden group bg-[#C9A243] text-black font-semibold text-sm uppercase tracking-widest rounded-md h-11 px-8 border-none"
             >
-              <Link href="/request-quote">{t('requestQuote')}</Link>
+              <Link href="/request-quote">
+                <span className="relative z-10">Request Quote</span>
+                <div className="absolute inset-0 w-full h-full bg-[#E2C060] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+              </Link>
             </Button>
           </div>
         </nav>
@@ -185,78 +154,51 @@ export function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu - Slide-out Drawer */}
+      {/* Mobile Menu Overlay */}
       <div className={cn(
         "fixed inset-0 z-[200] lg:hidden transition-all duration-500",
         isMobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}>
-        <div 
-          className="absolute inset-0 bg-brand-navy/80 backdrop-blur-md" 
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-        <div className={cn(
-          "absolute top-0 h-full w-[85%] max-w-sm bg-brand-navy border-brand-gold/20 shadow-2xl transition-transform duration-500 transform",
-          locale === 'ar' ? "left-0 border-r" : "right-0 border-l",
-          isMobileMenuOpen ? "translate-x-0" : (locale === 'ar' ? "-translate-x-full" : "translate-x-full")
-        )}>
-          <div className="p-6 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-12">
-              <AnabynLogo />
-              <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2 hover:bg-white/10 rounded-full">
-                <X className="h-7 w-7" />
-              </button>
-            </div>
+        <div className="absolute inset-0 bg-[#060A14]/98 backdrop-blur-xl" />
+        <div className="relative h-full flex flex-col p-6">
+          <div className="flex items-center justify-between mb-16">
+            <AnabynLogo />
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className="text-white p-2 hover:bg-white/10 rounded-full"
+            >
+              <X className="h-8 w-8" />
+            </button>
+          </div>
 
-            <nav className="flex flex-col gap-6 overflow-y-auto">
-              <Link href="/products" onClick={() => setIsMobileMenuOpen(false)} className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4">{t('products')}</Link>
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.label} 
-                  href={link.href as any}
-                  className="text-2xl font-playfair font-bold text-white border-b border-white/5 pb-4"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+          <nav className="flex flex-col gap-8 text-center">
+            <Link 
+              href="/products" 
+              className="text-3xl font-playfair font-bold text-white"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Products
+            </Link>
+            {navLinks.map((link) => (
+              <Link 
+                key={link.label} 
+                href={link.href as any}
+                className="text-3xl font-playfair font-bold text-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-            <div className="mt-auto pt-12 space-y-6">
-              <div className="flex items-center gap-4 mb-6">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full bg-white/5 border-white/10 text-white justify-between">
-                      <span className="flex items-center gap-2"><Globe className="w-4 h-4" /> {currentLang.name}</span>
-                      <ChevronDown className="w-4 h-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="bg-brand-navy border-brand-gold/20 text-white w-64 max-h-[300px] overflow-y-auto">
-                    {languages.map((lang) => (
-                      <DropdownMenuItem 
-                        key={lang.code}
-                        onSelect={() => handleLanguageChange(lang.code)}
-                        className="p-4"
-                      >
-                        {lang.flag} {lang.name}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <a href="mailto:sales@anabyn.com" className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <Mail className="w-5 h-5 text-brand-gold mb-2" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Email</span>
-                </a>
-                <a href="tel:+919495613121" className="flex flex-col items-center p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <Phone className="w-5 h-5 text-brand-gold mb-2" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">Call Us</span>
-                </a>
-              </div>
-              <Button asChild className="w-full rounded-2xl bg-brand-gold text-brand-navy font-black py-8 text-lg">
-                <Link href="/request-quote" onClick={() => setIsMobileMenuOpen(false)}>{t('requestQuote')}</Link>
-              </Button>
-            </div>
+          <div className="mt-auto pb-12">
+            <Button 
+              asChild
+              className="w-full bg-[#C9A243] text-black font-black py-8 text-lg rounded-xl"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              <Link href="/request-quote">Request Quote</Link>
+            </Button>
           </div>
         </div>
       </div>
