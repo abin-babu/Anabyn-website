@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -100,7 +99,8 @@ export function RFQForm() {
     }
   }, [initialProduct, form]);
 
-  const nextStep = async () => {
+  const nextStep = () => {
+    // Step 1 has no mandatory fields, so we just proceed to Step 2
     setStep(2);
   };
 
@@ -168,7 +168,7 @@ export function RFQForm() {
         </CardHeader>
 
         <CardContent className="p-8">
-          <form className="space-y-8">
+          <div className="space-y-8">
             {/* STEP 1: REQUIREMENTS */}
             {step === 1 && (
               <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
@@ -345,12 +345,13 @@ export function RFQForm() {
                 </div>
               </div>
             )}
-          </form>
+          </div>
         </CardContent>
 
         <CardFooter className="p-8 bg-muted/20 border-t flex justify-between">
           {step === 2 ? (
             <Button 
+              type="button"
               variant="outline" 
               onClick={prevStep} 
               disabled={isSubmitting}
@@ -364,7 +365,8 @@ export function RFQForm() {
 
           {step === 1 ? (
             <Button 
-              onClick={form.handleSubmit(nextStep)} 
+              type="button"
+              onClick={nextStep} 
               className="h-14 bg-brand-navy hover:bg-brand-navy/90 text-white px-12 font-black text-xs rounded-xl shadow-xl shadow-brand-navy/20"
             >
               Next Step <ChevronRight className="ml-2 w-4 h-4" />
