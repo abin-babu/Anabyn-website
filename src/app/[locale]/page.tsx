@@ -65,8 +65,9 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-brand-navy/60 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/80 to-transparent z-10" />
+          {/* Lightened overlays for better image prominence */}
+          <div className="absolute inset-0 bg-brand-navy/30 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/60 via-brand-navy/20 to-transparent z-10" />
           <Image 
             src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
             fill
@@ -101,13 +102,14 @@ export default function HomePage() {
               <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg flex items-center justify-center">
                 <Link href="/terry-towels">{t('ctaCatalogue')}</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center">
-                <Link href="/contact">{t('ctaQuote')}</Link>
-              </Button>
+              {/* WhatsApp moved to be next to catalogue */}
               <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold px-10 h-16 hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg flex items-center justify-center">
                 <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20start%20an%20export%20enquiry." target="_blank" rel="noopener noreferrer">
                   <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp
                 </a>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy px-10 h-16 bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center">
+                <Link href="/contact">{t('ctaQuote')}</Link>
               </Button>
             </div>
           </div>
