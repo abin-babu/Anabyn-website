@@ -100,7 +100,7 @@ export default function OEMPrivateLabelPage() {
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {offers.map((opt, i) => (
-                <Card key={i} className="border-none shadow-xl rounded-[2.5rem] bg-[#F5EDD6]/30 group hover:bg-[#1B3A8A] transition-all duration-500 overflow-hidden">
+                <Card key={i} className="border-none shadow-xl rounded-[2.5rem] bg-[#F5EDD6]/30 group hover:bg-[#1B3A8A] transition-all duration-500 overflow-hidden service-card">
                   <CardHeader className="p-10 pb-0">
                     <div className="w-16 h-16 rounded-2xl bg-[#1B3A8A]/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
                       <opt.icon className="w-8 h-8 text-[#C9A243]" />

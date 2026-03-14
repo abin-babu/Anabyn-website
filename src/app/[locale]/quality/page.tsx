@@ -53,7 +53,7 @@ export default function QualityPage() {
                         <CardContent className="mt-8 space-y-12">
                            <div className="grid md:grid-cols-3 gap-8 text-center">
                                 {qualityPoints.map((point) => (
-                                    <div key={point.title} className="flex flex-col items-center">
+                                    <div key={point.title} className="flex flex-col items-center service-card p-6 rounded-2xl bg-white/50 border border-brand-gold/10 transition-all">
                                         <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 mb-4">
                                             <point.icon className="h-8 w-8 text-primary" />
                                         </div>

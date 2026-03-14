@@ -13,7 +13,7 @@ export function ProductCard({ product }: { product: Product }) {
   const altPrefix = product.category === 'hospitality-supplies' ? 'premium cotton fabric export India' : 'medical supplies exporter India';
   
   return (
-    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border-t-0 hover:border-t-4 border-brand-gold">
+    <Card className="overflow-hidden group relative shadow-md hover:shadow-xl transition-all duration-300 flex flex-col border-t-0 hover:border-t-4 border-brand-gold product-card">
       <Link href={`/products/${product.slug}`} className="block overflow-hidden relative aspect-[4/3]">
         <Image
           src={product.images[0] || 'https://placehold.co/600x400'}

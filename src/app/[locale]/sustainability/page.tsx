@@ -117,7 +117,7 @@ export default function SustainabilityPage() {
         <section className="py-24 container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             {esgPillars.map((pillar) => (
-              <Card key={pillar.title} className="border-none shadow-xl hover:-translate-y-2 transition-all duration-300">
+              <Card key={pillar.title} className="border-none shadow-xl hover:-translate-y-2 transition-all duration-300 service-card">
                 <CardHeader>
                   <div className={`w-16 h-16 rounded-2xl ${pillar.bg} flex items-center justify-center mb-6`}>
                     <pillar.icon className={`w-8 h-8 ${pillar.color}`} />

@@ -106,7 +106,7 @@ export default function BedLinenPage() {
                   icon: History
                 }
               ].map((item, i) => (
-                <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500">
+                <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500 product-card">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image src={item.image} alt={item.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute top-4 left-4">

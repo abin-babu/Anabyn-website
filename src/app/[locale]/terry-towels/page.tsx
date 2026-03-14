@@ -110,7 +110,7 @@ export default function TerryTowelsPage() {
                   icon: Globe
                 }
               ].map((variant, i) => (
-                <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500">
+                <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500 product-card">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image src={variant.image} alt={variant.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute top-4 left-4">
@@ -244,7 +244,7 @@ export default function TerryTowelsPage() {
                       <div className="w-10 h-10 rounded-lg bg-[#C9A243]/20 flex items-center justify-center text-[#C9A243]">
                         <item.icon size={20} />
                       </div>
-                      <h4 className="text-xl font-bold">{item.title}</h4>
+                      <h4 className="font-bold text-xl">{item.title}</h4>
                       <p className="text-sm text-white/50 leading-relaxed">{item.desc}</p>
                     </div>
                   ))}

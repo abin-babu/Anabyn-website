@@ -60,6 +60,12 @@
   .eyebrow-label {
     @apply font-body text-[0.65rem] uppercase tracking-[0.3em];
   }
+
+  .product-card, .service-card {
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+  }
 }
 
 @layer utilities {
