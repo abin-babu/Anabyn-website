@@ -18,11 +18,6 @@ import {
   Send,
   MessageSquare
 } from 'lucide-react';
-import { 
-  collection, 
-  addDoc, 
-  serverTimestamp 
-} from 'firebase/firestore';
 import { useFirebase } from '@/firebase';
 import { countries } from '@/lib/countries';
 import { products as catalog } from '@/lib/products';
@@ -44,6 +39,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { handleRFQSubmissionAction } from '@/app/actions/inquiry';
 
 const rfqFormSchema = z.object({
   // Step 1: Requirements (All Optional)
@@ -105,49 +101,32 @@ export function RFQForm() {
   }, [initialProduct, form]);
 
   const nextStep = async () => {
-    // No mandatory fields in Step 1, so we can always proceed
     setStep(2);
   };
 
   const prevStep = () => setStep(1);
 
   const onSubmit = async (data: RFQFormData) => {
-    if (!firestore) return;
     setIsSubmitting(true);
 
     try {
       const rfqId = `AGV-2026-${Math.floor(1000 + Math.random() * 9000)}`;
 
-      const submission = {
+      // Use Server Action to handle Firestore save and Email sending
+      const result = await handleRFQSubmissionAction({
         rfqId,
-        category: data.category || 'General',
-        product: data.product || 'Not Specified',
-        quantity: data.quantity || 0,
-        unit: data.unit || 'Pieces',
-        destinationCountry: data.destinationCountry,
-        customization: {
-          oem: data.oem,
-          notes: data.notes || ''
-        },
-        userDetails: {
-          name: data.name || 'Anonymous',
-          company: data.company || 'Not Specified',
-          email: data.email,
-          whatsapp: data.whatsapp,
-          country: data.destinationCountry,
-        },
-        status: 'New',
-        createdAt: serverTimestamp(),
-      };
-
-      await addDoc(collection(firestore, 'rfq_submissions'), submission);
-      
-      toast({
-        title: 'Quote Request Submitted!',
-        description: `Your reference ID is ${rfqId}.`,
+        ...data
       });
 
-      router.push(`/request-quote/success?id=${rfqId}`);
+      if (result.success) {
+        toast({
+          title: 'Quote Request Submitted!',
+          description: `Your reference ID is ${rfqId}.`,
+        });
+        router.push(`/request-quote/success?id=${rfqId}`);
+      } else {
+        throw new Error(result.error);
+      }
     } catch (error: any) {
       toast({
         variant: 'destructive',
@@ -385,7 +364,7 @@ export function RFQForm() {
 
           {step === 1 ? (
             <Button 
-              onClick={nextStep} 
+              onClick={form.handleSubmit(nextStep)} 
               className="h-14 bg-brand-navy hover:bg-brand-navy/90 text-white px-12 font-black text-xs rounded-xl shadow-xl shadow-brand-navy/20"
             >
               Next Step <ChevronRight className="ml-2 w-4 h-4" />

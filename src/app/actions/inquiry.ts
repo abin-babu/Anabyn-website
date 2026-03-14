@@ -6,6 +6,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { getSdks } from '@/firebase/server';
 import { Resend } from 'resend';
 
+// Schema for General Inquiries
 const inquirySchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
@@ -15,84 +16,140 @@ const inquirySchema = z.object({
   productId: z.string().optional(),
 });
 
-type InquiryInput = z.infer<typeof inquirySchema>;
+// Schema for RFQs
+const rfqSchema = z.object({
+  rfqId: z.string(),
+  product: z.string().optional(),
+  quantity: z.number().optional(),
+  unit: z.string().optional(),
+  destinationCountry: z.string(),
+  oem: z.boolean().optional(),
+  notes: z.string().optional(),
+  email: z.string().email(),
+  whatsapp: z.string(),
+  name: z.string().optional(),
+  company: z.string().optional(),
+});
 
-// Initialize Resend
+type InquiryInput = z.infer<typeof inquirySchema>;
+type RFQInput = z.infer<typeof rfqSchema>;
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+/**
+ * Sends notification emails for general inquiries.
+ */
 async function sendInquiryEmails(inquiryData: any) {
-  const adminEmail = {
-    from: 'Anabyn Inquiry <onboarding@resend.dev>', // Replace with your verified domain in Resend
-    to: 'sales@anabyn.com',
-    subject: `New Inquiry from ${inquiryData.name} – Anabyn Website`,
-    html: `
-      <h1>New Inquiry Received</h1>
-      <p><strong>Name:</strong> ${inquiryData.name}</p>
-      <p><strong>Email:</strong> ${inquiryData.email}</p>
-      <p><strong>Phone:</strong> ${inquiryData.phone}</p>
-      <p><strong>Company:</strong> ${inquiryData.company || 'N/A'}</p>
-      <p><strong>Reference ID:</strong> ${inquiryData.id}</p>
-      <hr>
-      <p><strong>Message:</strong></p>
-      <p>${inquiryData.message}</p>
-    `,
-  };
-
-  const userConfirmationEmail = {
-    from: 'Anabyn Global Ventures <onboarding@resend.dev>', // Replace with your verified domain in Resend
-    to: inquiryData.email,
-    subject: 'Thank you for your inquiry with Anabyn',
-    html: `
-      <h2>Thank You For Your Inquiry</h2>
-      <p>Hi ${inquiryData.name},</p>
-      <p>Thank you for reaching Anabyn Global Ventures. Our team has received your inquiry and will respond to you at ${inquiryData.email} within 24 business hours.</p>
-      <p>Best regards,<br>The Anabyn Sourcing Team</p>
-    `,
-  };
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("RESEND_API_KEY is missing. Email skipped.");
+    return;
+  }
 
   try {
-    if (!process.env.RESEND_API_KEY) {
-        console.warn("Resend API key is not set. Skipping email sending.");
-        return;
-    }
-    await resend.emails.send(adminEmail);
-    await resend.emails.send(userConfirmationEmail);
-    console.log('Inquiry emails sent successfully to sales@anabyn.com');
+    await resend.emails.send({
+      from: 'Anabyn Inquiry <onboarding@resend.dev>',
+      to: 'sales@anabyn.com',
+      subject: `[Inquiry] ${inquiryData.name} - Anabyn Global`,
+      html: `
+        <h1>New General Inquiry</h1>
+        <p><strong>Name:</strong> ${inquiryData.name}</p>
+        <p><strong>Email:</strong> ${inquiryData.email}</p>
+        <p><strong>Phone:</strong> ${inquiryData.phone}</p>
+        <p><strong>Company:</strong> ${inquiryData.company || 'N/A'}</p>
+        <p><strong>Message:</strong> ${inquiryData.message}</p>
+      `,
+    });
   } catch (error) {
-    console.error('Failed to send emails via Resend:', error);
+    console.error('Resend Error (Inquiry):', error);
+  }
+}
+
+/**
+ * Sends notification emails for RFQ submissions.
+ */
+async function sendRFQEmails(rfqData: RFQInput) {
+  if (!process.env.RESEND_API_KEY) {
+    console.warn("RESEND_API_KEY is missing. Email skipped.");
+    return;
+  }
+
+  try {
+    // 1. Admin Notification
+    await resend.emails.send({
+      from: 'Anabyn RFQ Desk <onboarding@resend.dev>',
+      to: 'sales@anabyn.com',
+      subject: `[RFQ ${rfqData.rfqId}] New Quote Request: ${rfqData.product || 'General'}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px;">
+          <h2 style="color: #0D1F3C;">New RFQ Received: ${rfqData.rfqId}</h2>
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Product:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.product || 'Not Specified'}</td></tr>
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Quantity:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.quantity} ${rfqData.unit}</td></tr>
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Country:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.destinationCountry}</td></tr>
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>OEM/Private Label:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.oem ? 'YES' : 'No'}</td></tr>
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Contact:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.name} (${rfqData.email})</td></tr>
+            <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>WhatsApp:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${rfqData.whatsapp}</td></tr>
+          </table>
+          <p><strong>Notes:</strong><br/>${rfqData.notes || 'None'}</p>
+        </div>
+      `,
+    });
+
+    // 2. User Confirmation
+    await resend.emails.send({
+      from: 'Anabyn Global Ventures <onboarding@resend.dev>',
+      to: rfqData.email,
+      subject: `Quote Request Received - Ref: ${rfqData.rfqId}`,
+      html: `
+        <p>Dear ${rfqData.name || 'Partner'},</p>
+        <p>Thank you for requesting a quote from Anabyn Global Ventures. Your request <strong>${rfqData.rfqId}</strong> for <strong>${rfqData.product || 'Textiles'}</strong> has been received by our sourcing desk.</p>
+        <p>Our account manager will review your technical requirements and contact you within 24 business hours with a formal proposal.</p>
+        <p>Best regards,<br/>The Anabyn Sourcing Team</p>
+      `,
+    });
+  } catch (error) {
+    console.error('Resend Error (RFQ):', error);
   }
 }
 
 export async function handleInquiry(data: InquiryInput) {
   const validation = inquirySchema.safeParse(data);
-
-  if (!validation.success) {
-    return { success: false, error: "Invalid data provided. Please check the form." };
-  }
+  if (!validation.success) return { success: false, error: "Invalid data" };
   
   const { firestore } = getSdks();
-
-  const inquiryData = {
-    name: validation.data.name,
-    email: validation.data.email,
-    company: validation.data.company,
-    phone: validation.data.phone,
-    message: validation.data.message,
-    products: validation.data.productId ? [{ id: validation.data.productId, qty: 1 }] : [],
-    status: 'Enquired',
-    createdAt: serverTimestamp(),
-  };
-
   try {
-    const inquiriesRef = collection(firestore, 'inquiries');
-    const docRef = await addDoc(inquiriesRef, inquiryData);
-    
-    // Non-blocking email trigger
-    sendInquiryEmails({ ...inquiryData, id: docRef.id });
+    const docRef = await addDoc(collection(firestore, 'inquiries'), {
+      ...validation.data,
+      status: 'Enquired',
+      createdAt: serverTimestamp(),
+    });
+    // Trigger emails
+    sendInquiryEmails({ ...validation.data, id: docRef.id });
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error: error.message };
+  }
+}
+
+export async function handleRFQSubmissionAction(data: RFQInput) {
+  const validation = rfqSchema.safeParse(data);
+  if (!validation.success) return { success: false, error: "Invalid contact details" };
+
+  const { firestore } = getSdks();
+  try {
+    // Save to Firestore
+    await addDoc(collection(firestore, 'rfq_submissions'), {
+      ...validation.data,
+      status: 'New',
+      createdAt: serverTimestamp(),
+    });
+
+    // Trigger emails
+    await sendRFQEmails(validation.data);
 
     return { success: true };
   } catch (error: any) {
-    console.error('Firestore Error:', error);
-    return { success: false, error: 'Could not submit your inquiry. Our technical team has been notified.' };
+    console.error('Firestore/Email Error:', error);
+    return { success: false, error: 'Failed to process request.' };
   }
 }
