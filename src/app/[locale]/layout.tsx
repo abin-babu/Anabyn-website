@@ -39,6 +39,11 @@ export const metadata = {
   keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
   authors: [{ name: "Anabyn Global Ventures LLP" }],
   robots: "index, follow",
+  icons: {
+    icon: '/images/logo.png',
+    shortcut: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
   alternates: {
     canonical: 'https://www.anabyn.com/',
   },
