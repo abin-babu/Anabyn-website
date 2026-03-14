@@ -53,21 +53,12 @@ export const metadata = {
     title: "Anabyn Global Ventures — Premium Indian Textile Exports",
     description: "India's premium luxury terry towel and bed linen exporter. 50+ countries. Hotels, retail chains and distributors worldwide.",
     siteName: 'Anabyn Global Ventures LLP',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Anabyn Global Ventures - Premium Indian Textile Exports'
-      }
-    ],
     locale: 'en_US',
   },
   twitter: {
     card: "summary_large_image",
     title: "Anabyn Global Ventures — Premium Indian Textile Exports",
     description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
-    images: ['/og-image.jpg'],
   },
 };
 
