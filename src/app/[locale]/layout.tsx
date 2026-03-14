@@ -82,13 +82,24 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Anabyn Global Ventures LLP",
+  "legalName": "Anabyn Global Ventures LLP",
   "url": "https://www.anabyn.com",
   "logo": "https://www.anabyn.com/images/logo.png",
-  "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
-  "email": "sales@anabyn.com",
-  "foundingLocation": { "@type": "Place", "addressCountry": "IN" },
-  "areaServed": "Worldwide",
-  "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen"],
+  "image": "https://www.anabyn.com/og-image.jpg",
+  "description": "Premium luxury terry towel and bed linen exporter from India supplying hotels, retailers and distributors worldwide.",
+  "foundingDate": "2020",
+  "email": "info@anabyn.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN",
+    "addressRegion": "Kerala"
+  },
+  "areaServed": ["GB", "AE", "DE", "US", "AU", "JP", "IT", "FR"],
+  "knowsAbout": ["Terry Towels", "Bed Linen", "Hotel Textiles", "Textile Export"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Premium Textile Export Catalogue"
+  },
   "sameAs": [
     "https://www.linkedin.com/company/anabyn-global-ventures",
     "https://www.instagram.com/anabynglobal"
