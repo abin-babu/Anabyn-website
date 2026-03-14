@@ -71,7 +71,7 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "Anabyn Global Ventures LLP",
   "url": "https://www.anabyn.com",
-  "logo": "https://www.anabyn.com/logo.png",
+  "logo": "https://www.anabyn.com/images/logo.png",
   "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
   "email": "anabyn.group@gmail.com",
   "foundingLocation": { "@type": "Place", "addressCountry": "IN" },
