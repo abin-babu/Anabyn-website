@@ -1,11 +1,6 @@
-import { MetadataRoute } from 'next'
-
-export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-    },
-    sitemap: 'https://www.anabyn.com/sitemap.xml',
-  }
+/**
+ * This file is disabled in favor of the static robots.txt in /public.
+ */
+export default function robots() {
+  return null;
 }
