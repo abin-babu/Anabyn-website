@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -56,37 +57,10 @@ export default function HomePage() {
     };
   }, []);
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Anabyn Global Ventures LLP",
-    "url": "https://www.anabyn.com",
-    "logo": "https://www.anabyn.com/logo.png",
-    "description": "Premium luxury textile exporter from India — terry towels and bed linen for hotels, retailers and distributors worldwide. Verified B2B textile exporter India.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "IN"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "anabyn.group@gmail.com",
-      "contactType": "sales",
-      "areaServed": ["USA", "EU", "UAE", "UK", "GCC"]
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/anabyn",
-      "https://www.instagram.com/anabynglobal"
-    ]
-  };
-
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
       <CountrySelector />
       <Header />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
