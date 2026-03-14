@@ -27,7 +27,7 @@ export function Footer() {
             <div className="space-y-3 pt-2">
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-[#C9A243]" />
-                <a href="mailto:anabyn.group@gmail.com" className="hover:text-[#C9A243] transition-colors">anabyn.group@gmail.com</a>
+                <a href="mailto:info@anabyn.com" className="hover:text-[#C9A243] transition-colors">info@anabyn.com</a>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Globe className="w-4 h-4 text-[#C9A243]" />
@@ -72,7 +72,7 @@ export function Footer() {
                 <Link href="/faq" className="hover:text-[#C9A243] transition-colors">FAQ</Link>
               </li>
               <li>
-                <Link href="/blog" className="hover:text-[#C9A243] transition-colors opacity-50 cursor-not-allowed">Blog (Coming Soon)</Link>
+                <Link href="/blog" className="hover:text-[#C9A243] transition-colors">Blog</Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-[#C9A243] transition-colors">Contact & Quote</Link>

@@ -2,7 +2,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {routing} from '@/i18n/routing';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/toast';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import { FirebaseClientProvider } from '@/firebase';
 import { TextRevealObserver } from '@/components/text-reveal-observer';
@@ -48,17 +48,17 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       apple: '/images/logo.png',
     },
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `https://www.anabyn.com/${locale}`,
       languages: {
-        "en": "/en",
-        "en-US": "/en-US",
-        "en-GB": "/en-GB",
-        "ar": "/ar",
-        "fr": "/fr",
-        "es": "/es",
-        "de": "/de",
-        "hi": "/hi",
-        "x-default": "/en",
+        "en": "https://www.anabyn.com/en",
+        "en-US": "https://www.anabyn.com/en-US",
+        "en-GB": "https://www.anabyn.com/en-GB",
+        "ar": "https://www.anabyn.com/ar",
+        "fr": "https://www.anabyn.com/fr",
+        "es": "https://www.anabyn.com/es",
+        "de": "https://www.anabyn.com/de",
+        "hi": "https://www.anabyn.com/hi",
+        "x-default": "https://www.anabyn.com/en",
       },
     },
     openGraph: {
@@ -84,7 +84,7 @@ const organizationSchema = {
   "url": "https://www.anabyn.com",
   "logo": "https://www.anabyn.com/images/logo.png",
   "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
-  "email": "anabyn.group@gmail.com",
+  "email": "info@anabyn.com",
   "foundingLocation": { "@type": "Place", "addressCountry": "IN" },
   "areaServed": "Worldwide",
   "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen"],

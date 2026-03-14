@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder="sales@anabyn.com"
+                                    placeholder="info@anabyn.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
