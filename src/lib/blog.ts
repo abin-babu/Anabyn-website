@@ -36,7 +36,7 @@ export const initialBlogPosts: BlogPost[] = [
     author: {
       name: 'Anoop Ashraf',
       role: 'Managing Director',
-      avatar: 'https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?w=100&h=100&fit=crop'
+      avatar: '/Founders/Anoop.jpeg'
     },
     publishedAt: Timestamp.fromDate(new Date('2024-03-10')),
     readingTime: 12,
@@ -93,7 +93,7 @@ Ready to feel the difference? Request a physical sample pack from our sourcing d
     author: {
       name: 'Anoop Ashraf',
       role: 'Managing Director',
-      avatar: 'https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?w=100&h=100&fit=crop'
+      avatar: '/Founders/Anoop.jpeg'
     },
     publishedAt: Timestamp.fromDate(new Date('2024-03-05')),
     readingTime: 15,

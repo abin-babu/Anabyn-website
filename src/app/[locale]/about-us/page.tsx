@@ -35,12 +35,14 @@ const directors = [
   {
     name: 'Anoop Ashraf',
     role: 'Founder & Managing Director',
+    expertise: '13+ Years Textile Industry Expertise',
     linkedin: '#',
-    photo: 'https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?w=400&h=400&fit=crop',
+    photo: '/Founders/Anoop.jpeg',
   },
   {
     name: 'Dr. Abin Babu',
     role: 'Co-Founder & Director of Quality',
+    expertise: 'Medical Quality & Compliance Expert',
     linkedin: '#',
     photo: '/Founders/PHOTO-2026-02-20-11-43-35.jpg',
   }
@@ -94,7 +96,7 @@ export default function AboutUsPage() {
                             <CardContent>
                                 <p className="text-muted-foreground">To become the world’s most trusted bridge between India’s manufacturing excellence and global market demand—transforming how businesses source internationally.</p>
                             </CardContent>
-                        </div>
+                        </Card>
                     </div>
 
                     <Card className="border-accent/20">
@@ -178,8 +180,9 @@ export default function AboutUsPage() {
                                                   loading="lazy"
                                                 />
                                             </div>
-                                            <h3 className="text-lg font-bold text-brand-navy">{dir.name}</h3>
-                                            <p className="text-xs text-accent font-bold uppercase tracking-widest mb-3">{dir.role}</p>
+                                            <h3 className="text-lg font-bold text-brand-navy text-center">{dir.name}</h3>
+                                            <p className="text-[10px] text-accent font-black uppercase tracking-widest mb-1 text-center">{dir.role}</p>
+                                            <p className="text-[9px] text-muted-foreground font-bold uppercase tracking-tighter mb-3 text-center">{dir.expertise}</p>
                                             <a href={dir.linkedin} className="text-muted-foreground hover:text-brand-navy">
                                                 <Linkedin className="w-5 h-5" />
                                             </a>

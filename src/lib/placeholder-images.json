@@ -27,7 +27,7 @@
     {
       "id": "hand-towel",
       "description": "Rolled hand towel",
-      "imageUrl": "https://images.unsplash.com/photo-1523471826770-c437b4636fe6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxoYW5kJTIwdG93ZWx8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1523471826770-c437b4636fe6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw8fHxoYW5kJTIwdG93ZWx8ZW58MHx8fHwxNzYzMDQ4OTUyfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "hand towel"
     },
     {
@@ -135,7 +135,7 @@
     {
       "id": "founder-anoop",
       "description": "Portrait of Anoop Ashraf",
-      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdHxlbnwwfHx8fDE3NjA4NTQ0NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "/Founders/Anoop.jpeg",
       "imageHint": "professional headshot"
     },
     {
@@ -267,7 +267,7 @@
     {
       "id": "hotel-desk-set",
       "description": "A set of accessories on a hotel room desk.",
-      "imageUrl": "https://images.unsplash.com/photo-1593345378735-96f35d1ea7a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGRlc2slMjBzZXR8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1593345378735-96f35d1ea7a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob3RlbCUyMGRlc2slMjBzZXR8ZW58MHx8fHwxNzYzNjMzODgzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "desk accessories"
     },
     {

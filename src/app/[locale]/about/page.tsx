@@ -188,7 +188,7 @@ export default function AboutStoryPage() {
                 <div className="relative h-[400px] md:h-auto bg-gray-100 grid grid-cols-2">
                   <div className="relative aspect-square md:aspect-auto">
                     <Image 
-                      src="https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?w=400&h=400&fit=crop" 
+                      src="/Founders/Anoop.jpeg" 
                       alt="Anoop Ashraf - Founding Director" 
                       fill 
                       className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -208,11 +208,11 @@ export default function AboutStoryPage() {
                 <div className="p-12 md:p-20 flex flex-col justify-center space-y-8">
                   <h3 className="text-3xl font-playfair font-bold text-[#060A14]">The Visionaries</h3>
                   <p className="text-gray-600 leading-relaxed italic">
-                    "We didn't just want to be another export firm. We wanted to be an authority. Anabyn was founded to ensure that every buyer, no matter where they are in the world, can source from India with the same confidence they have in local production."
+                    "Anabyn was founded to ensure that every buyer can source from India with absolute confidence. With over 13 years in the textile heartlands, I've seen that authority comes from consistency, not just production."
                   </p>
                   <div className="space-y-1">
                     <p className="font-bold text-[#060A14] text-lg">Anoop Ashraf & Dr. Abin Babu</p>
-                    <p className="text-[#C9A243] font-bold text-xs uppercase tracking-widest">Founding Directors</p>
+                    <p className="text-[#C9A243] font-bold text-xs uppercase tracking-widest">Founding Directors • 13+ Years Expertise</p>
                   </div>
                   <Button asChild className="w-fit bg-[#1B3A8A] text-white font-bold h-12 rounded-xl">
                     <Link href="/request-quote">Work With Our Team <ArrowRight className="ml-2 w-4 h-4" /></Link>
