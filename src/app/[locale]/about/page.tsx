@@ -9,16 +9,12 @@ import {
   Target, 
   ShieldCheck, 
   Users, 
-  Globe, 
-  Ship, 
-  Clock, 
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Reusable Counter Component leveraging global StatsObserver markup
 function StatCounter({ target, suffix = "" }: { target: number, suffix?: string }) {
   return (
     <span 
@@ -37,7 +33,6 @@ export default function AboutStoryPage() {
       <Header />
       
       <main className="flex-1">
-        {/* 1. Hero Section */}
         <section className="relative pt-40 pb-24 overflow-hidden bg-[#060A14] text-white">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-[#060A14] via-transparent to-[#060A14] z-10" />
@@ -66,7 +61,6 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 2. Our Mission */}
         <section className="py-32 bg-[#F5EDD6]">
           <div className="container px-4 mx-auto text-center">
             <div className="max-w-5xl mx-auto">
@@ -78,7 +72,6 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 3. Our Values */}
         <section className="py-24 bg-white">
           <div className="container px-4 mx-auto">
             <div className="text-center mb-20 space-y-4">
@@ -116,7 +109,6 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 4. Our Numbers (Stats) */}
         <section className="py-20 bg-[#060A14] text-white">
           <div className="container px-4 mx-auto">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -139,7 +131,6 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 5. Made in India Section */}
         <section className="py-32 bg-white overflow-hidden">
           <div className="container px-4 mx-auto">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -180,7 +171,6 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 6. Visionaries Section */}
         <section className="py-24 bg-gray-50 border-t">
           <div className="container px-4 mx-auto max-w-5xl">
             <Card className="border-none shadow-2xl overflow-hidden rounded-[3rem] bg-white">
