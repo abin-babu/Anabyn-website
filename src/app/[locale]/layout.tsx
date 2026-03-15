@@ -84,14 +84,23 @@ const organizationSchema = {
   "legalName": "Anabyn Global Ventures LLP",
   "url": "https://www.anabyn.com",
   "logo": "https://www.anabyn.com/images/logo.png",
+  "image": "https://www.anabyn.com/images/logo.png",
   "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
+  "foundingDate": "2020",
   "email": "sales@anabyn.com",
-  "foundingLocation": {
-    "@type": "Place",
-    "addressCountry": "IN"
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IN",
+    "addressRegion": "Kerala",
+    "postalCode": "680669",
+    "streetAddress": "Tharupedikayil complex, Anchapalam, Kodungallur"
   },
-  "areaServed": "Worldwide",
-  "knowsAbout": ["Terry Towels", "Bed Linen", "Textile Export", "Hotel Linen"],
+  "areaServed": ["GB", "AE", "DE", "US", "AU", "JP", "IT", "FR"],
+  "knowsAbout": ["Terry Towels", "Bed Linen", "Hotel Textiles", "Textile Export"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Premium Textile Export Catalogue"
+  },
   "sameAs": [
     "https://www.linkedin.com/company/anabyn-global-ventures",
     "https://www.instagram.com/anabynglobal"

@@ -3,7 +3,7 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import { Eye, Target, Globe, Users, Truck, Package, Linkedin, MapPin, Building2, Calendar, Landmark } from 'lucide-react';
+import { Eye, Target, Globe, Users, Truck, Package, Linkedin, MapPin, Building2, Calendar, Landmark, ExternalLink } from 'lucide-react';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -47,7 +47,7 @@ const directors = [
 ];
 
 const timeline = [
-  { year: '2020', event: 'Anabyn Global Ventures LLP incorporated in Thiruvananthapuram, Kerala.' },
+  { year: '2020', event: 'Anabyn Global Ventures LLP incorporated in Kerala.' },
   { year: '2021', event: 'Achieved ISO 9001:2015 certification and expanded textile exports.' },
   { year: '2022', event: 'Launched medical supplies division with CE and FDA compliance.' },
   { year: '2023', event: 'Fulfilled over 300+ orders across 15+ countries.' },
@@ -110,7 +110,19 @@ export default function AboutUsPage() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest">Registered Address</h4>
-                                            <p className="text-sm text-muted-foreground mt-1">Anabyn Global Ventures LLP,<br />TC 4/1234, Main Road, Thiruvananthapuram,<br />Kerala, India - 695001</p>
+                                            <p className="text-sm text-muted-foreground mt-1">
+                                                Anabyn Global Ventures LLP,<br />
+                                                Tharupedikayil complex, Anchapalam, Kodungallur,<br />
+                                                Kerala, India - 680669
+                                            </p>
+                                            <a 
+                                                href="https://share.google/7Ija9vAhL3zQXiHY4" 
+                                                target="_blank" 
+                                                rel="noopener noreferrer"
+                                                className="text-[10px] font-black uppercase text-accent mt-2 inline-flex items-center gap-1 hover:underline"
+                                            >
+                                                View on Google Maps <ExternalLink size={10} />
+                                            </a>
                                         </div>
                                     </div>
                                     <div className="flex gap-4">
