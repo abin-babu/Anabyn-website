@@ -42,7 +42,7 @@ const directors = [
     name: 'Dr. Abin Babu',
     role: 'Co-Founder & Director of Quality',
     linkedin: '#',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+    photo: '/Founders/PHOTO-2026-02-20-11-43-35.jpg',
   }
 ];
 
@@ -94,7 +94,7 @@ export default function AboutUsPage() {
                             <CardContent>
                                 <p className="text-muted-foreground">To become the world’s most trusted bridge between India’s manufacturing excellence and global market demand—transforming how businesses source internationally.</p>
                             </CardContent>
-                        </Card>
+                        </div>
                     </div>
 
                     <Card className="border-accent/20">

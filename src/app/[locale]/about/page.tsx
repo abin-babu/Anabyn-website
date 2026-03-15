@@ -180,17 +180,29 @@ export default function AboutStoryPage() {
           </div>
         </section>
 
-        {/* 6. Team Placeholder */}
+        {/* 6. Visionaries Section */}
         <section className="py-24 bg-gray-50 border-t">
           <div className="container px-4 mx-auto max-w-5xl">
             <Card className="border-none shadow-2xl overflow-hidden rounded-[3rem] bg-white">
               <div className="grid md:grid-cols-2">
-                <div className="relative h-[400px] md:h-auto bg-gray-200">
-                  {/* Photo Placeholder */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                    <Users className="w-16 h-16 text-gray-400 mb-4" />
-                    <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">Leadership Portrait Placeholder</p>
-                    <p className="text-gray-400 text-[10px] mt-2 italic px-8">"Add portrait of Anoop Ashraf & Dr. Abin Babu here"</p>
+                <div className="relative h-[400px] md:h-auto bg-gray-100 grid grid-cols-2">
+                  <div className="relative aspect-square md:aspect-auto">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1595211877493-41a4e5f236b3?w=400&h=400&fit=crop" 
+                      alt="Anoop Ashraf - Founding Director" 
+                      fill 
+                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  </div>
+                  <div className="relative aspect-square md:aspect-auto">
+                    <Image 
+                      src="/Founders/PHOTO-2026-02-20-11-43-35.jpg" 
+                      alt="Dr. Abin Babu - Founding Director" 
+                      fill 
+                      className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
                   </div>
                 </div>
                 <div className="p-12 md:p-20 flex flex-col justify-center space-y-8">
