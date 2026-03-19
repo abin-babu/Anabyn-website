@@ -5,18 +5,15 @@ import { Card, CardContent } from '@/components/ui/card';
 const differenceData = [
   {
     title: 'Personal Attention',
-    generic: 'Order number 48,302 in a 50,000-order queue',
-    anabyn: 'Your dedicated account manager knows your business by name',
+    body: 'Your dedicated account manager knows your product and your business.',
   },
   {
     title: 'Quality Consistency',
-    generic: 'Batch variation is normal at scale',
-    anabyn: 'Same GSM, same colour, same finish — every container, every time',
+    body: 'Same GSM, same colour, same finish — every container, every time.',
   },
   {
     title: 'Export Expertise',
-    generic: 'You handle the logistics',
-    anabyn: 'We handle documentation, customs, shipping and delivery — you receive',
+    body: 'We handle documentation, customs, and port-to-port logistics end to end.',
   },
 ];
 
@@ -35,23 +32,15 @@ export function AnabynDifference() {
           {differenceData.map((item, i) => (
             <Card key={i} className="bg-[#0C1220] border-none shadow-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500 rounded-2xl">
               <div className="absolute top-0 left-0 w-full h-1.5 bg-brand-gold" />
-              <CardContent className="p-10 space-y-8">
+              <CardContent className="p-10 space-y-6">
                 <h3 className="text-xl font-bold uppercase tracking-widest text-[#1B3A8A]">
                   {item.title}
                 </h3>
                 
-                <div className="space-y-6">
-                  <div>
-                    <p className="text-[10px] font-black uppercase text-gray-500 tracking-[0.2em] mb-2">Generic Exporter</p>
-                    <p className="text-gray-400 text-sm font-medium">"{item.generic}"</p>
-                  </div>
-                  
-                  <div className="pt-6 border-t border-white/5">
-                    <p className="text-[10px] font-black uppercase text-brand-gold tracking-[0.2em] mb-2">The Anabyn Way</p>
-                    <p className="text-white text-lg font-playfair italic leading-relaxed">
-                      "{item.anabyn}"
-                    </p>
-                  </div>
+                <div className="pt-6 border-t border-white/5">
+                  <p className="text-white text-lg font-playfair italic leading-relaxed">
+                    "{item.body}"
+                  </p>
                 </div>
               </CardContent>
             </Card>

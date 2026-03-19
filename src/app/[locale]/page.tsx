@@ -82,19 +82,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. SEO Intro Section */}
-      <section className="bg-[#0A1220] py-24 relative overflow-hidden">
+      {/* 2. SEO Intro Section (Refined About) */}
+      <section className="bg-[#0A1220] py-32 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-[820px] mx-auto text-center space-y-10">
-            <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
-              Anabyn Global Ventures has transformed from a next-gen AI-first company into a global exporting powerhouse based in India.
-              We specialise in luxury terry towels and high-quality bed linen for discerning buyers worldwide. 
-              From 400 GSM cotton bath towels to 1000 thread-count Egyptian cotton bed sheets — every product is crafted with precision and shipped with complete export documentation.
-            </p>
-            <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
-              We supply luxury hotels, retail chains, wholesale distributors and private label brands across the United Kingdom, UAE, Europe, USA, Australia and beyond. 
-              Our clients choose Anabyn for consistent quality, reliable timelines, and a partnership built on trust.
+          <div className="max-w-[820px] mx-auto text-center">
+            <p className="text-xl md:text-2xl leading-[1.8] text-[rgba(244,240,232,0.85)] font-medium font-playfair italic">
+              "From 400 GSM bath towels to 1,000 thread-count Egyptian cotton sheets — every product crafted to your spec, shipped with complete export documentation. Trusted by hotels, retail chains, and distributors across 50+ countries."
             </p>
           </div>
         </div>

@@ -17,8 +17,8 @@ export function Footer() {
           <div className="space-y-8">
             <div className="flex flex-col gap-4">
               <AnabynLogo className="scale-110 origin-left" />
-              <p className="text-[#C9A243] font-bold text-[10px] uppercase tracking-[0.2em] mt-2 leading-relaxed max-w-[280px]">
-                A next-gen AI-first company transformed into global exporting excellence.
+              <p className="footer-tagline mt-2 max-w-[280px]">
+                Precision textiles. Delivered to the world.
               </p>
             </div>
             <p className="text-sm leading-relaxed max-w-sm">
