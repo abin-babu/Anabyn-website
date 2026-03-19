@@ -173,6 +173,34 @@
     background-position: center right;
     background-repeat: no-repeat;
   }
+
+  /* Stats Section Overhaul */
+  .stats-section-container {
+    background: #F5F5F7 !important;
+    border-top: 1px solid #D2D2D7;
+    border-bottom: 1px solid #D2D2D7;
+  }
+
+  .stat-number-display {
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #0D1F3C !important;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: #6E6E73;
+    letter-spacing: 0;
+    text-transform: none !important;
+  }
+
+  .stat-item-box:not(:last-child) {
+    border-right: 1px solid #D2D2D7;
+  }
 }
 
 @layer utilities {

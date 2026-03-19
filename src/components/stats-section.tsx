@@ -1,32 +1,52 @@
-
 'use client';
 
 import * as React from 'react';
 
 const stats = [
-  { label: 'Countries Reached', value: 50, suffix: '+' },
-  { label: 'Containers/Year', value: 500, suffix: '+' },
-  { label: 'Units Exported', value: 5, suffix: 'M+' },
-  { label: 'On-Time Delivery', value: 99.2, suffix: '%' },
+  { 
+    label: 'Countries', 
+    sublabel: 'from Kerala to the world', 
+    value: 50, 
+    suffix: '+' 
+  },
+  { 
+    label: 'Containers', 
+    sublabel: 'shipped yearly', 
+    value: 500, 
+    suffix: '+' 
+  },
+  { 
+    label: 'Units exported', 
+    sublabel: 'since 2020', 
+    value: 5, 
+    suffix: 'M+' 
+  },
+  { 
+    label: 'On-time delivery', 
+    sublabel: 'rate', 
+    value: 99.2, 
+    suffix: '%' 
+  },
 ];
 
 export function StatsSection() {
   return (
-    <section className="py-20 bg-[#1B3A8A] text-white overflow-hidden relative">
+    <section className="py-20 stats-section-container overflow-hidden relative">
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center group">
-              <div className="flex flex-col items-center justify-center">
+            <div key={stat.label} className="text-center group py-10 lg:py-0 stat-item-box">
+              <div className="flex flex-col items-center justify-center px-4">
                 <span 
-                  className="text-4xl md:text-6xl font-bold font-playfair text-[#C9A243] tabular-nums"
+                  className="stat-number-display tabular-nums"
                   data-target={stat.value}
                   data-suffix={stat.suffix}
                 >
                   {stat.value}{stat.suffix}
                 </span>
-                <p className="mt-4 text-white/70 font-body font-bold uppercase tracking-[0.2em] text-[10px]">
-                  {stat.label}
+                <p className="stat-label-text">
+                  <span className="font-bold text-[#0D1F3C]">{stat.label}</span>
+                  <span className="block mt-1 opacity-80">{stat.sublabel}</span>
                 </p>
               </div>
             </div>
