@@ -57,17 +57,9 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest mb-1">Headquarters</h4>
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        Tharupedikayil complex, Anchapalam,<br />
-                        Kodungallur, Kerala - 680669
+                        287/87/CA, Anchapalam,<br />
+                        Methala, Thrissur, Kerala - 680 669
                       </p>
-                      <a 
-                        href="https://share.google/7Ija9vAhL3zQXiHY4" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-[10px] font-black uppercase text-brand-gold mt-2 inline-flex items-center gap-1 hover:underline"
-                      >
-                        View on Google Maps <ExternalLink size={10} />
-                      </a>
                     </div>
                   </div>
                 </div>

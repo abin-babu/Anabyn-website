@@ -84,10 +84,10 @@ export function Footer() {
         {/* CERTIFICATION BADGES ROW */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pt-12 border-t border-[rgba(201,162,67,0.08)]">
           {[
-            'OEKO-TEX STANDARD 100',
-            'GOTS ORGANIC COTTON',
+            'IEC REGISTERED EXPORTER',
+            'GST REGISTERED',
             'AQL 2.5 INSPECTED',
-            'ISO 9001:2015 CERTIFIED'
+            'QUALITY ASSURED'
           ].map((badge) => (
             <div 
               key={badge}

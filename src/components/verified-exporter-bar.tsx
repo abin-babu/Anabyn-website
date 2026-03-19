@@ -4,17 +4,14 @@ import { cn } from '@/lib/utils';
 
 /**
  * VerifiedExporterBar - A clean, single-line inline certification strip.
- * Replaces the 7-card carousel/grid with a refined corporate treatment.
+ * Strictly reflects currently held active registrations.
  */
 export function VerifiedExporterBar({ className }: { className?: string }) {
   const certifications = [
-    "ISO 9001:2015",
-    "CE Marked",
-    "FDA Registered",
-    "GOTS Organic Cotton",
-    "OEKO-TEX Standard 100",
-    "IEC Registered Exporter",
-    "AQL 2.5 Inspected"
+    "IEC Registered Exporter (ACLFA6777F)",
+    "GST Registered (32ACLFA6777F1Z8)",
+    "AQL 2.5 Inspection Standard",
+    "Verified Indian Manufacturing"
   ];
 
   return (

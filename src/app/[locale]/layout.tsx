@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       default: "Premium Terry Towels & Bed Linen Exporter India | Anabyn Global Ventures",
       template: "%s | Anabyn Global Ventures"
     },
-    description: "Anabyn Global Ventures LLP — A next-gen AI-first company transformed into global exporting excellence. Premium luxury terry towel and bed linen exporter from India.",
+    description: "Anabyn Global Ventures LLP — India's finest luxury textiles. Premium luxury terry towel and bed linen exporter from India.",
     keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
     authors: [{ name: "Anabyn Global Ventures LLP" }],
     robots: "index, follow",
@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       type: "website",
       url: `https://www.anabyn.com/${locale}`,
       title: "Anabyn Global Ventures — Premium Indian Textile Exports",
-      description: "India's premium luxury terry towel and bed linen exporter. A next-gen AI-first company transformed into global excellence.",
+      description: "India's premium luxury terry towel and bed linen exporter.",
       siteName: 'Anabyn Global Ventures LLP',
       locale: locale === 'ar' ? 'ar_AR' : 'en_US',
     },
@@ -87,25 +87,21 @@ const organizationSchema = {
   "logo": "https://www.anabyn.com/images/logo.png",
   "image": "https://www.anabyn.com/images/logo.png",
   "description": "Premium luxury textile exporter from India specialising in terry towels and bed linen for hotels, retailers and distributors worldwide.",
-  "foundingDate": "2020",
+  "foundingDate": "2025",
   "email": "sales@anabyn.com",
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "IN",
     "addressRegion": "Kerala",
     "postalCode": "680669",
-    "streetAddress": "Tharupedikayil complex, Anchapalam, Kodungallur"
+    "streetAddress": "287/87/CA, Anchapalam, Methala, Thrissur"
   },
   "areaServed": ["GB", "AE", "DE", "US", "AU", "JP", "IT", "FR"],
   "knowsAbout": ["Terry Towels", "Bed Linen", "Hotel Textiles", "Textile Export"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Premium Textile Export Catalogue"
-  },
-  "sameAs": [
-    "https://www.linkedin.com/company/anabyn-global-ventures",
-    "https://www.instagram.com/anabynglobal"
-  ]
+  }
 };
 
 export default async function LocaleLayout({

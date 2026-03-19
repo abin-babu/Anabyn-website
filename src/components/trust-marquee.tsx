@@ -3,14 +3,14 @@
 import { CircleCheck } from 'lucide-react';
 
 const trustItems = [
-  "ISO 9001:2015 Certified",
-  "CE Marked Medical Products",
   "IEC Registered Exporter",
-  "FDA Registered Facility",
-  "500+ Orders Fulfilled",
+  "GST Registered (32ACLFA6777F1Z8)",
+  "AQL 2.5 Inspection Standard",
   "4.9★ Google Rating",
   "Global Logistics Partners",
-  "Verified Indian Manufacturing"
+  "Verified Indian Manufacturing",
+  "1M+ Units Delivered",
+  "Dezire Sportswear Heritage"
 ];
 
 export function TrustMarquee() {
