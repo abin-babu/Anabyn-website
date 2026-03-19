@@ -33,23 +33,23 @@ const whatWeDo = [
 
 const directors = [
   {
+    name: 'Dr. Abin Babu',
+    role: 'Chairman',
+    expertise: 'MBA IIM Kozhikode • 14+ Years Corporate Product Authority',
+    linkedin: '#',
+    photo: '/Founders/Abin.png',
+  },
+  {
     name: 'Anoop Ashraf',
-    role: 'Founder & Managing Director',
+    role: 'Founding Managing Director',
     expertise: '13+ Years Textile Industry Authority',
     linkedin: 'https://www.linkedin.com/in/anoopashraf/',
     photo: '/Founders/Anoop.jpeg',
   },
   {
-    name: 'Dr. Abin Babu',
-    role: 'Co-Founder & Director of Quality',
-    expertise: 'Medical Quality & Compliance Expert',
-    linkedin: '#',
-    photo: '/Founders/PHOTO-2026-02-20-11-43-35.jpg',
-  },
-  {
     name: 'Raijo Phillip',
-    role: 'Director of Operations',
-    expertise: 'Global Supply Chain & Logistics Expert',
+    role: 'Board of Director • VP of Sales',
+    expertise: 'Global Supply Chain & Sales Strategy Expert',
     linkedin: '#',
     photo: '/Founders/Raijo.jpg',
   }

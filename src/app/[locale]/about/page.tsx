@@ -178,8 +178,8 @@ export default function AboutStoryPage() {
                 <div className="relative h-[400px] md:h-auto bg-gray-100 grid grid-cols-2">
                   <div className="relative aspect-square md:aspect-auto">
                     <Image 
-                      src="/Founders/Anoop.jpeg" 
-                      alt="Anoop Ashraf - Founding Director" 
+                      src="/Founders/Abin.png" 
+                      alt="Dr. Abin Babu - Chairman" 
                       fill 
                       className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
@@ -187,8 +187,8 @@ export default function AboutStoryPage() {
                   </div>
                   <div className="relative aspect-square md:aspect-auto">
                     <Image 
-                      src="/Founders/PHOTO-2026-02-20-11-43-35.jpg" 
-                      alt="Dr. Abin Babu - Founding Director" 
+                      src="/Founders/Anoop.jpeg" 
+                      alt="Anoop Ashraf - Founding Managing Director" 
                       fill 
                       className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
                       sizes="(max-width: 768px) 50vw, 25vw"
@@ -198,11 +198,11 @@ export default function AboutStoryPage() {
                 <div className="p-12 md:p-20 flex flex-col justify-center space-y-8">
                   <h3 className="text-3xl font-playfair font-bold text-[#060A14]">The Visionaries</h3>
                   <p className="text-gray-600 leading-relaxed italic">
-                    "Anabyn was founded to ensure that every buyer can source from India with absolute confidence. With over 13 years in the textile heartlands, I've seen that authority comes from consistency, not just production."
+                    "Anabyn was founded to ensure that every buyer can source from India with absolute confidence. With a combined 27+ years across corporate product strategy and textile heartlands, we bridge consistency with excellence."
                   </p>
                   <div className="space-y-1">
-                    <p className="font-bold text-[#060A14] text-lg">Anoop Ashraf & Dr. Abin Babu</p>
-                    <p className="text-[#C9A243] font-bold text-xs uppercase tracking-widest">Founding Directors • 13+ Years Expertise</p>
+                    <p className="font-bold text-[#060A14] text-lg">Dr. Abin Babu & Anoop Ashraf</p>
+                    <p className="text-[#C9A243] font-bold text-xs uppercase tracking-widest">Founding Board • MBA IIM Kozhikode • 27+ Years Combined Expertise</p>
                   </div>
                   <Button asChild className="w-fit bg-[#1B3A8A] text-white font-bold h-12 rounded-xl">
                     <Link href="/request-quote">Work With Our Team <ArrowRight className="ml-2 w-4 h-4" /></Link>
