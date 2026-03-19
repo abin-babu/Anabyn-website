@@ -51,7 +51,7 @@ const directors = [
     role: 'Director of Operations',
     expertise: 'Global Supply Chain & Logistics Expert',
     linkedin: '#',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
+    photo: '/Founders/Raijo.jpg',
   }
 ];
 
