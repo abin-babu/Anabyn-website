@@ -289,6 +289,38 @@
   .cert-item:last-child::after {
     content: '';
   }
+
+  /* Feature Card Styling Refinements */
+  .feature-icon-wrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .feature-icon {
+    width: 24px;
+    height: 24px;
+    color: #0D1F3C;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .feature-card {
+    background: #FFFFFF;
+    border-radius: 18px;
+    padding: 36px 32px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+  }
 }
 
 @layer utilities {
