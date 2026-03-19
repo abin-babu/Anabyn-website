@@ -45,6 +45,13 @@ const directors = [
     expertise: 'Medical Quality & Compliance Expert',
     linkedin: '#',
     photo: '/Founders/PHOTO-2026-02-20-11-43-35.jpg',
+  },
+  {
+    name: 'Raijo Phillip',
+    role: 'Director of Operations',
+    expertise: 'Global Supply Chain & Logistics Expert',
+    linkedin: '#',
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
   }
 ];
 
@@ -167,7 +174,7 @@ export default function AboutUsPage() {
 
               <div className="pt-12">
                 <h4 className="text-center font-bold text-brand-navy uppercase text-[10px] tracking-widest mb-8">Board of Directors</h4>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-3 gap-8">
                   {directors.map((dir) => (
                     <div key={dir.name} className="flex flex-col items-center p-6 border border-accent/10 rounded-2xl bg-white hover:shadow-xl transition-all">
                       <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-accent/20 relative">

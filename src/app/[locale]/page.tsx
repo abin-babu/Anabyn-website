@@ -11,7 +11,6 @@ import {
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
-import { CountrySelector } from '@/components/country-selector';
 import { TrustMarquee } from '@/components/trust-marquee';
 import { HowItWorks } from '@/components/sections/how-it-works';
 import { CertificationsPreview } from '@/components/sections/certifications-preview';
@@ -57,7 +56,6 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
-      <CountrySelector />
       <Header />
       
       {/* 1. Hero Section */}
@@ -122,7 +120,7 @@ export default function HomePage() {
       <section className="bg-[#0A1220] py-24 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-820px mx-auto text-center space-y-10">
+          <div className="max-w-[820px] mx-auto text-center space-y-10">
             <p className="text-base md:text-lg leading-[1.85] text-[rgba(244,240,232,0.75)] font-medium">
               Anabyn Global Ventures has transformed from a next-gen AI-first company into a global exporting powerhouse based in India.
               We specialise in luxury terry towels and high-quality bed linen for discerning buyers worldwide. 
