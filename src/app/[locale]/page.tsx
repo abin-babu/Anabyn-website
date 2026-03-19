@@ -3,11 +3,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
-import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
-import { 
-  ShieldCheck, ArrowRight, ChevronUp
-} from 'lucide-react';
+import { ChevronUp, ArrowRight } from 'lucide-react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
@@ -20,14 +17,10 @@ import { WhyAnabynHome } from '@/components/sections/why-anabyn-home';
 import { StatsSection } from '@/components/stats-section';
 import { TestimonialsCarousel } from '@/components/testimonials-carousel';
 import { AnabynDifference } from '@/components/sections/anabyn-difference';
-import Image from 'next/image';
-import { FaWhatsapp } from 'react-icons/fa';
 
 export default function HomePage() {
   const t = useTranslations('Hero');
-  
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [targetCountry, setTargetCountry] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -44,9 +37,6 @@ export default function HomePage() {
       setShowScrollTop(window.scrollY > 400);
     };
 
-    const savedCountry = localStorage.getItem('sourcing_country');
-    if (savedCountry) setTargetCountry(savedCountry);
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       observer.disconnect();
@@ -58,65 +48,41 @@ export default function HomePage() {
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
       <Header />
       
-      {/* 1. Hero Section */}
-      <section className="relative h-screen flex items-center overflow-hidden pt-[74px]">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-brand-navy/30 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/60 via-brand-navy/20 to-transparent z-10" />
-          <Image 
-            src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=1600&q=80" 
-            fill
-            className="object-cover" 
-            alt="Anabyn Global Ventures - Luxury Terry Towel Exporter India & Premium Bed Sheets"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[60%] bg-brand-gold/10 blur-[120px] rounded-full animate-pulse z-10" />
-        </div>
-
+      {/* 1. Hero Section overhauled */}
+      <section className="relative h-screen flex items-center overflow-hidden pt-[74px] hero-section-bg">
         <div className="container relative z-20 px-4 mx-auto">
-          <div className="max-w-[840px] space-y-8 text-left ltr:text-left rtl:text-right">
-            <div className="inline-flex items-center gap-3 border border-brand-gold/40 rounded-full px-5 py-2 bg-white/5 backdrop-blur-md">
-              <ShieldCheck className="text-brand-gold w-5 h-5" />
-              <span className="text-brand-gold text-[10px] font-black tracking-[0.3em] uppercase">
-                {targetCountry ? `Dedicated Export Partner for ${targetCountry}` : t('badge')}
-              </span>
-            </div>
+          <div className="max-w-[840px] space-y-6 text-left">
+            <span className="text-brand-gold text-[11px] font-bold tracking-[0.2em] uppercase block mb-2">
+              Premium Export Partner · 50+ Countries
+            </span>
 
             <h1 className="text-5xl md:text-8xl font-playfair font-bold text-white leading-[1.05] tracking-tight">
-              {t.rich('headline', {
-                gold: <span key="gold-span" className="text-brand-gold">{t('headlineGold')}</span>
-              })}
+              Luxury Textiles.<br />
+              Precision Delivered.
             </h1>
 
-            <p className="text-brand-gold-light/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-medium">
-              {t('subheadline')}
+            <p className="text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light">
+              India's finest terry towels and bed linen — crafted to GSM spec, shipped with full export documentation.
             </p>
 
-            {/* Structured CTA Group - Cleanly aligned layout */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-10">
-              <Button asChild size="lg" className="rounded-2xl bg-brand-gold text-brand-navy font-black h-16 sm:w-auto hover:scale-105 transition-all shadow-2xl shadow-brand-gold/20 border-none text-lg flex items-center justify-center min-w-[240px]">
-                <Link href="/products">{t('ctaCatalogue')}</Link>
-              </Button>
-              <Button asChild size="lg" className="rounded-2xl bg-[#25D366] text-white font-bold h-16 sm:w-auto hover:scale-105 transition-all shadow-2xl shadow-green-500/20 border-none text-lg flex items-center justify-center min-w-[180px]">
-                <a href="https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I%27d%20like%20to%20start%20an%20export%20enquiry." target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp className="mr-2 h-6 w-6" /> WhatsApp
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-2xl border-white/30 text-white hover:bg-white hover:text-brand-navy h-16 sm:w-auto bg-transparent backdrop-blur-sm text-lg font-bold flex items-center justify-center min-w-[180px]">
-                <Link href="/request-quote">{t('ctaQuote')}</Link>
-              </Button>
+            <div className="flex items-center gap-8 pt-8">
+              <Link href="/request-quote" className="hero-cta-primary">
+                Request Export Quote
+              </Link>
+              <Link href="/products" className="hero-cta-secondary flex items-center gap-2">
+                View Products <ArrowRight size={16} />
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/40 animate-bounce">
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">{t('scroll')}</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Explore Catalogue</span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-brand-gold/50 to-transparent" />
         </div>
       </section>
 
-      {/* 2. SEO Intro Section - Reflecting brand transformation */}
+      {/* 2. SEO Intro Section */}
       <section className="bg-[#0A1220] py-24 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">

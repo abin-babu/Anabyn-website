@@ -127,6 +127,52 @@
     opacity: 0.88;
     color: #0D1B3E !important;
   }
+
+  /* Hero Section Refinements */
+  .hero-cta-primary, .btn-request-quote {
+    display: inline-block;
+    background: #C9A84C;
+    color: #0D1B3E !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    padding: 16px 32px !important;
+    border-radius: 10px !important;
+    letter-spacing: 0.02em !important;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    text-transform: none !important;
+  }
+
+  .hero-cta-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  .hero-cta-secondary {
+    display: inline-block;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none;
+    letter-spacing: 0.01em !important;
+    transition: color 0.2s ease;
+    text-transform: none !important;
+  }
+
+  .hero-cta-secondary:hover { 
+    color: rgba(255, 255, 255, 0.9) !important; 
+  }
+
+  .hero-section-bg {
+    background-image: 
+      linear-gradient(to right, rgba(13, 27, 62, 0.92) 50%, rgba(13, 27, 62, 0.55) 100%),
+      url('https://images.unsplash.com/photo-1616627561950-9f746e330171?w=1600&q=80');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
 }
 
 @layer utilities {
