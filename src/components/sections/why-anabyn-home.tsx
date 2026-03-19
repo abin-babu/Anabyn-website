@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Scissors, Ship, Handshake } from 'lucide-react';
@@ -26,7 +25,7 @@ export function WhyAnabynHome() {
   return (
     <section className="py-24 bg-white">
       <div className="container px-4 mx-auto">
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-12 reveal-stagger">
           {features.map((item, i) => (
             <Card key={i} className="border-none shadow-none text-center bg-transparent group hover:bg-secondary/5 rounded-3xl p-4 transition-all">
               <CardHeader className="flex flex-col items-center">

@@ -8,6 +8,7 @@ import { FirebaseClientProvider } from '@/firebase';
 import { TextRevealObserver } from '@/components/text-reveal-observer';
 import { StatsObserver } from '@/components/stats-observer';
 import { TiltEffectObserver } from '@/components/tilt-effect-observer';
+import { ScrollRevealObserver } from '@/components/scroll-reveal-observer';
 import { ScrollProgress } from '@/components/scroll-progress';
 import { PageLoader } from '@/components/page-loader';
 import { WhatsappCta } from '@/components/whatsapp-cta';
@@ -165,6 +166,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <FirebaseClientProvider>
             <ScrollProgress />
+            <ScrollRevealObserver />
             <TextRevealObserver />
             <StatsObserver />
             <TiltEffectObserver />

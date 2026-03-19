@@ -1,4 +1,3 @@
-
 'use client';
 
 import { initialBlogPosts } from '@/lib/blog';
@@ -22,7 +21,7 @@ export function LatestBlog() {
           </Link>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-8 reveal-stagger">
           {initialBlogPosts.slice(0, 3).map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
               <Card className="h-full border-none shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden bg-white rounded-[2rem]">

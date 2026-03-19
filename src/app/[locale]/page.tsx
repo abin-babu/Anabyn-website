@@ -23,23 +23,12 @@ export default function HomePage() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -48,10 +37,10 @@ export default function HomePage() {
     <div className="relative min-h-screen font-body selection:bg-brand-gold selection:text-white bg-white">
       <Header />
       
-      {/* 1. Hero Section overhauled */}
+      {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px] hero-section-bg">
         <div className="container relative z-20 px-4 mx-auto">
-          <div className="max-w-[840px] space-y-6 text-left">
+          <div className="max-w-[840px] space-y-6 text-left reveal">
             <span className="text-brand-gold text-[11px] font-bold tracking-[0.2em] uppercase block mb-2">
               Premium Export Partner · 50+ Countries
             </span>
@@ -82,8 +71,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. SEO Intro Section (Refined About) */}
-      <section className="bg-[#0A1220] py-32 relative overflow-hidden">
+      {/* 2. SEO Intro Section */}
+      <section className="bg-[#0A1220] py-32 relative overflow-hidden reveal">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent" />
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-[820px] mx-auto text-center">
@@ -96,18 +85,18 @@ export default function HomePage() {
       </section>
 
       {/* Trust Content */}
-      <StatsSection />
-      <TrustedBuyers />
-      <WhyAnabynHome />
-      <AnabynDifference />
-      <TestimonialsCarousel />
+      <div className="reveal"><StatsSection /></div>
+      <div className="reveal"><TrustedBuyers /></div>
+      <div className="reveal"><WhyAnabynHome /></div>
+      <div className="reveal"><AnabynDifference /></div>
+      <div className="reveal"><TestimonialsCarousel /></div>
       
       {/* Supporting Sections */}
-      <TrustMarquee />
-      <VerifiedExporterBar />
-      <HowItWorks />
-      <CertificationsPreview />
-      <LatestBlog />
+      <div className="reveal"><TrustMarquee /></div>
+      <div className="reveal"><VerifiedExporterBar /></div>
+      <div className="reveal"><HowItWorks /></div>
+      <div className="reveal"><CertificationsPreview /></div>
+      <div className="reveal"><LatestBlog /></div>
 
       <Footer />
 

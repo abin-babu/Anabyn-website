@@ -33,7 +33,7 @@ export function StatsSection() {
   return (
     <section className="py-20 stats-section-container overflow-hidden relative">
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 reveal-stagger">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center group py-10 lg:py-0 stat-item-box">
               <div className="flex flex-col items-center justify-center px-4">
