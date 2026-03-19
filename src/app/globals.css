@@ -110,7 +110,7 @@
 
   .nav-cta, .btn-quote-nav {
     background: #C9A84C;
-    color: #0D1B3E !important;
+    color: #0D1F3C !important;
     font-weight: 700 !important;
     font-size: 14px !important;
     padding: 10px 22px !important;
@@ -125,14 +125,14 @@
 
   .nav-cta:hover, .btn-quote-nav:hover {
     opacity: 0.88;
-    color: #0D1B3E !important;
+    color: #0D1F3C !important;
   }
 
   /* Hero Section Refinements */
   .hero-cta-primary, .btn-request-quote {
     display: inline-block;
     background: #C9A84C;
-    color: #0D1B3E !important;
+    color: #0D1F3C !important;
     font-family: 'Inter', sans-serif;
     font-size: 16px !important;
     font-weight: 700 !important;
@@ -173,6 +173,38 @@
     background-position: center right;
     background-repeat: no-repeat;
   }
+
+  /* Remove WhatsApp button from hero section only */
+  .hero-section-bg a[href*="whatsapp"],
+  .hero-section-bg [class*="whatsapp"]:not(.whatsapp-float):not(#whatsapp-float) {
+    display: none !important;
+  }
+
+  /* Style the floating WhatsApp bubble cleanly */
+  .whatsapp-float,
+  #whatsapp-float,
+  a.whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 52px;
+    height: 52px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+  }
+
+  .whatsapp-float svg { width: 26px; height: 26px; fill: white; }
 
   /* Stats Section Overhaul */
   .stats-section-container {
@@ -261,7 +293,7 @@
     transform: translateY(0);
   }
 
-  /* Page Loader Animations - Highly optimized for 600ms total visibility */
+  /* Page Loader Animations */
   @keyframes drawPath {
     to { stroke-dashoffset: 0; }
   }
@@ -281,7 +313,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: opacity 200ms ease-out; /* 200ms rapid fade out */
+    transition: opacity 200ms ease-out;
     will-change: opacity;
   }
 
