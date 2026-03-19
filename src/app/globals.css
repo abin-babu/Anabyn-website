@@ -93,6 +93,40 @@
     transition: transform 0.15s ease-out, box-shadow 0.3s ease;
     will-change: transform;
   }
+
+  /* Navigation Refinement */
+  nav a, .nav-link, header a {
+    text-transform: none !important;
+    letter-spacing: 0.01em !important;
+    font-weight: 500;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover, header a:hover {
+    color: #C9A84C;
+  }
+
+  .nav-cta, .btn-quote-nav {
+    background: #C9A84C;
+    color: #0D1B3E !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    padding: 10px 22px !important;
+    border-radius: 8px !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+    transition: opacity 0.2s ease !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-cta:hover, .btn-quote-nav:hover {
+    opacity: 0.88;
+    color: #0D1B3E !important;
+  }
 }
 
 @layer utilities {

@@ -46,7 +46,6 @@ export function Header() {
     { label: 'About', href: '/about-us' },
     { label: 'Process', href: '/export-process' },
     { label: 'Certifications', href: '/certifications' },
-    { label: 'Contact', href: '/inquiry' },
   ];
 
   return (
@@ -70,7 +69,7 @@ export function Header() {
             onMouseEnter={() => setActiveMegaMenu(true)}
             onMouseLeave={() => setActiveMegaMenu(false)}
           >
-            <button className="flex items-center gap-1.5 text-white/90 hover:text-[#C9A243] text-sm font-bold uppercase tracking-widest transition-colors">
+            <button className="flex items-center gap-1.5 transition-colors">
               Products <ChevronDown className={cn("w-4 h-4 transition-transform duration-300", activeMegaMenu && "rotate-180")} />
             </button>
 
@@ -127,22 +126,16 @@ export function Header() {
             <Link 
               key={link.label} 
               href={link.href as any}
-              className="px-4 py-2 text-white/90 hover:text-[#C9A243] text-sm font-bold uppercase tracking-widest transition-colors"
+              className="px-4 py-2 transition-colors"
             >
               {link.label}
             </Link>
           ))}
           
           <div className="pl-6 border-l border-white/10 ml-4">
-            <Button 
-              asChild
-              className="relative overflow-hidden group bg-[#C9A243] text-black font-semibold text-sm uppercase tracking-widest rounded-md h-11 px-8 border-none"
-            >
-              <Link href="/request-quote">
-                <span className="relative z-10">Request Quote</span>
-                <div className="absolute inset-0 w-full h-full bg-[#E2C060] translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-              </Link>
-            </Button>
+            <Link href="/request-quote" className="nav-cta">
+              Request Quote
+            </Link>
           </div>
         </nav>
 
@@ -192,13 +185,13 @@ export function Header() {
           </nav>
 
           <div className="mt-auto pb-12">
-            <Button 
-              asChild
-              className="w-full bg-[#C9A243] text-black font-black py-8 text-lg rounded-xl"
+            <Link 
+              href="/request-quote" 
+              className="w-full btn-quote-nav py-8 text-lg"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              <Link href="/request-quote">Request Quote</Link>
-            </Button>
+              Request Quote
+            </Link>
           </div>
         </div>
       </div>
