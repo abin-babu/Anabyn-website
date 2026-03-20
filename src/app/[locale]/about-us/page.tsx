@@ -3,9 +3,27 @@
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
-import { Eye, Target, Globe, Users, Truck, Package, Linkedin, MapPin, Building2, Calendar, Landmark, ExternalLink, ShieldCheck, ClipboardCheck } from 'lucide-react';
+import { 
+  Eye, 
+  Target, 
+  Globe, 
+  Users, 
+  Truck, 
+  Package, 
+  Linkedin, 
+  MapPin, 
+  Building2, 
+  Calendar, 
+  ShieldCheck, 
+  ClipboardCheck,
+  ArrowRight,
+  History,
+  TrendingUp
+} from 'lucide-react';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 
 const directors = [
@@ -13,14 +31,14 @@ const directors = [
     name: 'Anoop Ashraf',
     role: 'Co-Founder & Manufacturing Head',
     expertise: '10+ Years Manufacturing Authority • Founder Dezire Sportswear',
-    linkedin: 'https://www.linkedin.com/in/anoopashraf/',
+    description: "Anoop entered the textile industry in 2013 with Dezire Sportswear. By 2018 he owned full manufacturing operations in Kerala, overseeing GSM standards, AQL inspection, and production quality. Dezire Sportswear's 60,000+ followers on Instagram and Facebook reflect more than a decade of product trust.",
     photo: '/Founders/Anoop.jpeg',
   },
   {
     name: 'Abin Babu',
     role: 'Co-Founder & Business Development',
     expertise: 'Thaiparambath Babu Abin Babu • Deep Corporate & Export Infrastructure',
-    linkedin: '#',
+    description: "Abin (Thaiparambath Babu Abin Babu) brings the corporate and commercial infrastructure that turns manufacturing excellence into global trade. From export compliance and documentation to international buyer relationships, Abin ensures every Anabyn shipment meets the standards expected by procurement teams worldwide.",
     photo: '/Founders/Abin.png',
   },
   {
@@ -43,39 +61,97 @@ const timeline = [
 
 export default function AboutUsPage() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-white">
       <Header />
-      <main className="flex-1 py-12 md:py-20 bg-secondary/30 pt-32">
-        <div className="container max-w-5xl mx-auto space-y-12 px-4">
-          <Card className="border-none shadow-none bg-transparent">
-            <CardHeader className="text-center">
-              <Badge variant="outline" className="w-fit mx-auto text-accent border-accent mb-4 uppercase tracking-widest font-black">Two Decades of Textiles</Badge>
-              <h1 className="text-4xl md:text-5xl font-bold font-playfair text-brand-navy">One Export Mission</h1>
-              <CardDescription className="mt-6 text-lg max-w-3xl mx-auto">
-                Anabyn was founded on a simple conviction — India's finest textiles deserve world-class export infrastructure. Built by makers, run by operators, trusted by buyers across 50+ countries.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+      <main className="flex-1 pt-32 pb-20">
+        <div className="container max-w-6xl mx-auto space-y-20 px-4">
+          
+          {/* Section 1: Hero */}
+          <div className="text-center space-y-6 max-w-4xl mx-auto">
+            <Badge variant="outline" className="text-brand-gold border-brand-gold px-4 py-1 uppercase tracking-[0.3em] font-black">The Brand Story</Badge>
+            <h1 className="text-4xl md:text-7xl font-bold font-playfair text-brand-navy leading-tight">
+              Two Decades of Textiles. <br />
+              <span className="text-brand-gold">One Export Mission.</span>
+            </h1>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Anabyn was founded on a simple conviction — India's finest textiles deserve world-class export infrastructure. Built by makers, run by operators, trusted by buyers across 50+ countries.
+            </p>
+          </div>
 
           <VerifiedExporterBar />
 
+          {/* Section 2: Our Story Narrative */}
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8 text-lg text-muted-foreground leading-relaxed">
+              <p>
+                The journey began in 2013, when Anoop Ashraf launched Dezire Sportswear — a textile brand built from the ground up in Kerala. Over the years that followed, Dezire grew into a manufacturing operation with genuine scale. By 2018, Anoop owned and operated the full production process, and the brand went on to deliver over one million units to buyers across India, building a community of more than 60,000 followers on both Instagram and Facebook along the way.
+              </p>
+              <p>
+                Through that decade on the factory floor, one gap became impossible to ignore. Exceptional Indian textile producers rarely had the export systems, documentation discipline, and global buyer relationships to match the quality they were crafting. The international opportunity was real. The infrastructure to reach it was not.
+              </p>
+              <p>
+                That is where Abin came in. Thaiparambath Babu Abin Babu brings deep corporate experience across international trade and business operations. Where Anoop brings the factory floor, Abin brings the boardroom — compliance frameworks, global buyer communication, and the institutional discipline that procurement partners across Europe, the Gulf, and beyond require before placing their first order.
+              </p>
+              <p>
+                Together, they founded Anabyn Global Ventures LLP in 2025 — combining Anoop's manufacturing mastery with Abin's corporate expertise into a single, focused export partner. Not a factory. Not a trading house. The premium export partner in between.
+              </p>
+            </div>
+            <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl border-8 border-secondary/20">
+              <Image 
+                src="https://images.unsplash.com/photo-1526290766257-c015850e4629?w=800&q=80" 
+                alt="Modern Textile Manufacturing India" 
+                fill 
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+
+          {/* Section 4: Stats Bar */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 py-16 border-y border-brand-gold/10">
+            {[
+              { val: '2013', label: 'Textile journey begins' },
+              { val: '1M+', label: 'Units delivered' },
+              { val: '60K+', label: 'Social followers' },
+              { val: '2025', label: 'Anabyn founded' }
+            ].map((stat, i) => (
+              <div key={i} className="text-center space-y-2">
+                <div className="text-4xl md:text-5xl font-playfair font-bold text-brand-gold">{stat.val}</div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Section 9: Dezire Sportswear Legacy */}
+          <Card className="border-none shadow-xl bg-secondary/30 rounded-[3rem] overflow-hidden">
+            <CardContent className="p-12 md:p-20 grid lg:grid-cols-[auto_1fr] gap-12 items-center">
+              <div className="w-20 h-20 rounded-3xl bg-brand-gold/20 flex items-center justify-center">
+                <History className="w-10 h-10 text-brand-gold" />
+              </div>
+              <div className="space-y-6">
+                <Badge variant="outline" className="text-brand-navy border-brand-navy font-black uppercase tracking-widest">Heritage Brand</Badge>
+                <h2 className="text-3xl md:text-4xl font-playfair font-bold text-brand-navy">The Dezire Sportswear Legacy</h2>
+                <p className="text-xl text-brand-navy/70 leading-relaxed">
+                  Dezire Sportswear — Anoop's first textile brand, launched in 2013 — is the foundation on which Anabyn is built. With over 60,000 followers on both Instagram and Facebook, Dezire demonstrated that an India-made textile brand could earn genuine customer loyalty and consistent repeat orders at scale. Anabyn inherits that manufacturing discipline and that direct-feedback relationship with buyers — now applied to the global export market.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Mission/Vision */}
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-accent/20">
+            <Card className="border-brand-gold/10 hover:border-brand-gold/30 transition-all">
               <CardHeader className="flex-row items-center gap-4">
-                <div className="flex-shrink-0 bg-brand-navy/5 p-3 rounded-full">
-                  <Target className="h-8 w-8 text-accent" />
-                </div>
+                <div className="bg-brand-navy/5 p-3 rounded-full"><Target className="h-8 w-8 text-brand-gold" /></div>
                 <CardTitle className="text-2xl font-playfair">Our Mission</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">To bridge the gap between Indian manufacturing excellence and global procurement demand through technical precision and world-class documentation.</p>
               </CardContent>
             </Card>
-            <Card className="border-accent/20">
+            <Card className="border-brand-gold/10 hover:border-brand-gold/30 transition-all">
               <CardHeader className="flex-row items-center gap-4">
-                <div className="flex-shrink-0 bg-brand-navy/5 p-3 rounded-full">
-                  <Eye className="h-8 w-8 text-accent" />
-                </div>
+                <div className="bg-brand-navy/5 p-3 rounded-full"><Eye className="h-8 w-8 text-brand-gold" /></div>
                 <CardTitle className="text-2xl font-playfair">Our Vision</CardTitle>
               </CardHeader>
               <CardContent>
@@ -84,128 +160,125 @@ export default function AboutUsPage() {
             </Card>
           </div>
 
-          <Card className="border-accent/20">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl font-playfair text-brand-navy">Company Profile & Leadership</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-12">
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                      <MapPin className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest">Registered Address</h4>
-                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                        Anabyn Global Ventures LLP,<br />
-                        287/87/CA, Anchapalam, Methala,<br />
-                        Thrissur, Kerala, India — 680 669
-                      </p>
-                    </div>
+          {/* Leadership (Section 3) */}
+          <div className="space-y-12">
+            <h2 className="text-3xl md:text-5xl font-playfair font-bold text-center text-brand-navy">Corporate Leadership</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {directors.map((dir) => (
+                <Card key={dir.name} className="border-brand-gold/10 hover:shadow-2xl transition-all rounded-[2rem] overflow-hidden bg-white">
+                  <div className="aspect-[4/5] relative">
+                    <Image src={dir.photo} alt={dir.name} fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" sizes="(max-width: 768px) 100vw, 33vw" />
                   </div>
-                  <div className="flex gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
-                      <Building2 className="w-5 h-5 text-accent" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest">Company Identifiers</h4>
-                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                        GSTIN: 32ACLFA6777F1Z8<br />
-                        IEC Code: ACLFA6777F<br />
-                        PAN: ACLFA6777F<br />
-                        Constitution: Limited Liability Partnership
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  <CardHeader className="text-center pb-2">
+                    <CardTitle className="text-xl font-bold">{dir.name}</CardTitle>
+                    <p className="text-[10px] text-brand-gold font-black uppercase tracking-widest">{dir.role}</p>
+                  </CardHeader>
+                  <CardContent className="text-center px-6 pb-8">
+                    <p className="text-[9px] text-muted-foreground font-bold uppercase tracking-tight mb-4">{dir.expertise}</p>
+                    {dir.description && <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">{dir.description}</p>}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
 
-                <div className="space-y-6">
-                  <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest flex items-center gap-2">
-                    <Calendar className="w-4 h-4" /> Registration Timeline
-                  </h4>
-                  <div className="relative border-l-2 border-accent/20 pl-6 space-y-8">
-                    {timeline.map((item, idx) => (
-                      <div key={idx} className="relative">
-                        <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-accent border-4 border-white"></div>
-                        <div className="text-xs font-bold text-accent mb-1">{item.year}</div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{item.event}</p>
+          {/* Company Profile (Sections 6, 7, 5) */}
+          <div className="grid lg:grid-cols-[1fr_auto] gap-12">
+            <div className="space-y-12">
+              <Card className="border-brand-gold/10">
+                <CardHeader><CardTitle className="text-2xl font-playfair">Verification & Identity</CardTitle></CardHeader>
+                <CardContent className="grid md:grid-cols-2 gap-12">
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center shrink-0"><MapPin className="w-5 h-5 text-brand-gold" /></div>
+                      <div>
+                        <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest">Registered Address</h4>
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                          Anabyn Global Ventures LLP,<br />
+                          287/87/CA, Anchapalam, Methala,<br />
+                          Thrissur, Kerala, India — 680 669
+                        </p>
                       </div>
-                    ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center shrink-0"><Building2 className="w-5 h-5 text-brand-gold" /></div>
+                      <div>
+                        <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest">Company Identifiers</h4>
+                        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                          GSTIN: 32ACLFA6777F1Z8<br />
+                          IEC Code: ACLFA6777F<br />
+                          PAN: ACLFA6777F<br />
+                          Constitution: Limited Liability Partnership
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                  <div className="space-y-6">
+                    <h4 className="font-bold text-brand-navy uppercase text-[10px] tracking-widest flex items-center gap-2"><Calendar className="w-4 h-4" /> Registration Timeline</h4>
+                    <div className="relative border-l-2 border-brand-gold/20 pl-6 space-y-8">
+                      {timeline.map((item, idx) => (
+                        <div key={idx} className="relative">
+                          <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-gold border-4 border-white"></div>
+                          <div className="text-xs font-bold text-brand-gold mb-1">{item.year}</div>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{item.event}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
 
-              <div className="pt-12">
-                <h4 className="text-center font-bold text-brand-navy uppercase text-[10px] tracking-widest mb-8">Board of Directors</h4>
-                <div className="grid md:grid-cols-3 gap-8">
-                  {directors.map((dir) => (
-                    <div key={dir.name} className="flex flex-col items-center p-6 border border-accent/10 rounded-2xl bg-white hover:shadow-xl transition-all">
-                      <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-accent/20 relative">
-                        <Image 
-                          src={dir.photo} 
-                          alt={dir.name} 
-                          fill
-                          className="object-cover" 
-                          sizes="96px"
-                          loading="lazy"
-                        />
-                      </div>
-                      <h3 className="text-lg font-bold text-brand-navy text-center">{dir.name}</h3>
-                      <p className="text-[10px] text-accent font-black uppercase tracking-widest mb-1 text-center">{dir.role}</p>
-                      <p className="text-[9px] text-muted-foreground font-bold uppercase tracking-tighter mb-3 text-center">{dir.expertise}</p>
-                      <a href={dir.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-brand-navy">
-                        <Linkedin className="w-5 h-5" />
-                      </a>
+            {/* Section 8: Certifications */}
+            <div className="w-full lg:w-80 space-y-8">
+              <Card className="bg-brand-navy text-white border-none shadow-xl">
+                <CardHeader className="space-y-4">
+                  <ShieldCheck className="w-12 h-12 text-brand-gold" />
+                  <CardTitle className="text-white text-xl">Active Verifications</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <ClipboardCheck className="text-brand-gold w-5 h-5 shrink-0" />
+                    <p className="text-[10px] font-black uppercase tracking-widest">IEC Registered (ACLFA6777F)</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <ClipboardCheck className="text-brand-gold w-5 h-5 shrink-0" />
+                    <p className="text-[10px] font-black uppercase tracking-widest">GST Registered (32ACLFA6777F1Z8)</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <ClipboardCheck className="text-brand-gold w-5 h-5 shrink-0" />
+                    <p className="text-[10px] font-black uppercase tracking-widest">AQL 2.5 Inspection Standard</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="bg-secondary/30 border-brand-gold/20">
+                <CardHeader><CardTitle className="text-lg">Compliance Roadmap</CardTitle></CardHeader>
+                <CardContent className="space-y-4">
+                  {[
+                    'ISO 9001:2015 (Target)',
+                    'OEKO-TEX Standard 100 (Target)',
+                    'GOTS Organic Cotton (Target)'
+                  ].map(t => (
+                    <div key={t} className="flex items-center gap-3 text-[10px] font-bold text-brand-navy/60 uppercase">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" /> {t}
                     </div>
                   ))}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-accent/20 overflow-hidden">
-            <div className="grid lg:grid-cols-2">
-              <div className="bg-brand-navy text-white p-10 space-y-6">
-                <ShieldCheck className="w-12 h-12 text-brand-gold" />
-                <h3 className="text-2xl font-playfair font-bold">Active Verifications</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-brand-gold-light/80">
-                    <ClipboardCheck size={16} className="text-brand-gold" /> IEC Registered (ACLFA6777F)
-                  </li>
-                  <li className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-brand-gold-light/80">
-                    <ClipboardCheck size={16} className="text-brand-gold" /> GST Registered (32ACLFA6777F1Z8)
-                  </li>
-                  <li className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-brand-gold-light/80">
-                    <ClipboardCheck size={16} className="text-brand-gold" /> AQL 2.5 Inspection Standard
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-brand-gold-light/30 p-10 space-y-6">
-                <h3 className="text-2xl font-playfair font-bold text-brand-navy">Compliance Roadmap</h3>
-                <p className="text-sm text-muted-foreground">The following certifications are currently undergoing final audit verification for the 2025 cycle.</p>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-3 text-sm font-bold text-brand-navy/60">
-                    <div className="w-2 h-2 rounded-full bg-brand-gold" /> ISO 9001:2015 (Target)
-                  </li>
-                  <li className="flex items-center gap-3 text-sm font-bold text-brand-navy/60">
-                    <div className="w-2 h-2 rounded-full bg-brand-gold" /> OEKO-TEX Standard 100 (Target)
-                  </li>
-                  <li className="flex items-center gap-3 text-sm font-bold text-brand-navy/60">
-                    <div className="w-2 h-2 rounded-full bg-brand-gold" /> GOTS Organic Cotton (Target)
-                  </li>
-                </ul>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-          </Card>
+          </div>
 
-          <Card className="bg-brand-navy text-white p-12 rounded-[2.5rem] text-center space-y-6">
-            <h2 className="text-3xl md:text-5xl font-playfair font-bold">Precision textiles. <br /><span className="text-brand-gold">Delivered to the world.</span></h2>
-            <p className="text-white/60">Talk to us about your next order.</p>
-            <Button asChild size="lg" className="bg-brand-gold text-brand-navy font-black rounded-xl h-14 px-10 border-none shadow-xl">
-              <Link href="/request-quote">Request Export Quote</Link>
+          {/* Section 10: Closing CTA */}
+          <Card className="bg-brand-navy text-white p-12 md:p-20 rounded-[3rem] text-center space-y-8 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
+            <TrendingUp className="w-16 h-16 text-brand-gold mx-auto" />
+            <h2 className="text-3xl md:text-6xl font-playfair font-bold">Precision textiles. <br /><span className="text-brand-gold">Delivered to the world.</span></h2>
+            <p className="text-white/60 text-xl max-w-xl mx-auto">Talk to us about your next order.</p>
+            <Button asChild size="lg" className="bg-brand-gold text-brand-navy font-black rounded-2xl h-16 px-12 border-none shadow-2xl hover:scale-105 transition-transform">
+              <Link href="/request-quote">Request Export Quote <ArrowRight className="ml-2 w-4 h-4" /></Link>
             </Button>
           </Card>
+
         </div>
       </main>
       <Footer />
