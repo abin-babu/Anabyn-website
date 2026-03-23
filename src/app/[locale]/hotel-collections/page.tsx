@@ -17,7 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Hotel Towels & Bed Linen Supplier India | Hospitality Textiles | Anabyn",
+  title: "Hotel Linen Suppliers",
   description: "Premium hotel towels and bed linen from India. GSM 400–650, custom logo embroidery, bulk export. Trusted by luxury hotels worldwide.",
 };
 

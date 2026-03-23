@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useEffect } from 'react';
@@ -10,12 +9,12 @@ interface SeoHeadProps {
 
 /**
  * Client-side SEO management component.
- * Note: For full Next.js SEO, also use the server-side 'export const metadata' in page.tsx.
+ * Standardizes title suffixes to "| Anabyn".
  */
 export function SeoHead({ title, description }: SeoHeadProps) {
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.title = `${title} | Anabyn Global Ventures`;
+      document.title = `${title} | Anabyn`;
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
         metaDescription.setAttribute('content', description);

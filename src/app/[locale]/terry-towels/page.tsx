@@ -20,7 +20,8 @@ import {
   Leaf
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { SeoHead } from '@/components/seo-head';
 
 export default function TerryTowelsPage() {
   const scrollToSpecs = () => {
@@ -30,6 +31,7 @@ export default function TerryTowelsPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#060A14] text-white">
+      <SeoHead title="Terry Towel Exporters" description="Premium cotton terry towel exporters from India. Luxury 400-650 GSM bath and hand towels for hotels and retail." />
       <Header />
       
       <main className="flex-1">

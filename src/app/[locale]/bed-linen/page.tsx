@@ -19,7 +19,8 @@ import {
   History
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { SeoHead } from '@/components/seo-head';
 
 export default function BedLinenPage() {
   const scrollToGuide = () => {
@@ -29,6 +30,7 @@ export default function BedLinenPage() {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#060A14] text-white">
+      <SeoHead title="Bed Linen Exporters" description="Luxury bed linen exporters from India. Wholesale 200-1000 TC cotton sheets, duvet covers and bedding for 5-star hotels." />
       <Header />
       
       <main className="flex-1">
