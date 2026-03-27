@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { AnabynLogo } from '@/components/anabyn-logo';
 import { Mail, Globe } from 'lucide-react';
-import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 
 export function Footer() {
   const currentYear = 2026;
@@ -63,6 +63,15 @@ export function Footer() {
                   className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
                 >
                   <FaLinkedin size={24} />
+                </a>
+                <a 
+                  href="https://www.youtube.com/@anabynglobal" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow Anabyn on YouTube" 
+                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
+                >
+                  <FaYoutube size={24} />
                 </a>
                 <a 
                   href="https://wa.me/919495613121" 

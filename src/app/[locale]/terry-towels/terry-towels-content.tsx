@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
+import { VideoCard } from '@/components/video-card';
 
 export function TerryTowelsContent() {
   const scrollToSpecs = () => {
@@ -266,6 +267,40 @@ export function TerryTowelsContent() {
               </div>
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16" />
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Manufacturing Insight Video */}
+      <section className="py-24 bg-white text-brand-navy">
+        <div className="container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div>
+                <Badge variant="outline" className="text-brand-gold border-brand-gold mb-4">Inside the Loom</Badge>
+                <h3 className="text-3xl md:text-5xl font-playfair font-bold">Watch: How Our Hotel Towels Are Made</h3>
+              </div>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                Take a technical tour of our Kerala production floor. See the precision-calibrated loops and the reinforced double-stitching process that defines Anabyn's hospitality grade.
+              </p>
+              <div className="flex gap-8">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-brand-gold mb-1">Production Hub</p>
+                  <p className="font-bold">Thrissur, Kerala</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-brand-gold mb-1">Standard</p>
+                  <p className="font-bold">AQL 2.5 Verified</p>
+                </div>
+              </div>
+            </div>
+            <VideoCard 
+              youtubeId="PLACEHOLDER_TOWEL_MANUFACTURING"
+              title="Hotel Towel Manufacturing Process"
+              description="High-definition look at our weaving and quality control pipeline."
+              duration="2:45 MIN"
+              thumbnail="https://images.unsplash.com/photo-1639298107851-058984903954?w=800&q=80"
+            />
           </div>
         </div>
       </section>

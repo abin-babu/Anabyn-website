@@ -10,6 +10,7 @@ import { Footer } from '@/components/layout/footer';
 import { VerifiedExporterBar } from '@/components/verified-exporter-bar';
 import { TrustMarquee } from '@/components/trust-marquee';
 import { HowItWorks } from '@/components/sections/how-it-works';
+import { ProcessVideoSection } from '@/components/sections/process-video-section';
 import { CertificationsPreview } from '@/components/sections/certifications-preview';
 import { LatestBlog } from '@/components/sections/latest-blog';
 import { TrustedBuyers } from '@/components/sections/trusted-buyers';
@@ -39,8 +40,8 @@ export default function HomePage() {
       
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px] hero-section-bg">
-        <div className="container relative z-20 px-4 mx-auto">
-          <div className="max-w-[840px] space-y-6 text-left">
+        <div className="container relative z-20 px-4 mx-auto text-left">
+          <div className="max-w-[840px] space-y-6">
             <span className="text-brand-gold text-[11px] font-bold tracking-[0.2em] uppercase block mb-2 hero-load-1">
               Premium Export Partner · 50+ Countries
             </span>
@@ -95,6 +96,7 @@ export default function HomePage() {
       <div className="reveal"><TrustMarquee /></div>
       <div className="reveal"><VerifiedExporterBar /></div>
       <div className="reveal"><HowItWorks /></div>
+      <div className="reveal"><ProcessVideoSection /></div>
       <div className="reveal"><CertificationsPreview /></div>
       <div className="reveal"><LatestBlog /></div>
 
