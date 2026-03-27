@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Request Export Quote — Luxury Textiles from India | Anabyn',
-  description: 'Get a tailored export quote for premium terry towels and bed linen. 24-hour response. Full documentation. Shipped to 50+ countries.',
+  description: "Get a tailored export quote for premium terry towels and bed linen. 24-hour response time with full documentation for shipping to 50+ countries. Inquire now.",
 };
 
 export default function RequestQuotePage() {

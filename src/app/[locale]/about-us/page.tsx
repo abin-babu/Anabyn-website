@@ -24,7 +24,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About Anabyn — Our Story & Team | Textile Exporter India',
-  description: 'Meet the founders of Anabyn Global Ventures LLP — combining a decade of Kerala manufacturing with global export expertise. Trusted by buyers in 50+ countries.',
+  description: 'Meet the founders of Anabyn Global Ventures LLP. Combining a decade of Kerala manufacturing with global export expertise. Trusted in 50+ countries. Learn more.',
 };
 
 const directors = [

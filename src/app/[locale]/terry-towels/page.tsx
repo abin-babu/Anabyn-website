@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Premium Terry Towels Exporter India — Bath, Hand & Hotel | Anabyn',
-  description: 'Luxury terry towels exported from India — bath, hand, beach and hotel collections. GSM-spec quality, AQL 2.5 inspected, worldwide shipping.',
+  description: "Luxury terry towels exported from India. Bath, hand, beach, and hotel collections crafted to your GSM spec with AQL 2.5 inspection. Browse our premium range.",
 };
 
 export default function TerryTowelsPage() {

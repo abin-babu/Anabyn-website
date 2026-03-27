@@ -24,7 +24,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'How We Export — Our 5-Step Process | Anabyn Global Ventures',
-  description: 'From RFQ to doorstep delivery — Anabyn\'s streamlined 5-step export workflow ensures quality, compliance, and on-time shipping worldwide.',
+  description: "From initial RFQ to doorstep delivery, explore Anabyn's streamlined 5-step export workflow ensuring quality, compliance, and on-time shipping. Start your order.",
 };
 
 const steps = [

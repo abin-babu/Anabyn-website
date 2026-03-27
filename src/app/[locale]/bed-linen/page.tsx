@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Bed Linen Exporter India — Sheets, Duvet Covers & Pillowcases',
-  description: 'Premium bed linen exported from India — sheets, duvet covers and pillowcases for hospitality and retail. Verified Indian manufacturing.',
+  description: "Premium bed linen exported from India. High thread-count sheets, duvet covers, and pillowcases for hospitality and retail. Verified Indian quality. View catalog.",
 };
 
 export default function BedLinenPage() {

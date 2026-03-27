@@ -19,7 +19,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Certifications & Compliance | Anabyn Global Ventures LLP',
-  description: 'ISO 9001:2015, OEKO-TEX, GOTS and REACH compliance. Every Anabyn shipment is verified for quality and global regulatory standards.',
+  description: "Verified IEC, GST, and AQL 2.5 standards. Every Anabyn shipment meets rigorous global quality and regulatory requirements for international trade. View our specs.",
 };
 
 const certifications = [
