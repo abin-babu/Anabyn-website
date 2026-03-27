@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -10,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Star, Quote } from 'lucide-react';
+import { Star, Quote, ExternalLink } from 'lucide-react';
 import Autoplay from 'embla-carousel-autoplay';
 import {
   Tooltip,
@@ -19,46 +18,71 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 interface TestimonialData {
-  text: string;
-  author: string;
-  initials: string;
-  role: string;
+  quote: string;
+  name: string;
+  title: string;
+  company: string;
   country: string;
+  countryCode: string;
   avatar: string | null;
   companyLogo: string | null;
+  verifyUrl: string | null;
+  rating: number;
 }
 
 const homeTestimonials: TestimonialData[] = [
   {
-    text: "Exceptional quality towels — our guests rate them best in class.",
-    author: "James Mitchell",
-    initials: "JM",
-    role: "Hotel Group Director",
-    country: "UK",
+    quote: "Exceptional quality towels — our guests rate them best in class.",
+    name: "James Mitchell",
+    title: "Procurement Director",
+    company: "Premier Hotel Group",
+    country: "United Kingdom",
+    countryCode: "GB",
     avatar: null,
     companyLogo: null,
+    verifyUrl: null,
+    rating: 5,
   },
   {
-    text: "Reliable, on-time every time. The bed linen sells out in weeks.",
-    author: "Sarah Al-Rashid",
-    initials: "SA",
-    role: "Retail Buyer",
-    country: "UAE",
+    quote: "Reliable, on-time every time. The bed linen sells out in weeks.",
+    name: "Sarah Al-Rashid",
+    title: "Retail Buyer",
+    company: "Al-Rashid Home Textiles",
+    country: "United Arab Emirates",
+    countryCode: "AE",
     avatar: null,
     companyLogo: null,
+    verifyUrl: null,
+    rating: 5,
   },
   {
-    text: "Best cotton quality I've sourced. Anabyn's detail is unmatched.",
-    author: "Marco De Luca",
-    initials: "MDL",
-    role: "Textile Importer",
+    quote: "Best cotton quality I've sourced. Anabyn's detail is unmatched.",
+    name: "Marco De Luca",
+    title: "Import Manager",
+    company: "De Luca Tessuti Srl",
     country: "Italy",
+    countryCode: "IT",
     avatar: null,
     companyLogo: null,
+    verifyUrl: null,
+    rating: 5,
   },
 ];
+
+// Helper to get initials from name
+const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('').toUpperCase();
+
+// Helper to convert ISO code to flag emoji
+const getFlagEmoji = (countryCode: string) => {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split('')
+    .map(char => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
+};
 
 export function TestimonialsCarousel() {
   return (
@@ -111,34 +135,61 @@ export function TestimonialsCarousel() {
                     <Quote className="text-[#C9A243]/20 w-24 h-24 absolute -top-4 -left-4 -z-0" />
                     
                     {/* Avatar Section */}
-                    <div className="relative w-[60px] h-[60px] mb-8 z-10">
+                    <div className="relative w-[60px] h-[60px] mb-6 z-10">
                       {t.avatar ? (
                         <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#C9A243]">
-                          <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+                          <Image src={t.avatar} alt={t.name} fill className="object-cover" />
                         </div>
                       ) : (
                         <div className="w-full h-full rounded-full bg-[#0D1F3C] border-2 border-[#C9A243] flex items-center justify-center text-[#C9A243] font-bold text-lg">
-                          {t.initials}
+                          {getInitials(t.name)}
                         </div>
                       )}
                     </div>
 
-                    <p className="text-2xl md:text-3xl leading-relaxed text-white font-medium italic mb-12 relative z-10 max-w-3xl">
-                      "{t.text}"
+                    {/* Rating Stars */}
+                    <div className="flex justify-center gap-1 mb-6 text-[#C9A243] relative z-10">
+                      {[...Array(5)].map((_, i) => (
+                        <Star 
+                          key={i} 
+                          size={14} 
+                          fill={i < t.rating ? "currentColor" : "none"} 
+                          className={i < t.rating ? "" : "text-white/20"}
+                        />
+                      ))}
+                    </div>
+
+                    <p className="text-xl md:text-2xl leading-relaxed text-white font-medium italic mb-10 relative z-10 max-w-3xl">
+                      "{t.quote}"
                     </p>
 
-                    <div className="space-y-2 mb-8">
-                      <h4 className="font-bold text-white text-xl">{t.author}</h4>
-                      <p className="text-[#C9A243] font-bold uppercase tracking-widest text-xs">
-                        {t.role}, {t.country}
+                    <div className="space-y-2 mb-8 relative z-10">
+                      <h4 className="font-bold text-white text-xl">{t.name}</h4>
+                      <p className="text-white/60 text-xs font-medium">
+                        {t.title} at {' '}
+                        {t.verifyUrl ? (
+                          <a 
+                            href={t.verifyUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="text-[#C9A243] hover:underline inline-flex items-center gap-1"
+                          >
+                            {t.company} <ExternalLink size={10} />
+                          </a>
+                        ) : (
+                          t.company
+                        )}
+                      </p>
+                      <p className="text-brand-gold-light/40 text-[10px] font-bold uppercase tracking-widest pt-1">
+                        {getFlagEmoji(t.countryCode)} {t.country}
                       </p>
                     </div>
 
                     {/* Company Logo Section */}
                     {t.companyLogo && (
-                      <div className="mt-auto pt-6 grayscale opacity-50 hover:opacity-100 transition-opacity">
+                      <div className="mt-auto pt-6 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
                         <div className="relative w-[100px] h-[30px]">
-                          <Image src={t.companyLogo} alt="Company Logo" fill className="object-contain" />
+                          <Image src={t.companyLogo} alt={`${t.company} logo`} fill className="object-contain" />
                         </div>
                       </div>
                     )}
@@ -152,6 +203,16 @@ export function TestimonialsCarousel() {
             <CarouselNext className="bg-white/10 border-none text-[#C9A243] hover:bg-[#C9A243] hover:text-black" />
           </div>
         </Carousel>
+
+        {/* Leave a Review CTA */}
+        <div className="mt-16 text-center border-t border-white/5 pt-12">
+          <p className="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] mb-4">Happy with Anabyn? Share your experience.</p>
+          <Button asChild variant="link" className="text-[#C9A243]/60 hover:text-[#C9A243] text-xs font-black uppercase tracking-widest p-0 h-auto group">
+            <a href="https://share.google/Icw2FF4giN0LJdQcz" target="_blank" rel="noopener noreferrer">
+              Write a Google Review <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </Button>
+        </div>
       </div>
     </section>
   );
