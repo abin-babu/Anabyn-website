@@ -34,6 +34,40 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/en/process',
+        destination: '/en/export-process',
+        permanent: true,
+      },
+      {
+        source: '/en/about',
+        destination: '/en/about-us',
+        permanent: true,
+      },
+      {
+        source: '/en/quote',
+        destination: '/en/request-quote',
+        permanent: true,
+      },
+      {
+        source: '/en/contact',
+        destination: '/en/request-quote',
+        permanent: true,
+      },
+      {
+        source: '/en/products/terry-towels',
+        destination: '/en/terry-towels',
+        permanent: true,
+      },
+      {
+        source: '/en/products/bed-linen',
+        destination: '/en/bed-linen',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
