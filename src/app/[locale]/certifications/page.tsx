@@ -12,7 +12,11 @@ import {
   Activity,
   Layers,
   SearchCheck,
-  ShieldCheck
+  ShieldCheck,
+  ExternalLink,
+  Calendar,
+  Building2,
+  Fingerprint
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Metadata } from 'next';
@@ -24,29 +28,71 @@ export const metadata: Metadata = {
 
 const certifications = [
   {
-    name: 'OEKO-TEX® STANDARD 100',
-    description: 'Tested for harmful substances. Ensuring textile safety for skin-contact hospitality products.',
+    name: 'IEC Registered Exporter',
+    description: 'Official authorization issued by DGFT, enabling Anabyn to conduct global trade from India.',
     status: 'Achieved',
-    variant: 'default' as const
+    variant: 'default' as const,
+    certNumber: 'ACLFA6777F',
+    issuer: 'DGFT India',
+    issuerUrl: 'https://www.dgft.gov.in',
+    validUntil: 'Active (Lifetime)',
+    verifyUrl: 'https://www.dgft.gov.in/CP/?opt=view-iec'
   },
   {
-    name: 'GOTS (Global Organic Textile Standard)',
-    description: 'The leading processing standard for organic fibres, including ecological and social criteria.',
+    name: 'GST Registration',
+    description: 'The primary legal identifier for business taxation and commercial compliance in India.',
     status: 'Achieved',
-    variant: 'default' as const
+    variant: 'default' as const,
+    certNumber: '32ACLFA6777F1Z8',
+    issuer: 'GST Council',
+    issuerUrl: 'https://www.gst.gov.in',
+    validUntil: 'Active',
+    verifyUrl: 'https://services.gst.gov.in/services/searchtp'
+  },
+  {
+    name: 'AQL 2.5 Quality Standard',
+    description: 'Our internal Acceptance Quality Limit benchmark for all textile manufacturing batches.',
+    status: 'Achieved',
+    variant: 'default' as const,
+    certNumber: 'AGV-QC-2025-V1',
+    issuer: 'Anabyn Internal Compliance',
+    issuerUrl: 'https://www.anabyn.com/quality',
+    validUntil: 'Annual Review 2026',
+    verifyUrl: '/export-process'
   },
   {
     name: 'ISO 9001:2015',
-    description: 'International standard for quality management systems (QMS) across all export operations.',
-    status: 'Achieved',
-    variant: 'default' as const
+    description: 'Global standard for quality management systems (QMS) across corporate export operations.',
+    status: 'In Process',
+    variant: 'secondary' as const,
+    appliedDate: 'Registration in progress',
+    expectedDate: 'Q4 2025',
+    note: 'Initial audit documentation undergoing verification.'
+  },
+  {
+    name: 'OEKO-TEX® STANDARD 100',
+    description: 'Ensuring textiles are free from harmful substances for skin-contact hospitality applications.',
+    status: 'In Process',
+    variant: 'secondary' as const,
+    appliedDate: 'Submission phase',
+    expectedDate: 'Q1 2026',
+    note: 'Requirement for global 5-star hospitality tenders.'
+  },
+  {
+    name: 'GOTS Organic Cotton',
+    description: 'The gold standard for organic fibre processing, covering ecological and social criteria.',
+    status: 'In Process',
+    variant: 'secondary' as const,
+    appliedDate: 'Supply chain audit',
+    expectedDate: 'Q2 2026'
   },
   {
     name: 'REACH Compliance',
-    description: 'Compliance with European Union regulations for chemical safety in the EU market.',
+    description: 'Compliance with European Union chemical safety regulations for the EU market.',
     status: 'In Process',
     variant: 'secondary' as const,
-    note: 'Final audit documentation undergoing verification for 2026 certification.'
+    appliedDate: 'Data gathering phase',
+    expectedDate: 'Q2 2026'
   }
 ];
 
@@ -114,25 +160,79 @@ export default function CertificationsPage() {
         {/* 2. Certifications Grid */}
         <section className="py-24 bg-white">
           <div className="container px-4 mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {certifications.map((cert) => (
                 <Card key={cert.name} className="flex flex-col border-brand-gold/10 hover:border-brand-gold transition-all duration-300 shadow-lg group">
-                  <CardHeader className="flex-1">
+                  <CardHeader className="pb-4">
                     <div className="flex justify-between items-start mb-4">
                       <div className="w-12 h-12 rounded-xl bg-brand-navy/5 flex items-center justify-center group-hover:bg-brand-navy group-hover:text-white transition-colors duration-500">
                         <Award className="w-6 h-6 text-brand-gold" />
                       </div>
-                      <Badge variant={cert.variant} className="text-[9px] uppercase">
+                      <Badge variant={cert.status === 'Achieved' ? 'success' : 'secondary'} className="text-[9px] uppercase">
                         {cert.status}
                       </Badge>
                     </div>
-                    <CardTitle className="text-lg font-playfair font-bold text-brand-navy">{cert.name}</CardTitle>
-                    <CardDescription className="text-sm mt-2 leading-relaxed">
+                    <CardTitle className="text-lg font-playfair font-bold text-brand-navy leading-tight">{cert.name}</CardTitle>
+                    <CardDescription className="text-sm mt-3 leading-relaxed">
                       {cert.description}
                     </CardDescription>
                   </CardHeader>
+                  
+                  <CardContent className="flex-1 space-y-4 pt-4 border-t border-dashed">
+                    {cert.status === 'Achieved' ? (
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Fingerprint className="w-3.5 h-3.5 text-brand-gold" />
+                          <div className="flex flex-col">
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Certificate Number</span>
+                            <span className="text-xs font-bold text-brand-navy font-mono">{cert.certNumber}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Building2 className="w-3.5 h-3.5 text-brand-gold" />
+                          <div className="flex flex-col">
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Issuing Body</span>
+                            <a href={cert.issuerUrl} target="_blank" className="text-xs font-bold text-brand-navy hover:text-brand-gold flex items-center gap-1">
+                              {cert.issuer} <ExternalLink size={10} />
+                            </a>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-3.5 h-3.5 text-brand-gold" />
+                          <div className="flex flex-col">
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Valid Until</span>
+                            <span className="text-xs font-bold text-brand-navy">{cert.validUntil}</span>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm" asChild className="w-full mt-2 h-9 rounded-lg border-brand-gold/30 text-brand-gold hover:bg-brand-gold hover:text-brand-navy transition-all text-[10px] font-black uppercase tracking-widest">
+                          <a href={cert.verifyUrl} target={cert.verifyUrl.startsWith('http') ? '_blank' : '_self'}>Verify Certificate <ArrowRight size={12} className="ml-1" /></a>
+                        </Button>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-2">
+                          <Activity className="w-3.5 h-3.5 text-blue-500" />
+                          <div className="flex flex-col">
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Applied</span>
+                            <span className="text-xs font-bold text-brand-navy">{cert.appliedDate}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-3.5 h-3.5 text-blue-500" />
+                          <div className="flex flex-col">
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Expected</span>
+                            <span className="text-xs font-bold text-brand-navy">{cert.expectedDate}</span>
+                          </div>
+                        </div>
+                        <div className="p-3 bg-secondary/20 rounded-lg">
+                          <p className="text-[9px] font-bold text-brand-navy/60 italic leading-tight">"In line with our 2026 Roadmap, this certification is currently undergoing technical audit."</p>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+
                   {cert.note && (
-                    <CardFooter className="pt-0 pb-6 italic text-[10px] text-muted-foreground border-t border-dashed mt-4">
+                    <CardFooter className="pt-0 pb-6 italic text-[9px] text-muted-foreground mt-2">
                       * {cert.note}
                     </CardFooter>
                   )}
@@ -212,3 +312,21 @@ export default function CertificationsPage() {
     </div>
   );
 }
+
+const Clock = ({ className, size = 16 }: { className?: string, size?: number }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="12 6 12 12 16 14" />
+  </svg>
+);
