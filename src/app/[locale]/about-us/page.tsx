@@ -71,7 +71,7 @@ export default function AboutUsPage() {
           <div className="text-center space-y-6 max-w-4xl mx-auto">
             <Badge variant="outline" className="text-brand-gold border-brand-gold px-4 py-1 uppercase tracking-[0.3em] font-black">The Brand Story</Badge>
             <h1 className="text-4xl md:text-7xl font-bold font-playfair text-brand-navy leading-tight">
-              Two Decades of Textiles. <br />
+              Over a Decade of Textiles. <br />
               <span className="text-brand-gold">One Export Mission.</span>
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -158,7 +158,7 @@ export default function AboutUsPage() {
               <CardContent>
                 <p className="text-muted-foreground">To become the global gold standard for premium Indian textile exports — ensuring every handshake is honored and every stitch is verified.</p>
               </CardContent>
-            </Card>
+            </div>
           </div>
 
           {/* Leadership (Section 3) */}

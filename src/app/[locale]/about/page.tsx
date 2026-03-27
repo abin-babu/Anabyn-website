@@ -53,7 +53,7 @@ export default function AboutStoryPage() {
                 The Brand Story
               </Badge>
               <h1 className="text-5xl md:text-8xl font-playfair font-bold leading-tight">
-                Two Decades of Textiles. <br />
+                Over a Decade of Textiles. <br />
                 <span className="text-[#C9A243]">One Export Mission.</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-medium max-w-3xl mx-auto">
@@ -138,7 +138,7 @@ export default function AboutStoryPage() {
           <div className="container px-4 mx-auto">
             <div className="text-center mb-20 space-y-4">
               <h2 className="text-4xl md:text-5xl font-playfair font-bold text-[#060A14]">The Visionaries</h2>
-              <p className="text-gray-500 font-medium">Combining decades of craft with corporate excellence.</p>
+              <p className="text-gray-500 font-medium">Combining a decade of craft with corporate excellence.</p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
