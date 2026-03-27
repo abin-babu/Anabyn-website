@@ -1,126 +1,105 @@
-
 {
   "entities": {
-    "Product": {
-      "title": "Product",
-      "description": "Comprehensive product information for the catalogue.",
+    "CatalogueLead": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "CatalogueLead",
       "type": "object",
+      "description": "Represents a lead generated from a catalogue download request.",
       "properties": {
-        "id": { "type": "string" },
-        "name": { "type": "string" },
-        "slug": { "type": "string" },
-        "category": { "type": "string", "enum": ["hospitality-supplies", "medical-supplies"] },
-        "subcategory": { "type": "string" },
-        "shortDescription": { "type": "string" },
-        "fullDescription": { "type": "string" },
-        "specifications": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the CatalogueLead entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the lead submitting the catalogue download request."
+        },
+        "email": {
+          "type": "string",
+          "description": "The business email address of the lead.",
+          "format": "email"
+        },
+        "company": {
+          "type": "string",
+          "description": "The name of the company the lead represents."
+        },
+        "country": {
+          "type": "string",
+          "description": "The country of residence or operation of the lead's company."
+        },
+        "productInterest": {
           "type": "array",
+          "description": "A list of product categories the lead is interested in.",
           "items": {
-            "type": "object",
-            "properties": {
-              "key": { "type": "string" },
-              "value": { "type": "string" }
-            }
+            "type": "string"
           }
         },
-        "materials": { "type": "array", "items": { "type": "string" } },
-        "variants": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "size": { "type": "string" },
-              "gsm": { "type": "string" },
-              "tc": { "type": "string" },
-              "color": { "type": "string" }
-            }
-          }
+        "orderVolume": {
+          "type": "string",
+          "description": "The estimated annual order volume range of the lead."
         },
-        "moqPieces": { "type": "number" },
-        "moqKg": { "type": "number" },
-        "sampleAvailable": { "type": "boolean" },
-        "privateLabelAvailable": { "type": "boolean" },
-        "certifications": { "type": "array", "items": { "type": "string" } },
-        "images": { "type": "array", "items": { "type": "string", "format": "uri" } },
-        "hsCode": { "type": "string" },
-        "tags": { "type": "array", "items": { "type": "string" } },
-        "featured": { "type": "boolean" },
-        "active": { "type": "boolean" }
-      }
-    },
-    "Order": {
-      "title": "Order",
-      "type": "object",
-      "description": "Buyer orders and shipment tracking.",
-      "properties": {
-        "orderId": { "type": "string" },
-        "buyerUid": { "type": "string" },
-        "companyName": { "type": "string" },
-        "product": { "type": "string" },
-        "quantity": { "type": "number" },
-        "unit": { "type": "string" },
-        "status": { "type": "string", "enum": ["Processing", "In Production", "QC Passed", "Shipped", "Delivered"] },
-        "trackingNumber": { "type": "string" },
-        "carrier": { "type": "string" },
-        "timeline": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "status": { "type": "string" },
-              "date": { "type": "string", "format": "date-time" },
-              "note": { "type": "string" }
-            }
-          }
+        "timestamp": {
+          "type": "string",
+          "description": "The date and time when the catalogue download request was submitted.",
+          "format": "date-time"
         },
-        "documents": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": { "type": "string" },
-              "type": { "type": "string" },
-              "url": { "type": "string", "format": "uri" }
-            }
-          }
-        },
-        "createdAt": { "type": "string", "format": "date-time" }
-      }
-    },
-    "SampleRequest": {
-      "title": "Sample Request",
-      "type": "object",
-      "properties": {
-        "id": { "type": "string" },
-        "buyerUid": { "type": "string" },
-        "productName": { "type": "string" },
-        "status": { "type": "string", "enum": ["Requested", "Dispatched", "Received", "Closed"] },
-        "rating": { "type": "number" },
-        "createdAt": { "type": "string", "format": "date-time" }
-      }
+        "source": {
+          "type": "string",
+          "description": "The source or origin of this lead (e.g., 'catalogue_download')."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "email",
+        "company",
+        "country",
+        "timestamp",
+        "source"
+      ]
     }
   },
   "auth": {
-    "providers": ["password", "google"]
+    "providers": [
+      "password",
+      "anonymous"
+    ]
   },
   "firestore": {
-    "/products/{productId}": {
-      "schema": "#/backend/entities/Product",
-      "description": "Product catalog data."
-    },
-    "/orders/{orderId}": {
-      "schema": "#/backend/entities/Order",
-      "description": "Customer orders."
-    },
-    "/sample_requests/{id}": {
-      "schema": "#/backend/entities/SampleRequest",
-      "description": "Product sample requests from portal."
-    },
-    "/access_requests/{id}": {
-      "description": "Requests for portal access from new buyers."
-    }
-  },
-  "storage": {
-    "/buyer-portal/documents/{uid}/": { "description": "Confidential order documents per buyer." }
+    "structure": [
+      {
+        "path": "/catalogue_leads/{leadId}",
+        "definition": {
+          "entityName": "CatalogueLead",
+          "schema": {
+            "$ref": "#/backend/entities/CatalogueLead"
+          },
+          "description": "Stores leads generated from catalogue download requests. Anonymous users can create new leads. Only authenticated administrators, as defined in '/roles_admin', can read, update, or delete these records. The 'leadId' is an auto-generated Firestore document ID.",
+          "params": [
+            {
+              "name": "leadId",
+              "description": "The unique identifier for a catalogue lead, auto-generated by Firestore."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/roles_admin/{adminUid}",
+        "definition": {
+          "entityName": "AdminRole",
+          "schema": {
+            "$ref": "#/backend/entities/AdminRole"
+          },
+          "description": "Implements Database Access Control (DBAC) for administrators. The mere existence of a document at this path signifies that the user with the corresponding Firebase Authentication User ID (UID) has administrator privileges. This collection enables authorization independence for administrative access across the application. Documents are managed exclusively via Firebase Admin SDK or Cloud Functions, not directly through client-side writes.",
+          "params": [
+            {
+              "name": "adminUid",
+              "description": "The unique Firebase Authentication User ID (UID) of an administrator."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to be secure, scalable, and debuggable, adhering strictly to the provided CORE DESIGN PRINCIPLES and DESIGN STRATEGY MANDATES. \n\n**Catalogue Leads (`/catalogue_leads/{leadId}`):**\nThis collection stores individual `CatalogueLead` documents, each representing a submission from the catalogue download form. The collection is designed for a single security posture:\n*   **Create:** Publicly accessible, allowing any user (authenticated or unauthenticated) to submit a lead.\n*   **Read, Update, Delete:** Restricted exclusively to authenticated administrators.\n\n**Admin Roles (`/roles_admin/{adminUid}`):**\nThis collection implements the Database Access Control (DBAC) model for global roles. The mere existence of a document at `/roles_admin/{adminUid}` signifies that the user identified by `{adminUid}` is an administrator. This collection is managed out-of-band (e.g., via Firebase Admin SDK or Cloud Functions), not directly by end-users or client-side rules.\n\n**Authorization Independence:**\nAuthorization for `CatalogueLead` documents is entirely independent of parent documents. When a new `CatalogueLead` is created, its security rules do not rely on `get()` calls to check parent attributes, fulfilling a critical principle. For `read`, `update`, or `delete` operations on `CatalogueLead` documents, authorization relies on checking the `exists()` of a document in the `/roles_admin` collection, referencing `request.auth.uid`. This avoids hierarchical dependencies, enabling atomic operations and simplifying rule debugging. The `CatalogueLead` document itself does not contain denormalized authorization fields because it is a standalone record; its access is managed by a separate, global role.\n\n**QAPs (Rules are not Filters):**\nThe structural segregation of `CatalogueLead` documents into a dedicated collection (`/catalogue_leads`) ensures a homogeneous security posture. All documents within this collection are leads with the same access requirements. This means an authorized administrator can perform a `list` query on `/catalogue_leads` and receive all relevant documents without requiring client-side filtering or complex, inefficient server-side rule evaluations that act as filters. The security rule `allow read: if exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));` acts as a clear gate: if you're an admin, you see all leads; otherwise, you see none. This upholds the QAPs principle by ensuring that access rules directly correspond to query results, preventing over-fetching of data."
   }
 }
