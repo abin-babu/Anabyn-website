@@ -1,20 +1,77 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function isAdmin() {
-      return request.auth != null && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    function isSignedIn() {
+      return request.auth != null;
     }
 
+    function isAdmin() {
+      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Publicly readable content
+    match /blog_posts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /shipping_routes/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /hs_codes/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /moq_data/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Lead generation
     match /catalogue_leads/{leadId} {
       allow create: if true; // Public submission
       allow read, update, delete: if isAdmin();
     }
 
+    match /inquiries/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /rfq_submissions/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Authentication and Access
     match /roles_admin/{adminUid} {
       allow get: if request.auth.uid == adminUid;
     }
+
+    match /access_requests/{id} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Portal data
+    match /orders/{orderId} {
+      allow read: if isSignedIn() && (resource.data.buyerUid == request.auth.uid || isAdmin());
+      allow write: if isAdmin();
+    }
+
+    match /sample_requests/{id} {
+      allow read: if isSignedIn() && (resource.data.buyerUid == request.auth.uid || isAdmin());
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
     
-    // Existing rules for other collections...
     match /{document=**} {
       allow read, write: if false;
     }

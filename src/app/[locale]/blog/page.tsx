@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { useCollection, useMemoFirebase, useFirestore } from '@/firebase';
@@ -24,6 +24,25 @@ import Image from 'next/image';
 
 const categories: (BlogCategory | "All")[] = ["All", "Export Guides", "Industry Insights", "Product Updates", "Trade News"];
 
+/**
+ * Formats a date safely for client-side rendering to avoid hydration mismatches.
+ */
+function FormattedDate({ date }: { date: any }) {
+  const [formatted, setFormatted] = useState<string>('');
+
+  useEffect(() => {
+    if (!date) return;
+    const d = typeof date.toDate === 'function' ? date.toDate() : new Date(date);
+    setFormatted(d.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    }));
+  }, [date]);
+
+  return <span>{formatted || '...'}</span>;
+}
+
 export default function BlogListingPage() {
   const db = useFirestore();
   const [searchTerm, setSearchTerm] = useState('');
@@ -35,7 +54,12 @@ export default function BlogListingPage() {
   }, [db]);
 
   const { data: dbPosts, isLoading } = useCollection<BlogPost>(blogQuery);
-  const posts = dbPosts && dbPosts.length > 0 ? dbPosts : initialBlogPosts;
+  
+  // Use DB posts if available, otherwise fallback to initial posts.
+  // Note: Even if DB read fails (rules), useCollection handles it and we fallback safely here.
+  const posts = useMemo(() => {
+    return dbPosts && dbPosts.length > 0 ? dbPosts : initialBlogPosts;
+  }, [dbPosts]);
 
   const filteredPosts = useMemo(() => {
     return posts.filter(post => {
@@ -47,7 +71,7 @@ export default function BlogListingPage() {
   }, [posts, searchTerm, activeCategory]);
 
   const featuredPost = useMemo(() => posts.find(p => p.featured) || posts[0], [posts]);
-  const regularPosts = useMemo(() => filteredPosts.filter(p => p.slug !== featuredPost.slug), [filteredPosts, featuredPost]);
+  const regularPosts = useMemo(() => filteredPosts.filter(p => p.slug !== featuredPost?.slug), [filteredPosts, featuredPost]);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -172,7 +196,10 @@ export default function BlogListingPage() {
                     </div>
                     <CardHeader className="p-6 pb-2">
                       <div className="flex items-center gap-3 text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-3">
-                        <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {post.publishedAt.toDate().toLocaleDateString()}</span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3 text-brand-gold" /> 
+                          <FormattedDate date={post.publishedAt} />
+                        </span>
                         <span>•</span>
                         <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {post.readingTime} min read</span>
                       </div>
