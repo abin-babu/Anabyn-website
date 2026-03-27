@@ -34,9 +34,24 @@ const inter = Inter({
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   const { locale } = await params;
   
+  const baseMetadata = {
+    metadataBase: new URL('https://www.anabyn.com'),
+    icons: {
+      icon: [
+        { url: '/images/logo.png', type: 'image/png' },
+        { url: '/images/logo.png', sizes: '32x32', type: 'image/png' },
+        { url: '/images/logo.png', sizes: '16x16', type: 'image/png' },
+      ],
+      shortcut: '/images/logo.png',
+      apple: [
+        { url: '/images/logo.png', sizes: '180x180', type: 'image/png' },
+      ],
+    },
+  };
+
   if (locale === 'ar') {
     return {
-      metadataBase: new URL('https://www.anabyn.com'),
+      ...baseMetadata,
       title: 'مورد مناشف فاخرة وبياضات أسرة من الهند | أنابين غلوبال فنتشرز',
       description: 'مورد ومصدر مناشف تيري الفاخرة وبياضات الأسرة من الهند. نصدر إلى أكثر من 50 دولة. معتمد ISO وOEKO-TEX. اطلب عرض سعر الآن.',
       keywords: ["تصدير منسوجات", "مناشف هندية", "بياضات أسرة", "مورد فنادق"],
@@ -47,7 +62,7 @@ export async function generateMetadata({ params }: { params: { locale: string } 
   }
 
   return {
-    metadataBase: new URL('https://www.anabyn.com'),
+    ...baseMetadata,
     title: {
       default: "Anabyn – Bed Linen & Bath Linen Exporters from India",
       template: "%s | Anabyn"
@@ -56,11 +71,6 @@ export async function generateMetadata({ params }: { params: { locale: string } 
     keywords: ["luxury terry towels exporter India", "bed linen exporter India", "hotel towel supplier India", "premium cotton towels wholesale", "textile exporter India B2B"],
     authors: [{ name: "Anabyn Global Ventures LLP" }],
     robots: "index, follow",
-    icons: {
-      icon: '/images/logo.png',
-      shortcut: '/images/logo.png',
-      apple: '/images/logo.png',
-    },
     alternates: {
       canonical: `https://www.anabyn.com/${locale}`,
       languages: {
@@ -130,8 +140,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={`light ${cormorant.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/logo.png" />
-        <link rel="apple-touch-icon" href="/images/logo.png" />
+        <link rel="icon" type="image/png" href="/images/logo.png" />
+        <link rel="shortcut icon" href="/images/logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
