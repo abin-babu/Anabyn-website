@@ -16,7 +16,9 @@ import {
   ExternalLink,
   Calendar,
   Building2,
-  Fingerprint
+  Fingerprint,
+  MessageSquare,
+  Clock
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Metadata } from 'next';
@@ -63,36 +65,30 @@ const certifications = [
   {
     name: 'ISO 9001:2015',
     description: 'Global standard for quality management systems (QMS) across corporate export operations.',
-    status: 'In Process',
+    status: 'On demand upon customer request',
     variant: 'secondary' as const,
-    appliedDate: 'Registration in progress',
-    expectedDate: 'Q4 2025',
-    note: 'Initial audit documentation undergoing verification.'
+    note: 'Initial audit documentation can be provided for specific procurement requirements.'
   },
   {
     name: 'OEKO-TEX® STANDARD 100',
     description: 'Ensuring textiles are free from harmful substances for skin-contact hospitality applications.',
-    status: 'In Process',
+    status: 'On demand upon customer request',
     variant: 'secondary' as const,
-    appliedDate: 'Submission phase',
-    expectedDate: 'Q1 2026',
-    note: 'Requirement for global 5-star hospitality tenders.'
+    note: 'Standard requirement for global 5-star hospitality tenders.'
   },
   {
     name: 'GOTS Organic Cotton',
     description: 'The gold standard for organic fibre processing, covering ecological and social criteria.',
-    status: 'In Process',
+    status: 'On demand upon customer request',
     variant: 'secondary' as const,
-    appliedDate: 'Supply chain audit',
-    expectedDate: 'Q2 2026'
+    note: 'Available for sustainable and organic product lines.'
   },
   {
     name: 'REACH Compliance',
     description: 'Compliance with European Union chemical safety regulations for the EU market.',
-    status: 'In Process',
+    status: 'On demand upon customer request',
     variant: 'secondary' as const,
-    appliedDate: 'Data gathering phase',
-    expectedDate: 'Q2 2026'
+    note: 'Verified for EU and UK destination markets.'
   }
 ];
 
@@ -164,13 +160,15 @@ export default function CertificationsPage() {
               {certifications.map((cert) => (
                 <Card key={cert.name} className="flex flex-col border-brand-gold/10 hover:border-brand-gold transition-all duration-300 shadow-lg group">
                   <CardHeader className="pb-4">
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-brand-navy/5 flex items-center justify-center group-hover:bg-brand-navy group-hover:text-white transition-colors duration-500">
-                        <Award className="w-6 h-6 text-brand-gold" />
+                    <div className="flex flex-col gap-4 mb-4">
+                      <div className="flex justify-between items-start">
+                        <div className="w-12 h-12 rounded-xl bg-brand-navy/5 flex items-center justify-center group-hover:bg-brand-navy group-hover:text-white transition-colors duration-500">
+                          <Award className="w-6 h-6 text-brand-gold" />
+                        </div>
+                        <Badge variant={cert.status === 'Achieved' ? 'success' : 'secondary'} className="text-[8px] uppercase max-w-[120px] text-center leading-tight">
+                          {cert.status}
+                        </Badge>
                       </div>
-                      <Badge variant={cert.status === 'Achieved' ? 'success' : 'secondary'} className="text-[9px] uppercase">
-                        {cert.status}
-                      </Badge>
                     </div>
                     <CardTitle className="text-lg font-playfair font-bold text-brand-navy leading-tight">{cert.name}</CardTitle>
                     <CardDescription className="text-sm mt-3 leading-relaxed">
@@ -211,22 +209,18 @@ export default function CertificationsPage() {
                     ) : (
                       <div className="space-y-3">
                         <div className="flex items-center gap-2">
-                          <Activity className="w-3.5 h-3.5 text-blue-500" />
+                          <MessageSquare className="w-3.5 h-3.5 text-brand-gold" />
                           <div className="flex flex-col">
-                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Applied</span>
-                            <span className="text-xs font-bold text-brand-navy">{cert.appliedDate}</span>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <Clock className="w-3.5 h-3.5 text-blue-500" />
-                          <div className="flex flex-col">
-                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Expected</span>
-                            <span className="text-xs font-bold text-brand-navy">{cert.expectedDate}</span>
+                            <span className="text-[9px] uppercase font-black text-muted-foreground tracking-tighter">Availability</span>
+                            <span className="text-xs font-bold text-brand-navy">Available on Request</span>
                           </div>
                         </div>
                         <div className="p-3 bg-secondary/20 rounded-lg">
-                          <p className="text-[9px] font-bold text-brand-navy/60 italic leading-tight">"In line with our 2026 Roadmap, this certification is currently undergoing technical audit."</p>
+                          <p className="text-[9px] font-bold text-brand-navy/60 italic leading-tight">"We coordinate with certified production units to provide batches meeting this standard specifically for your procurement needs."</p>
                         </div>
+                        <Button variant="outline" size="sm" asChild className="w-full mt-2 h-9 rounded-lg border-brand-gold/30 text-brand-gold hover:bg-brand-gold hover:text-brand-navy transition-all text-[10px] font-black uppercase tracking-widest">
+                          <Link href="/request-quote">Inquire Now <ArrowRight size={12} className="ml-1" /></Link>
+                        </Button>
                       </div>
                     )}
                   </CardContent>
@@ -312,21 +306,3 @@ export default function CertificationsPage() {
     </div>
   );
 }
-
-const Clock = ({ className, size = 16 }: { className?: string, size?: number }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg" 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
-    fill="none" 
-    stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
-    className={className}
-  >
-    <circle cx="12" cy="12" r="10" />
-    <polyline points="12 6 12 12 16 14" />
-  </svg>
-);

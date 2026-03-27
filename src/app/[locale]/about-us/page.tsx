@@ -165,7 +165,7 @@ export default function AboutUsPage() {
           <div className="space-y-12">
             <h2 className="text-3xl md:text-5xl font-playfair font-bold text-center text-brand-navy">Corporate Leadership</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {directors.map((dir) => (
+              {directors.map((dir) => ( director.photo ? (
                 <Card key={dir.name} className="border-brand-gold/10 hover:shadow-2xl transition-all rounded-[2rem] overflow-hidden bg-white">
                   <div className="aspect-[4/5] relative">
                     <Image src={dir.photo} alt={dir.name} fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" sizes="(max-width: 768px) 100vw, 33vw" />
@@ -179,7 +179,7 @@ export default function AboutUsPage() {
                     {dir.description && <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">{dir.description}</p>}
                   </CardContent>
                 </Card>
-              ))}
+              ) : null))}
             </div>
           </div>
 
@@ -253,12 +253,12 @@ export default function AboutUsPage() {
                 </CardContent>
               </Card>
               <Card className="bg-secondary/30 border-brand-gold/20">
-                <CardHeader><CardTitle className="text-lg">Compliance Roadmap</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="text-lg">Specialized Certifications</CardTitle></CardHeader>
                 <CardContent className="space-y-4">
                   {[
-                    'ISO 9001:2015 (Target)',
-                    'OEKO-TEX Standard 100 (Target)',
-                    'GOTS Organic Cotton (Target)'
+                    'ISO 9001:2015 (On Demand)',
+                    'OEKO-TEX Standard 100 (On Demand)',
+                    'GOTS Organic Cotton (On Demand)'
                   ].map(t => (
                     <div key={t} className="flex items-center gap-3 text-[10px] font-bold text-brand-navy/60 uppercase">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0" /> {t}
