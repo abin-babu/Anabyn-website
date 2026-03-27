@@ -37,6 +37,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/catalogue.pdf',
+        destination: '/2026%20Linen%20Catalogue.pdf',
+        permanent: true,
+      },
+      {
         source: '/en/process',
         destination: '/en/export-process',
         permanent: true,
