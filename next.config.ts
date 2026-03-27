@@ -42,6 +42,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/en/catalogue.pdf',
+        destination: '/2026%20Linen%20Catalogue.pdf',
+        permanent: true,
+      },
+      {
         source: '/en/process',
         destination: '/en/export-process',
         permanent: true,
