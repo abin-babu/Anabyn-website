@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useParams, notFound } from 'next/navigation';
@@ -43,6 +42,8 @@ export default function ProductDetailPage() {
     .slice(0, 3);
 
   const categoryLabel = product.category === 'hospitality-supplies' ? 'Hospitality' : 'Medical';
+
+  const whatsappLink = `https://wa.me/919495613121?text=${encodeURIComponent(`Hi Anabyn, I'm interested in the ${product.name}.`)}`;
 
   const productSchema = {
     "@context": "https://schema.org/",
@@ -187,17 +188,22 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-10">
-                <Button asChild size="lg" className="flex-1 bg-brand-navy text-white hover:bg-brand-navy/90 h-14 rounded-xl text-lg font-bold">
-                  <Link href={`/request-quote?product=${encodeURIComponent(product.name)}`}>
-                    Request Official Quote
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="flex-1 border-brand-gold text-brand-gold hover:bg-brand-gold/10 h-14 rounded-xl text-lg font-bold">
-                  <a href={`https://wa.me/919495613121?text=${encodeURIComponent(`Hi Anabyn, I'm interested in the ${product.name}.`)}`} target="_blank">
-                    <MessageSquare className="w-5 h-5 mr-2" /> Chat on WhatsApp
-                  </a>
-                </Button>
+              <div className="space-y-6 mb-10">
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="flex-1 bg-brand-navy text-white hover:bg-brand-navy/90 h-14 rounded-xl text-lg font-bold">
+                    <Link href={`/request-quote?product=${encodeURIComponent(product.name)}`}>
+                      Request Official Quote
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="flex-1 border-brand-gold text-brand-gold hover:bg-brand-gold/10 h-14 rounded-xl text-lg font-bold">
+                    <a href={whatsappLink} target="_blank">
+                      <MessageSquare className="w-5 h-5 mr-2" /> Chat on WhatsApp
+                    </a>
+                  </Button>
+                </div>
+                <a href={whatsappLink} target="_blank" className="flex items-center gap-2 text-brand-gold font-bold text-sm hover:underline ml-1">
+                  <MessageSquare size={16} /> Or chat directly on WhatsApp →
+                </a>
               </div>
 
               <div className="bg-secondary/20 p-6 rounded-2xl border border-brand-gold/10">

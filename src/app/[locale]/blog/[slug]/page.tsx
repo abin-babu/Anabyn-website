@@ -9,18 +9,17 @@ import {
   Calendar, 
   Clock, 
   ChevronRight, 
-  Linkedin, 
   ArrowRight,
   BookOpen,
   ShieldCheck,
-  Globe,
-  MessageSquare
+  Globe
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { JsonLd } from '@/components/json-ld';
 import { getBreadcrumbSchema, getArticleSchema } from '@/lib/schema-utils';
+import { ShareButtons } from '@/components/blog/share-buttons';
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -54,6 +53,8 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  const articleUrl = `https://www.anabyn.com/${locale}/blog/${post.slug}`;
 
   const relatedPosts = initialBlogPosts
     .filter(p => p.slug !== slug)
@@ -134,6 +135,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                 }).join('')
               }} />
 
+              {/* Enhanced Share Section */}
+              <div className="mt-20 pt-10 border-t border-gray-100 flex flex-col gap-10">
+                <ShareButtons title={post.title} url={articleUrl} />
+                
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map(tag => (
+                    <Badge key={tag} className="bg-brand-navy/5 text-brand-navy border-none font-bold text-[9px] uppercase tracking-tighter hover:bg-brand-gold/10 transition-colors">#{tag}</Badge>
+                  ))}
+                </div>
+              </div>
+
               {/* Author Bio */}
               <div className="mt-20 p-10 bg-secondary/20 rounded-[2.5rem] border border-brand-gold/10 flex flex-col md:flex-row items-center gap-8">
                 <div className="w-20 h-20 rounded-2xl bg-brand-navy flex items-center justify-center shrink-0 shadow-xl overflow-hidden relative">
@@ -143,26 +155,6 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-1">Author Bio</p>
                   <h4 className="text-xl font-bold text-brand-navy mb-2">{post.author.name}</h4>
                   <p className="text-sm text-muted-foreground font-medium italic">Published by the Anabyn Export Intelligence Team — dedicated to providing technical clarity and compliance guidance for global textile procurement.</p>
-                </div>
-              </div>
-
-              {/* Share Section */}
-              <div className="mt-16 pt-10 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-8">
-                <div className="flex items-center gap-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Share Article:</span>
-                  <div className="flex gap-4">
-                    <Button variant="outline" size="icon" asChild className="rounded-full hover:bg-[#0077b5] hover:text-white transition-all border-gray-200">
-                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://www.anabyn.com' + '/' + locale + '/blog/' + post.slug)}`} target="_blank" rel="noopener noreferrer"><Linkedin className="w-4 h-4" /></a>
-                    </Button>
-                    <Button variant="outline" size="icon" asChild className="rounded-full hover:bg-[#25D366] hover:text-white transition-all border-gray-200">
-                      <a href={`https://wa.me/?text=${encodeURIComponent(post.title + ' - ' + 'https://www.anabyn.com' + '/' + locale + '/blog/' + post.slug)}`} target="_blank" rel="noopener noreferrer"><MessageSquare className="w-4 h-4" /></a>
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {post.tags.map(tag => (
-                    <Badge key={tag} className="bg-brand-navy/5 text-brand-navy border-none font-bold text-[9px] uppercase tracking-tighter hover:bg-brand-gold/10 transition-colors">#{tag}</Badge>
-                  ))}
                 </div>
               </div>
 

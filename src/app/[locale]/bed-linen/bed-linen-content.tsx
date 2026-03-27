@@ -13,8 +13,8 @@ import {
   Maximize, 
   Grid3X3, 
   Package,
-  History,
-  CheckCircle2
+  CheckCircle2,
+  MessageSquare
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
@@ -24,6 +24,8 @@ export function BedLinenContent() {
     const element = document.getElementById('tc-guide');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const whatsappLink = `https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I'm%20interested%20in%20Premium%20Bed%20Linen.`;
 
   return (
     <>
@@ -54,17 +56,22 @@ export function BedLinenContent() {
               Exquisitely woven bed sheets, duvet covers and pillowcases in percale and sateen weaves. 
               Thread counts 200–1000TC. Ships to 50+ countries.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button 
-                onClick={scrollToGuide}
-                size="lg" 
-                className="rounded-xl bg-[#1B3A8A] text-white hover:bg-[#1B3A8A]/90 h-14 px-8 font-bold border-none"
-              >
-                Thread Count Guide
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-xl border-[#C9A243] text-[#C9A243] hover:bg-[#C9A243] hover:text-[#060A14] h-14 px-8 font-bold bg-transparent">
-                <Link href="/request-quote">Request Proposal</Link>
-              </Button>
+            <div className="space-y-6 pt-4">
+              <div className="flex flex-wrap gap-4">
+                <Button 
+                  onClick={scrollToGuide}
+                  size="lg" 
+                  className="rounded-xl bg-[#1B3A8A] text-white hover:bg-[#1B3A8A]/90 h-14 px-8 font-bold border-none"
+                >
+                  Thread Count Guide
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-xl border-[#C9A243] text-[#C9A243] hover:bg-[#C9A243] hover:text-[#060A14] h-14 px-8 font-bold bg-transparent">
+                  <Link href="/request-quote">Request Proposal</Link>
+                </Button>
+              </div>
+              <a href={whatsappLink} target="_blank" className="flex items-center gap-2 text-[#C9A243] font-bold text-sm hover:underline ml-1">
+                <MessageSquare size={16} /> Or chat directly on WhatsApp →
+              </a>
             </div>
           </div>
         </div>
@@ -99,7 +106,7 @@ export function BedLinenContent() {
                 specs: '400–1000TC Heirloom',
                 desc: 'Sourced from long-staple Indian and Egyptian cotton for extraordinary strength and softness. The ultimate heirloom quality.',
                 image: 'https://images.unsplash.com/photo-1629079448221-2073f6bc61e5?w=600&q=80',
-                icon: History
+                icon: Layers
               }
             ].map((item, i) => (
               <Card key={i} className="group border-none shadow-xl overflow-hidden rounded-3xl hover:-translate-y-2 transition-all duration-500 product-card">
@@ -254,9 +261,14 @@ export function BedLinenContent() {
                 <ShieldCheck className="w-16 h-16 text-[#C9A243] mx-auto" />
                 <h3 className="text-3xl font-playfair font-bold">Request Official Quote</h3>
                 <p className="text-white/80 leading-relaxed">Prepare your technical dossier with us. Our account managers respond within 24 hours with comprehensive pricing.</p>
-                <Button asChild size="lg" className="w-full bg-[#C9A243] text-[#060A14] font-black h-14 rounded-2xl shadow-xl hover:scale-105 transition-transform">
-                  <Link href="/request-quote">Contact Sourcing Desk <ArrowRight className="ml-2 w-4 h-4" /></Link>
-                </Button>
+                <div className="space-y-4">
+                  <Button asChild size="lg" className="w-full bg-[#C9A243] text-[#060A14] font-black h-14 rounded-2xl shadow-xl hover:scale-105 transition-transform">
+                    <Link href="/request-quote">Contact Sourcing Desk <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                  </Button>
+                  <a href={whatsappLink} target="_blank" className="inline-flex items-center gap-2 text-white font-bold text-xs hover:text-[#C9A243] transition-colors">
+                    <MessageSquare size={14} /> Or chat directly on WhatsApp →
+                  </a>
+                </div>
               </div>
               <div className="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-16 -translate-y-16" />
             </div>

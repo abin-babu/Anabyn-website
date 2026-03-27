@@ -12,9 +12,9 @@ import {
   Scissors,
   Layers,
   Leaf,
-  Palette,
   Package,
-  Globe
+  Globe,
+  MessageSquare
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/i18n/routing';
@@ -25,6 +25,8 @@ export function TerryTowelsContent() {
     const element = document.getElementById('specifications');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const whatsappLink = `https://wa.me/919495613121?text=Hi%20Anabyn%2C%20I'm%20interested%20in%20Terry%20Towels.`;
 
   return (
     <>
@@ -55,17 +57,22 @@ export function TerryTowelsContent() {
               Luxuriously crafted cotton terry towels for hotels, spas, retailers and distributors. 
               Available in 400–650 GSM. Ships globally to 50+ countries.
             </p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button 
-                onClick={scrollToSpecs}
-                size="lg" 
-                className="rounded-xl bg-[#1B3A8A] text-white hover:bg-[#1B3A8A]/90 h-14 px-8 font-bold border-none"
-              >
-                View Specifications
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-xl border-[#C9A243] text-[#C9A243] hover:bg-[#C9A243] hover:text-[#060A14] h-14 px-8 font-bold bg-transparent">
-                <Link href="/request-quote">Request Quote</Link>
-              </Button>
+            <div className="space-y-6 pt-4">
+              <div className="flex flex-wrap gap-4">
+                <Button 
+                  onClick={scrollToSpecs}
+                  size="lg" 
+                  className="rounded-xl bg-[#1B3A8A] text-white hover:bg-[#1B3A8A]/90 h-14 px-8 font-bold border-none"
+                >
+                  View Specifications
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-xl border-[#C9A243] text-[#C9A243] hover:bg-[#C9A243] hover:text-[#060A14] h-14 px-8 font-bold bg-transparent">
+                  <Link href="/request-quote">Request Quote</Link>
+                </Button>
+              </div>
+              <a href={whatsappLink} target="_blank" className="flex items-center gap-2 text-[#C9A243] font-bold text-sm hover:underline ml-1">
+                <MessageSquare size={16} /> Or chat directly on WhatsApp →
+              </a>
             </div>
           </div>
         </div>
@@ -240,10 +247,10 @@ export function TerryTowelsContent() {
               
               <div className="grid sm:grid-cols-2 gap-8">
                 {[
-                  { title: 'Custom Embroidery', desc: 'Precision logo and monogram embroidery with Pantone matching thread.', icon: Palette },
+                  { title: 'Custom Embroidery', desc: 'Precision logo and monogram embroidery with Pantone matching thread.', icon: Package },
                   { title: 'Advanced Weaving', desc: 'Dobby borders, jacquard weaves, and high-definition labels.', icon: Waves },
                   { title: 'Private Labeling', desc: 'Full OEM support including branded polybags and cartons.', icon: Package },
-                  { title: 'Pantone Matching', desc: 'Custom dye matches for brand-consistent textile suites.', icon: Palette }
+                  { title: 'Pantone Matching', desc: 'Custom dye matches for brand-consistent textile suites.', icon: Package }
                 ].map((item, i) => (
                   <div key={i} className="space-y-4">
                     <div className="w-10 h-10 rounded-lg bg-[#C9A243]/20 flex items-center justify-center text-[#C9A243]">
@@ -261,9 +268,14 @@ export function TerryTowelsContent() {
                 <ShieldCheck className="w-16 h-16 text-[#C9A243] mx-auto" />
                 <h3 className="text-3xl font-playfair font-bold">Request a Free Sample</h3>
                 <p className="text-white/80 leading-relaxed">Verify our GSM density and softness before placing a bulk order. We ship samples worldwide.</p>
-                <Button asChild size="lg" className="w-full bg-[#C9A243] text-[#060A14] font-black h-14 rounded-2xl shadow-xl hover:scale-105 transition-transform">
-                  <Link href="/request-quote">Get Your Proposal <ArrowRight className="ml-2 w-4 h-4" /></Link>
-                </Button>
+                <div className="space-y-4">
+                  <Button asChild size="lg" className="w-full bg-[#C9A243] text-[#060A14] font-black h-14 rounded-2xl shadow-xl hover:scale-105 transition-transform">
+                    <Link href="/request-quote">Get Your Proposal <ArrowRight className="ml-2 w-4 h-4" /></Link>
+                  </Button>
+                  <a href={whatsappLink} target="_blank" className="inline-flex items-center gap-2 text-white/80 font-bold text-xs hover:text-white transition-colors">
+                    <MessageSquare size={14} /> Or chat directly on WhatsApp →
+                  </a>
+                </div>
               </div>
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full translate-x-16 -translate-y-16" />
             </Card>
@@ -272,7 +284,7 @@ export function TerryTowelsContent() {
       </section>
 
       {/* 6. Manufacturing Insight Video */}
-      <section className="py-24 bg-white text-brand-navy">
+      <section className="py-24 bg-white text-brand-navy border-t">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
