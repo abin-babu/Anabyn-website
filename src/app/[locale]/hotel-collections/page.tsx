@@ -14,17 +14,31 @@ import {
   Globe
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { JsonLd } from '@/components/json-ld';
+import { getBreadcrumbSchema, getProductCollectionSchema } from '@/lib/schema-utils';
 
 export const metadata = {
-  title: "Hotel Linen Suppliers",
+  title: "Hotel Linen Suppliers — Premium Hospitality Textiles | Anabyn",
   description: "Premium hotel towels and bed linen from India. GSM 400–650, custom logo embroidery, bulk export. Trusted by luxury hotels worldwide.",
 };
 
-export default function HotelCollectionsPage() {
+export default async function HotelCollectionsPage({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
+
   return (
     <div className="flex min-h-screen flex-col bg-[#060A14] text-white">
       <Header />
+      <JsonLd data={getBreadcrumbSchema([
+        { name: 'Home', url: `/${locale}` },
+        { name: 'Hotel Collections', url: `/${locale}/hotel-collections` }
+      ])} />
+      <JsonLd data={getProductCollectionSchema({
+        name: 'Hotel Towels & Bed Linen — Hospitality Collection',
+        description: 'Comprehensive textile solutions for hotels and resort chains. Verified quality, industrial durability, and seamless global export.',
+        url: `/${locale}/hotel-collections`,
+        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80'
+      })} />
       
       <main className="flex-1">
         {/* 1. Hero Section */}

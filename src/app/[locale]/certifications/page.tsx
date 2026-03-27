@@ -22,6 +22,8 @@ import {
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/json-ld';
+import { getBreadcrumbSchema, getFAQSchema } from '@/lib/schema-utils';
 
 export const metadata: Metadata = {
   title: 'Certifications & Compliance | Anabyn Global Ventures LLP',
@@ -125,10 +127,24 @@ const qcSteps = [
   }
 ];
 
-export default function CertificationsPage() {
+const faqItems = [
+  { q: "How can I verify your IEC registration?", a: "You can verify our IEC (Import Export Code) ACLFA6777F directly on the official DGFT India portal using our company name: Anabyn Global Ventures LLP." },
+  { q: "Do you provide OEKO-TEX documentation for every order?", a: "OEKO-TEX Standard 100 certificates are available on demand upon customer request for specific production batches to ensure compliance with EU/US safety regulations." },
+  { q: "What does AQL 2.5 mean for my shipment?", a: "AQL 2.5 is an international standard defining the maximum allowable defects in a batch. It ensures that 100% of your shipment meets our 'Luxury Export Grade' threshold." },
+  { q: "Can you provide GOTS organic cotton certificates?", a: "Yes, for organic product lines, we provide batch-wise GOTS transaction certificates on demand to verify the sustainable origin of the fibers." }
+];
+
+export default async function CertificationsPage({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
+      <JsonLd data={getBreadcrumbSchema([
+        { name: 'Home', url: `/${locale}` },
+        { name: 'Certifications', url: `/${locale}/certifications` }
+      ])} />
+      <JsonLd data={getFAQSchema(faqItems)} />
       
       <main className="flex-1">
         {/* 1. Hero Section */}

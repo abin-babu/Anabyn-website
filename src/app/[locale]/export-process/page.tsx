@@ -21,6 +21,8 @@ import {
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/json-ld';
+import { getBreadcrumbSchema, getFAQSchema } from '@/lib/schema-utils';
 
 export const metadata: Metadata = {
   title: 'How We Export — Our 5-Step Process | Anabyn Global Ventures',
@@ -78,10 +80,24 @@ const documents = [
   { name: 'Inspection Report', desc: 'Internal or third-party pre-shipment audit reports.' }
 ];
 
-export default function ExportProcessPage() {
+const faqItems = [
+  { q: "How long does the export process take from India?", a: "Standard export orders typically take 30–45 days for production, plus transit time which varies by destination (e.g., 5-8 days to UAE, 18-25 days to UK/Europe)." },
+  { q: "Can I track my shipment in real-time?", a: "Yes, for all FCL and LCL shipments, we provide carrier tracking numbers and digital access to all shipping documents via our Buyer Portal." },
+  { q: "What payment terms do you support for international trade?", a: "We primarily work with LC at Sight and T/T (Wire Transfer). For established partners, we offer progressive billing structures." },
+  { q: "Do you handle the customs clearance in the destination country?", a: "We provide all necessary documentation for clearance. For DDP (Delivered Duty Paid) terms, we manage the entire process to your door." }
+];
+
+export default async function ExportProcessPage({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
+      <JsonLd data={getBreadcrumbSchema([
+        { name: 'Home', url: `/${locale}` },
+        { name: 'Export Process', url: `/${locale}/export-process` }
+      ])} />
+      <JsonLd data={getFAQSchema(faqItems)} />
       
       <main className="flex-1">
         {/* 1. Hero Section */}
@@ -110,7 +126,6 @@ export default function ExportProcessPage() {
         <section className="py-24 bg-white overflow-hidden">
           <div className="container px-4 mx-auto">
             <div className="relative">
-              {/* Desktop Connecting Line */}
               <div className="hidden lg:block absolute top-[60px] left-0 w-full h-0.5 bg-gray-100 -z-0" />
               
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 relative z-10">

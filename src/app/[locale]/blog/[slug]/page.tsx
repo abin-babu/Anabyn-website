@@ -1,4 +1,3 @@
-
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
@@ -20,6 +19,8 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { JsonLd } from '@/components/json-ld';
+import { getBreadcrumbSchema, getArticleSchema } from '@/lib/schema-utils';
 
 interface PageProps {
   params: Promise<{ slug: string; locale: string }>;
@@ -59,53 +60,21 @@ export default async function BlogPostPage({ params }: PageProps) {
     .sort((a, b) => b.publishedAt.toMillis() - a.publishedAt.toMillis())
     .slice(0, 2);
 
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": post.title,
-    "description": post.metaDescription,
-    "image": [post.featuredImage],
-    "datePublished": post.publishedAt.toDate().toISOString(),
-    "author": [{
-      "@type": "Organization",
-      "name": "Anabyn Export Intelligence Team",
-      "url": "https://www.anabyn.com"
-    }],
-    "publisher": {
-      "@type": "Organization",
-      "name": "Anabyn Global Ventures LLP",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.anabyn.com/images/logo.png"
-      }
-    }
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": `https://www.anabyn.com/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": "Export Intelligence", "item": `https://www.anabyn.com/${locale}/blog` },
-      { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://www.anabyn.com/${locale}/blog/${post.slug}` }
-    ]
-  };
-
-  const shareUrl = `https://www.anabyn.com/${locale}/blog/${post.slug}`;
-  const linkedInShare = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
-  const whatsappShare = `https://wa.me/?text=${encodeURIComponent(`${post.title} - ${shareUrl}`)}`;
-
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd data={getBreadcrumbSchema([
+        { name: 'Home', url: `/${locale}` },
+        { name: 'Export Intelligence', url: `/${locale}/blog` },
+        { name: post.title, url: `/${locale}/blog/${post.slug}` }
+      ])} />
+      <JsonLd data={getArticleSchema({
+        headline: post.title,
+        description: post.metaDescription,
+        image: post.featuredImage,
+        datePublished: post.publishedAt.toDate().toISOString(),
+        authorName: post.author.name
+      })} />
       
       <main className="flex-1 pt-24 pb-20">
         <header className="container mx-auto px-4 mb-16">
@@ -183,10 +152,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Share Article:</span>
                   <div className="flex gap-4">
                     <Button variant="outline" size="icon" asChild className="rounded-full hover:bg-[#0077b5] hover:text-white transition-all border-gray-200">
-                      <a href={linkedInShare} target="_blank" rel="noopener noreferrer"><Linkedin className="w-4 h-4" /></a>
+                      <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://www.anabyn.com' + '/' + locale + '/blog/' + post.slug)}`} target="_blank" rel="noopener noreferrer"><Linkedin className="w-4 h-4" /></a>
                     </Button>
                     <Button variant="outline" size="icon" asChild className="rounded-full hover:bg-[#25D366] hover:text-white transition-all border-gray-200">
-                      <a href={whatsappShare} target="_blank" rel="noopener noreferrer"><MessageSquare className="w-4 h-4" /></a>
+                      <a href={`https://wa.me/?text=${encodeURIComponent(post.title + ' - ' + 'https://www.anabyn.com' + '/' + locale + '/blog/' + post.slug)}`} target="_blank" rel="noopener noreferrer"><MessageSquare className="w-4 h-4" /></a>
                     </Button>
                   </div>
                 </div>

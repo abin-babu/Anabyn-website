@@ -21,6 +21,8 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { JsonLd } from '@/components/json-ld';
+import { getBreadcrumbSchema } from '@/lib/schema-utils';
 
 export const metadata: Metadata = {
   title: 'About Anabyn — Our Story & Team | Textile Exporter India',
@@ -60,10 +62,17 @@ const timeline = [
   { year: '2025', event: 'Anabyn launches as a dedicated premium textile export partner, combining Anoop\'s manufacturing expertise with Abin\'s corporate experience.' }
 ];
 
-export default function AboutUsPage() {
+export default async function AboutUsPage({ params }: { params: { locale: string } }) {
+  const { locale } = await params;
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
+      <JsonLd data={getBreadcrumbSchema([
+        { name: 'Home', url: `/${locale}` },
+        { name: 'About Us', url: `/${locale}/about-us` }
+      ])} />
+      
       <main className="flex-1 pt-32 pb-20">
         <div className="container max-w-6xl mx-auto space-y-20 px-4">
           
@@ -165,7 +174,7 @@ export default function AboutUsPage() {
           <div className="space-y-12">
             <h2 className="text-3xl md:text-5xl font-playfair font-bold text-center text-brand-navy">Corporate Leadership</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              {directors.map((dir) => ( director.photo ? (
+              {directors.map((dir) => (
                 <Card key={dir.name} className="border-brand-gold/10 hover:shadow-2xl transition-all rounded-[2rem] overflow-hidden bg-white">
                   <div className="aspect-[4/5] relative">
                     <Image src={dir.photo} alt={dir.name} fill className="object-cover grayscale hover:grayscale-0 transition-all duration-700" sizes="(max-width: 768px) 100vw, 33vw" />
@@ -179,7 +188,7 @@ export default function AboutUsPage() {
                     {dir.description && <p className="text-xs text-muted-foreground leading-relaxed line-clamp-4">{dir.description}</p>}
                   </CardContent>
                 </Card>
-              ) : null))}
+              ))}
             </div>
           </div>
 
