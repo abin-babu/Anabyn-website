@@ -18,25 +18,45 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Image from 'next/image';
 
-const homeTestimonials = [
+interface TestimonialData {
+  text: string;
+  author: string;
+  initials: string;
+  role: string;
+  country: string;
+  avatar: string | null;
+  companyLogo: string | null;
+}
+
+const homeTestimonials: TestimonialData[] = [
   {
     text: "Exceptional quality towels — our guests rate them best in class.",
     author: "James Mitchell",
+    initials: "JM",
     role: "Hotel Group Director",
     country: "UK",
+    avatar: null,
+    companyLogo: null,
   },
   {
     text: "Reliable, on-time every time. The bed linen sells out in weeks.",
     author: "Sarah Al-Rashid",
+    initials: "SA",
     role: "Retail Buyer",
     country: "UAE",
+    avatar: null,
+    companyLogo: null,
   },
   {
     text: "Best cotton quality I've sourced. Anabyn's detail is unmatched.",
     author: "Marco De Luca",
+    initials: "MDL",
     role: "Textile Importer",
     country: "Italy",
+    avatar: null,
+    companyLogo: null,
   },
 ];
 
@@ -87,19 +107,41 @@ export function TestimonialsCarousel() {
             {homeTestimonials.map((t, idx) => (
               <CarouselItem key={idx} className="pl-4 md:basis-1/2 lg:basis-1/1">
                 <Card className="h-full border-none shadow-2xl bg-white/5 backdrop-blur-sm relative overflow-hidden group p-8 md:p-16">
-                  <CardContent className="p-0 text-center">
+                  <CardContent className="p-0 text-center flex flex-col items-center h-full">
                     <Quote className="text-[#C9A243]/20 w-24 h-24 absolute -top-4 -left-4 -z-0" />
                     
-                    <p className="text-2xl md:text-3xl leading-relaxed text-white font-medium italic mb-12 relative z-10">
+                    {/* Avatar Section */}
+                    <div className="relative w-[60px] h-[60px] mb-8 z-10">
+                      {t.avatar ? (
+                        <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#C9A243]">
+                          <Image src={t.avatar} alt={t.author} fill className="object-cover" />
+                        </div>
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-[#0D1F3C] border-2 border-[#C9A243] flex items-center justify-center text-[#C9A243] font-bold text-lg">
+                          {t.initials}
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="text-2xl md:text-3xl leading-relaxed text-white font-medium italic mb-12 relative z-10 max-w-3xl">
                       "{t.text}"
                     </p>
 
-                    <div className="space-y-2">
+                    <div className="space-y-2 mb-8">
                       <h4 className="font-bold text-white text-xl">{t.author}</h4>
                       <p className="text-[#C9A243] font-bold uppercase tracking-widest text-xs">
                         {t.role}, {t.country}
                       </p>
                     </div>
+
+                    {/* Company Logo Section */}
+                    {t.companyLogo && (
+                      <div className="mt-auto pt-6 grayscale opacity-50 hover:opacity-100 transition-opacity">
+                        <div className="relative w-[100px] h-[30px]">
+                          <Image src={t.companyLogo} alt="Company Logo" fill className="object-contain" />
+                        </div>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </CarouselItem>
