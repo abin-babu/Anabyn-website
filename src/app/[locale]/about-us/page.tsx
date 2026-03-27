@@ -158,7 +158,7 @@ export default function AboutUsPage() {
               <CardContent>
                 <p className="text-muted-foreground">To become the global gold standard for premium Indian textile exports — ensuring every handshake is honored and every stitch is verified.</p>
               </CardContent>
-            </div>
+            </Card>
           </div>
 
           {/* Leadership (Section 3) */}
