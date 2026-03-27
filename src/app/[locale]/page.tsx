@@ -40,21 +40,21 @@ export default function HomePage() {
       {/* 1. Hero Section */}
       <section className="relative h-screen flex items-center overflow-hidden pt-[74px] hero-section-bg">
         <div className="container relative z-20 px-4 mx-auto">
-          <div className="max-w-[840px] space-y-6 text-left reveal">
-            <span className="text-brand-gold text-[11px] font-bold tracking-[0.2em] uppercase block mb-2">
+          <div className="max-w-[840px] space-y-6 text-left">
+            <span className="text-brand-gold text-[11px] font-bold tracking-[0.2em] uppercase block mb-2 hero-load-1">
               Premium Export Partner · 50+ Countries
             </span>
 
-            <h1 className="text-5xl md:text-8xl font-playfair font-bold text-white leading-[1.05] tracking-tight">
+            <h1 className="text-5xl md:text-8xl font-playfair font-bold text-white leading-[1.05] tracking-tight hero-load-1">
               Luxury Textiles.<br />
               Precision Delivered.
             </h1>
 
-            <p className="text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light">
+            <p className="text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light hero-load-2">
               India's finest terry towels and bed linen — crafted to GSM spec, shipped with full export documentation.
             </p>
 
-            <div className="flex items-center gap-8 pt-8">
+            <div className="flex items-center gap-8 pt-8 hero-load-3">
               <Link href="/request-quote" className="hero-cta-primary">
                 Request Export Quote
               </Link>
