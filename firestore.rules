@@ -1,105 +1,22 @@
 rules_version = '2';
-
-/**
- * FIRESTORE SECURITY RULES
- * 
- * Core Philosophy:
- * This ruleset implements a dual-access model designed for public lead generation and 
- * restricted administrative oversight. It prioritizes high-security for sensitive lead 
- * data while maintaining a frictionless entry point for potential customers.
- *
- * Data Structure:
- * - /catalogue_leads/{leadId}: Flat collection of lead submissions.
- * - /roles_admin/{adminUid}: Database Access Control (DBAC) collection where the 
- *   presence of a document grants administrative privileges to the user with that UID.
- *
- * Key Security Decisions:
- * - Public Lead Submission: Allows any user (including unauthenticated/anonymous) to 
- *   create lead documents. To prevent "open" writes, creation is bound to the document 
- *   ID, ensuring structural integrity between the path and the data.
- * - Admin-Only Access: All read, update, and delete operations on lead data are 
- *   strictly restricted to users verified via the /roles_admin collection.
- * - Database Access Control (DBAC): Administrative roles are handled through document 
- *   existence checks rather than custom claims, allowing for immediate role revocation 
- *   and simpler logic without external dependencies.
- * - Structural Integrity: On creation, lead documents must contain an 'id' field that 
- *   matches the Firestore document ID to ensure consistency for future queries.
- */
-
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // --- Helper Functions ---
-
-    /**
-     * @description Checks if the user is authenticated.
-     */
-    function isSignedIn() {
-      return request.auth != null;
-    }
-
-    /**
-     * @description Determines if the current user has administrative privileges by 
-     * checking for the existence of their UID in the roles_admin collection.
-     */
     function isAdmin() {
-      return isSignedIn() && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
+      return request.auth != null && exists(/databases/$(database)/documents/roles_admin/$(request.auth.uid));
     }
 
-    /**
-     * @description Checks if the user's UID matches the provided userId.
-     */
-    function isOwner(userId) {
-      return isSignedIn() && request.auth.uid == userId;
-    }
-
-    // --- Collection Rules ---
-
-    /**
-     * @description Rules for catalogue lead submissions. Public creation, Admin management.
-     * @path /catalogue_leads/{leadId}
-     * @allow create: Any user (path/data consistency check).
-     * @allow get, list, update, delete: Authenticated users present in /roles_admin.
-     * @deny Any read or modification by non-admin users.
-     * @principle Validates relational integrity on create and enforces role-based access for management.
-     */
     match /catalogue_leads/{leadId} {
-      allow get, list: if isAdmin();
-      allow create: if request.resource.data.id == leadId;
-      allow update: if isAdmin() && resource != null;
-      allow delete: if isAdmin() && resource != null;
+      allow create: if true; // Public submission
+      allow read, update, delete: if isAdmin();
     }
 
-    /**
-     * @description Rules for identifying administrative users.
-     * @path /roles_admin/{adminUid}
-     * @allow get: The user themselves (to verify admin status).
-     * @deny list: No listing of administrators permitted.
-     * @deny create, update, delete: Client-side modification is strictly forbidden.
-     * @principle Implementation of Database Access Control (DBAC) with restricted client visibility.
-     */
     match /roles_admin/{adminUid} {
-      allow get: if isOwner(adminUid);
-      allow list: if false;
-      allow create, update, delete: if false;
+      allow get: if request.auth.uid == adminUid;
+    }
+    
+    // Existing rules for other collections...
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
-
-/**
- * DEVELOPER NOTES & VALIDATION SUMMARY:
- * 
- * 1. PROTOTYPING MODE: This ruleset does not enforce specific data types (e.g., string vs int) 
- *    or optional field presence for 'CatalogueLead' beyond the critical 'id' field used 
- *    for relational integrity.
- * 
- * 2. PUBLIC WRITES: Per P1, 'allow create: if true' is avoided. Instead, we enforce 
- *    'request.resource.data.id == leadId'. This ensures that the submitted data's internal 
- *    identifier matches its location, which is a requirement for reliable querying.
- * 
- * 3. ADMIN ROLES: Admin access is managed out-of-band. To promote a user to admin, 
- *    create a document at /roles_admin/{uid} using the Firebase Console or Admin SDK.
- * 
- * 4. DESTRUCTIVE OPS: Update and delete operations strictly check 'resource != null' 
- *    to ensure the operation is being performed on an existing document.
- */

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { AnabynLogo } from '@/components/anabyn-logo';
-import { Mail, Globe } from 'lucide-react';
+import { Mail, Globe, FileDown } from 'lucide-react';
 import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 
 export function Footer() {
@@ -11,16 +11,11 @@ export function Footer() {
   return (
     <footer className="bg-[#060A14] pt-24 pb-12 text-[rgba(244,240,232,0.55)] border-t border-[rgba(201,162,67,0.12)]">
       <div className="container px-4 mx-auto">
-        {/* TOP SECTION: 3 Columns */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
-          
-          {/* Column 1: Brand */}
           <div className="space-y-8">
             <div className="flex flex-col gap-4">
               <AnabynLogo className="scale-110 origin-left" />
-              <p className="footer-tagline mt-2 max-w-[280px]">
-                Precision textiles. Delivered to the world.
-              </p>
+              <p className="footer-tagline mt-2 max-w-[280px]">Precision textiles. Delivered to the world.</p>
             </div>
             <p className="text-sm leading-relaxed max-w-sm">
               Exporting to 50+ countries — luxury terry towels, bed linen and premium textiles for global hospitality chains, retail brands and distributors. Verified quality at every handshake.
@@ -34,121 +29,46 @@ export function Footer() {
                 <Globe className="w-4 h-4 text-[#C9A243]" />
                 <a href="https://www.anabyn.com" className="hover:text-[#C9A243] transition-colors">www.anabyn.com</a>
               </div>
-              
-              {/* Social Media Links */}
               <div className="flex items-center gap-6 pt-6">
-                <a 
-                  href="https://www.instagram.com/dezire_sportswear" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label="Follow Anabyn on Instagram" 
-                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
-                >
-                  <FaInstagram size={24} />
-                </a>
-                <a 
-                  href="https://www.facebook.com/deziresportswear" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label="Follow Anabyn on Facebook" 
-                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
-                >
-                  <FaFacebook size={24} />
-                </a>
-                <a 
-                  href="https://www.linkedin.com/company/anabyn" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label="Follow Anabyn on LinkedIn" 
-                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
-                >
-                  <FaLinkedin size={24} />
-                </a>
-                <a 
-                  href="https://www.youtube.com/@anabynglobal" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label="Follow Anabyn on YouTube" 
-                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
-                >
-                  <FaYoutube size={24} />
-                </a>
-                <a 
-                  href="https://wa.me/919495613121" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  aria-label="Chat with Anabyn on WhatsApp" 
-                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
-                >
-                  <FaWhatsapp size={24} />
-                </a>
+                <a href="https://www.instagram.com/dezire_sportswear" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#D4A827] transition-all transform hover:scale-110"><FaInstagram size={24} /></a>
+                <a href="https://www.facebook.com/deziresportswear" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#D4A827] transition-all transform hover:scale-110"><FaFacebook size={24} /></a>
+                <a href="https://www.linkedin.com/company/anabyn" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#D4A827] transition-all transform hover:scale-110"><FaLinkedin size={24} /></a>
+                <a href="https://www.youtube.com/@anabynglobal" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#D4A827] transition-all transform hover:scale-110"><FaYoutube size={24} /></a>
+                <a href="https://wa.me/919495613121" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#D4A827] transition-all transform hover:scale-110"><FaWhatsapp size={24} /></a>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Products */}
           <div>
             <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Collections</h4>
             <ul className="space-y-5 text-sm font-medium">
-              <li>
-                <Link href="/terry-towels" className="hover:text-[#C9A243] transition-colors">Terry Towels</Link>
-              </li>
-              <li>
-                <Link href="/bed-linen" className="hover:text-[#C9A243] transition-colors">Bed Linen Collection</Link>
-              </li>
-              <li>
-                <Link href="/hotel-collections" className="hover:text-[#C9A243] transition-colors">Hotel & Hospitality</Link>
-              </li>
-              <li>
-                <Link href="/oem-private-label" className="hover:text-[#C9A243] transition-colors">OEM & Private Label</Link>
-              </li>
-              <li>
-                <Link href="/compliance-standards" className="hover:text-[#C9A243] transition-colors">Standard Comparison</Link>
-              </li>
+              <li><Link href="/terry-towels" className="hover:text-[#C9A243] transition-colors">Terry Towels</Link></li>
+              <li><Link href="/bed-linen" className="hover:text-[#C9A243] transition-colors">Bed Linen Collection</Link></li>
+              <li><Link href="/hotel-collections" className="hover:text-[#C9A243] transition-colors">Hotel & Hospitality</Link></li>
+              <li><Link href="/oem-private-label" className="hover:text-[#C9A243] transition-colors">OEM & Private Label</Link></li>
+              <li><Link href="/compliance-standards" className="hover:text-[#C9A243] transition-colors">Standard Comparison</Link></li>
             </ul>
           </div>
 
-          {/* Column 3: Company */}
           <div>
             <h4 className="text-white font-bold uppercase text-[10px] tracking-[0.3em] mb-10">Company</h4>
             <ul className="space-y-5 text-sm font-medium">
-              <li>
-                <Link href="/about-us" className="hover:text-[#C9A243] transition-colors">Our Story</Link>
-              </li>
-              <li>
-                <Link href="/export-process" className="hover:text-[#C9A243] transition-colors">How We Export</Link>
-              </li>
-              <li>
-                <Link href="/faq" className="hover:text-[#C9A243] transition-colors">Technical FAQ</Link>
-              </li>
-              <li>
-                <Link href="/blog" className="hover:text-[#C9A243] transition-colors">Export Intelligence</Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#C9A243] transition-colors">Request a Quote</Link>
-              </li>
+              <li><Link href="/about-us" className="hover:text-[#C9A243] transition-colors">Our Story</Link></li>
+              <li><Link href="/export-process" className="hover:text-[#C9A243] transition-colors">How We Export</Link></li>
+              <li><Link href="/catalogue" className="text-brand-gold hover:text-white transition-colors flex items-center gap-2"><FileDown size={14} /> Product Catalogue</Link></li>
+              <li><Link href="/faq" className="hover:text-[#C9A243] transition-colors">Technical FAQ</Link></li>
+              <li><Link href="/blog" className="hover:text-[#C9A243] transition-colors">Export Intelligence</Link></li>
+              <li><Link href="/contact" className="hover:text-[#C9A243] transition-colors">Request a Quote</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* CERTIFICATION BADGES ROW */}
         <div className="flex flex-wrap items-center justify-center gap-4 mb-12 pt-12 border-t border-[rgba(201,162,67,0.08)]">
-          {[
-            'IEC REGISTERED EXPORTER',
-            'GST REGISTERED',
-            'AQL 2.5 INSPECTED',
-            'QUALITY ASSURED'
-          ].map((badge) => (
-            <div 
-              key={badge}
-              className="px-4 py-1.5 rounded-full border border-[#C9A243]/30 text-[10px] font-black uppercase tracking-widest text-[#C9A243]/80 bg-transparent"
-            >
-              {badge}
-            </div>
+          {['IEC REGISTERED EXPORTER', 'GST REGISTERED', 'AQL 2.5 INSPECTED', 'QUALITY ASSURED'].map((badge) => (
+            <div key={badge} className="px-4 py-1.5 rounded-full border border-[#C9A243]/30 text-[10px] font-black uppercase tracking-widest text-[#C9A243]/80">{badge}</div>
           ))}
         </div>
 
-        {/* BOTTOM BAR */}
         <div className="pt-10 border-t border-[rgba(201,162,67,0.08)] flex flex-col md:flex-row items-center justify-between gap-6 text-[10px] font-bold uppercase tracking-[0.2em]">
           <p>© {currentYear} Anabyn Global Ventures LLP. All rights reserved.</p>
           <div className="flex items-center gap-8">
