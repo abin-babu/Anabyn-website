@@ -63,7 +63,7 @@ export default function DownloadsPage() {
                                             </div>
                                         </div>
                                         <Button asChild className="mt-4 sm:mt-0 rounded-xl bg-brand-navy text-white hover:bg-brand-navy/90" size="sm">
-                                            <a href={brochure.fileUrl} download={brochure.title + '.' + brochure.fileType.toLowerCase()}>
+                                            <a href={brochure.fileUrl} download={brochure.fileUrl.includes('.pdf') ? '2026 Linen Catalogue.pdf' : brochure.title + '.' + brochure.fileType.toLowerCase()}>
                                                 <DownloadCloud className="mr-2 h-4 w-4" />
                                                 Download {brochure.fileType}
                                             </a>

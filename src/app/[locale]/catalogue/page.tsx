@@ -25,6 +25,15 @@ export default function CataloguePage() {
     setInterests(prev => prev.includes(val) ? prev.filter(i => i !== val) : [...prev, val]);
   };
 
+  const triggerDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/2026%20Linen%20Catalogue.pdf';
+    link.download = '2026 Linen Catalogue.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -43,7 +52,9 @@ export default function CataloguePage() {
     
     if (result.success) {
       setIsSuccess(true);
-      toast({ title: 'Lead Captured', description: 'Your catalogue is now available for download.' });
+      toast({ title: 'Lead Captured', description: 'Your catalogue download has started.' });
+      // Trigger the download immediately
+      triggerDownload();
     } else {
       toast({ variant: 'destructive', title: 'Error', description: result.error });
     }
@@ -118,9 +129,9 @@ export default function CataloguePage() {
                       <CheckCircle2 className="text-success w-12 h-12" />
                     </div>
                     <div className="space-y-4">
-                      <h3 className="text-3xl font-playfair font-bold text-brand-navy">Your Catalogue is Ready</h3>
+                      <h3 className="text-3xl font-playfair font-bold text-brand-navy">Lead Verified</h3>
                       <p className="text-muted-foreground text-lg max-w-md mx-auto">
-                        Thank you for your interest in Anabyn Global Ventures. You can download the PDF directly below.
+                        Thank you for your interest. Your download has been initiated. If it didn't start automatically, please use the button below.
                       </p>
                     </div>
                     <div className="pt-8">
@@ -130,7 +141,7 @@ export default function CataloguePage() {
                         </a>
                       </Button>
                     </div>
-                    <p className="text-xs text-muted-foreground pt-4 italic">The file will begin downloading automatically.</p>
+                    <p className="text-xs text-muted-foreground pt-4 italic">You can now access full technical data.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-10">
