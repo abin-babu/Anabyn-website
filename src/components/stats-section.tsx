@@ -10,18 +10,6 @@ const stats = [
     suffix: '+' 
   },
   { 
-    label: 'Containers', 
-    sublabel: 'shipped yearly', 
-    value: 500, 
-    suffix: '+' 
-  },
-  { 
-    label: 'Units exported', 
-    sublabel: 'since 2020', 
-    value: 5, 
-    suffix: 'M+' 
-  },
-  { 
     label: 'On-time delivery', 
     sublabel: 'rate', 
     value: 99.2, 
@@ -33,9 +21,9 @@ export function StatsSection() {
   return (
     <section className="py-20 stats-section-container overflow-hidden relative">
       <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 reveal-stagger">
+        <div className="flex flex-col md:flex-row justify-center items-center gap-12 lg:gap-24 reveal-stagger">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center group py-10 lg:py-0 stat-item-box">
+            <div key={stat.label} className="text-center group py-6 md:py-0 min-w-[200px]">
               <div className="flex flex-col items-center justify-center px-4">
                 <span 
                   className="stat-number-display tabular-nums"

@@ -112,7 +112,7 @@ export default async function Image() {
             borderTop: '2px solid rgba(201, 168, 76, 0.3)',
           }}
         >
-          50+ Countries | 500+ Containers/Year | ISO 9001:2015 Certified
+          50+ Countries | Premium Export Partner | ISO 9001:2015 Certified
         </div>
       </div>
     ),
