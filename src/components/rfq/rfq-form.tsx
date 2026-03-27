@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -20,6 +21,7 @@ import {
 import { useFirebase } from '@/firebase';
 import { countries } from '@/lib/countries';
 import { products as catalog } from '@/lib/products';
+import { useTranslations } from 'next-intl';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -41,18 +43,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { handleRFQSubmissionAction } from '@/app/actions/inquiry';
 
 const rfqFormSchema = z.object({
-  // Step 1: Requirements (All Optional)
   category: z.string().optional(),
   product: z.string().optional(),
   quantity: z.coerce.number().optional().default(0),
   unit: z.string().optional().default('Pieces'),
   oem: z.boolean().default(false),
   notes: z.string().optional(),
-  // Step 2: Contact (3 Mandatory)
   email: z.string().email('Valid email required'),
   whatsapp: z.string().min(8, 'Valid contact number required'),
   destinationCountry: z.string().min(1, 'Please select your country'),
-  // Step 2: Optional Contact
   name: z.string().optional(),
   company: z.string().optional(),
 });
@@ -60,6 +59,7 @@ const rfqFormSchema = z.object({
 type RFQFormData = z.infer<typeof rfqFormSchema>;
 
 export function RFQForm() {
+  const t = useTranslations('RFQ');
   const { firestore } = useFirebase();
   const { toast } = useToast();
   const router = useRouter();
@@ -99,11 +99,7 @@ export function RFQForm() {
     }
   }, [initialProduct, form]);
 
-  const nextStep = () => {
-    // Step 1 has no mandatory fields, so we just proceed to Step 2
-    setStep(2);
-  };
-
+  const nextStep = () => setStep(2);
   const prevStep = () => setStep(1);
 
   const onSubmit = async (data: RFQFormData) => {
@@ -111,8 +107,6 @@ export function RFQForm() {
 
     try {
       const rfqId = `AGV-2026-${Math.floor(1000 + Math.random() * 9000)}`;
-
-      // Use Server Action to handle Firestore save and Email sending
       const result = await handleRFQSubmissionAction({
         rfqId,
         ...data
@@ -120,8 +114,8 @@ export function RFQForm() {
 
       if (result.success) {
         toast({
-          title: 'Quote Request Submitted!',
-          description: `Your reference ID is ${rfqId}.`,
+          title: t('successTitle'),
+          description: `${t('successDesc')}${rfqId}.`,
         });
         router.push(`/request-quote/success?id=${rfqId}`);
       } else {
@@ -139,28 +133,21 @@ export function RFQForm() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
-      {/* Progress Stepper */}
+    <div className="w-full max-w-3xl mx-auto rtl:text-right">
       <div className="flex items-center justify-center gap-4 mb-12 px-4">
-        <div className={cn(
-          "h-1.5 w-24 rounded-full transition-all",
-          step >= 1 ? "bg-brand-gold" : "bg-muted"
-        )} />
-        <div className={cn(
-          "h-1.5 w-24 rounded-full transition-all",
-          step >= 2 ? "bg-brand-gold" : "bg-muted"
-        )} />
+        <div className={cn("h-1.5 w-24 rounded-full transition-all", step >= 1 ? "bg-brand-gold" : "bg-muted")} />
+        <div className={cn("h-1.5 w-24 rounded-full transition-all", step >= 2 ? "bg-brand-gold" : "bg-muted")} />
       </div>
 
       <Card className="border-brand-gold/20 shadow-2xl overflow-hidden bg-white">
         <CardHeader className="bg-brand-navy text-white p-8">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center rtl:flex-row-reverse">
             <div>
               <CardTitle className="text-2xl font-playfair">
-                {step === 1 ? 'Quote Requirements' : 'Final Submission'}
+                {step === 1 ? t('step1Title') : t('step2Title')}
               </CardTitle>
               <CardDescription className="text-white/60">
-                {step === 1 ? 'Step 1: Tell us what you are looking for' : 'Step 2: Where should we send your quote?'}
+                {step === 1 ? t('step1Desc') : t('step2Desc')}
               </CardDescription>
             </div>
             <Badge className="bg-brand-gold text-brand-navy px-4 py-1">Direct Pricing</Badge>
@@ -169,20 +156,13 @@ export function RFQForm() {
 
         <CardContent className="p-8">
           <div className="space-y-8">
-            {/* STEP 1: REQUIREMENTS */}
             {step === 1 && (
               <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-300">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Product Category (Optional)</Label>
-                    <Select 
-                      onValueChange={(val) => {
-                        form.setValue('category', val);
-                        form.setValue('product', '');
-                      }} 
-                      value={selectedCategory}
-                    >
-                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl">
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('category')}</Label>
+                    <Select onValueChange={(val) => { form.setValue('category', val); form.setValue('product', ''); }} value={selectedCategory}>
+                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl rtl:flex-row-reverse">
                         <SelectValue placeholder="All Categories" />
                       </SelectTrigger>
                       <SelectContent>
@@ -193,9 +173,9 @@ export function RFQForm() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Specific Product (Optional)</Label>
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('product')}</Label>
                     <Select onValueChange={(val) => form.setValue('product', val)} value={form.watch('product')}>
-                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl">
+                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl rtl:flex-row-reverse">
                         <SelectValue placeholder="Choose Product" />
                       </SelectTrigger>
                       <SelectContent>
@@ -209,18 +189,13 @@ export function RFQForm() {
 
                 <div className="grid grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Target Qty (Optional)</Label>
-                    <Input 
-                      type="number" 
-                      placeholder="0"
-                      className="h-14 border-brand-gold/20 rounded-xl"
-                      {...form.register('quantity')}
-                    />
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('quantity')}</Label>
+                    <Input type="number" placeholder="0" className="h-14 border-brand-gold/20 rounded-xl rtl:text-right" {...form.register('quantity')} />
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Unit</Label>
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('unit')}</Label>
                     <Select onValueChange={(val) => form.setValue('unit', val)} value={form.watch('unit')}>
-                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl">
+                      <SelectTrigger className="h-14 border-brand-gold/20 rounded-xl rtl:flex-row-reverse">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -233,114 +208,66 @@ export function RFQForm() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between p-5 bg-secondary/20 rounded-2xl border border-brand-gold/10">
-                  <div className="space-y-0.5">
-                    <Label className="text-base font-bold text-brand-navy">Private Label / OEM?</Label>
-                    <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tight">Add your logo and custom packaging</p>
+                <div className="flex items-center justify-between p-5 bg-secondary/20 rounded-2xl border border-brand-gold/10 rtl:flex-row-reverse">
+                  <div className="space-y-0.5 rtl:text-right">
+                    <Label className="text-base font-bold text-brand-navy">{t('oem')}</Label>
+                    <p className="text-[10px] text-muted-foreground uppercase font-bold tracking-tight">{t('oemDesc')}</p>
                   </div>
-                  <Switch 
-                    checked={form.watch('oem')} 
-                    onCheckedChange={(val) => form.setValue('oem', val)}
-                  />
+                  <Switch checked={form.watch('oem')} onCheckedChange={(val) => form.setValue('oem', val)} />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Custom Specs / Requirements (Optional)</Label>
-                  <Textarea 
-                    className="min-h-[120px] border-brand-gold/20 rounded-2xl p-4" 
-                    {...form.register('notes')} 
-                    placeholder="Tell us about your sizing, weight (GSM), colors or packaging needs..." 
-                  />
+                  <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('notes')}</Label>
+                  <Textarea className="min-h-[120px] border-brand-gold/20 rounded-2xl p-4 rtl:text-right" {...form.register('notes')} placeholder={t('notesPlaceholder')} />
                 </div>
               </div>
             )}
 
-            {/* STEP 2: CONTACT (MANDATORY) */}
             {step === 2 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
                 <div className="bg-brand-gold/5 p-6 rounded-[2rem] border border-brand-gold/20">
-                  <p className="text-xs font-bold text-brand-navy/60 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
-                    <Check className="text-brand-gold w-4 h-4" /> Required Information
-                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">Work Email *</Label>
+                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">{t('email')}</Label>
                       <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold" />
-                        <Input 
-                          type="email" 
-                          placeholder="procurement@company.com" 
-                          className={cn(
-                            "h-14 pl-12 border-brand-gold/20 rounded-xl",
-                            form.formState.errors.email && "border-destructive ring-destructive"
-                          )}
-                          {...form.register('email')}
-                        />
+                        <Mail className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold" />
+                        <Input type="email" placeholder="procurement@company.com" className="h-14 pl-12 rtl:pl-4 rtl:pr-12 border-brand-gold/20 rounded-xl rtl:text-right" {...form.register('email')} />
                       </div>
-                      {form.formState.errors.email && <p className="text-[10px] text-destructive font-bold uppercase">{form.formState.errors.email.message}</p>}
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">WhatsApp / Phone *</Label>
+                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">{t('whatsapp')}</Label>
                       <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold" />
-                        <Input 
-                          placeholder="+1 234 567 890" 
-                          className={cn(
-                            "h-14 pl-12 border-brand-gold/20 rounded-xl",
-                            form.formState.errors.whatsapp && "border-destructive ring-destructive"
-                          )}
-                          {...form.register('whatsapp')}
-                        />
+                        <Phone className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold" />
+                        <Input placeholder="+1 234 567 890" className="h-14 pl-12 rtl:pl-4 rtl:pr-12 border-brand-gold/20 rounded-xl rtl:text-right" {...form.register('whatsapp')} />
                       </div>
-                      {form.formState.errors.whatsapp && <p className="text-[10px] text-destructive font-bold uppercase">{form.formState.errors.whatsapp.message}</p>}
                     </div>
 
                     <div className="md:col-span-2 space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">Destination Market *</Label>
+                      <Label className="text-[10px] font-black uppercase text-brand-navy tracking-[0.2em]">{t('country')}</Label>
                       <div className="relative">
-                        <Globe className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold z-10" />
-                        <Select 
-                          onValueChange={(val) => form.setValue('destinationCountry', val)} 
-                          value={form.watch('destinationCountry')}
-                        >
-                          <SelectTrigger className={cn(
-                            "h-14 pl-12 border-brand-gold/20 rounded-xl",
-                            form.formState.errors.destinationCountry && "border-destructive"
-                          )}>
+                        <Globe className="absolute left-4 rtl:left-auto rtl:right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gold z-10" />
+                        <Select onValueChange={(val) => form.setValue('destinationCountry', val)} value={form.watch('destinationCountry')}>
+                          <SelectTrigger className="h-14 pl-12 rtl:pl-4 rtl:pr-12 border-brand-gold/20 rounded-xl rtl:flex-row-reverse">
                             <SelectValue placeholder="Select Destination Country" />
                           </SelectTrigger>
                           <SelectContent className="max-h-60">
-                            {countries.map(c => (
-                              <SelectItem key={c} value={c}>{c}</SelectItem>
-                            ))}
+                            {countries.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                           </SelectContent>
                         </Select>
                       </div>
-                      {form.formState.errors.destinationCountry && <p className="text-[10px] text-destructive font-bold uppercase">{form.formState.errors.destinationCountry.message}</p>}
                     </div>
                   </div>
                 </div>
 
-                <div>
-                  <p className="text-xs font-bold text-muted-foreground uppercase tracking-[0.2em] mb-6 pl-2">Optional Company Details</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Full Name</Label>
-                      <Input 
-                        placeholder="John Doe" 
-                        className="h-14 border-gray-100 rounded-xl"
-                        {...form.register('name')}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">Company Name</Label>
-                      <Input 
-                        placeholder="Hospitality Group" 
-                        className="h-14 border-gray-100 rounded-xl"
-                        {...form.register('company')}
-                      />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('name')}</Label>
+                    <Input placeholder="John Doe" className="h-14 border-gray-100 rounded-xl rtl:text-right" {...form.register('name')} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-[10px] font-black uppercase text-muted-foreground tracking-[0.2em]">{t('company')}</Label>
+                    <Input placeholder="Hospitality Group" className="h-14 border-gray-100 rounded-xl rtl:text-right" {...form.register('company')} />
                   </div>
                 </div>
               </div>
@@ -348,60 +275,24 @@ export function RFQForm() {
           </div>
         </CardContent>
 
-        <CardFooter className="p-8 bg-muted/20 border-t flex justify-between">
+        <CardFooter className="p-8 bg-muted/20 border-t flex justify-between rtl:flex-row-reverse">
           {step === 2 ? (
-            <Button 
-              type="button"
-              variant="outline" 
-              onClick={prevStep} 
-              disabled={isSubmitting}
-              className="h-14 border-brand-gold/30 px-8 rounded-xl font-black text-xs"
-            >
-              <ChevronLeft className="mr-2 w-4 h-4" /> Adjust Needs
+            <Button type="button" variant="outline" onClick={prevStep} disabled={isSubmitting} className="h-14 border-brand-gold/30 px-8 rounded-xl font-black text-xs">
+              <ChevronLeft className="mr-2 w-4 h-4 rtl:rotate-180" /> {t('prev')}
             </Button>
-          ) : (
-            <div />
-          )}
+          ) : <div />}
 
           {step === 1 ? (
-            <Button 
-              type="button"
-              onClick={nextStep} 
-              className="h-14 bg-brand-navy hover:bg-brand-navy/90 text-white px-12 font-black text-xs rounded-xl shadow-xl shadow-brand-navy/20"
-            >
-              Next Step <ChevronRight className="ml-2 w-4 h-4" />
+            <Button type="button" onClick={nextStep} className="h-14 bg-brand-navy hover:bg-brand-navy/90 text-white px-12 font-black text-xs rounded-xl shadow-xl">
+              {t('next')} <ChevronRight className="ml-2 w-4 h-4 rtl:rotate-180" />
             </Button>
           ) : (
-            <Button 
-              onClick={form.handleSubmit(onSubmit)} 
-              disabled={isSubmitting}
-              className="h-14 bg-brand-gold text-brand-navy hover:bg-brand-gold/90 px-12 font-black text-sm rounded-xl shadow-xl shadow-brand-gold/20"
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Syncing...
-                </>
-              ) : (
-                <>
-                  <Send className="mr-2 h-5 w-5" /> Request Quote Now
-                </>
-              )}
+            <Button onClick={form.handleSubmit(onSubmit)} disabled={isSubmitting} className="h-14 bg-brand-gold text-brand-navy hover:bg-brand-gold/90 px-12 font-black text-sm rounded-xl shadow-xl">
+              {isSubmitting ? <><Loader2 className="mr-2 h-5 w-5 animate-spin" /> {t('submitting')}</> : <><Send className="mr-2 h-5 w-5" /> {t('submit')}</>}
             </Button>
           )}
         </CardFooter>
       </Card>
-      
-      <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-8 opacity-60">
-        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-navy">
-          <Check className="w-4 h-4 text-success" /> 24h Response Time
-        </div>
-        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-navy">
-          <Check className="w-4 h-4 text-success" /> ISO 9001 Process
-        </div>
-        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-navy">
-          <Check className="w-4 h-4 text-success" /> Global Logistics
-        </div>
-      </div>
     </div>
   );
 }

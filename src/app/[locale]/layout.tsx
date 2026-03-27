@@ -1,3 +1,4 @@
+
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import {notFound} from 'next/navigation';
@@ -33,6 +34,18 @@ const inter = Inter({
 export async function generateMetadata({ params }: { params: { locale: string } }) {
   const { locale } = await params;
   
+  if (locale === 'ar') {
+    return {
+      metadataBase: new URL('https://www.anabyn.com'),
+      title: 'مورد مناشف فاخرة وبياضات أسرة من الهند | أنابين غلوبال فنتشرز',
+      description: 'مورد ومصدر مناشف تيري الفاخرة وبياضات الأسرة من الهند. نصدر إلى أكثر من 50 دولة. معتمد ISO وOEKO-TEX. اطلب عرض سعر الآن.',
+      keywords: ["تصدير منسوجات", "مناشف هندية", "بياضات أسرة", "مورد فنادق"],
+      alternates: {
+        canonical: `https://www.anabyn.com/ar`,
+      }
+    };
+  }
+
   return {
     metadataBase: new URL('https://www.anabyn.com'),
     title: {
@@ -69,11 +82,6 @@ export async function generateMetadata({ params }: { params: { locale: string } 
       description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
       siteName: 'Anabyn Global Ventures LLP',
       locale: locale === 'ar' ? 'ar_AR' : 'en_US',
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Anabyn – Bed Linen & Bath Linen Exporters from India",
-      description: "India's premium luxury terry towel and bed linen exporter. 50+ countries.",
     },
   };
 }
@@ -137,7 +145,6 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        {/* Google Analytics 4 */}
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=G-W4TG29FZLD`}
