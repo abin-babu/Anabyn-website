@@ -1,8 +1,15 @@
+
 import { Star, StarHalf } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import Link from 'next/link';
 import { FaGoogle } from 'react-icons/fa';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const googleReviews = [
   {
@@ -63,13 +70,30 @@ export function Testimonials() {
             Our commitment to quality and reliability has earned us the trust of
             premier hotels and institutions worldwide.
           </p>
-          <div className="flex flex-col items-center gap-2 mb-12">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl font-bold">{overallRating}</span>
-              <StarRating rating={overallRating} />
-            </div>
-            <p className="text-muted-foreground">Based on real Google Reviews</p>
-          </div>
+          
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://g.co/kgs/anabyn" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 mb-12 hover:opacity-80 transition-opacity"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-4xl font-bold">{overallRating}</span>
+                    <StarRating rating={overallRating} />
+                  </div>
+                  <p className="text-muted-foreground flex items-center gap-1">
+                    Based on real Google Reviews ↗
+                  </p>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>View our Google reviews</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

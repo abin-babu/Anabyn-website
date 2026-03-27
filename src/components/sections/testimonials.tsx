@@ -1,6 +1,13 @@
+
 'use client';
 
 import { Star } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const reviews = [
   {
@@ -29,12 +36,28 @@ export function Testimonials() {
             Trusted by Industry Leaders
           </h2>
           <div className="flex flex-col items-center gap-3">
-             <div className="flex items-center gap-1 text-[#C8A020]">
-                {[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 fill-current" />)}
-             </div>
-             <p className="text-white/60 font-medium tracking-widest uppercase text-[11px]">
-                4.9 Rating — Based on real Google Reviews
-             </p>
+             <TooltipProvider>
+               <Tooltip>
+                 <TooltipTrigger asChild>
+                   <a 
+                     href="https://g.co/kgs/anabyn" 
+                     target="_blank" 
+                     rel="noopener noreferrer"
+                     className="flex flex-col items-center gap-3 hover:opacity-80 transition-opacity"
+                   >
+                     <div className="flex items-center gap-1 text-[#C8A020]">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="h-6 w-6 fill-current" />)}
+                     </div>
+                     <p className="text-white/60 font-medium tracking-widest uppercase text-[11px] flex items-center gap-1">
+                        4.9 Rating — Based on real Google Reviews ↗
+                     </p>
+                   </a>
+                 </TooltipTrigger>
+                 <TooltipContent>
+                   <p>View our Google reviews</p>
+                 </TooltipContent>
+               </Tooltip>
+             </TooltipProvider>
           </div>
         </div>
 

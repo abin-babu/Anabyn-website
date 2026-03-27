@@ -12,6 +12,12 @@ import {
 } from '@/components/ui/carousel';
 import { Star, Quote } from 'lucide-react';
 import Autoplay from 'embla-carousel-autoplay';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const homeTestimonials = [
   {
@@ -40,9 +46,29 @@ export function TestimonialsCarousel() {
       <div className="container px-4 mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold font-playfair text-white">Client Success Stories</h2>
-          <div className="flex justify-center gap-1 text-[#C9A243] mt-4">
-            {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
-          </div>
+          
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a 
+                  href="https://g.co/kgs/anabyn" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex flex-col items-center mt-4 group cursor-pointer"
+                >
+                  <div className="flex justify-center gap-1 text-[#C9A243] transition-transform group-hover:scale-105">
+                    {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
+                  </div>
+                  <p className="text-white/60 font-bold uppercase tracking-widest text-[10px] mt-3 flex items-center gap-1 group-hover:text-white transition-colors">
+                    4.9 Rating on Google ↗
+                  </p>
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>View our Google reviews</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <Carousel
