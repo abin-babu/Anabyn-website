@@ -1,5 +1,3 @@
-'use client';
-
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -20,8 +18,14 @@ import {
   Package,
   Anchor
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'How We Export — Our 5-Step Process | Anabyn Global Ventures',
+  description: 'From RFQ to doorstep delivery — Anabyn\'s streamlined 5-step export workflow ensures quality, compliance, and on-time shipping worldwide.',
+};
 
 const steps = [
   {

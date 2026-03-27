@@ -4,6 +4,12 @@ import { RFQForm } from '@/components/rfq/rfq-form';
 import { Badge } from '@/components/ui/badge';
 import { ShieldCheck, Clock, Globe } from 'lucide-react';
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Request Export Quote — Luxury Textiles from India | Anabyn',
+  description: 'Get a tailored export quote for premium terry towels and bed linen. 24-hour response. Full documentation. Shipped to 50+ countries.',
+};
 
 export default function RequestQuotePage() {
   return (

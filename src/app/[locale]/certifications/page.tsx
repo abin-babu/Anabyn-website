@@ -1,24 +1,26 @@
-'use client';
-
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { 
-  ShieldCheck, 
   Award, 
-  ClipboardCheck, 
   CheckCircle2, 
   FileText, 
-  Factory,
   ArrowRight,
   FlaskConical,
   Activity,
   Layers,
-  SearchCheck
+  SearchCheck,
+  ShieldCheck
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Certifications & Compliance | Anabyn Global Ventures LLP',
+  description: 'ISO 9001:2015, OEKO-TEX, GOTS and REACH compliance. Every Anabyn shipment is verified for quality and global regulatory standards.',
+};
 
 const certifications = [
   {

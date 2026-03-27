@@ -1,15 +1,10 @@
-'use client';
-
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { 
   Eye, 
   Target, 
   Globe, 
-  Users, 
-  Truck, 
-  Package, 
   Linkedin, 
   MapPin, 
   Building2, 
@@ -25,6 +20,12 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Anabyn — Our Story & Team | Textile Exporter India',
+  description: 'Meet the founders of Anabyn Global Ventures LLP — combining a decade of Kerala manufacturing with global export expertise. Trusted by buyers in 50+ countries.',
+};
 
 const directors = [
   {
@@ -35,10 +36,10 @@ const directors = [
     photo: '/Founders/Anoop.jpeg',
   },
   {
-    name: 'Abin Babu',
-    role: 'Co-Founder & Business Development',
-    expertise: 'Thaiparambath Babu Abin Babu • Deep Corporate & Export Infrastructure',
-    description: "Abin (Thaiparambath Babu Abin Babu) brings the corporate and commercial infrastructure that turns manufacturing excellence into global trade. From export compliance and documentation to international buyer relationships, Abin ensures every Anabyn shipment meets the standards expected by procurement teams worldwide.",
+    name: 'Thaiparambath Babu Abin Babu',
+    role: 'Chairman',
+    expertise: 'MBA IIM Kozhikode • 14+ Years Corporate Product Authority',
+    description: "Abin brings the corporate and commercial infrastructure that turns manufacturing excellence into global trade. From export compliance and documentation to international buyer relationships, Abin ensures every Anabyn shipment meets the standards expected by procurement teams worldwide.",
     photo: '/Founders/Abin.png',
   },
   {
