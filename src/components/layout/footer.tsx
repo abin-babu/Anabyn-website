@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { AnabynLogo } from '@/components/anabyn-logo';
 import { Mail, Globe } from 'lucide-react';
+import { FaInstagram, FaFacebook, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 export function Footer() {
   const currentYear = 2026;
@@ -32,6 +33,46 @@ export function Footer() {
               <div className="flex items-center gap-3 text-sm">
                 <Globe className="w-4 h-4 text-[#C9A243]" />
                 <a href="https://www.anabyn.com" className="hover:text-[#C9A243] transition-colors">www.anabyn.com</a>
+              </div>
+              
+              {/* Social Media Links */}
+              <div className="flex items-center gap-6 pt-6">
+                <a 
+                  href="https://www.instagram.com/dezire_sportswear" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow Anabyn on Instagram" 
+                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
+                >
+                  <FaInstagram size={24} />
+                </a>
+                <a 
+                  href="https://www.facebook.com/deziresportswear" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow Anabyn on Facebook" 
+                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
+                >
+                  <FaFacebook size={24} />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/anabyn" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow Anabyn on LinkedIn" 
+                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
+                >
+                  <FaLinkedin size={24} />
+                </a>
+                <a 
+                  href="https://wa.me/919495613121" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Chat with Anabyn on WhatsApp" 
+                  className="text-white hover:text-[#D4A827] transition-all duration-300 transform hover:scale-110"
+                >
+                  <FaWhatsapp size={24} />
+                </a>
               </div>
             </div>
           </div>
