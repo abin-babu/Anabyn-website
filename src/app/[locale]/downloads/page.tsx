@@ -4,28 +4,27 @@ import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { DownloadCloud } from 'lucide-react';
+import { DownloadCloud, FileText } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-
 const brochures = [
+    {
+        title: 'Anabyn Export Catalogue 2026',
+        description: 'Comprehensive specifications for our premium terry towels and bed linen collections. Essential for trade buyers.',
+        fileUrl: '/2026%20Linen%20Catalogue.pdf',
+        fileType: 'PDF'
+    },
     {
         title: 'Anabyn Global Ventures - Corporate Brochure',
         description: 'An overview of our premium home and hospitality textiles. Crafted in Premium Cotton, Trusted Worldwide.',
-        fileUrl: '/brochures/anabyn-corporate-brochure.jpg',
+        fileUrl: '#',
         fileType: 'JPG'
-    },
-    {
-        title: 'Anabyn Hotel Towel Collection 2025',
-        description: 'Explore our complete range of premium towels for the hospitality industry.',
-        fileUrl: '#', // Placeholder URL
-        fileType: 'PDF'
     },
     {
         title: 'Anabyn Customization Guide',
         description: 'Learn about our bespoke services for branding, sizing, and material selection.',
-        fileUrl: '#', // Placeholder URL
+        fileUrl: '#',
         fileType: 'PDF'
     }
 ];
@@ -45,21 +44,26 @@ export default function DownloadsPage() {
                                      <div className="absolute inset-0 bg-black/40"></div>
                                 </div>
                             )}
-                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Downloads</CardTitle>
+                            <CardTitle className="text-3xl md:text-4xl font-bold font-headline">Resource Center</CardTitle>
                             <CardDescription className="mt-2 text-lg max-w-2xl mx-auto">
-                                Access our latest product catalogs and brochures to learn more about our offerings.
+                                Access our latest technical specifications, product catalogs, and corporate brochures.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="mt-8">
                             <div className="space-y-6">
                                 {brochures.map((brochure, index) => (
-                                    <div key={index} className="p-4 border rounded-lg flex flex-col sm:flex-row justify-between items-start sm:items-center bg-background">
-                                        <div>
-                                            <h3 className="text-xl font-bold">{brochure.title}</h3>
-                                            <p className="text-muted-foreground">{brochure.description}</p>
+                                    <div key={index} className="p-6 border rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center bg-background shadow-sm hover:shadow-md transition-all">
+                                        <div className="flex gap-4 items-start">
+                                            <div className="w-10 h-10 rounded-lg bg-brand-navy/5 flex items-center justify-center shrink-0">
+                                                <FileText className="text-brand-gold w-5 h-5" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold text-brand-navy">{brochure.title}</h3>
+                                                <p className="text-muted-foreground text-sm leading-relaxed max-w-md">{brochure.description}</p>
+                                            </div>
                                         </div>
-                                        <Button asChild className="mt-4 sm:mt-0">
-                                            <a href={brochure.fileUrl} download>
+                                        <Button asChild className="mt-4 sm:mt-0 rounded-xl bg-brand-navy text-white hover:bg-brand-navy/90" size="sm">
+                                            <a href={brochure.fileUrl} download={brochure.title + '.' + brochure.fileType.toLowerCase()}>
                                                 <DownloadCloud className="mr-2 h-4 w-4" />
                                                 Download {brochure.fileType}
                                             </a>

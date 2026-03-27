@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Download, FileText, CheckCircle2, ShieldCheck, Truck, Package, ArrowRight, Loader2 } from 'lucide-react';
+import { Download, FileText, CheckCircle2, ShieldCheck, Truck, Package, Loader2 } from 'lucide-react';
 import { countries } from '@/lib/countries';
 import { handleCatalogueLead } from '@/app/actions/inquiry';
 import { useToast } from '@/hooks/use-toast';
@@ -101,7 +101,6 @@ export default function CataloguePage() {
                     <p className="text-white/40 text-[10px] uppercase font-bold tracking-widest pt-8">Premium Indian Textiles</p>
                   </div>
                 </div>
-                {/* Decorative floating elements */}
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-gold/20 rounded-full blur-2xl -z-10" />
               </div>
             </div>
@@ -126,12 +125,12 @@ export default function CataloguePage() {
                     </div>
                     <div className="pt-8">
                       <Button asChild size="lg" className="h-16 px-12 rounded-2xl bg-brand-navy text-white font-black text-lg hover:scale-105 transition-transform border-none">
-                        <a href="/2026%20Linen%20Catalogue.pdf" download>
+                        <a href="/2026%20Linen%20Catalogue.pdf" download="2026 Linen Catalogue.pdf">
                           <Download className="mr-3 w-6 h-6 text-brand-gold" /> Download PDF Now
                         </a>
                       </Button>
                     </div>
-                    <p className="text-xs text-muted-foreground pt-4 italic">A copy has also been sent to your business email.</p>
+                    <p className="text-xs text-muted-foreground pt-4 italic">The file will begin downloading automatically.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-10">
