@@ -1,3 +1,4 @@
+
 import type { MetadataRoute } from 'next';
 
 /**
@@ -62,6 +63,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/luxury-hotel-towels-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cotton-bath-towels-wholesale`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/oem-towel-manufacturer-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/hotel-bed-linen-supplier-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
   ];
 }
