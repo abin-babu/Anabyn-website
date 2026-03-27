@@ -103,7 +103,7 @@ export function Footer() {
                 <Link href="/oem-private-label" className="hover:text-[#C9A243] transition-colors">OEM & Private Label</Link>
               </li>
               <li>
-                <Link href="/certifications" className="hover:text-[#C9A243] transition-colors">Compliance & Standards</Link>
+                <Link href="/compliance-standards" className="hover:text-[#C9A243] transition-colors">Standard Comparison</Link>
               </li>
             </ul>
           </div>

@@ -18,7 +18,8 @@ import {
   Building2,
   Fingerprint,
   MessageSquare,
-  Clock
+  Clock,
+  Scale
 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import type { Metadata } from 'next';
@@ -165,6 +166,11 @@ export default async function CertificationsPage({ params }: { params: { locale:
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto">
                 Every product leaving our facility meets rigorous international quality standards. We work with certified raw material suppliers and apply multi-point inspection at every stage.
               </p>
+              <div className="pt-8">
+                <Button asChild className="bg-brand-gold text-brand-navy font-black h-12 px-8 rounded-xl shadow-xl hover:scale-105 transition-transform">
+                  <Link href="/compliance-standards">Compare our Standards <Scale className="ml-2 w-4 h-4" /></Link>
+                </Button>
+              </div>
             </div>
           </div>
         </section>

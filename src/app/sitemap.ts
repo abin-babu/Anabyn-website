@@ -1,4 +1,3 @@
-
 import type { MetadataRoute } from 'next';
 
 /**
@@ -30,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/certifications`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/compliance-standards`,
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
