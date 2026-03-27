@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 /**
  * Dynamically generates the sitemap.xml for the site.
- * Includes all core landing pages and product collections with specific priorities.
+ * Includes all core landing pages, product collections, and technical guides.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.anabyn.com/en';
@@ -14,6 +14,54 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'daily',
       priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/terry-towels`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/bed-linen`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/terry-towel-exporter-kerala`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/luxury-hotel-towels-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cotton-bath-towels-wholesale`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/oem-towel-manufacturer-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/hotel-bed-linen-supplier-india`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/request-quote`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/about-us`,
@@ -40,24 +88,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/request-quote`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/terry-towels`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/bed-linen`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
       url: `${baseUrl}/hotel-collections`,
       lastModified,
       changeFrequency: 'weekly',
@@ -70,28 +100,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/luxury-hotel-towels-india`,
+      url: `${baseUrl}/catalogue`,
       lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}/cotton-bath-towels-wholesale`,
+      url: `${baseUrl}/blog`,
       lastModified,
       changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/oem-towel-manufacturer-india`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/hotel-bed-linen-supplier-india`,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.9,
+      priority: 0.7,
     },
   ];
 }
