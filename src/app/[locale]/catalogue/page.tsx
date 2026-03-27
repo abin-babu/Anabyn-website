@@ -126,7 +126,7 @@ export default function CataloguePage() {
                     </div>
                     <div className="pt-8">
                       <Button asChild size="lg" className="h-16 px-12 rounded-2xl bg-brand-navy text-white font-black text-lg hover:scale-105 transition-transform border-none">
-                        <a href="/anabyn-catalogue-2026.pdf" download>
+                        <a href="/2026%20Linen%20Catalogue.pdf" download>
                           <Download className="mr-3 w-6 h-6 text-brand-gold" /> Download PDF Now
                         </a>
                       </Button>
