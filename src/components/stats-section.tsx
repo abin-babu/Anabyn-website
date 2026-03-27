@@ -52,6 +52,13 @@ export function StatsSection() {
             </div>
           ))}
         </div>
+        
+        {/* Heritage Brand Footnote */}
+        <div className="mt-12 text-center">
+          <p className="text-xs text-[#6E6E73] italic">
+            Statistics include output from our manufacturing heritage brand, Dezire Sportswear, established 2013.
+          </p>
+        </div>
       </div>
     </section>
   );
