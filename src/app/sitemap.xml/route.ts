@@ -1,8 +1,10 @@
-// This file is intentionally disabled to resolve a conflict with src/app/sitemap.ts
-// Next.js 15 detects both as /sitemap.xml. sitemap.ts is the preferred dynamic generator.
+/**
+ * This file is disabled to resolve a conflict with src/app/sitemap.ts.
+ * Next.js registers 'sitemap.ts' automatically as /sitemap.xml.
+ * Having a route.ts in a 'sitemap.xml' folder creates a collision.
+ * 
+ * To fully resolve the warning, this file should be deleted from the filesystem.
+ */
 export const dynamic = 'force-static';
-export async function GET() {
-  return new Response('Sitemap is handled by src/app/sitemap.ts', {
-    status: 404,
-  });
-}
+
+// No GET export here to prevent Next.js from registering this as a route
